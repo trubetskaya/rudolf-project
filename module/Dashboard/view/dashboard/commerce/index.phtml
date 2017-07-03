@@ -1,0 +1,79 @@
+<?php /** @var \Lib\View\Renderer\PhpRendererInterface $this */ ?>
+<?php $this->inlineScript()->appendFile($this->basePath('/js/cms/table.js')); ?>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <?php use Zend\Form\Element\Checkbox; ?>
+            <?php echo $this->render('form-head', ['text' => 'Articles', 'ico' => 'truck']); ?>
+            <div class="panel-body">
+                <table class="table table-hover order-column datatable">
+                    <thead>
+                    <tr>
+                        <th><?php echo $this->translate('ID'); ?></th>
+                        <th><?php echo $this->translate('ECommerceProduct description'); ?></th>
+                        <th><?php echo $this->translate('Condition'); ?></th>
+                        <th><?php echo $this->translate('Created'); ?></th>
+                        <th><?php echo $this->translate('Actions'); ?></th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th><?php echo $this->translate('ID'); ?></th>
+                        <th><?php echo $this->translate('ECommerceProduct description'); ?></th>
+                        <th><?php echo $this->translate('Condition'); ?></th>
+                        <th><?php echo $this->translate('Created'); ?></th>
+                        <th><?php echo $this->translate('Actions'); ?></th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div><!--/col-->
+</div>
+<script type="text/javascript">
+<?php $this->inlineScript()->captureStart() ?>
+OPTS.datatable.config.columns = [
+    null, {
+        data: "doc",
+        className: "main-content",
+        render: function (data, type, row) {
+            var node = $("<div>").addClass('media').append(
+                $("<span>").addClass('hidden').text(data.name),
+                $("<div>").addClass("media-left text-center").prepend(
+                    $("<a>").attr({target: "_blank", href: "#"}).append(
+                        $("<img>").css({'background-image': "url(" + data.preview + ")"})
+                            .attr({src: '/img/cms/trans.gif', alt: data.name})
+                            .addClass("media-object")
+                    ),
+                    $("<p>").addClass('label label-' + data.condition.id)
+                        .text(_(data.condition.name))
+                ),
+                $("<div>").addClass("media-body").css('vertical-align', 'middle').append(
+                    $("<h4>").addClass("media-heading").append(
+                        $("<small>").addClass('updated-time').text(data.updated),
+                        $("<div>").addClass('media-name').append(
+                            $("<input>").addClass('select-box pull-left').attr({type: 'checkbox'}),
+                            $("<span>").text(data.name)
+                        )
+                    ),
+                    $("<div>").addClass('description-text')
+                        .text(data.description)
+                )
+            );
+
+            return $("<div>")
+                .append(node)
+                .html();
+        }
+    },
+    {
+        data: "doc.price",
+        className: "price"
+    },
+    {
+        data: "doc.created",
+        className: "datetime"
+    }, null
+];
+<?php $this->inlineScript()->captureEnd() ?>
+</script>
