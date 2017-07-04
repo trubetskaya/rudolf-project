@@ -302,6 +302,33 @@ namespace Dashboard\Entity {
             $this->registrationDate = $registrationDate;
             return $this;
         }
+
+        /**
+         * Function jsonSerialize
+         * @return array
+         */
+        function jsonSerialize()
+        {
+            return [
+                "DT_RowId" => "row-{$this->getId()}",
+                "doc" => [
+                    "name" => $this->getName(),
+                    "description" => $this->getDescription(),
+                    "index" => $this->getIndex(),
+                    "created" => $this->getCreated()->format("Y-m-d"),
+                    "updated" => $this->getUpdated()->format("Y-m-d"),
+                    "preview" => $this->preview(),
+                    "price" => $this->getAmount(),
+                    "condition" => [
+                        "id" => $this->getCondition()->getId(),
+                        "name" => $this->getCondition()->getName()
+                    ]
+                ],
+                "links" => [
+                    "edit" => '/dashboard/commerce/edit/' . $this->getId()
+                ]
+            ];
+        }
     }
 }
 

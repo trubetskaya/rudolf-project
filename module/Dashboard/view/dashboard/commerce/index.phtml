@@ -1,5 +1,31 @@
 <?php /** @var \Lib\View\Renderer\PhpRendererInterface $this */ ?>
-<?php $this->inlineScript()->appendFile($this->basePath('/js/cms/table.js')); ?>
+<?php $this->headLink()
+    ->appendStylesheet('/dashboard/vendors/iCheck/skins/flat/green.css')
+    ->appendStylesheet('/dashboard/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css')
+    ->appendStylesheet('/dashboard/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')
+    ->appendStylesheet('/dashboard/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')
+    ->appendStylesheet('/dashboard/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')
+    ->appendStylesheet('/dashboard/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css');?>
+
+<?php $this->headScript()
+    ->appendFile('/dashboard/vendors/iCheck/icheck.min.js')
+    ->appendFile('/dashboard/vendors/datatables.net/js/jquery.dataTables.min.js')
+    ->appendFile('/dashboard/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')
+    ->appendFile('/dashboard/vendors/datatables.net-buttons/js/dataTables.buttons.min.js')
+    ->appendFile('/dashboard/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')
+    ->appendFile('/dashboard/vendors/datatables.net-buttons/js/buttons.flash.min.js')
+    ->appendFile('/dashboard/vendors/datatables.net-buttons/js/buttons.html5.min.js')
+    ->appendFile('/dashboard/vendors/datatables.net-buttons/js/buttons.print.min.js')
+    ->appendFile('/dashboard/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')
+    ->appendFile('/dashboard/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js')
+    ->appendFile('/dashboard/vendors/datatables.net-responsive/js/dataTables.responsive.min.js')
+    ->appendFile('/dashboard/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js')
+    ->appendFile('/dashboard/vendors/datatables.net-scroller/js/dataTables.scroller.min.js')
+    ->appendFile('/dashboard/vendors/jszip/dist/jszip.min.js')
+    ->appendFile('/dashboard/vendors/pdfmake/build/pdfmake.min.js')
+    ->appendFile('/dashboard/vendors/pdfmake/build/vfs_fonts.js')
+    ->appendFile('/js/table.js'); ?>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
@@ -10,8 +36,8 @@
                     <thead>
                     <tr>
                         <th><?php echo $this->translate('ID'); ?></th>
-                        <th><?php echo $this->translate('ECommerceProduct description'); ?></th>
-                        <th><?php echo $this->translate('Condition'); ?></th>
+                        <th><?php echo $this->translate('Description'); ?></th>
+                        <th><?php echo $this->translate('Price'); ?></th>
                         <th><?php echo $this->translate('Created'); ?></th>
                         <th><?php echo $this->translate('Actions'); ?></th>
                     </tr>
@@ -19,8 +45,8 @@
                     <tfoot>
                     <tr>
                         <th><?php echo $this->translate('ID'); ?></th>
-                        <th><?php echo $this->translate('ECommerceProduct description'); ?></th>
-                        <th><?php echo $this->translate('Condition'); ?></th>
+                        <th><?php echo $this->translate('Description'); ?></th>
+                        <th><?php echo $this->translate('Price'); ?></th>
                         <th><?php echo $this->translate('Created'); ?></th>
                         <th><?php echo $this->translate('Actions'); ?></th>
                     </tr>
@@ -31,49 +57,59 @@
     </div><!--/col-->
 </div>
 <script type="text/javascript">
-<?php $this->inlineScript()->captureStart() ?>
-OPTS.datatable.config.columns = [
-    null, {
-        data: "doc",
-        className: "main-content",
-        render: function (data, type, row) {
-            var node = $("<div>").addClass('media').append(
-                $("<span>").addClass('hidden').text(data.name),
-                $("<div>").addClass("media-left text-center").prepend(
-                    $("<a>").attr({target: "_blank", href: "#"}).append(
-                        $("<img>").css({'background-image': "url(" + data.preview + ")"})
-                            .attr({src: '/img/cms/trans.gif', alt: data.name})
-                            .addClass("media-object")
-                    ),
-                    $("<p>").addClass('label label-' + data.condition.id)
-                        .text(_(data.condition.name))
-                ),
-                $("<div>").addClass("media-body").css('vertical-align', 'middle').append(
-                    $("<h4>").addClass("media-heading").append(
-                        $("<small>").addClass('updated-time').text(data.updated),
-                        $("<div>").addClass('media-name').append(
-                            $("<input>").addClass('select-box pull-left').attr({type: 'checkbox'}),
-                            $("<span>").text(data.name)
-                        )
-                    ),
-                    $("<div>").addClass('description-text')
-                        .text(data.description)
-                )
-            );
+<?php //$this->inlineScript()->captureStart() ?>
+OPTS = {
+    datatable: {
+        config: {
+            ajax: {
+                url: '<?php echo $this->url('zfcadmin/dashboard', ['controller' => 'commerce', 'action' => 'list']);?>',
+                type: "GET",
+            },
+            columns: [
+                null, {
+                    data: "doc",
+                    className: "main-content",
+                    render: function (data, type, row) {
+                        var node = $("<div>").addClass('media').append(
+                            $("<span>").addClass('hidden').text(data.name),
+                            $("<div>").addClass("media-left text-center").prepend(
+                                $("<a>").attr({target: "_blank", href: "#"}).append(
+                                    $("<img>").css({'background-image': "url(" + data.preview + ")"})
+                                        .attr({src: '/img/cms/trans.gif', alt: data.name})
+                                        .addClass("media-object")
+                                ),
+                                $("<p>").addClass('label label-success label-' + data.condition.id)
+                                    .text(_(data.condition.name))
+                            ),
+                            $("<div>").addClass("media-body").css('vertical-align', 'middle').append(
+                                $("<h4>").addClass("media-heading").append(
+                                    $("<small>").addClass('updated-time').text(data.updated),
+                                    $("<div>").addClass('media-name').append(
+                                        $("<input>").addClass('select-box pull-left').attr({type: 'checkbox'}),
+                                        $("<span>").text(data.name)
+                                    )
+                                ),
+                                $("<div>").addClass('description-text')
+                                    .text(data.description)
+                            )
+                        );
 
-            return $("<div>")
-                .append(node)
-                .html();
+                        return $("<div>")
+                            .append(node)
+                            .html();
+                    }
+                },
+                {
+                    data: "doc.price",
+                    className: "main-price"
+                },
+                {
+                    data: "doc.created",
+                    className: "main-datetime"
+                }, null
+            ]
         }
-    },
-    {
-        data: "doc.price",
-        className: "price"
-    },
-    {
-        data: "doc.created",
-        className: "datetime"
-    }, null
-];
-<?php $this->inlineScript()->captureEnd() ?>
+    }
+};
+<?php //$this->inlineScript()->captureEnd() ?>
 </script>

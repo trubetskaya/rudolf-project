@@ -9,7 +9,7 @@
 
 namespace Dashboard\Controller {
 
-    use Dashboard\Entity\EntityToArrayTrait;
+    use Dashboard\Entity\ECommerceProduct;
     use Dashboard\Service\ServiceAbstract;
     use Doctrine\ORM\EntityManager;
     use Doctrine\ORM\EntityNotFoundException;
@@ -20,7 +20,6 @@ namespace Dashboard\Controller {
     use Zend\View\Model\ViewModel;
 
     use Dashboard\Entity\Document;
-    use Dashboard\Service\DocumentService;
     use Doctrine\ORM\Internal\Hydration\IterableResult;
 
     /**
@@ -178,22 +177,18 @@ namespace Dashboard\Controller {
                 ->getQuery()
                 ->iterate();
 
-            /** @var \Zend\View\Renderer\PhpRenderer $view */
-            $view = $this->getService()->getServiceLocator()
-                ->get('viewRenderer');
-
             $data = [];
             $iterator->rewind();
             while ($iterator->valid()) {
                 $current = $iterator->current();
                 $iterator->next();
 
-                /** @var EntityToArrayTrait $entity */
+                /** @var ECommerceProduct $entity */
                 $entity = array_shift($current);
-                array_push($data, $entity->toArray());
+                array_push($data, $entity->jsonSerialize());
             }
 
-            $jsonModel = new JsonModel(['status' => 'success', 'data' => $data]);
+            $jsonModel = new JsonModel(['data' => $data]);
             $jsonModel->setVariable('recordsFiltered', count($data))
                 ->setVariable('recordsTotal', count($data))
                 ->setVariable('draw', 1);
