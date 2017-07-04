@@ -10,7 +10,8 @@
 
             <li <?php if ($page->getActive(true)) :?>class="<?php echo $menu->getLiActiveClass(); ?>"<?php endif; ?>>
 
-                <?php echo $menu->htmlify($page, false) . PHP_EOL;  ?>
+                <?php $clone = clone $page;?>
+                <?php echo $menu->htmlify($clone->setLabel($clone->ico . $clone->getLabel() . '<span class="fa fa-chevron-down"></span>'), false) . PHP_EOL;  ?>
                 <?php if ($page->hasPages()) : ?>
                 <ul class="nav child_menu">
                     <?php foreach ($page->getPages() as $child) : ?>

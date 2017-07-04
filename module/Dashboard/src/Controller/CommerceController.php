@@ -24,6 +24,7 @@ namespace Dashboard\Controller {
      * Товары (commerce)
      * @package Commerce\Controller
      *
+     * @property DocumentService $service
      * @method DocumentService getService()
      */
     class CommerceController extends AbstractController
@@ -35,9 +36,8 @@ namespace Dashboard\Controller {
          */
         public function onDispatch(MvcEvent $e)
         {
-            $this->service = new CommerceService;
+            $this->service = new DocumentService;
             $this->service->setServiceLocator($e->getApplication()->getServiceManager());
-            $this->em = $this->getService()->getEntityManager();
 
             return parent::onDispatch($e);
         }

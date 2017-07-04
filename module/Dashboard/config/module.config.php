@@ -113,11 +113,13 @@ namespace Dashboard {
             'admin' => [
                 'menu' => [
                     'route' => 'zfcadmin',
-                    'label' => '<i class="fa fa-home"></i>Dashboard',
+                    'ico' => '<i class="fa fa-home"></i>',
+                    'label' => 'Dashboard'
                 ],
                 'ecommerce' => [
                     'uri' => 'javascript:;',
-                    'label' => '<i class="fa fa-bar-chart-o"></i>ECommerce<span class="fa fa-chevron-down"></span>',
+                    'label' => 'ECommerce',
+                    'ico' => '<i class="fa fa-bar-chart-o"></i>',
                     'pages' => [
                         'list' => [
                             'label' => 'List',
@@ -138,7 +140,7 @@ namespace Dashboard {
                             'route' => 'zfcadmin/dashboard',
                             'controller' => 'commerce',
                             'action' => 'edit',
-                            'visible' => false
+                            'params' => ['id' => 0]
                         ]
 
 

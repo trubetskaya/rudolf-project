@@ -9,18 +9,17 @@
 
 namespace Dashboard\Controller {
 
-    use Dashboard\Entity\ECommerceProduct;
-    use Dashboard\Service\ServiceAbstract;
     use Doctrine\ORM\EntityManager;
     use Doctrine\ORM\EntityNotFoundException;
+    use Doctrine\ORM\Internal\Hydration\IterableResult;
 
-    use Zend\Mvc\MvcEvent;
-    use Zend\Mvc\Controller\AbstractActionController;
     use Zend\View\Model\JsonModel;
     use Zend\View\Model\ViewModel;
+    use Zend\Mvc\Controller\AbstractActionController;
 
     use Dashboard\Entity\Document;
-    use Doctrine\ORM\Internal\Hydration\IterableResult;
+    use Dashboard\Entity\ECommerceProduct;
+    use Dashboard\Service\ServiceAbstract;
 
     /**
      * Class IndexController
@@ -29,13 +28,7 @@ namespace Dashboard\Controller {
     class AbstractController extends AbstractActionController
     {
         /**
-         * Entity manager
-         * @var EntityManager
-         */
-        protected $em;
-
-        /**
-         * service
+         * Service
          * @var ServiceAbstract
          */
         protected $service;
@@ -56,23 +49,12 @@ namespace Dashboard\Controller {
         }
 
         /**
-         * Execute the request
-         * @param  MvcEvent $e
-         * @return mixed
-         * @throws \Zend\Mvc\Exception\DomainException
-         */
-        public function onDispatch(MvcEvent $e)
-        {
-            return parent::onDispatch($e);
-        }
-
-        /**
          * Get entity manager
          * @return EntityManager
          */
         public function getEntityManager()
         {
-            return $this->em;
+            return $this->service->getEntityManager();
         }
 
         /**
@@ -118,6 +100,10 @@ namespace Dashboard\Controller {
                 );
             }
 
+            $this->getPluginManager()->getServiceLocator()
+                ->get('admin_navigation')->findBy('params', ['id' => 0])
+                ->setParams(['id' => $identifier]);
+
             return $this->getService()
                 ->edit($entity);
         }
@@ -130,7 +116,7 @@ namespace Dashboard\Controller {
         {
             try {
                 /** @var EntityManager $em */
-                $em = $this->getService()->getEntityManager();
+                $em = $this->getEntityManager();
                 $identifier = $this->params()
                     ->fromRoute("id");
 
@@ -171,10 +157,8 @@ namespace Dashboard\Controller {
         public function listAction()
         {
             /** @var IterableResult $iterator */
-            $iterator = $this->getService()->getEntityManager()
-                ->getRepository(static::$entityClass)
-                ->createQueryBuilder("i")->select("i")
-                ->getQuery()
+            $iterator = $this->getEntityManager()->getRepository(static::$entityClass)
+                ->createQueryBuilder("i")->select("i")->getQuery()
                 ->iterate();
 
             $data = [];
@@ -205,7 +189,7 @@ namespace Dashboard\Controller {
         {
             try {
                 /** @var \Lib\ORM\EntityManager $em */
-                $em = $this->getService()->getEntityManager();
+                $em = $this->getEntityManager();
                 foreach ($this->params()->fromPost() as $rowID => $index) {
                     $entity = $em->getRepository(static::$entityClass)->find(substr($rowID, 4));
                     if (!$entity instanceof static::$entityClass) {

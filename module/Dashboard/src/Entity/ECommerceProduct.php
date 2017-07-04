@@ -314,18 +314,18 @@ namespace Dashboard\Entity {
                 "doc" => [
                     "name" => $this->getName(),
                     "description" => $this->getDescription(),
-                    "index" => $this->getIndex(),
-                    "created" => $this->getCreated()->format("Y-m-d"),
-                    "updated" => $this->getUpdated()->format("Y-m-d"),
+                    "updated" => $this->getUpdated()->format(\DateTime::W3C),
                     "preview" => $this->preview(),
                     "price" => $this->getAmount(),
+                    "index" => $this->getIndex(),
                     "condition" => [
                         "id" => $this->getCondition()->getId(),
                         "name" => $this->getCondition()->getName()
                     ]
                 ],
                 "links" => [
-                    "edit" => '/dashboard/commerce/edit/' . $this->getId()
+                    "edit" => '/dashboard/commerce/edit/' . $this->getId(),
+                    "drop" => '/dashboard/commerce/remove/' . $this->getId(),
                 ]
             ];
         }

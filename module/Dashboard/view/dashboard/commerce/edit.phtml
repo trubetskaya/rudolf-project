@@ -98,6 +98,23 @@ $cancel->setAttribute('class', 'btn btn-cancel')
 
     document.addEventListener('DOMContentLoaded', function() {
 
+        var targetForm = $('form#document-form');
+        $('.btn.btn-primary', targetForm).on('click', function() {
+
+            targetForm.parsley().validate();
+            var warn = $('.bs-callout-warning'),
+                info = $('.bs-callout-info');
+
+            var valid = targetForm.parsley().isValid();
+            valid ? info.removeClass('hidden') : info.addClass('hidden');
+            valid ? warn.addClass('hidden') : warn.removeClass('hidden');
+        });
+
+        var disableControlElements = function (state) {
+            $('.form-group:last-child .btn', targetForm).attr('disabled', state)
+                .prop('disabled', state);
+        };
+
         $(".select2_single").select2({
             placeholder: "Select a state",
             allowClear: true
@@ -112,8 +129,6 @@ $cancel->setAttribute('class', 'btn btn-cancel')
         /*------ Dropzone Init ------*/
         Dropzone.autoDiscover = false;
         var dz = new Dropzone('form#document-form', {
-
-            url: '/dashboard/commerce/edit/1',
             clickable   : '#documentFiles',
 
             // template settings
@@ -201,6 +216,7 @@ $cancel->setAttribute('class', 'btn btn-cancel')
                 // Multiple uploading complete
                 _this.on("completemultiple", function(files) {
                     console.info("completemultiple: ", files);
+                    disableControlElements(false);
                     $.each(files, function (i, file) {
                         _this.maxIndex = Math.max(_this.maxIndex, file.index);
                         $(file.previewElement).attr("id", file.index)
@@ -234,9 +250,9 @@ $cancel->setAttribute('class', 'btn btn-cancel')
                 _this.on("removedfile", function(file) {
                     console.info("removedfile: ", file);
                     if (parseInt(file.id) > 0) {
-                        var jqXHR = $.post('/dashboard/commerce/remove-files', {id : file.id});
+                        var jqXHR = $.post('/dashboard/commerce/remove-file', {id : file.id});
                         jqXHR.done(function(response, textStatus, xhr) {
-                            widget.sortable("refresh");
+//                            widget.sortable("refresh");
                             if (typeof(response.data.hash)) {
                                 $('input[value="' + response.data.hash + '"]', form)
                                     .closest('fieldset')
@@ -257,28 +273,20 @@ $cancel->setAttribute('class', 'btn btn-cancel')
             }
         });
 
-        var form = $('form#document-form');
-        var validateForm = function() {
-            var warn = $('.bs-callout-warning'),
-                info = $('.bs-callout-info');
+        targetForm.parsley().on('form:submit', function (e) {
 
-            var valid = form.parsley().isValid();
-            valid ? info.removeClass('hidden') : info.addClass('hidden');
-            valid ? warn.addClass('hidden') : warn.removeClass('hidden');
+            disableControlElements(true);
+            if (dz.getQueuedFiles().length > 0) {
+                dz.processQueue();
+                return false;
+            }
 
-        };
+            var jqXHR = $.ajax(targetForm.attr('action'), { data: targetForm.serialize(), type: "POST" });
+            jqXHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            jqXHR.always(function (response) {
+                disableControlElements(false);
+            });
 
-        $('.btn.btn-primary', form).on('click', function() {
-            form.parsley().validate();
-            validateForm();
-        });
-
-        var buttons = $('.form-group:last-child .btn', form);
-        form.parsley().on('form:submit', function (e) {
-            buttons.attr('disabled', true)
-                .prop('disabled', true);
-
-            dz.processQueue();
             return false;
         });
 

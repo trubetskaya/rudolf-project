@@ -89,8 +89,8 @@ namespace Dashboard\Service {
                             $document->addFiles($file);
 
                             $saved[$file->getIndex()] = [
-                                'status' => 'success',
                                 'thumbnail' => $file->getPreview(),
+                                'status' => 'success',
                             ];
 
                         } catch (\Exception $ex) {

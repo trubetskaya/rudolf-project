@@ -31,12 +31,6 @@ namespace Dashboard\Service {
         protected $serviceLocator;
 
         /**
-         * Entity manager
-         * @var \Lib\ORM\EntityManager
-         */
-        protected $em;
-
-        /**
          * Set service locator
          * @param ServiceLocatorInterface $serviceLocator
          * @return $this
@@ -44,8 +38,6 @@ namespace Dashboard\Service {
         public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
         {
             $this->serviceLocator = $serviceLocator;
-            $this->em = $serviceLocator->get('doctrine.entitymanager.orm_default');
-
             return $this;
         }
 
@@ -64,7 +56,7 @@ namespace Dashboard\Service {
          */
         public function getEntityManager()
         {
-            return $this->em;
+            return $this->serviceLocator->get('doctrine.entitymanager.orm_default');
         }
 
         /**
@@ -87,7 +79,7 @@ namespace Dashboard\Service {
             $form = $this->getAnnotationBuilder()
                 ->createForm($entity);
 
-            $hydrator = new DoctrineObject($this->em, false);
+            $hydrator = new DoctrineObject($this->getEntityManager(), false);
             $form->setHydrator($hydrator);
 
             /** @var Fieldset|Collection $fieldset */

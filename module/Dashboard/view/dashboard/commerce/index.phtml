@@ -24,7 +24,7 @@
     ->appendFile('/dashboard/vendors/jszip/dist/jszip.min.js')
     ->appendFile('/dashboard/vendors/pdfmake/build/pdfmake.min.js')
     ->appendFile('/dashboard/vendors/pdfmake/build/vfs_fonts.js')
-    ->appendFile('/js/table.js'); ?>
+    ->appendFile('/dashboard/js/table.js'); ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -38,6 +38,7 @@
                         <th><?php echo $this->translate('ID'); ?></th>
                         <th><?php echo $this->translate('Description'); ?></th>
                         <th><?php echo $this->translate('Price'); ?></th>
+                        <th><?php echo $this->translate('Condition'); ?></th>
                         <th><?php echo $this->translate('Created'); ?></th>
                         <th><?php echo $this->translate('Actions'); ?></th>
                     </tr>
@@ -47,6 +48,7 @@
                         <th><?php echo $this->translate('ID'); ?></th>
                         <th><?php echo $this->translate('Description'); ?></th>
                         <th><?php echo $this->translate('Price'); ?></th>
+                        <th><?php echo $this->translate('Condition'); ?></th>
                         <th><?php echo $this->translate('Created'); ?></th>
                         <th><?php echo $this->translate('Actions'); ?></th>
                     </tr>
@@ -63,7 +65,7 @@ OPTS = {
         config: {
             ajax: {
                 url: '<?php echo $this->url('zfcadmin/dashboard', ['controller' => 'commerce', 'action' => 'list']);?>',
-                type: "GET",
+                type: "GET"
             },
             columns: [
                 null, {
@@ -73,19 +75,17 @@ OPTS = {
                         var node = $("<div>").addClass('media').append(
                             $("<span>").addClass('hidden').text(data.name),
                             $("<div>").addClass("media-left text-center").prepend(
+//                                $("<input>").addClass('select-box pull-left').attr({type: 'checkbox'}),
                                 $("<a>").attr({target: "_blank", href: "#"}).append(
-                                    $("<img>").css({'background-image': "url(" + data.preview + ")"})
-                                        .attr({src: '/img/cms/trans.gif', alt: data.name})
+                                    $("<img>").css({'background-image': "url(" + data.preview + ")", 'background-size': "cover"})
+                                        .attr({src: '/dashboard/img/trans.gif', alt: data.name, width: 80, height: 80})
                                         .addClass("media-object")
-                                ),
-                                $("<p>").addClass('label label-success label-' + data.condition.id)
-                                    .text(_(data.condition.name))
+                                )
                             ),
-                            $("<div>").addClass("media-body").css('vertical-align', 'middle').append(
+                            $("<div>").addClass("media-body").append(
                                 $("<h4>").addClass("media-heading").append(
-                                    $("<small>").addClass('updated-time').text(data.updated),
                                     $("<div>").addClass('media-name').append(
-                                        $("<input>").addClass('select-box pull-left').attr({type: 'checkbox'}),
+
                                         $("<span>").text(data.name)
                                     )
                                 ),
@@ -103,10 +103,9 @@ OPTS = {
                     data: "doc.price",
                     className: "main-price"
                 },
-                {
-                    data: "doc.created",
-                    className: "main-datetime"
-                }, null
+                null,
+                null,
+                null
             ]
         }
     }
