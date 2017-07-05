@@ -11,36 +11,14 @@
  * file.
  */
 
-return [
-    'translator' => [
-        'locale' => 'en_US',
-        'remote_translation' => [
-            [
-                'type' => 'database' //This sets the database loader for the default textDomain
-            ],
-        ],
-        'loaderpluginmanager' => [
-            'factories' => [
-                'database' => Dashboard\I18n\Translator\DatabaseTranslationLoaderFactory::class,
-            ]
-        ],
-    ],
+use Zend\I18n\Translator;
+use Dashboard\I18n\Translator as I18n;
 
+return [
     'service_manager' => [
         'factories' => [
-            \Zend\I18n\Translator\LoaderPluginManager::class => \Zend\I18n\Translator\LoaderPluginManagerFactory::class,
-            \Zend\I18n\Translator\TranslatorInterface::class => function  (\Zend\ServiceManager\ServiceLocatorInterface $serviceManager)
-            {
-                $pm = $serviceManager->get(\Zend\I18n\Translator\LoaderPluginManager::class);
-                $pm->setFactory('database', \Dashboard\I18n\Translator\DatabaseTranslationLoaderFactory::class);
-
-                $instance = new \Zend\I18n\Translator\Translator;
-                $instance->addRemoteTranslations('database');
-                $instance->setFallbackLocale('en_US');
-                $instance->setPluginManager($pm);
-
-                return $instance;
-            },
+            Translator\LoaderPluginManager::class => Translator\LoaderPluginManagerFactory::class,
+            Translator\TranslatorInterface::class => I18n\DatabaseTranslationFactory::class
         ],
         'initializers' => [
             ZfcRbac\Initializer\AuthorizationServiceInitializer::class
