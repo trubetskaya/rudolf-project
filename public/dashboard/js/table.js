@@ -15,19 +15,32 @@ $(document).ready(function() {
                         targets     : 0
                     },
                     {
+                        data: "doc.condition",
+                        className: "main-condition",
+                        targets: -3,
+                        render: function (data, type, row) {
+                            return $("<p>").addClass('label label-success label-' + data.id)
+                                .text(_(data.name)).wrap("<div>")
+                                .parent().html();
+                        }
+                    },
+                    {
+                        data: "doc.updated",
+                        className: "main-updated",
+                        targets     : -2
+                    },
+                    {
                         data        : "links",
                         className   : "actions text-center",
                         orderable   : false,
                         targets     : -1,
                         render      : function (data, type, row) {
-                            var links = $("<p>").append(
+                            return $("<div>").css('width', "100px").append(
                                 $("<a>").addClass('btn btn-sm btn-info').attr('href', (data ? data.edit : "#"))
                                     .append($("<i>").addClass("fa fa-edit")),
                                 $("<a>").addClass('btn btn-sm btn-danger').attr('href', (data ? data.drop : "#"))
                                     .append($("<i>").addClass("fa fa-trash-o"))
-                            );
-
-                            return links.html();
+                            ).wrap("<div>").parent().html();
                         }
                     }
                 ],
