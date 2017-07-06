@@ -1,4 +1,5 @@
 .vagrant/
+composer.lock
 vendor/
 config/development.config.php
 data/cache/*

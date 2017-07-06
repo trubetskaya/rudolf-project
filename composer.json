@@ -3,11 +3,12 @@
     "description": "Skeleton Application for Zend Framework zend-mvc applications",
     "type": "project",
     "license": "BSD-3-Clause",
-    "keywords": [
-        "framework",
-        "mvc",
-        "zf"
+    "keywords": [ "framework", "mvc", "zf" ],
+    "repositories": [
+        { "type": "git", "url": "https://github.com/atarasenkopublic/zendextend.git" },
+        { "type": "git", "url": "https://github.com/atarasenkopublic/zendextend-dashboard.git" }
     ],
+
     "homepage": "http://framework.zend.com/",
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -31,17 +32,16 @@
         "zf-commons/zfc-user": "^3.0",
         "zf-commons/zfc-user-doctrine-orm": "^2.0",
         "zf-commons/zfc-rbac": "^2.6",
-        "agusedyc/gentelella": "dev-master"
+        "agusedyc/gentelella": "dev-master",
+        "zendextend/zendextend-dashboard": "dev-master"
     },
     "autoload": {
         "psr-4": {
-            "Dashboard\\": "module/Dashboard/src/",
             "Application\\": "module/Application/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DashboardTest\\": "module/Dashboard/test/",
             "ApplicationTest\\": "module/Application/test/"
         }
     },
@@ -52,8 +52,12 @@
         "development-disable": "zf-development-mode disable",
         "development-enable": "zf-development-mode enable",
         "development-status": "zf-development-mode status",
+        "make-symlinks": "cd public/dashboard && rm -rf vendors && ln -s ../../vendor/agusedyc/gentelella/vendors",
+        "copy-static": "cp -rv vendor/agusedyc/gentelella/build/* public/dashboard",
         "post-create-project-cmd": [
-            "@development-enable"
+            "@development-enable",
+            "@make-symlinks",
+            "@copy-static"
         ],
         "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
         "test": "phpunit"
