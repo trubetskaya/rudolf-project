@@ -42,24 +42,13 @@ return [
     'zfcadmin' => $settings,
 
     /**
-     * Default BjyAuthorize configuration for ACL
-     */
-    'bjyauthorize' => [
-        'guards' => [
-            'BjyAuthorize\Guard\Route' => [
-                ['route' => 'zfcadmin', 'roles' => ['admin']],
-            ],
-        ],
-    ],
-
-    /**
      * Default ZfcRbac configuration for RBAC
      */
     'zfcrbac' => [
         'firewall_route' => true,
         'firewalls' => [
             'ZfcRbac\Firewall\Route' => [
-                'zfcadmin' => ['route' => '^zfcadmin/*', 'roles' => 'admin'],
+                'zfcadmin' => ['route' => '^zfcadmin/*', 'roles' => 'manager'],
             ],
         ],
     ],

@@ -110,12 +110,12 @@ return [
             /**
              * Enable redirection when the user is connected
              */
-            'redirect_when_connected' => true,
+            'redirect_when_connected' => false,
 
             /**
              * Set the route to redirect when user is connected (of course, it must exist!)
              */
-            'redirect_to_route_connected' => 'zfcadmin',
+            'redirect_to_route_connected' => 'zfcuser/login',
 
             /**
              * Set the route to redirect when user is disconnected (of course, it must exist!)

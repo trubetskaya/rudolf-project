@@ -11,15 +11,8 @@
  * file.
  */
 
-use Zend\I18n\Translator;
-use Dashboard\I18n\Translator as I18n;
-
 return [
     'service_manager' => [
-        'factories' => [
-            Translator\LoaderPluginManager::class => Translator\LoaderPluginManagerFactory::class,
-            Translator\TranslatorInterface::class => I18n\DatabaseTranslationFactory::class
-        ],
         'initializers' => [
             ZfcRbac\Initializer\AuthorizationServiceInitializer::class
         ],
@@ -31,12 +24,6 @@ return [
     'view_manager' => [
         'strategies' => [
             'ViewJsonStrategy',
-        ],
-    ],
-
-    'view_helpers' => [
-        'invokables' => [
-            'translate' => \Zend\I18n\View\Helper\Translate::class
         ],
     ],
 ];
