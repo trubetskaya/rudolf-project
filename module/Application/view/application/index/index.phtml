@@ -2,40 +2,43 @@
 <div id="top-carousel" class="carousel slide" data-interval="3000" data-ride="carousel">
     <div class="container"><!-- Индикаторы для карусели -->
         <div class="row">
-            <div class="title">
-                <?= $this->translate("Широкий выбор<br>автомобилей с пробегом");?>
-            </div>
-            <div class="undertitle">
-                <?= $this->translate("Все автомобили прошли полную диагностику, юридическую<br> проверку и предпродажную подготовку.")?>
+            <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1">
+                <div class="title">
+                    <?= $this->translate("Широкий выбор<br>автомобилей с пробегом");?>
+                </div>
+                <div class="undertitle">
+                    <?= $this->translate("Все автомобили прошли полную диагностику, юридическую<br> проверку и предпродажную подготовку.")?>
+                </div>
             </div>
             <ol class="carousel-indicators">
-                <!-- Перейти к 0 слайду карусели с помощью соответствующего индекса data-slide-to="0" -->
                 <li data-target="#top-carousel" data-slide-to="0" class="active"></li>
-                <!-- Перейти к 1 слайду карусели с помощью соответствующего индекса data-slide-to="1" -->
                 <li data-target="#top-carousel" data-slide-to="1"></li>
-                <!-- Перейти к 2 слайду карусели с помощью соответствующего индекса data-slide-to="2" -->
                 <li data-target="#top-carousel" data-slide-to="2"></li>
                 <li data-target="#top-carousel" data-slide-to="3"></li>
             </ol>
         </div>
     </div>
-    <!-- Слайды карусели -->
     <div class="carousel-inner">
-        <!-- Слайды создаются с помощью контейнера с классом item, внутри которого помещается содержимое слайда -->
         <div class="active item">
             <img height="650" width="1280">
         </div>
-        <!-- Слайд №2 -->
         <div class="item">
             <img height="650" width="1280">
         </div>
-        <!-- Слайд №3 -->
         <div class="item">
             <img height="650" width="1280">
         </div>
-        <!-- Слайд №4 -->
         <div class="item">
             <img height="650" width="1280">
+        </div>
+    </div>
+</div>
+<div>
+
+<div class="list-auto container">
+    <div class="row">
+        <div class="title col-lg-offset-1 col-md-offset-1">
+            <?= $this->translate("Выберите марку автомобиля");?>
         </div>
     </div>
 </div>

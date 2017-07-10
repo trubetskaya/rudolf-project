@@ -1,0 +1,20 @@
+$gray:#555963;
+$gray-light:#e3e3e3;
+$white:#ffffff;
+$orange:#f76a3a;
+
+$screen-sm:768px;
+.list-auto {
+  .row {
+    padding-top: 76px;
+    padding-bottom: 89px;
+  }
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 2.08;
+    letter-spacing: -0.3px;
+    text-align: left;
+    color: #2d2a2a;
+  }
+}

@@ -36,14 +36,14 @@ $screen-sm:768px;
        font-size: 52px;
        line-height: 55px;
        float: left;
-       margin: 239px 0 0 150px;
+       margin: 239px 0 0 /*150px*/0;
        color: $white;
      }
       .undertitle {
         font-size: 16px;
         line-height: 20px;
         float: left;
-        margin: 36px 0 0 157px;
+        margin: 36px 0 0 /*157px*/ 0;
         padding: 0 0 0 20px;
         color: $white;
         border-left: 2px solid $orange;
