@@ -1,0 +1,53 @@
+$gray:#555963;
+$gray-light:#e3e3e3;
+$white:#ffffff;
+$orange:#f76a3a;
+
+$screen-sm:768px;
+#top-carousel {
+  height: 680px;
+  width: 100%;
+  background-color: $gray-light;
+  .container {
+    .row {
+      position: relative;
+      height: 680px;
+      .carousel-indicators {
+      width: 9px;
+      right: 60px;
+      left: auto;
+      bottom: 317px;
+      li {
+        width: 9px;
+        height: 9px;
+        -moz-border-radius: 4.5px;
+        -webkit-border-radius: 4.5px;
+        border-radius: 4.5px;
+        border: none;
+        background-color: $gray-light;
+        &.active {
+          padding: 0;
+          margin: 0;
+          background-color: $orange;
+        }
+      }
+    }
+      .title {
+       font-size: 52px;
+       line-height: 55px;
+       float: left;
+       margin: 239px 0 0 150px;
+       color: $white;
+     }
+      .undertitle {
+        font-size: 16px;
+        line-height: 20px;
+        float: left;
+        margin: 36px 0 0 157px;
+        padding: 0 0 0 20px;
+        color: $white;
+        border-left: 2px solid $orange;
+      }
+    }
+  }
+}
