@@ -17,4 +17,55 @@ $screen-sm:768px;
     text-align: left;
     color: #2d2a2a;
   }
+  ul.nav-tabs {
+    border-bottom: none;
+    padding-top: 19px;
+    li {
+      border-bottom: 1px $gray-light solid;
+      padding-right: 45px;
+      &:last-child {
+        padding-right: 0;
+      }
+      &.active, &:hover, &:focus, &:active {
+        a {
+          position: relative;
+          top: 1px;
+          background: transparent;
+          color: $gray;
+          border-left: 0;
+          border-top: 0;
+          border-right: 0;
+          border-bottom: 2px $orange solid;
+        }
+      }
+      a {
+        margin: 0;
+        padding: 0;
+        border-left: 0;
+        border-right: 0;
+        line-height: 29px;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: $gray-light;
+      }
+    }
+  }
+  .tab-content {
+    padding-top: 30px;
+    ul.auto-list-list {
+      list-style: none;
+      padding-left: 0;
+      li {
+        font-size: 18px;
+        line-height: 45px;
+        a {
+          color: $gray;
+        }
+        span {
+          color: #cdcdcd;
+          padding-left: 5px;
+        }
+      }
+    }
+  }
 }
