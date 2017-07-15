@@ -5,13 +5,19 @@ $orange:#f76a3a;
 
 $screen-sm:768px;
 #top-carousel {
-  height: 680px;
+  position: relative;
+  top: -70px;
+  background: url("/img/carousel/photo-homepage.png") center no-repeat;
+  height: 650px;
   width: 100%;
-  background-color: $gray-light;
+  background-color: $gray;
+  .carousel-inner {
+    position: absolute;
+  }
   .container {
     .row {
       position: relative;
-      height: 680px;
+      height: 650px;
       .carousel-indicators {
       width: 9px;
       right: 60px;

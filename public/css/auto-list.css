@@ -47,5 +47,7 @@
       .list-auto .tab-content ul.auto-list-list li span {
         color: #cdcdcd;
         padding-left: 5px; }
+.list-auto .all-auto-button {
+  max-width: 291px; }
 
 /*# sourceMappingURL=auto-list.css.map */
