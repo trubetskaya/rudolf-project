@@ -18,6 +18,10 @@ nav {
   .navbar-brand {
     width: 73px;
     position: absolute;
+    padding-top: 18px;
+    img {
+      width: 73px;
+    }
     @media (max-width: $screen-sm) {
       float: left;
       position: static;
@@ -75,6 +79,16 @@ nav {
         a .caret {
           float: right;
           margin-top: 20px;
+          background: url("/img/header/ic-up-menu-mob-default.png") no-repeat;
+          border: 0;
+          width: 10px;
+          height: 5px;
+        }
+        &.open a .caret {
+          background: url("/img/header/ic-down-menu-mob-hover.png") no-repeat;
+          border: 0;
+          width: 10px;
+          height: 5px;
         }
         ul {
           padding-bottom: 20px;
@@ -104,9 +118,14 @@ nav {
         height: 120px;
         width: 100%;
         button {
+          background: url("/img/header/ic-close-default.png") no-repeat;
+          background-size: 34px 34px;
+          width: 34px;
+          height: 34px;
           position: absolute;
           top: 23px;
           right: 0;
+          opacity: 1;
         }
       }
     }
@@ -148,12 +167,14 @@ nav {
     }
     li.navbar-right-telephone {
       padding-right: 17px;
+      padding-left: 34px;
+      background: url("/img/header/ic-phone.png") no-repeat 26px;
     }
   }
   .navbar-toggle {
     float: right;
     padding: 10px 6px;
-    margin: 19px 15px 0 0;
+    margin: 19px 0 0 0;
     background-color: $orange;
     .icon-bar {
       &:first-child {

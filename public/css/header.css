@@ -9,7 +9,10 @@ nav {
       float: left; } }
   nav .navbar-brand {
     width: 73px;
-    position: absolute; }
+    position: absolute;
+    padding-top: 18px; }
+    nav .navbar-brand img {
+      width: 73px; }
     @media (max-width: 768px) {
       nav .navbar-brand {
         float: left;
@@ -57,7 +60,16 @@ nav {
         display: none; } }
     nav .navbar-collapse #navbar-collapse li.dropdown a .caret {
       float: right;
-      margin-top: 20px; }
+      margin-top: 20px;
+      background: url("/img/header/ic-up-menu-mob-default.png") no-repeat;
+      border: 0;
+      width: 10px;
+      height: 5px; }
+    nav .navbar-collapse #navbar-collapse li.dropdown.open a .caret {
+      background: url("/img/header/ic-down-menu-mob-hover.png") no-repeat;
+      border: 0;
+      width: 10px;
+      height: 5px; }
     nav .navbar-collapse #navbar-collapse li.dropdown ul {
       padding-bottom: 20px; }
       nav .navbar-collapse #navbar-collapse li.dropdown ul li {
@@ -79,9 +91,14 @@ nav {
         nav .navbar-collapse #navbar-collapse li.dropdown-close-button {
           display: none; } }
       nav .navbar-collapse #navbar-collapse li.dropdown-close-button button {
+        background: url("/img/header/ic-close-default.png") no-repeat;
+        background-size: 34px 34px;
+        width: 34px;
+        height: 34px;
         position: absolute;
         top: 23px;
-        right: 0; }
+        right: 0;
+        opacity: 1; }
   nav .navbar-right {
     position: absolute;
     right: 0;
@@ -113,11 +130,13 @@ nav {
       border-left: solid 1px #ffffff;
       padding-left: 17px; }
     nav .navbar-right li.navbar-right-telephone {
-      padding-right: 17px; }
+      padding-right: 17px;
+      padding-left: 34px;
+      background: url("/img/header/ic-phone.png") no-repeat 26px; }
   nav .navbar-toggle {
     float: right;
     padding: 10px 6px;
-    margin: 19px 15px 0 0;
+    margin: 19px 0 0 0;
     background-color: #f76a3a; }
     nav .navbar-toggle .icon-bar {
       background-color: #ffffff;
