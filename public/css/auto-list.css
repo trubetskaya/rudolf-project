@@ -48,6 +48,13 @@
         color: #cdcdcd;
         padding-left: 5px; }
 .list-auto .all-auto-button {
-  max-width: 291px; }
+  max-width: 291px;
+  margin-top: 14px; }
+  .list-auto .all-auto-button .custom-caret {
+    background: url("/img/auto-list/ic-down-bold-default.png") no-repeat;
+    width: 12px;
+    height: 8px;
+    display: inline-block;
+    margin: 0 0 0 5px; }
 
 /*# sourceMappingURL=auto-list.css.map */

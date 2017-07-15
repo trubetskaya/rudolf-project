@@ -70,5 +70,13 @@ $screen-sm:768px;
   }
   .all-auto-button {
     max-width: 291px;
+    margin-top: 14px;
+    .custom-caret {
+      background: url("/img/auto-list/ic-down-bold-default.png") no-repeat;
+      width: 12px;
+      height: 8px;
+      display: inline-block;
+      margin: 0 0 0 5px;
+    }
   }
 }

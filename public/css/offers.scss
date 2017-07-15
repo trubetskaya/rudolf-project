@@ -1,0 +1,53 @@
+$gray:#555963;
+$gray-light:#e3e3e3;
+$white:#ffffff;
+$orange:#f76a3a;
+
+$screen-sm:768px;
+
+.offers {
+  background-color: $gray-light;
+  .row {
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 61px 0 98px;
+    .title {
+      width: 278px;
+      height: 50px;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 2.08;
+      letter-spacing: -0.3px;
+      text-align: left;
+      color: #2d2a2a;
+    }
+    .slider {
+      margin-right: -15px;
+      .item {
+        display: inline-block;
+        float: left;
+        width: 306.4px;
+      }
+        img {
+          width: 306.4px;
+          height: 210px;
+        }
+        p.name {
+          line-height: 32px;
+          font-size: 18px;
+          font-weight: 600;
+          letter-spacing: -0.2px;
+          text-align: left;
+          color: #161616;
+          margin: 19px 0 7px;
+        }
+        p.desc {
+          font-size: 14px;
+          line-height: 1.07;
+          text-align: left;
+          color: #a8a8a8;
+        }
+      }
+    }
+  }
+}

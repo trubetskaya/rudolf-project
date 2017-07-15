@@ -1,0 +1,39 @@
+.offers {
+  background-color: #e3e3e3; }
+  .offers .row {
+    padding: 61px 0 98px; }
+    .offers .row .title {
+      width: 278px;
+      height: 50px;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 2.08;
+      letter-spacing: -0.3px;
+      text-align: left;
+      color: #2d2a2a; }
+    .offers .row .slider {
+      overflow: hidden;
+      white-space: nowrap;
+      margin-right: -15px; }
+      .offers .row .slider .item {
+        display: inline-block;
+        float: left;
+        width: 306.4px; }
+        .offers .row .slider .item img {
+          width: 306.4px;
+          height: 210px; }
+        .offers .row .slider .item p.name {
+          line-height: 32px;
+          font-size: 18px;
+          font-weight: 600;
+          letter-spacing: -0.2px;
+          text-align: left;
+          color: #161616;
+          margin: 19px 0 7px; }
+        .offers .row .slider .item p.desc {
+          font-size: 14px;
+          line-height: 1.07;
+          text-align: left;
+          color: #a8a8a8; }
+
+/*# sourceMappingURL=offers.css.map */
