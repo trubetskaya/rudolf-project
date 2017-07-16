@@ -5,8 +5,10 @@
     "license": "BSD-3-Clause",
     "keywords": [ "framework", "mvc", "zf" ],
     "repositories": [
-        { "type": "git", "url": "https://github.com/atarasenkopublic/zendextend.git" },
-        { "type": "git", "url": "https://github.com/atarasenkopublic/zendextend-dashboard.git" }
+        {
+            "type": "git",
+            "url": "https://github.com/atarasenkopublic/zendextend-dashboard.git"
+        }
     ],
 
     "homepage": "http://framework.zend.com/",
