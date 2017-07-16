@@ -68,8 +68,8 @@
 
         "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
         "test": "phpunit"
-
     },
+
     "require-dev": {
         "zendextend/zendextend-dashboard": "dev-master",
         "zendframework/zend-developer-tools": "^1.1.0",
