@@ -31,9 +31,7 @@
         "zf-commons/zfc-admin": "^0.3.1",
         "zf-commons/zfc-user": "^3.0",
         "zf-commons/zfc-user-doctrine-orm": "^2.0",
-        "zf-commons/zfc-rbac": "^2.6",
-        "agusedyc/gentelella": "dev-master",
-        "zendextend/zendextend-dashboard": "dev-master"
+        "zf-commons/zfc-rbac": "^2.6"
     },
     "autoload": {
         "psr-4": {
@@ -47,22 +45,31 @@
     },
     "extra": [],
     "scripts": {
-        "cs-check": "phpcs",
         "cs-fix": "phpcbf",
+        "cs-check": "phpcs",
+
         "development-disable": "zf-development-mode disable",
         "development-enable": "zf-development-mode enable",
         "development-status": "zf-development-mode status",
-        "make-symlinks": "cd public/dashboard && rm -rf vendors && ln -s ../../vendor/agusedyc/gentelella/vendors",
-        "copy-static": "cp -rv vendor/agusedyc/gentelella/build/* public/dashboard",
         "post-create-project-cmd": [
-            "@development-enable",
-            "@make-symlinks",
-            "@copy-static"
+            "@development-enable"
         ],
+
+        "install-npm-deps": "cd vendor/agusedyc/gentelella && npm install -V",
+        "link-public-vendors": "cd public && rm -rf vendors && ln -s ../vendor/agusedyc/gentelella/vendors",
+        "copy-custom-static": "cp -rv vendor/agusedyc/gentelella/build/* public/dashboard",
+        "post-update-cmd": [
+            "@install-npm-deps",
+            "@link-public-vendors",
+            "@copy-custom-static"
+        ],
+
         "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
         "test": "phpunit"
+
     },
     "require-dev": {
+        "zendextend/zendextend-dashboard": "dev-master",
         "zendframework/zend-developer-tools": "^1.1.0",
         "zendframework/zend-test": "^3.0.1"
     }
