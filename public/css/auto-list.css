@@ -16,15 +16,28 @@
     padding-right: 45px; }
     .list-auto ul.nav-tabs li:last-child {
       padding-right: 0; }
-    .list-auto ul.nav-tabs li.active a, .list-auto ul.nav-tabs li:hover a, .list-auto ul.nav-tabs li:focus a, .list-auto ul.nav-tabs li:active a {
-      position: relative;
-      top: 1px;
-      background: transparent;
-      color: #555963;
-      border-left: 0;
-      border-top: 0;
-      border-right: 0;
+    .list-auto ul.nav-tabs li.active {
       border-bottom: 2px #f76a3a solid; }
+      .list-auto ul.nav-tabs li.active a {
+        position: relative;
+        top: 1px;
+        background: transparent;
+        color: #555963;
+        border-left: 0;
+        border-top: 0;
+        border-right: 0;
+        border-bottom: 1px #f76a3a solid; }
+    .list-auto ul.nav-tabs li:hover:not(.active), .list-auto ul.nav-tabs li:focus:not(.active), .list-auto ul.nav-tabs li:active:not(.active) {
+      border-bottom: 1px #e3e3e3 solid; }
+      .list-auto ul.nav-tabs li:hover:not(.active) a, .list-auto ul.nav-tabs li:focus:not(.active) a, .list-auto ul.nav-tabs li:active:not(.active) a {
+        position: relative;
+        top: 1px;
+        background: transparent;
+        color: #555963;
+        border-left: 0;
+        border-top: 0;
+        border-right: 0;
+        border-bottom: 2px #f76a3a solid; }
     .list-auto ul.nav-tabs li a {
       margin: 0;
       padding: 0;
