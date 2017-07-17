@@ -1,6 +1,8 @@
 .offers {
   background-color: #e3e3e3; }
   .offers .row {
+    overflow: hidden;
+    white-space: nowrap;
     padding: 61px 0 98px; }
     .offers .row .title {
       width: 278px;
@@ -12,28 +14,67 @@
       text-align: left;
       color: #2d2a2a; }
     .offers .row .slider {
-      overflow: hidden;
-      white-space: nowrap;
       margin-right: -15px; }
       .offers .row .slider .item {
         display: inline-block;
         float: left;
         width: 306.4px; }
-        .offers .row .slider .item img {
-          width: 306.4px;
-          height: 210px; }
-        .offers .row .slider .item p.name {
-          line-height: 32px;
-          font-size: 18px;
-          font-weight: 600;
-          letter-spacing: -0.2px;
-          text-align: left;
-          color: #161616;
-          margin: 19px 0 7px; }
-        .offers .row .slider .item p.desc {
-          font-size: 14px;
-          line-height: 1.07;
-          text-align: left;
-          color: #a8a8a8; }
+      .offers .row .slider img {
+        width: 306.4px;
+        height: 210px; }
+      .offers .row .slider p.name {
+        line-height: 32px;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.2px;
+        text-align: left;
+        color: #161616;
+        margin: 19px 0 7px; }
+      .offers .row .slider p.desc {
+        font-size: 14px;
+        line-height: 1.07;
+        text-align: left;
+        color: #a8a8a8; }
+
+.info-boxes {
+  padding: 72px 0 108px; }
+  .info-boxes .top-text-left {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.38;
+    text-align: left;
+    color: #2d2a2a;
+    margin-bottom: 70px; }
+  .info-boxes .top-text-right {
+    padding-top: 7px;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.29;
+    text-align: left;
+    color: #797979; }
+  .info-boxes .info-box {
+    border-top: solid 1px #dddddd;
+    border-right: solid 1px #dddddd;
+    border-bottom: solid 3px #f76a3a;
+    border-left: solid 1px #dddddd;
+    padding: 30px;
+    height: calc(228px + 30px + 30px); }
+    .info-boxes .info-box .bg-img {
+      margin-bottom: 33px;
+      height: 54px; }
+    .info-boxes .info-box .info-boxes-title {
+      height: 40px;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.11;
+      text-align: left;
+      color: #2d2a2a;
+      margin-bottom: 23px; }
+    .info-boxes .info-box .info-boxes-text {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.14;
+      text-align: left;
+      color: #797979; }
 
 /*# sourceMappingURL=offers.css.map */
