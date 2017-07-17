@@ -17,4 +17,18 @@ button {
   color: #797979;
   display: block; }
 
+.orange-button {
+  width: 173px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  background-color: #f76a3a;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #ffffff;
+  padding: 0 16px;
+  border: none; }
+
 /*# sourceMappingURL=main.css.map */

@@ -98,12 +98,88 @@ $screen-sm:768px;
     }
   }
 }
+.services {
+  background-color: $gray;
+  .container {
+    padding-top: 78px;
+    padding-bottom: 101px;
+    .services-head {
+      margin-bottom: 60px;
+      .services-head-left {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1.38;
+        text-align: left;
+        color: #ffffff;
+      }
+      .services-head-right {
+        .services-head-right-text {
+          opacity: 0.5;
+          font-size: 14px;
+          line-height: 1.43;
+          text-align: left;
+          color: #ffffff;
+        }
+        button {
+          margin-top: 25px;
+        }
+      }
+    }
+    .services-box {
+      .services-box-img {
+        float: left;
+        width: 40px;
+        margin-right: 17px;
+        height: 100%;
+      }
+      .services-box-text {
+        float: left;
+        width: calc(100% - 40px - 17px);
+        margin-bottom: 42px;
+        .services-box-text-title {
+          font-size: 18px;
+          font-weight: 600;
+          line-height: 1.39;
+          letter-spacing: -0.2px;
+          text-align: left;
+          color: #ffffff;
+          margin-bottom: 9px;
+        }
+        .services-box-text-desc {
+          opacity: 0.5;
+          font-size: 14px;
+          line-height: 1.21;
+          text-align: left;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
 
 .info-box-bg {
-  .info-box-bg-text {
+  background-color: $gray;
+  overflow-x: hidden;
+  height: 440px;
+  .info-box-bg-image {
+    width: 1280px;
+    z-index: 5;
+    height: 440px;
+    background: url("/img/bg-images/photo-fon-1.png") no-repeat;
+    margin: 0 auto;
+    .row {
+      padding: 98px 0 99px;
+      .info-box-bg-text {
+        font-size: 32px;
+        font-weight: 300;
+        line-height: 1.25;
+        text-align: left;
+        color: #ffffff;
+        margin-bottom: 43px;
+      }
+      .info-box-bg-button {
 
-  }
-  .info-box-bg-button {
-
+      }
+    }
   }
 }
