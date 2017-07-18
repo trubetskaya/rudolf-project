@@ -52,7 +52,7 @@ return [
              ZfcRbac\Guard\RouteGuard::class => [
                  'home'             => ['guest'],
                  'zfcuser/login'    => ['guest'],
-                 'zfcuser*'         => ['manager'], // includes logout, changepassword and changeemail
+                 'zfcuser*'         => ['manager'],
                  'zfcadmin*'        => ['manager']
              ]
          ],
@@ -85,6 +85,7 @@ return [
          * Supported options depend of the role provider, so please refer to the official documentation
          */
         'role_provider' => [
+
             'ZfcRbac\Role\ObjectRepositoryRoleProvider' => [
                 'object_manager'     => 'doctrine.entitymanager.orm_default',
                 'class_name'         => \Dashboard\Entity\Role::class,
@@ -92,13 +93,10 @@ return [
             ]
         ],
 
-        /**
-         * Configure the unauthorized strategy. It is used to render a template whenever a user is unauthorized
-         */
+        /** Configure the unauthorized strategy. It is used to render a template whenever a user is unauthorized */
         'unauthorized_strategy' => [
-            /**
-             * Set the template name to render
-             */
+
+            /** Set the template name to render */
             'template' => 'error/403'
         ],
 
@@ -107,38 +105,24 @@ return [
          * unauthorized
          */
         'redirect_strategy' => [
-            /**
-             * Enable redirection when the user is connected
-             */
+
+            /** Enable redirection when the user is connected */
             'redirect_when_connected' => false,
 
-            /**
-             * Set the route to redirect when user is connected (of course, it must exist!)
-             */
-            'redirect_to_route_connected' => 'zfcuser/login',
+            /** Set the route to redirect when user is connected (of course, it must exist!) */
+            'redirect_to_route_connected' => 'zfcadmin/dashboard',
 
-            /**
-             * Set the route to redirect when user is disconnected (of course, it must exist!)
-             */
-            'redirect_to_route_disconnected' => 'home',
+            /** Set the route to redirect when user is disconnected (of course, it must exist!) */
+            'redirect_to_route_disconnected' => 'zfcuser/login',
 
-            /**
-             * If a user is unauthorized and redirected to another route (login, for instance), should we
-             * append the previous URI (the one that was unauthorized) in the query params?
-             */
+            /** If a user is unauthorized and redirected to another route (login, for instance), should we append the previous URI (the one that was unauthorized) in the query params? */
             'append_previous_uri' => true,
 
-            /**
-             * If append_previous_uri option is set to true, this option set the query key to use when
-             * the previous uri is appended
-             */
-            'previous_uri_query_key' => 'redirectTo'
+            /** If append_previous_uri option is set to true, this option set the query key to use when the previous uri is appended */
+            'previous_uri_query_key' => 'ret'
         ],
 
-        /**
-         * Various plugin managers for guards and role providers. Each of them must follow a common
-         * plugin manager config format, and can be used to create your custom objects
-         */
+        /** Various plugin managers for guards and role providers. Each of them must follow a common plugin manager config format, and can be used to create your custom objects */
         // 'guard_manager'               => [],
         // 'role_provider_manager'       => []
     ]
