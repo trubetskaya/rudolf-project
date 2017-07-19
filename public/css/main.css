@@ -29,6 +29,7 @@ button {
   text-align: center;
   color: #ffffff;
   padding: 0 16px;
-  border: none; }
+  border: none;
+  text-transform: uppercase; }
 
 /*# sourceMappingURL=main.css.map */
