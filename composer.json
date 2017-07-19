@@ -5,10 +5,8 @@
     "license": "BSD-3-Clause",
     "keywords": [ "framework", "mvc", "zf" ],
     "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/atarasenkopublic/zendextend-dashboard.git"
-        }
+        {"type": "git", "url": "https://github.com/atarasenkopublic/zendextend-dashboard.git"},
+        { "type": "git", "url": "https://github.com/atarasenkopublic/zendextend.git" }
     ],
 
     "homepage": "http://framework.zend.com/",
@@ -33,7 +31,8 @@
         "zf-commons/zfc-admin": "^0.3.1",
         "zf-commons/zfc-user": "^3.0",
         "zf-commons/zfc-user-doctrine-orm": "^2.0",
-        "zf-commons/zfc-rbac": "^2.6"
+        "zf-commons/zfc-rbac": "^2.6",
+        "zendextend/zendextend-dashboard": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -53,17 +52,21 @@
         "development-disable": "zf-development-mode disable",
         "development-enable": "zf-development-mode enable",
         "development-status": "zf-development-mode status",
-        "post-create-project-cmd": [
-            "@development-enable"
+        "install-dashboard-template": [
+            "cd vendor/agusedyc/gentelella && npm install -V",
+            "cp -rv vendor/agusedyc/gentelella/vendors public",
+
+            "mkdir -p public/dashboard",
+            "cp -rv vendor/agusedyc/gentelella/build/* public/dashboard"
         ],
 
-        "install-npm-deps": "cd vendor/agusedyc/gentelella && npm install -V",
-        "link-public-vendors": "cd public && rm -rf vendors && ln -s ../vendor/agusedyc/gentelella/vendors",
-        "copy-custom-static": "cp -rv vendor/agusedyc/gentelella/build/* public/dashboard",
+        "post-create-project-cmd": [
+            "@development-enable",
+            "@install-dashboard-template"
+        ],
+
         "post-update-cmd": [
-            "@install-npm-deps",
-            "@link-public-vendors",
-            "@copy-custom-static"
+            "@install-dashboard-template"
         ],
 
         "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
@@ -71,7 +74,6 @@
     },
 
     "require-dev": {
-        "zendextend/zendextend-dashboard": "dev-master",
         "zendframework/zend-developer-tools": "^1.1.0",
         "zendframework/zend-test": "^3.0.1"
     }

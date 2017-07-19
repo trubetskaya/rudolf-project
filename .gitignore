@@ -5,3 +5,7 @@ config/development.config.php
 data/cache/*
 !data/cache/.gitkeep
 phpunit.xml
+public/vendors
+public/storage
+public/dashboard/js/*
+public/dashboard/css/*

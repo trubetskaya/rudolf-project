@@ -1,13 +1,13 @@
-var editor;
 $(document).ready(function() {
-    OPTS = $.extend(true, {
+    window.OPTS = $.extend(true, {
         datatable: {
             config: {
                 stateSave: true,
                 processing: true,
                 order: [[0, "asc"]],
+                ajax: {type: "GET", url: OPTS.links.list},
                 lengthMenu: [[20, 50, 100, -1], [20, 50, 100, _("All")]],
-                // dom: '<"row"<"col-lg-4"B><"col-lg-4 text-center"r><"col-lg-4"f>>t<"row"<"col-lg-3 text-left"l><"col-lg-6 text-center"p><"col-lg-3 text-right"i>>',
+                dom: '<"row"<"col-lg-3"B><"col-lg-3"r><"col-lg-6"f>>t<"row"<"col-lg-3 text-left"l><"col-lg-6 text-right"i><"col-lg-3 text-center"p>>',
                 columnDefs: [
                     {
                         data        : "doc.index",
@@ -46,8 +46,7 @@ $(document).ready(function() {
                 ],
                 rowReorder: {
                     dataSrc: "doc.index",
-                    selector: "td.row-index",
-                    editor: editor,
+                    selector: "td:not(:last-child)",
                     update: true,
                     snapX: true
                 },
@@ -62,29 +61,43 @@ $(document).ready(function() {
                     style: 'multi',
                     selector: '.select-box'
                 },
-                buttons: []
+                JUI: true
             }
         }
-    }, window.OPTS);
+    }, window.OPTS||{});
+
+
+    // OPTS.datatable.config.buttons.push({
+    //     className: 'btn btn-lg',
+    //     buttons: ['copy', 'excel', 'csv', 'pdf', 'print'],
+    //     extend: 'collection',
+    //     text: 'Export'
+    // });
+
+
+
+
 
     /* ---------- Datable ---------- */
     var dt = $( ".datatable" ).DataTable(OPTS.datatable.config);
+
+    // init
+    dt.on('init', function () {});
+
+    // sorting
     dt.on('row-reorder', function (e, changes, data) {
         if (!$.isEmptyObject(data.values)) {
-            $.post(OPTS.sort.link, data.values);
+            $.post(OPTS.links.sort, data.values);
         }
     });
 
-    // Init sorting after datatable
-    dt.on('init', function () {});
-
-    // Processing event handler
+    // processing
     dt.on('processing.dt', function (e, settings, processing) {
         $('.dataTables_processing', $(this))
             .fadeTo(Number(processing));
     });
 
-    // Draw event handler
+    // draw
     dt.on('draw.dt', function(e, options) {
         console.info(e, options);
         var checkboxes = $('.select-box');
@@ -99,8 +112,9 @@ $(document).ready(function() {
         });
     });
 
+    // order and search
     dt.on('order.dt search.dt', function () {
-        dt.column(0, { search: 'applied', order: 'applied' }).nodes()
+        dt.column(0, {search: 'applied', order: 'applied'}).nodes()
             .each(function(cell, i) {
                 $(cell).empty().append(
                     $("<span>").addClass('idx').text(i+1),
@@ -109,16 +123,16 @@ $(document).ready(function() {
                     )
                 );
             });
-    }).draw();
+    });
 
     dt.on('select', function (e, dt, type, indexes) {
-        if (dt.rows({ selected: true }).count()) {
+        if (dt.rows({selected: true}).count()) {
             $('.dt-buttons .hidden').removeClass('hidden')
         }
     });
 
     dt.on('deselect', function (e, dt, type, indexes) {
-        if (dt.rows({ selected: true }).count() == 0) {
+        if (dt.rows({selected: true}).length > 0) {
             $('.buttons-edit, .buttons-remove', $('.dt-buttons'))
                 .addClass('hidden');
         }
