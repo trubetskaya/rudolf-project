@@ -205,7 +205,89 @@ $screen-sm:768px;
       padding-bottom: 54px;
     }
     .collections-text-button {
-
     }
+  }
+  .collection {
+    height: 230px;
+    .collection-name {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.39;
+      letter-spacing: -0.2px;
+      text-align: left;
+      color: #ffffff;
+      margin: 172px 0 0 5px;
+    }
+    .collection-link {
+      opacity: 0.5;
+      font-size: 14px;
+      line-height: 1.21;
+      text-align: left;
+      color: #ffffff;
+      margin: 0 0 0 5px;
+    }
+  }
+  .collection-1 {
+    background: url("/img/bg-collections/photo-2.png") no-repeat;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .collection-2 {
+    background: url("/img/bg-collections/photo-3.png") no-repeat;
+  }
+  .collection-3 {
+    background: url("/img/bg-collections/photo-4.png") no-repeat;
+  }
+}
+
+.offers-grid-block {
+  padding: 54px 0 98px;
+  .row {
+    .offers-grid-block-left-text {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.38;
+      text-align: left;
+      color: #2d2a2a;
+      margin-bottom: 58px;
+    }
+    .offers-grid-block-right-text {
+      padding-top: 7px;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.29;
+      text-align: left;
+      color: #797979;
+    }
+  }
+}
+
+.offers-grid-block-tile {
+  margin-bottom: 24px;
+  .offers-grid-block-grid-bg {
+    border: 1px solid $gray;
+    img {
+      height: 287px;
+    }
+    margin-bottom: 15px;
+  }
+  .offers-grid-block-grid-name {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.39;
+    letter-spacing: -0.2px;
+    text-align: left;
+    color: #161616;
+    .price {
+      color: #f76a3a;
+    }
+    padding-bottom: 13px;
+  }
+  .offers-grid-block-grid-desc {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.25;
+    text-align: left;
+    color: #a8a8a8;
   }
 }

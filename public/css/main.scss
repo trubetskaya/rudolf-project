@@ -1,3 +1,10 @@
+$gray:#555963;
+$gray-light:#e3e3e3;
+$white:#ffffff;
+$orange:#f76a3a;
+
+$screen-sm:768px;
+
 body {
   padding-top: 70px;
   padding-bottom: 0;
@@ -21,17 +28,21 @@ button {
 }
 
 .orange-button {
-    width: 173px;
-    height: 40px;
-    line-height: 40px;
-    border-radius: 4px;
-    background-color: #f76a3a;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-align: center;
-    color: #ffffff;
-    padding: 0 16px;
-    border: none;
-    text-transform: uppercase;
-  }
+  width: 173px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  background-color: #f76a3a;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #ffffff;
+  padding: 0 16px;
+  border: none;
+  text-transform: uppercase;
+}
+
+.grey-light-block  {
+  background-color: $gray-light;
+}
