@@ -40,4 +40,5 @@ return [
 
     'Application',
     'Dashboard',
+    'CurrentRoute',
 ];

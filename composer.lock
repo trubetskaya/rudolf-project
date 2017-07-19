@@ -4,8 +4,30 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "54fa1a71269d33b33bec383a1f05b8dd",
+    "content-hash": "a4837eabc0378dec0cf49c2f1fa0a6b2",
     "packages": [
+        {
+            "name": "agusedyc/gentelella",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/agusedyc/gentelella.git",
+                "reference": "f6be1786ee4a9c9aa1365be8d7119f721c72fe6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/agusedyc/gentelella/zipball/f6be1786ee4a9c9aa1365be8d7119f721c72fe6c",
+                "reference": "f6be1786ee4a9c9aa1365be8d7119f721c72fe6c",
+                "shasum": ""
+            },
+            "type": "theme",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Gentelella Admin is a free to use Bootstrap admin template",
+            "time": "2016-11-12 11:58:44"
+        },
         {
             "name": "container-interop/container-interop",
             "version": "1.2.0",
@@ -1013,7 +1035,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.3.4",
+            "version": "v3.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -1082,7 +1104,7 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v3.3.4",
+            "version": "v3.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
@@ -1194,6 +1216,94 @@
                 "shim"
             ],
             "time": "2017-06-09T14:24:12+00:00"
+        },
+        {
+            "name": "zendextend/zendextend",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/atarasenkopublic/zendextend.git",
+                "reference": "e2a9ab960314bbe932f9be7225efa5188325b9a6"
+            },
+            "require-dev": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Lib\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-0": {
+                    "LibTest\\": "tests/"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Zend Framework 3 Ext",
+            "homepage": "http://",
+            "keywords": [
+                "framework",
+                "library"
+            ],
+            "time": "2017-07-19 00:54:46"
+        },
+        {
+            "name": "zendextend/zendextend-dashboard",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/atarasenkopublic/zendextend-dashboard.git",
+                "reference": "3a8b2ff040c6ed1945b66f2f4b4e911e0ac61069"
+            },
+            "require": {
+                "agusedyc/gentelella": "dev-master",
+                "php": "^5.5 || ^7.0",
+                "zendextend/zendextend": "dev-master"
+            },
+            "type": "module",
+            "extra": {
+                "zf": {
+                    "component": "Dashboard",
+                    "config-provider": [
+                        "Dashboard\\ConfigProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dashboard\\": "src/Dashboard"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "DashboardTest\\": "tests/DashboardTest"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Tarasenko ",
+                    "email": "tarasenko.anton@ukr.net",
+                    "homepage": "https://github.com/atarasenkopublic"
+                },
+                {
+                    "name": "Aleksandra Trubetskaya",
+                    "homepage": "https://github.com/atarasenkopublic"
+                }
+            ],
+            "description": "A generic Dashboard module for Zend Framework 3",
+            "homepage": "https://github.com/atarasenkopublic/zendextend-dashboard",
+            "keywords": [
+                "admin",
+                "dashboard",
+                "zf3"
+            ],
+            "time": "2017-07-19 00:54:46"
         },
         {
             "name": "zendframework/zend-authentication",
@@ -1537,16 +1647,16 @@
         },
         {
             "name": "zendframework/zend-crypt",
-            "version": "3.2.0",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-crypt.git",
-                "reference": "274cdcb77a2165d6aff36b606e9d1c687ba9386c"
+                "reference": "514cef5556bac069e36c2cbded40e529b86bb3f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-crypt/zipball/274cdcb77a2165d6aff36b606e9d1c687ba9386c",
-                "reference": "274cdcb77a2165d6aff36b606e9d1c687ba9386c",
+                "url": "https://api.github.com/repos/zendframework/zend-crypt/zipball/514cef5556bac069e36c2cbded40e529b86bb3f2",
+                "reference": "514cef5556bac069e36c2cbded40e529b86bb3f2",
                 "shasum": ""
             },
             "require": {
@@ -1584,7 +1694,7 @@
                 "crypt",
                 "zf2"
             ],
-            "time": "2016-12-06T15:33:37+00:00"
+            "time": "2017-07-17T15:46:00+00:00"
         },
         {
             "name": "zendframework/zend-db",
@@ -4092,28 +4202,6 @@
     ],
     "packages-dev": [
         {
-            "name": "agusedyc/gentelella",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/agusedyc/gentelella.git",
-                "reference": "f6be1786ee4a9c9aa1365be8d7119f721c72fe6c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/agusedyc/gentelella/zipball/f6be1786ee4a9c9aa1365be8d7119f721c72fe6c",
-                "reference": "f6be1786ee4a9c9aa1365be8d7119f721c72fe6c",
-                "shasum": ""
-            },
-            "type": "theme",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Gentelella Admin is a free to use Bootstrap admin template",
-            "time": "2016-11-12 11:58:44"
-        },
-        {
             "name": "myclabs/deep-copy",
             "version": "1.6.1",
             "source": {
@@ -5419,6 +5507,50 @@
             "time": "2016-10-03T07:35:21+00:00"
         },
         {
+            "name": "tasmaniski/zend-current-route",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tasmaniski/zend-current-route.git",
+                "reference": "74340ca316b7a95796d5e76961cdb76fce2caabc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tasmaniski/zend-current-route/zipball/74340ca316b7a95796d5e76961cdb76fce2caabc",
+                "reference": "74340ca316b7a95796d5e76961cdb76fce2caabc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6",
+                "zendframework/zend-mvc": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "CurrentRoute": "src/"
+                },
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Aleksandar Varnicic",
+                    "email": "tasmaniski@gmail.com"
+                }
+            ],
+            "description": "View Helper for reading current route info: Controller, Action, Module name",
+            "homepage": "https://github.com/tasmaniski",
+            "keywords": [
+                "Zend Framework",
+                "helper",
+                "route",
+                "view"
+            ],
+            "time": "2016-10-12T09:43:33+00:00"
+        },
+        {
             "name": "theseer/tokenizer",
             "version": "1.1.0",
             "source": {
@@ -5507,90 +5639,6 @@
                 "validate"
             ],
             "time": "2016-11-23T20:04:58+00:00"
-        },
-        {
-            "name": "zendextend/zendextend",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/atarasenkopublic/zendextend.git",
-                "reference": "92dbdbe91f4ef5ca6a72c4f254744ef227a8362e"
-            },
-            "require-dev": {
-                "php": ">=5.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Lib\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-0": {
-                    "LibTest\\": "tests/"
-                }
-            },
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Zend Framework 3 Ext",
-            "homepage": "http://",
-            "keywords": [
-                "framework",
-                "library"
-            ],
-            "time": "2017-07-16 07:18:33"
-        },
-        {
-            "name": "zendextend/zendextend-dashboard",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/atarasenkopublic/zendextend-dashboard.git",
-                "reference": "50e68b3a30748b28da953f3ff3dba442c3349e03"
-            },
-            "require": {
-                "agusedyc/gentelella": "dev-master",
-                "php": "^5.5 || ^7.0",
-                "zendextend/zendextend": "dev-master"
-            },
-            "type": "module",
-            "extra": {
-                "zf": {
-                    "component": "Dashboard",
-                    "config-provider": [
-                        "Dashboard\\ConfigProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Dashboard\\": "src/Dashboard"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "DashboardTest\\": "tests/DashboardTest"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Anton Tarasenko ",
-                    "email": "tarasenko.anton@ukr.net",
-                    "homepage": "https://github.com/atarasenkopublic"
-                }
-            ],
-            "description": "A generic Dashboard module for Zend Framework 3",
-            "homepage": "https://github.com/atarasenkopublic/zendextend-dashboard",
-            "keywords": [
-                "admin",
-                "dashboard",
-                "zf3"
-            ],
-            "time": "2017-07-16 07:18:33"
         },
         {
             "name": "zendframework/zend-debug",

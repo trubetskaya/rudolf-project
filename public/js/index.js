@@ -3,5 +3,18 @@
  */
 
 $( document ).ready(function() {
+    /**
+     * Управление прозрачностью зафиксированного навигационного меню
+     * если это необходимо
+     */
+    if ($('nav').data('transparent')) {
+        $(window).scroll(function() {
+            if ($(window).scrollTop() > (650 -70)) {
+                $('nav').removeClass('transparent');
+            } else {
+                $('nav').addClass('transparent');
+            }
+        });
+    }
 
 });

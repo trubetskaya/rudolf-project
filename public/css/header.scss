@@ -4,11 +4,14 @@ $white:#ffffff;
 $orange:#f76a3a;
 
 $screen-sm:768px;
-
 nav {
+  &.transparent {
+    background-color: transparent!important;
+  }
   height: 70px;
   text-align: center;
   background-color: $gray!important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15)!important;
   .container {
     position: relative;
   }

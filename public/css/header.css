@@ -1,7 +1,10 @@
 nav {
   height: 70px;
   text-align: center;
-  background-color: #555963 !important; }
+  background-color: #555963 !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15) !important; }
+  nav.transparent {
+    background-color: transparent !important; }
   nav .container {
     position: relative; }
   @media (max-width: 768px) {

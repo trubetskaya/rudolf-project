@@ -1,6 +1,4 @@
 #top-carousel {
-  position: relative;
-  top: -70px;
   background: url("/img/carousel/photo-homepage.png") center no-repeat;
   height: 650px;
   width: 100%;

@@ -176,6 +176,17 @@
       text-align: left;
       color: #ffffff;
       margin: 0 0 0 5px; }
+      .collections .collection .collection-link span {
+        margin-left: 4px;
+        width: 12px;
+        height: 8px;
+        display: inline-block;
+        background: url(/img/bg-collections/ic-down-bold-default.png) no-repeat;
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        transform: rotate(-90deg); }
   .collections .collection-1 {
     background: url("/img/bg-collections/photo-2.png") no-repeat;
     width: 100%;
