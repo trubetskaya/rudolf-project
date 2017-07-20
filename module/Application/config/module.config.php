@@ -9,8 +9,32 @@ namespace Application {
 
     use Zend\Router\Http;
     use Zend\ServiceManager\Factory\InvokableFactory;
+    use Doctrine\ORM\Mapping\Driver;
+
 
     return [
+
+        'doctrine' => [
+
+            // Metadata Mapping driver configuration
+            'driver' => [
+
+                // Configuration for service `doctrine.driver.orm_default` service
+                'app_entity' => [
+                    'class' => Driver\AnnotationDriver::class,
+                    'paths' => __DIR__ . '/../src/Entity'
+                ],
+
+                // Configuration for service `doctrine.driver.orm_default` service
+                'orm_default' => [
+
+                    // Map of driver names to be used within this driver chain, indexed by entity namespace
+                    'drivers' => [
+                        'Application\Entity'  => 'app_entity'
+                    ],
+                ],
+            ],
+        ],
 
         'router' => [
             'routes' => [
