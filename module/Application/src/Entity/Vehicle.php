@@ -12,7 +12,9 @@ namespace Application\Entity {
     use Doctrine\Common\Collections\ArrayCollection;
 
     use Lib\Entity\ { Document, ECommerceTrait };
-    use Application\Entity\Options\{ Fuel, Transmission, Equipment };
+    use Application\Entity\Options\{
+        Fuel, Tag, Transmission, Equipment
+    };
 
     /**
      * Class Vehicle
@@ -179,6 +181,37 @@ namespace Application\Entity {
         protected $options;
 
         /**
+         * @var ArrayCollection
+         * @Form\Type("\DoctrineORMModule\Form\Element\EntitySelect")
+         * @Form\Flags({"priority": 45})
+         * @Form\Options({
+         *      "label"         : "Tags",
+         *      "target_class"  : "Application\Entity\Options\Tag",
+         *      "property"      : "name",
+         *      "is_method"     : true,
+         *      "find_method"   : {
+         *          "name"      : "findBy",
+         *          "params"    : {
+         *              "criteria"  : { "active" : 1 },
+         *              "orderBy"   : { "index" : "ASC" }
+         *          }
+         *      },
+         *      "optgroup_identifier"   : "rootName",
+         *      "allow_empty"           : false
+         * })
+         * @Form\Attributes({
+         *      "data-parsley-required": "true",
+         *      "data-parsley-required-message": "Tags required",
+         *      "class": "form-control select2_multiple",
+         *      "id": "vehicle-tags"
+         * })
+         *
+         * @ORM\ManyToMany(targetEntity=Options\Tag::class, cascade={"persist"}, inversedBy="documents")
+         * @ORM\JoinTable(name="vehicle_tags")
+         **/
+        protected $tags;
+
+        /**
          * Get transmission
          * @return Transmission
          */
@@ -311,6 +344,38 @@ namespace Application\Entity {
             return $this->options;
         }
 
+        /**
+         * Add option
+         * @param Tag $tag
+         * @return $this
+         */
+        public function addTags(Tag $tag)
+        {
+            $this->tags->add($tag);
+            $tag->addDocuments($this);
+
+            return $this;
+        }
+
+        /**
+         * Remove tag
+         * @param Tag $tag
+         * @return $this
+         */
+        public function removeTags(Tag $tag)
+        {
+            $this->tags->remove($tag);
+            return $this;
+        }
+
+        /**
+         * Get options
+         * @return ArrayCollection
+         */
+        public function getTags()
+        {
+            return $this->tags;
+        }
 
         /**
          * Function jsonSerialize
