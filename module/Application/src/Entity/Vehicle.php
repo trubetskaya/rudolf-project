@@ -175,7 +175,7 @@ namespace Application\Entity {
          *      "id": "vehicle-options"
          * })
          *
-         * @ORM\ManyToMany(targetEntity=Options\Equipment::class, cascade={"persist"}, inversedBy="documents")
+         * @ORM\ManyToMany(targetEntity=Options\Equipment::class, cascade={"persist"}, inversedBy="vehicles")
          * @ORM\JoinTable(name="vehicle_options")
          **/
         protected $options;
@@ -206,7 +206,7 @@ namespace Application\Entity {
          *      "id": "vehicle-tags"
          * })
          *
-         * @ORM\ManyToMany(targetEntity=Options\Tag::class, cascade={"persist"}, inversedBy="documents")
+         * @ORM\ManyToMany(targetEntity=Options\Tag::class, cascade={"persist"}, inversedBy="vehicles")
          * @ORM\JoinTable(name="vehicle_tags")
          **/
         protected $tags;

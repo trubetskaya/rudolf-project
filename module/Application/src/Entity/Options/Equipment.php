@@ -7,6 +7,7 @@
  */
 namespace Application\Entity\Options {
 
+    use Doctrine\Common\Collections\ArrayCollection;
     use Lib\Entity\Taxonomy;
     use Doctrine\ORM\Mapping as ORM;
 
@@ -18,5 +19,14 @@ namespace Application\Entity\Options {
      */
     class Equipment extends Taxonomy
     {
+        use OptionTrait;
+
+        /**
+         * @var ArrayCollection
+         * @ORM\ManyToMany(targetEntity=Application\Entity\Vehicle::class, mappedBy="options")
+         */
+        protected $vehicles;
+
+
     }
 }
