@@ -1,0 +1,1 @@
+INSERT INTO rudolf.managers (username, email, display_name, password, state) VALUES ('a.tarasenko', 'tarasenko.anton@ukr.net', 'Anton Tarasenko', '$2y$14$crzVSjF68cf9opF.RoUgTutUXIU1MQEUJ1hHs8eDsVwGKv8s3R5Ja', 1);

@@ -1,0 +1,2 @@
+INSERT INTO rudolf.locales (currency_id, iso, iso_short, `default`, name, description, active, created, updated, list_index) VALUES (3, 'ru_RU', 'ru', 1, 'Russian', 'Russian location', 1, '2015-11-14 05:11:23', '2015-11-14 05:11:23', 2);
+INSERT INTO rudolf.locales (currency_id, iso, iso_short, `default`, name, description, active, created, updated, list_index) VALUES (1, 'en_EN', 'en', 0, 'English', 'English location', 1, '2015-11-14 05:11:23', '2015-11-14 05:11:23', 1);
