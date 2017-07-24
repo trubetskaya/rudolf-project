@@ -47,7 +47,26 @@ namespace Application {
                             'action' => 'index',
                         ],
                     ],
+
                 ],
+
+                'app' => [
+                    'type' => Http\Segment::class,
+                    'options' => [
+                        'route' => '/catalog[/:action[/:id]]',
+                        'constraints' => [
+                            'controller'    => '[a-zA-Z][a-zA-Z0-9_-]+',
+                            'action'        => '[a-zA-Z][a-zA-Z0-9_-]+',
+                            'id'            => '[0-9]+'
+                        ],
+                        'defaults' => [
+                            'controller'    => Controller\CatalogController::class,
+                            'action'        => 'index',
+                        ],
+                    ],
+                ],
+
+
                 'application' => [
                     'type' => Http\Segment::class,
                     'options' => [
@@ -64,6 +83,7 @@ namespace Application {
         'controllers' => [
             'factories' => [
                 Controller\IndexController::class => InvokableFactory::class,
+                Controller\CatalogController::class => InvokableFactory::class,
             ],
         ],
 
