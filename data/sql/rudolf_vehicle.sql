@@ -1,0 +1,3 @@
+INSERT INTO rudolf.vehicle (id, fuel, transmission, registration_date, volume, mileage, currency_id, amount) VALUES (1, 41207, 41204, 1999, 37.00, 400, 1, 13000.00);
+INSERT INTO rudolf.vehicle (id, fuel, transmission, registration_date, volume, mileage, currency_id, amount) VALUES (2, 41206, 41203, 2002, 3.50, 150, 1, 15500.00);
+INSERT INTO rudolf.vehicle (id, fuel, transmission, registration_date, volume, mileage, currency_id, amount) VALUES (3, 41205, 41201, 2004, 2.20, 170000, 1, 11599.99);
