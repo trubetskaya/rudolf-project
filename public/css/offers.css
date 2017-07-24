@@ -131,6 +131,7 @@
     z-index: 5;
     height: 440px;
     background: url("/img/bg-images/photo-fon-1.png") no-repeat;
+    background-size: cover;
     margin: 0 auto; }
     .info-box-bg .info-box-bg-image .row {
       padding: 98px 0 99px; }

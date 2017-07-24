@@ -8,6 +8,9 @@ $( document ).ready(function() {
      * если это необходимо
      */
     if ($('nav').data('transparent')) {
+        if ($(window).scrollTop() > (650 -70)) {
+            $('nav').removeClass('transparent');
+        }
         $(window).scroll(function() {
             if ($(window).scrollTop() > (650 -70)) {
                 $('nav').removeClass('transparent');
@@ -16,5 +19,7 @@ $( document ).ready(function() {
             }
         });
     }
-
+    $('.slider').jcarousel({
+        items: '.item'
+    });
 });

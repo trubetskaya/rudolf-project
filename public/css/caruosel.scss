@@ -5,12 +5,28 @@ $orange:#f76a3a;
 
 $screen-sm:768px;
 #top-carousel {
-  background: url("/img/carousel/photo-homepage.png") center no-repeat;
   height: 650px;
   width: 100%;
   background-color: $gray;
   .carousel-inner {
     position: absolute;
+    height: 650px;
+    div {
+      height: 650px;
+    }
+    div:first-child {
+      background: url("/img/carousel/photo-homepage.png") no-repeat;
+      background-size: cover;
+    }
+    div:nth-child(2) {
+      background: url("/img/carousel/photo-homepage.png") no-repeat;
+      background-size: cover;
+    }
+    div:nth-child(3) {
+      background: url("/img/carousel/photo-homepage.png") no-repeat;
+      background-size: cover;
+
+    }
   }
   .container {
     .row {
@@ -20,7 +36,7 @@ $screen-sm:768px;
       width: 9px;
       right: 60px;
       left: auto;
-      bottom: 317px;
+      top: 267px;
       li {
         width: 9px;
         height: 9px;
@@ -31,7 +47,7 @@ $screen-sm:768px;
         background-color: $gray-light;
         &.active {
           padding: 0;
-          margin: 0;
+          margin: 1px;
           background-color: $orange;
         }
       }

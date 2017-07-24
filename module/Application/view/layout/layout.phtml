@@ -13,6 +13,7 @@
         <?= $this->headScript()
             ->prependFile($this->basePath('js/bootstrap.min.js'))
             ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
+            ->appendFile($this->basePath('js/jquery.jcarousel.min.js'))
             ->appendFile($this->basePath('js/index.js'))
         ?>
         <!-- Le styles -->
@@ -28,7 +29,6 @@
             ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
         ?>
     </head>
-    <div>
         <nav class="navbar navbar-fixed-top
             <?php echo ($this->currentRoute()->getRoute() == 'home') ? 'transparent' : ''?>
             " data-transparent="<?php echo (string)($this->currentRoute()->getRoute() == 'home')?>"
@@ -76,6 +76,7 @@
                 </ul>
             </div>
         </nav>
+    <div class="content-holder">
         <div class="container">
             <?php
                 $flash = $this->flashMessenger();
@@ -91,73 +92,73 @@
             ?>
         </div>
         <?= $this->content ?>
-            <footer>
-                <div class="container hidden-xs hidden-sm" id="footer-link-list">
-                    <div class="col-lg-5ths col-md-5ths">
-                        <ul>
-                            <li><?= $this->translate('Компания');?></li>
-                            <li><a href="#"><?= $this->translate('О компании');?></a></li>
-                            <li><a href="#"><?= $this->translate('Блог');?></a></li>
-                            <li><a href="#"><?= $this->translate('Команда');?></a></li>
-                            <li><a href="#"><?= $this->translate('Клиенты');?></a></li>
-                            <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
-                            <li><a href="#"><?= $this->translate('Партнеры');?></a></li>
-                            <li><a href="#"><?= $this->translate('Корпоративные клиенты');?></a></li>
-                            <li><a href="#"><?= $this->translate('Контакты');?></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-5ths col-md-5ths">
-                        <ul>
-                            <li><?= $this->translate('Компания');?></li>
-                            <li><a href="#"><?= $this->translate('О компании');?></a></li>
-                            <li><a href="#"><?= $this->translate('Блог');?></a></li>
-                            <li><a href="#"><?= $this->translate('Команда');?></a></li>
-                            <li><a href="#"><?= $this->translate('Клиенты');?></a></li>
-                            <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
-                            <li><a href="#"><?= $this->translate('Партнеры');?></a></li>
-                            <li><a href="#"><?= $this->translate('Корпоративные клиенты');?></a></li>
-                            <li><a href="#"><?= $this->translate('Контакты');?></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-5ths col-md-5ths">
-                        <ul>
-                            <li><?= $this->translate('Продать');?></li>
-                            <li><a href="#"><?= $this->translate('Срочный выкуп');?></a></li>
-                            <li><a href="#"><?= $this->translate('Обмен / Trade-in');?></a></li>
-                            <li><a href="#"><?= $this->translate('Комисионная продажа');?></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-5ths col-md-5ths">
-                        <ul>
-                            <li><?= $this->translate('Купить');?></li>
-                            <li><a href="#"><?= $this->translate('Легковые автомобили');?></a></li>
-                            <li><a href="#"><?= $this->translate('Коммерческий транспорт');?></a></li>
-                            <li><a href="#"><?= $this->translate('Мотоциклы');?></a></li>
-                            <li><a href="#"><?= $this->translate('Подборки');?></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-5ths col-md-5ths">
-                        <ul>
-                            <li><?= $this->translate('Услуги');?></li>
-                            <li><a href="#"><?= $this->translate('О компании');?></a></li>
-                            <li><a href="#"><?= $this->translate('Блог');?></a></li>
-                            <li><a href="#"><?= $this->translate('Команда');?></a></li>
-                            <li><a href="#"><?= $this->translate('Клиенты');?></a></li>
-                            <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
-                            <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
-                            <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
-                            <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
-                            <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
-                        </ul>
-                    </div>
+        <footer>
+            <div class="container hidden-xs hidden-sm" id="footer-link-list">
+                <div class="col-lg-5ths col-md-5ths">
+                    <ul>
+                        <li><?= $this->translate('Компания');?></li>
+                        <li><a href="#"><?= $this->translate('О компании');?></a></li>
+                        <li><a href="#"><?= $this->translate('Блог');?></a></li>
+                        <li><a href="#"><?= $this->translate('Команда');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клиенты');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                        <li><a href="#"><?= $this->translate('Партнеры');?></a></li>
+                        <li><a href="#"><?= $this->translate('Корпоративные клиенты');?></a></li>
+                        <li><a href="#"><?= $this->translate('Контакты');?></a></li>
+                    </ul>
                 </div>
-                <div id="copyright">
-                    <div class="container">
-                        <b>&copy; 2017 Rudolf Autohaus.</b> Все права защищены
-                    </div>
+                <div class="col-lg-5ths col-md-5ths">
+                    <ul>
+                        <li><?= $this->translate('Компания');?></li>
+                        <li><a href="#"><?= $this->translate('О компании');?></a></li>
+                        <li><a href="#"><?= $this->translate('Блог');?></a></li>
+                        <li><a href="#"><?= $this->translate('Команда');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клиенты');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                        <li><a href="#"><?= $this->translate('Партнеры');?></a></li>
+                        <li><a href="#"><?= $this->translate('Корпоративные клиенты');?></a></li>
+                        <li><a href="#"><?= $this->translate('Контакты');?></a></li>
+                    </ul>
                 </div>
-            </footer>
-        </div>
+                <div class="col-lg-5ths col-md-5ths">
+                    <ul>
+                        <li><?= $this->translate('Продать');?></li>
+                        <li><a href="#"><?= $this->translate('Срочный выкуп');?></a></li>
+                        <li><a href="#"><?= $this->translate('Обмен / Trade-in');?></a></li>
+                        <li><a href="#"><?= $this->translate('Комисионная продажа');?></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-5ths col-md-5ths">
+                    <ul>
+                        <li><?= $this->translate('Купить');?></li>
+                        <li><a href="#"><?= $this->translate('Легковые автомобили');?></a></li>
+                        <li><a href="#"><?= $this->translate('Коммерческий транспорт');?></a></li>
+                        <li><a href="#"><?= $this->translate('Мотоциклы');?></a></li>
+                        <li><a href="#"><?= $this->translate('Подборки');?></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-5ths col-md-5ths">
+                    <ul>
+                        <li><?= $this->translate('Услуги');?></li>
+                        <li><a href="#"><?= $this->translate('О компании');?></a></li>
+                        <li><a href="#"><?= $this->translate('Блог');?></a></li>
+                        <li><a href="#"><?= $this->translate('Команда');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клиенты');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="copyright">
+                <div class="container">
+                    <b>&copy; 2017 Rudolf Autohaus.</b> Все права защищены
+                </div>
+            </div>
+        </footer>
+    </div>
         <?= $this->inlineScript() ?>
     </body>
 </html>
