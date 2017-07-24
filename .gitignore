@@ -7,5 +7,5 @@ data/cache/*
 phpunit.xml
 public/vendors
 public/storage
-public/dashboard/js/*
-public/dashboard/css/*
+public/dashboard/css/custom.css
+public/dashboard/js/custom.js

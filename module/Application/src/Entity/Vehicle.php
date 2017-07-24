@@ -11,7 +11,9 @@ namespace Application\Entity {
     use Doctrine\ORM\Mapping as ORM;
     use Doctrine\Common\Collections\ArrayCollection;
 
-    use Lib\Entity\ { Document, ECommerceTrait };
+    use Lib\Entity\{
+        Document, ECommerceTrait, Taxonomy, TaxonomyInterface
+    };
     use Application\Entity\Options\{
         Fuel, Tag, Transmission, Equipment
     };
@@ -378,26 +380,73 @@ namespace Application\Entity {
         }
 
         /**
+         * Vehicle name
+         * @param string $glue
+         * @return string
+         */
+        public function name($glue = " ")
+        {
+            $pieces = [$this->getName()];
+            if ($this->getTaxonomy()->first()) {
+
+                /** @var Taxonomy $tax */
+                $tax = $this->getTaxonomy()->first();
+                array_unshift($pieces, $tax->getName());
+                if ($tax->getRoot() instanceof TaxonomyInterface) {
+                    array_unshift($pieces, $tax->getRoot()->getName());
+                }
+            }
+
+            return implode($glue, $pieces);
+        }
+
+        /**
+         * Price
+         * @param string $glue
+         * @return string
+         */
+        public function price($glue = "")
+        {
+            return implode($glue,[
+                number_format($this->getAmount(), 2),
+                $this->getCurrency()->getHtmlCode()
+            ]);
+        }
+
+        /**
+         * Mileage
+         * @return string
+         */
+        public function mileage()
+        {
+            return number_format($this->getMileage() * 1000, 0);
+        }
+
+        /**
          * Function jsonSerialize
          * @return array
          */
-        function jsonSerialize()
+        public function jsonSerialize()
         {
             return [
                 "DT_RowId" => "row-{$this->getId()}",
                 "doc" => [
+                    "taxonomy" => $this->taxonomy(),
+                    "preview" => $this->preview(),
+                    "mileage" => $this->mileage(),
+                    "year" => $this->getRegistrationDate(),
+                    "price" => $this->price(),
+
+                    "id" => $this->getId(),
+                    "index" => $this->getIndex(),
                     "name" => $this->getName(),
                     "description" => $this->getDescription(),
-                    "preview" => $this->preview(),
                     "condition" => [
                         "id" => $this->getCondition()->getId(),
                         "name" => $this->getCondition()->getName()
                     ],
-
-                    "index" => $this->getIndex(),
-                    "price" => $this->getAmount(),
-                    "updated" => $this->getUpdated()
-                        ->format(\DateTime::W3C)
+                    "updated" => $this->getUpdated()->format("d M Y H:i:s"),
+                    "created" => $this->getCreated()->format("d M Y H:i:s"),
                 ],
                 "links" => [
                     "edit" => '/dashboard/commerce/edit/' . $this->getId(),

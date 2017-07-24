@@ -16,7 +16,7 @@ $(document).ready(function() {
                     },
                     {
                         data: "doc.condition",
-                        className: "main-condition",
+                        className: "text-center",
                         targets: -3,
                         render: function (data, type, row) {
                             return $("<p>").addClass('label label-success label-' + data.id)
@@ -26,7 +26,7 @@ $(document).ready(function() {
                     },
                     {
                         data: "doc.updated",
-                        className: "main-updated",
+                        className: "text-center",
                         targets     : -2
                     },
                     {
@@ -46,7 +46,7 @@ $(document).ready(function() {
                 ],
                 rowReorder: {
                     dataSrc: "doc.index",
-                    selector: "td:not(:last-child)",
+                    selector: "td:first-child",
                     update: true,
                     snapX: true
                 },
