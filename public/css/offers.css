@@ -78,7 +78,9 @@
       color: #797979; }
 
 .services {
-  background-color: #555963; }
+  background-color: #555963;
+  background-image: url("/img/bg/photo-fon-2.png");
+  background-size: cover; }
   .services .container {
     padding-top: 78px;
     padding-bottom: 101px; }
@@ -125,77 +127,21 @@
 .info-box-bg {
   background-color: #555963;
   overflow-x: hidden;
-  height: 440px; }
-  .info-box-bg .info-box-bg-image {
-    width: 1280px;
-    z-index: 5;
-    height: 440px;
-    background: url("/img/bg-images/photo-fon-1.png") no-repeat;
-    background-size: cover;
-    margin: 0 auto; }
-    .info-box-bg .info-box-bg-image .row {
-      padding: 98px 0 99px; }
-      .info-box-bg .info-box-bg-image .row .info-box-bg-text {
-        font-size: 32px;
-        font-weight: 300;
-        line-height: 1.25;
-        text-align: left;
-        color: #ffffff;
-        margin-bottom: 43px; }
-
-.collections {
-  padding-top: 86px;
-  padding-bottom: 89px; }
-  .collections .collections-text .collections-text-title {
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 2.08;
-    text-align: left;
-    color: #2d2a2a;
-    padding-bottom: 2px; }
-  .collections .collections-text .collections-text-desc {
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 1.29;
-    text-align: left;
-    color: #797979;
-    padding-bottom: 54px; }
-  .collections .collection {
-    height: 230px; }
-    .collections .collection .collection-name {
-      font-size: 18px;
-      font-weight: 600;
-      line-height: 1.39;
-      letter-spacing: -0.2px;
+  height: 440px;
+  background: url("/img/bg-images/photo-fon-1.png") no-repeat;
+  background-size: cover;
+  width: 1280px;
+  z-index: 5;
+  margin: 0 auto; }
+  .info-box-bg .row {
+    padding: 98px 0 99px; }
+    .info-box-bg .row .info-box-bg-text {
+      font-size: 32px;
+      font-weight: 300;
+      line-height: 1.25;
       text-align: left;
       color: #ffffff;
-      margin: 172px 0 0 5px; }
-    .collections .collection .collection-link {
-      opacity: 0.5;
-      font-size: 14px;
-      line-height: 1.21;
-      text-align: left;
-      color: #ffffff;
-      margin: 0 0 0 5px; }
-      .collections .collection .collection-link span {
-        margin-left: 4px;
-        width: 12px;
-        height: 8px;
-        display: inline-block;
-        background: url(/img/bg-collections/ic-down-bold-default.png) no-repeat;
-        -webkit-transform: rotate(-90deg);
-        -moz-transform: rotate(-90deg);
-        -o-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
-        transform: rotate(-90deg); }
-  .collections .collection-1 {
-    background: url("/img/bg-collections/photo-2.png") no-repeat;
-    width: 100%;
-    margin-bottom: 20px; }
-  .collections .collection-2 {
-    background: url("/img/bg-collections/photo-3.png") no-repeat; }
-  .collections .collection-3 {
-    background: url("/img/bg-collections/photo-4.png") no-repeat; }
+      margin-bottom: 43px; }
 
 .offers-grid-block {
   padding: 54px 0 98px; }
