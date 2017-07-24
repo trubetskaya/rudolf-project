@@ -1,3 +1,15 @@
+
+div.dataTables_wrapper {
+  div.row {
+    div.dataTables_processing {
+      margin: 0;
+      height: auto;
+      position: relative;
+      left: auto;
+      top: auto;
+    }
+  }
+}
 table {
   tbody {
     tr[role="row"] {
@@ -43,4 +55,5 @@ table {
     }
   }
 }
+
 
