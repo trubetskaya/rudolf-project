@@ -1,4 +1,20 @@
+.row.dropzone {
 
+  .dz-preview {
+    margin: auto;
+
+    .dz-image {
+      border-radius: 10px;
+
+      img {
+        width: 120px;
+        height: 120px;
+        background-position: center;
+        background-size: cover;
+      }
+    }
+  }
+}
 div.dataTables_wrapper {
   div.row {
     div.dataTables_processing {
@@ -10,6 +26,7 @@ div.dataTables_wrapper {
     }
   }
 }
+
 table {
   tbody {
     tr[role="row"] {
