@@ -14,8 +14,8 @@ namespace Application\Entity {
     use Lib\Entity\{
         Document, ECommerceTrait, Taxonomy, TaxonomyInterface
     };
-    use Application\Entity\Options\{
-        Fuel, Tag, Transmission, Equipment
+    use Application\Entity\Options\ {
+        Body, Drive, Fuel, Tag, Transmission, Equipment
     };
 
     /**
@@ -30,6 +30,58 @@ namespace Application\Entity {
     class Vehicle extends Document
     {
         use ECommerceTrait;
+
+        /**
+         * @var Body
+         * @Form\Type("\DoctrineORMModule\Form\Element\EntitySelect")
+         * @Form\Flags({"priority": 44})
+         * @Form\Options({
+         *      "label"         : "Body",
+         *      "target_class"  : Application\Entity\Options\Body::class,
+         *      "property"      : "name",
+         *      "is_method"     : true,
+         *      "find_method"   : {
+         *          "name"      : "getOptions"
+         *      },
+         *      "allow_empty"           : false
+         * })
+         * @Form\Attributes({
+         *      "data-parsley-required": "true",
+         *      "data-parsley-required-message": "Body type required",
+         *      "class": "form-control select2_multiple",
+         *      "id": "vehicle-body"
+         * })
+         *
+         * @ORM\ManyToOne(targetEntity=Options\Body::class)
+         * @ORM\JoinColumn(name="body_type", referencedColumnName="id", nullable=false)
+         **/
+        protected $body;
+
+        /**
+         * @var Drive
+         * @Form\Type("\DoctrineORMModule\Form\Element\EntitySelect")
+         * @Form\Flags({"priority": 44})
+         * @Form\Options({
+         *      "label"         : "Drive",
+         *      "target_class"  : Application\Entity\Options\Drive::class,
+         *      "property"      : "name",
+         *      "is_method"     : true,
+         *      "find_method"   : {
+         *          "name"      : "getOptions"
+         *      },
+         *      "allow_empty"           : false
+         * })
+         * @Form\Attributes({
+         *      "data-parsley-required": "true",
+         *      "data-parsley-required-message": "Drive type required",
+         *      "class": "form-control select2_multiple",
+         *      "id": "vehicle-drive"
+         * })
+         *
+         * @ORM\ManyToOne(targetEntity=Options\Drive::class)
+         * @ORM\JoinColumn(name="drive_type", referencedColumnName="id", nullable=false)
+         **/
+        protected $drive;
 
         /**
          * @var int
