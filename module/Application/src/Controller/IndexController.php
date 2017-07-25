@@ -4,16 +4,25 @@
  * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
+namespace Application\Controller {
 
-namespace Application\Controller;
+    use Zend\View\Model\ViewModel;
+    use Zend\Mvc\Controller\AbstractActionController;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-
-class IndexController extends AbstractActionController
-{
-    public function indexAction()
+    /**
+     * Class IndexController
+     * @package Application\Controller
+     */
+    class IndexController extends AbstractActionController
     {
-        return new ViewModel();
+
+        /**
+         * Function indexAction
+         * @return ViewModel
+         */
+        public function indexAction()
+        {
+            return new ViewModel();
+        }
     }
 }

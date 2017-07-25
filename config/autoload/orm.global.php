@@ -46,6 +46,10 @@ return [
                     'user'     => 'rudolf',
                     'password' => 'passwd',
                     'dbname'   => 'rudolf',
+                    'charset'  => 'utf8',
+                    'driverOptions' => [
+                        1002 => 'SET NAMES utf8'
+                    ]
                 ],
             ],
         ],

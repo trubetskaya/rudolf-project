@@ -101,11 +101,7 @@ namespace Application\Entity {
          *      "property"      : "name",
          *      "is_method"     : true,
          *      "find_method"   : {
-         *          "name"      : "findBy",
-         *          "params"    : {
-         *              "criteria"  : { "active" : 1 },
-         *              "orderBy"   : { "index" : "ASC" }
-         *          }
+         *          "name"      : "getOptions"
          *      },
          *      "allow_empty"           : false
          * })
@@ -131,11 +127,7 @@ namespace Application\Entity {
          *      "property"      : "name",
          *      "is_method"     : true,
          *      "find_method"   : {
-         *          "name"      : "findBy",
-         *          "params"    : {
-         *              "criteria"  : { "active" : 1 },
-         *              "orderBy"   : { "index" : "ASC" }
-         *          }
+         *          "name"      : "getOptions"
          *      },
          *      "allow_empty"           : false
          * })
@@ -153,28 +145,23 @@ namespace Application\Entity {
 
         /**
          * @var ArrayCollection
-         * @Form\Type("\DoctrineORMModule\Form\Element\EntitySelect")
+         * @Form\Type("\DoctrineORMModule\Form\Element\EntityMultiCheckbox")
          * @Form\Flags({"priority": 44})
          * @Form\Options({
-         *      "label"         : "Equipment",
-         *      "target_class"  : "Application\Entity\Options\Equipment",
-         *      "property"      : "name",
-         *      "is_method"     : true,
-         *      "find_method"   : {
-         *          "name"      : "findBy",
-         *          "params"    : {
-         *              "criteria"  : { "active" : 1 },
-         *              "orderBy"   : { "index" : "ASC" }
-         *          }
-         *      },
-         *      "optgroup_identifier"   : "rootName",
-         *      "allow_empty"           : false
+         *      "multiple": true,
+         *      "label": "Equipment",
+         *      "target_class": "Application\Entity\Options\Equipment",
+         *      "property": "name",
+         *      "is_method": true,
+         *      "find_method": {
+         *          "name": "getCheckboxes"
+         *      }
          * })
          * @Form\Attributes({
-         *      "data-parsley-required": "true",
-         *      "data-parsley-required-message": "Options required",
-         *      "class": "form-control select2_multiple",
-         *      "id": "vehicle-options"
+         *     "data-parsley-required": "true",
+         *     "data-parsley-required-message": "Options required",
+         *     "class": "flat",
+         *     "multiple": true,
          * })
          *
          * @ORM\ManyToMany(targetEntity=Options\Equipment::class, cascade={"persist"}, inversedBy="vehicles")
@@ -192,11 +179,7 @@ namespace Application\Entity {
          *      "property"      : "name",
          *      "is_method"     : true,
          *      "find_method"   : {
-         *          "name"      : "findBy",
-         *          "params"    : {
-         *              "criteria"  : { "active" : 1 },
-         *              "orderBy"   : { "index" : "ASC" }
-         *          }
+         *          "name"      : "getOptions"
          *      },
          *      "optgroup_identifier"   : "rootName",
          *      "allow_empty"           : false

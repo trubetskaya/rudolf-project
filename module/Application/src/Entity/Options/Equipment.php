@@ -7,15 +7,15 @@
  */
 namespace Application\Entity\Options {
 
-    use Doctrine\Common\Collections\ArrayCollection;
     use Lib\Entity\Taxonomy;
+    use Doctrine\Common\Collections\ArrayCollection;
     use Doctrine\ORM\Mapping as ORM;
 
     /**
      * Class ECommerceOption
      * @package Application
      *
-     * @ORM\Entity
+     * @ORM\Entity(repositoryClass="Lib\Repository\TaxonomyRepository")
      */
     class Equipment extends Taxonomy
     {
@@ -26,7 +26,5 @@ namespace Application\Entity\Options {
          * @ORM\ManyToMany(targetEntity=Application\Entity\Vehicle::class, mappedBy="options")
          */
         protected $vehicles;
-
-
     }
 }

@@ -14,7 +14,7 @@ namespace Application\Entity\Options {
      * Class Transmission
      * @package Application
      *
-     * @ORM\Entity
+     * @ORM\Entity(repositoryClass="Lib\Repository\TaxonomyRepository")
      */
     class Transmission extends Taxonomy
     {

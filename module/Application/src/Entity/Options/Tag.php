@@ -16,7 +16,7 @@ namespace Application\Entity\Options {
      * Class Fuel
      * @package Application
      *
-     * @ORM\Entity
+     * @ORM\Entity(repositoryClass="Lib\Repository\TaxonomyRepository")
      */
     class Tag extends Taxonomy
     {
