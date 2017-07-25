@@ -13,7 +13,6 @@
         <?= $this->headScript()
             ->prependFile($this->basePath('js/bootstrap.min.js'))
             ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
-            ->appendFile($this->basePath('js/jquery.jcarousel.min.js'))
             ->appendFile($this->basePath('js/index.js'))
         ?>
         <!-- Le styles -->
@@ -21,6 +20,7 @@
             ->prependStylesheet($this->basePath('css/header.css'))
             ->prependStylesheet($this->basePath('css/footer.css'))
             ->prependStylesheet($this->basePath('css/homepage.css'))
+            ->prependStylesheet($this->basePath('css/catalog.css'))
             ->prependStylesheet($this->basePath('css/main.css'))
             ->prependStylesheet($this->basePath('css/style.css'))
             ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))

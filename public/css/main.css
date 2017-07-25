@@ -38,4 +38,13 @@ button {
 .content-holder {
   margin-top: -70px; }
 
+h2 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 2.08;
+  letter-spacing: -0.3px;
+  text-align: left;
+  color: #2d2a2a;
+  padding-bottom: 15px; }
+
 /*# sourceMappingURL=main.css.map */

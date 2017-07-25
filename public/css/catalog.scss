@@ -1,0 +1,29 @@
+$gray:#555963;
+$gray-light:#e3e3e3;
+$white:#ffffff;
+$orange:#f76a3a;
+
+$screen-sm:768px;
+
+.breadcrumbs {
+  margin-top: 36px;
+  margin-bottom: 3px;
+  .back {
+    span {
+      background: url("/img/bg-collections/ic-down-bold-default.png") no-repeat;
+      transform: rotate(90deg);
+      width: 12px;
+      height: 8px;
+      display: inline-block;
+      padding-right: 7px;
+    }
+    opacity: 0.5;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1.42;
+    letter-spacing: 1px;
+    text-align: left;
+    color: #2d2a2a;
+    text-transform: uppercase;
+  }
+}
