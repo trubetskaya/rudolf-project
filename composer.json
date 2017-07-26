@@ -39,34 +39,17 @@
             "Application\\": "module/Application/src/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "ApplicationTest\\": "module/Application/test/"
-        }
-    },
-    "extra": [],
     "scripts": {
+
         "cs-fix": "phpcbf",
         "cs-check": "phpcs",
 
         "development-disable": "zf-development-mode disable",
         "development-enable": "zf-development-mode enable",
         "development-status": "zf-development-mode status",
-        "install-dashboard-template": [
-            "cd vendor/agusedyc/gentelella && npm install -V",
-            "cp -rv vendor/agusedyc/gentelella/vendors public",
-
-            "mkdir -p public/dashboard",
-            "cp -rv vendor/agusedyc/gentelella/build/* public/dashboard"
-        ],
 
         "post-create-project-cmd": [
-            "@development-enable",
-            "@install-dashboard-template"
-        ],
-
-        "post-update-cmd": [
-            "@install-dashboard-template"
+            "@development-enable"
         ],
 
         "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
@@ -74,8 +57,14 @@
     },
 
     "require-dev": {
-        "zendframework/zend-developer-tools": "^1.1.0",
         "zendframework/zend-test": "^3.0.1",
+        "zendframework/zend-developer-tools": "^1.1.0",
         "tasmaniski/zend-current-route": "^2.0"
+    },
+
+    "autoload-dev": {
+        "psr-4": {
+            "ApplicationTest\\": "module/Application/test/"
+        }
     }
 }
