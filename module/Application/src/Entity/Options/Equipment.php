@@ -7,7 +7,7 @@
  */
 namespace Application\Entity\Options {
 
-    use Lib\Entity\Taxonomy;
+    use Dashboard\Entity\Taxonomy;
     use Doctrine\Common\Collections\ArrayCollection;
     use Doctrine\ORM\Mapping as ORM;
 
@@ -15,7 +15,7 @@ namespace Application\Entity\Options {
      * Class ECommerceOption
      * @package Application
      *
-     * @ORM\Entity(repositoryClass="Lib\Repository\TaxonomyRepository")
+     * @ORM\Entity(repositoryClass="Dashboard\Repository\TaxonomyRepository")
      */
     class Equipment extends Taxonomy
     {

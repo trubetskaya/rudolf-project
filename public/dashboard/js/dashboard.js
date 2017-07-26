@@ -30,15 +30,15 @@ $(document).ready(function() {
                         targets     : -2
                     },
                     {
-                        data        : "links",
+                        data        : "doc.id",
                         className   : "actions text-center",
                         orderable   : false,
                         targets     : -1,
                         render      : function (data, type, row) {
                             return $("<div>").css('width', "100px").append(
-                                $("<a>").addClass('btn btn-sm btn-info').attr('href', (data ? data.edit : "#"))
+                                $("<a>").addClass('btn btn-sm btn-info').attr('href', location.href + "/edit/" + data)
                                     .append($("<i>").addClass("fa fa-edit")),
-                                $("<a>").addClass('btn btn-sm btn-danger').attr('href', (data ? data.drop : "#"))
+                                $("<a>").addClass('btn btn-sm btn-danger').attr('href', location.href + "/remove/" + data)
                                     .append($("<i>").addClass("fa fa-trash-o"))
                             ).wrap("<div>").parent().html();
                         }

@@ -11,9 +11,8 @@ namespace Application\Entity {
     use Doctrine\ORM\Mapping as ORM;
     use Doctrine\Common\Collections\ArrayCollection;
 
-    use Lib\Entity\{
-        Document, ECommerceTrait, Taxonomy, TaxonomyInterface
-    };
+    use Dashboard\Entity\Document;
+    use Lib\Entity\Ecommerce\ECommerceTrait;
     use Application\Entity\Options\ {
         Body, Drive, Fuel, Tag, Transmission, Equipment
     };
@@ -424,10 +423,10 @@ namespace Application\Entity {
             $pieces = [$this->getName()];
             if ($this->getTaxonomy()->first()) {
 
-                /** @var Taxonomy $tax */
+                /** @var \Dashboard\Entity\Taxonomy $tax */
                 $tax = $this->getTaxonomy()->first();
                 array_unshift($pieces, $tax->getName());
-                if ($tax->getRoot() instanceof TaxonomyInterface) {
+                if ($tax->getRoot() instanceof \Lib\Entity\Taxonomy\TaxonomyInterface) {
                     array_unshift($pieces, $tax->getRoot()->getName());
                 }
             }
@@ -463,31 +462,16 @@ namespace Application\Entity {
          */
         public function jsonSerialize()
         {
-            return [
-                "DT_RowId" => "row-{$this->getId()}",
-                "doc" => [
-                    "taxonomy" => $this->taxonomy(),
-                    "preview" => $this->preview(),
-                    "mileage" => $this->mileage(),
-                    "year" => $this->getRegistrationDate(),
-                    "price" => $this->price(),
-
-                    "id" => $this->getId(),
-                    "index" => $this->getIndex(),
-                    "name" => $this->getName(),
-                    "description" => $this->getDescription(),
-                    "condition" => [
-                        "id" => $this->getCondition()->getId(),
-                        "name" => $this->getCondition()->getName()
-                    ],
-                    "updated" => $this->getUpdated()->format("d M Y H:i:s"),
-                    "created" => $this->getCreated()->format("d M Y H:i:s"),
-                ],
-                "links" => [
-                    "edit" => '/dashboard/commerce/edit/' . $this->getId(),
-                    "drop" => '/dashboard/commerce/remove/' . $this->getId(),
+            return array_merge_recursive(
+                parent::jsonSerialize(),
+                [
+                    "doc" => [
+                        "year" => $this->getRegistrationDate(),
+                        "mileage" => $this->mileage(),
+                        "price" => $this->price()
+                    ]
                 ]
-            ];
+            );
         }
     }
 }

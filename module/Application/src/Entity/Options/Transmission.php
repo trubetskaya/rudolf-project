@@ -7,14 +7,14 @@
  */
 namespace Application\Entity\Options {
 
-    use Lib\Entity\Taxonomy;
+    use Dashboard\Entity\Taxonomy;
     use Doctrine\ORM\Mapping as ORM;
 
     /**
      * Class Transmission
      * @package Application
      *
-     * @ORM\Entity(repositoryClass="Lib\Repository\TaxonomyRepository")
+     * @ORM\Entity(repositoryClass="Dashboard\Repository\TaxonomyRepository")
      */
     class Transmission extends Taxonomy
     {

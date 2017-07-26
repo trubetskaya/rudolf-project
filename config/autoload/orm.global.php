@@ -121,7 +121,7 @@ return [
             ],
         ],
 
-        // Entity Manager instantiation settings
+        // Entity Account instantiation settings
         'entitymanager' => [
             // configuration for the `doctrine.entitymanager.orm_default` service
             'orm_default' => [
@@ -172,7 +172,7 @@ return [
             'orm_default' => [
                 // name of the object manager to use. By default, the EntityManager is used
                 'objectManager' => 'doctrine.entitymanager.orm_default',
-                'identityClass' => \Dashboard\Entity\Manager::class,
+                'identityClass' => \Dashboard\Entity\Account::class,
                 'credentialProperty' => 'password',
                 'identityProperty' => 'email',
             ],

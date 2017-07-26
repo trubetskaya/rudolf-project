@@ -7,15 +7,14 @@
  */
 namespace Application\Entity\Options {
 
-    use Lib\Entity\Taxonomy;
-    use Doctrine\Common\Collections\ArrayCollection;
+    use Dashboard\Entity\Taxonomy;
     use Doctrine\ORM\Mapping as ORM;
 
     /**
      * Class ECommerceOption
      * @package Application
      *
-     * @ORM\Entity(repositoryClass="Lib\Repository\TaxonomyRepository")
+     * @ORM\Entity(repositoryClass="Dashboard\Repository\TaxonomyRepository")
      */
     class Body extends Taxonomy
     {

@@ -26,7 +26,7 @@ $settings = [
      * instead of the default one provided. Default is ZfcUser\Entity\User.
      * The entity class should implement ZfcUser\Entity\UserInterface
      */
-    'user_entity_class' => \Dashboard\Entity\Manager::class,
+    'user_entity_class' => \Dashboard\Entity\Account::class,
 
     /**
      * Enable registration

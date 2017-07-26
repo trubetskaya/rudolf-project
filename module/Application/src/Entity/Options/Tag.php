@@ -7,16 +7,15 @@
  */
 namespace Application\Entity\Options {
 
-    use Application\Entity\Vehicle;
-    use Doctrine\Common\Collections\ArrayCollection;
-    use Lib\Entity\Taxonomy;
+    use Dashboard\Entity\Taxonomy;
     use Doctrine\ORM\Mapping as ORM;
+    use Doctrine\Common\Collections\ArrayCollection;
 
     /**
      * Class Fuel
      * @package Application
      *
-     * @ORM\Entity(repositoryClass="Lib\Repository\TaxonomyRepository")
+     * @ORM\Entity(repositoryClass="Dashboard\Repository\TaxonomyRepository")
      */
     class Tag extends Taxonomy
     {
