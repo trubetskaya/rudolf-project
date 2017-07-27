@@ -1,0 +1,21 @@
+.breadcrumbs {
+  margin-top: 36px;
+  margin-bottom: 3px; }
+  .breadcrumbs .back {
+    opacity: 0.5;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1.42;
+    letter-spacing: 1px;
+    text-align: left;
+    color: #2d2a2a;
+    text-transform: uppercase; }
+    .breadcrumbs .back span {
+      background: url("/img/bg-collections/ic-down-bold-default.png") no-repeat;
+      transform: rotate(90deg);
+      width: 12px;
+      height: 8px;
+      display: inline-block;
+      padding-right: 7px; }
+
+/*# sourceMappingURL=catalog.css.map */
