@@ -27,3 +27,33 @@ $screen-sm:768px;
     text-transform: uppercase;
   }
 }
+
+.catalog {
+  .catalog-filter-group {
+    margin-bottom: 22px;
+  }
+  .catalog-filter-group-checkboxes {
+    margin-bottom: 32px;
+  }
+  label {
+    min-width: 1px;
+    line-height: 25px;
+    height: 25px;
+    font-size: 14px;
+    text-align: left;
+    color: #797979;
+    font-weight: normal;
+    margin-bottom: 3px;
+  }
+  .no-label{
+    margin-top: 28px;
+  }
+  input[type=checkbox] {
+    background: url("/img/bg-images/ic-checkbox-default.png") no-repeat;
+    width: 16px;
+    height: 16px;
+  }
+  input[type=checkbox]:checked {
+    background: url("/img/bg-images/ic-checkbox-hover.png") no-repeat;
+  }
+}
