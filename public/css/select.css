@@ -1,3 +1,8 @@
+.fs-dropdown.gray-dropdown .fs-dropdown-options .fs-dropdown-item {
+  background-color: #f3f4f5;
+  color: #797979; }
+  .fs-dropdown.gray-dropdown .fs-dropdown-options .fs-dropdown-item:not(:last-child) {
+    border-bottom: solid 1px #e3e3e3; }
 .fs-dropdown .fs-dropdown-selected {
   padding: 0 28px 0 10px;
   border-radius: 4px;

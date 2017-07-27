@@ -21,4 +21,5 @@ $( document ).ready(function() {
     }
 
    $("select").dropdown();
+    $("input[type=checkbox], input[type=radio]").checkbox();
 });

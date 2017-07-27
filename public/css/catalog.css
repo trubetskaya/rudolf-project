@@ -21,7 +21,10 @@
 .catalog .catalog-filter-group {
   margin-bottom: 22px; }
 .catalog .catalog-filter-group-checkboxes {
-  margin-bottom: 32px; }
+  margin-top: 32px;
+  margin-bottom: 22px; }
+  .catalog .catalog-filter-group-checkboxes label {
+    line-height: 1.79; }
 .catalog label {
   min-width: 1px;
   line-height: 25px;
@@ -33,11 +36,20 @@
   margin-bottom: 3px; }
 .catalog .no-label {
   margin-top: 28px; }
-.catalog input[type=checkbox] {
-  background: url("/img/bg-images/ic-checkbox-default.png") no-repeat;
-  width: 16px;
-  height: 16px; }
-.catalog input[type=checkbox]:checked {
-  background: url("/img/bg-images/ic-checkbox-hover.png") no-repeat; }
+
+.offers-grid-block .catalog-offers-grid-block-title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 42px;
+  text-align: left;
+  color: #2d2a2a; }
+  .offers-grid-block .catalog-offers-grid-block-title p {
+    position: relative;
+    top: -15px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    color: #7a7a7a;
+    margin-bottom: 0; }
 
 /*# sourceMappingURL=catalog.css.map */

@@ -16,6 +16,7 @@
             ->appendFile($this->basePath('js/index.js'))
             ->appendFile($this->basePath('js/formstone/js/core.js'))
             ->appendFile($this->basePath('js/formstone/js/dropdown.js'))
+            ->appendFile($this->basePath('js/formstone/js/checkbox.js'))
             ->appendFile($this->basePath('js/formstone/js/scrollbar.js'))
             ->appendFile($this->basePath('js/formstone/js/touch.js'))
         ?>
@@ -23,6 +24,7 @@
         <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
             ->prependStylesheet($this->basePath('css/main.css'))
             ->prependStylesheet($this->basePath('css/select.css'))
+            ->prependStylesheet($this->basePath('css/checkbox.css'))
             ->prependStylesheet($this->basePath('css/header.css'))
             ->prependStylesheet($this->basePath('css/footer.css'))
             ->prependStylesheet($this->basePath('css/homepage.css'))
@@ -31,6 +33,7 @@
             ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
             ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
             ->appendStylesheet($this->basePath('js/formstone/css/dropdown.css'))
+            ->appendStylesheet($this->basePath('js/formstone/css/checkbox.css'))
             ->appendStylesheet($this->basePath('js/formstone/css/scrollbar.css'))
         ?>
     </head>
