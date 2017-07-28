@@ -242,10 +242,22 @@ namespace Application\Entity {
          *      "id": "vehicle-tags"
          * })
          *
-         * @ORM\ManyToMany(targetEntity=Options\Tag::class, cascade={"persist"}, inversedBy="vehicles")
+         * @ORM\ManyToMany(targetEntity=Options\Tag::class, cascade={"persist", "remove"}, inversedBy="vehicles")
          * @ORM\JoinTable(name="vehicle_tags")
          **/
         protected $tags;
+
+        /**
+         * Vehicle constructor.
+         */
+        public function __construct()
+        {
+            $this->tags = new ArrayCollection;
+            $this->options = new ArrayCollection;
+
+            parent::__construct();
+        }
+
 
         /**
          * Get transmission
@@ -355,7 +367,7 @@ namespace Application\Entity {
         public function addOptions(Equipment $option)
         {
             $this->options->add($option);
-            $option->addDocuments($this);
+            $option->addVehicles($this);
 
             return $this;
         }
@@ -388,7 +400,7 @@ namespace Application\Entity {
         public function addTags(Tag $tag)
         {
             $this->tags->add($tag);
-            $tag->addDocuments($this);
+            $tag->addVehicles($this);
 
             return $this;
         }
