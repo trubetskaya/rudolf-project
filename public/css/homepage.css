@@ -112,7 +112,7 @@
       right: 60px;
       left: auto;
       top: 267px; }
-      @media screen and (max-width: 992px) {
+      @media screen and (max-width: 768px) {
         #top-carousel .container .row .carousel-indicators {
           -webkit-transform: rotate(-90deg);
           /* Safari and Chrome */
@@ -124,7 +124,7 @@
           /* Opera */
           transform: rotate(-90deg);
           display: block;
-          margin: 355px auto 0;
+          margin: 220px auto 0;
           bottom: 20px;
           left: 0; } }
       #top-carousel .container .row .carousel-indicators li {

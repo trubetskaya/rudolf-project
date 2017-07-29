@@ -144,14 +144,14 @@ $screen-md:992px;
         right: 60px;
         left: auto;
         top: 267px;
-        @media screen and (max-width:$screen-md) {
+        @media screen and (max-width:$screen-sm) {
           -webkit-transform: rotate(-90deg); /* Safari and Chrome */
           -moz-transform: rotate(-90deg);   /* Firefox */
           -ms-transform: rotate(-90deg);   /* IE 9 */
           -o-transform: rotate(-90deg);   /* Opera */
           transform: rotate(-90deg);
           display: block;
-          margin: 355px auto 0;
+          margin: 220px auto 0;
           bottom: 20px;
           left: 0;
         }
