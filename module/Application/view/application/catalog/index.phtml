@@ -6,18 +6,18 @@
                 <?= $this->translate('Назад');?>
             </a>
         </div>
-        <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 catalog">
+        <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12 catalog">
             <h2><?= $this->translate('Купить');?></h2>
             <div class="row catalog-filter-group">
-                <div class="col-lg-5 col-md-5">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 xs-margin-top">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label><?=$this->translate('Марка');?></label>
                             <select>
                                 <option value="1">One</option>
                             </select>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label><?=$this->translate('Модель');?></label>
                             <select>
                                 <option value="1">One</option>
@@ -25,49 +25,50 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3">
+                <div class="catalog-clear-box-sm hidden-lg hidden-md hidden-xs"></div>
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 xs-margin-top">
                     <label><?=$this->translate('Год');?></label>
                     <div class="row">
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <select>
                                 <option value="1">One</option>
                             </select>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <select>
                                 <option value="1">One</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-2">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 xs-margin-top">
                     <label><?=$this->translate('Цена');?></label>
                     <select>
                         <option value="1">One</option>
                     </select>
                 </div>
-                <div class="col-lg-2 col-md-2 no-label">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 no-label">
                     <select>
                         <option value="1">One</option>
                     </select>
                 </div>
             </div>
             <div class="row catalog-filter-group">
-                <div class="col-lg-5 col-md-5">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 xs-margin-top">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
                             <label><?=$this->translate('Поколение');?></label>
                             <select>
                                 <option value="1">One</option>
                             </select>
                         </div>
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
                             <label><?=$this->translate('Кузов');?></label>
                             <select>
                                 <option value="1">One</option>
                             </select>
                         </div>
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-4 col-md-4  col-sm-3 col-xs-12">
                             <label><?=$this->translate('Двигатель');?></label>
                             <select>
                                 <option value="1">One</option>
@@ -75,28 +76,29 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3">
+                <div class="catalog-clear-box-sm hidden-lg hidden-md hidden-xs"></div>
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 xs-margin-top">
                     <label><?=$this->translate('Мощность');?></label>
                     <div class="row">
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <select>
                                 <option value="1">One</option>
                             </select>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <select>
                                 <option value="1">One</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-2">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 xs-margin-top">
                     <label><?=$this->translate('Коробка');?></label>
                     <select>
                         <option value="1">One</option>
                     </select>
                 </div>
-                <div class="col-lg-2 col-md-2">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 xs-margin-top">
                     <label><?=$this->translate('Привод');?></label>
                     <select>
                         <option value="1">One</option>
@@ -104,32 +106,31 @@
                 </div>
             </div>
             <div class="row catalog-filter-group-checkboxes">
-                <div class="col-lg-5 col-md-5">
+                <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 xs-margin-top">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <input type="checkbox">
                             <label><?=$this->translate('Со скидкой');?></label>
                         </div>
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <input type="checkbox">
                             <label><?=$this->translate('Selected');?></label>
                         </div>
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <input type="checkbox">
                             <label><?=$this->translate('Новые');?></label>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-7 col-md-7">
+                <div class="col-lg-7 col-md-7 col-sm-5 col-xs-12 xs-margin-top">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4">
-                        </div>
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-7 col-md-7 col-sm-6 hidden-xs"></div>
+                        <div class="hidden-lg hidden-md hidden-sm col-xs-6">
                             <a class="catalog-hide-filters" href="javascript:">
-                                <?=$this->translate("Cкрыть фильтры");?>
+                                <?=$this->translate("Все фильтры");?>
                             </a>
                         </div>
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
                             <a class="catalog-drop-filters" href="javascript:">
                                 <?=$this->translate("Сбросить фильтры");?>
                             </a>
@@ -144,15 +145,15 @@
 <div class="grey-light-block offers-grid-block">
     <div class="container">
         <div class="row">
-            <div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 catalog-offers-grid-block-title">
+            <div class="col-lg-5 col-lg-offset-1 col-md-5 col-sm-8 col-xs-12 col-md-offset-1 catalog-offers-grid-block-title">
                 <?= $this->translate('Каталог легковых автомобилей');?>
                 <p>127 автомобилей</p>
             </div>
-            <div class="col-lg-5 col-md-5 catalog-offers-grid-block-filter">
+            <div class="col-lg-5 col-md-5 col-sm-4 col-xs-12 catalog-offers-grid-block-filter">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-6 col-md-6 col-sm-2 hidden-xs">
                     </div>
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-6 col-md-6 col-sm-10 col-xs-12">
                         <select data-dropdown-options='{"customClass":"gray-dropdown"}'>
                             <option value="1">One</option>
                             <option value="1">One</option>
@@ -162,99 +163,89 @@
                     </div>
                 </div>
             </div>
-                <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 offers-grid-block-tile">
-                            <a href="#" class="offers-grid-block-grid-bg">
-                                <img src="" alt="">
-                            </a>
-                            <div href="#" class="offers-grid-block-grid-name">
-                                <a href="#"><?= $this->translate('Skoda Rapid'); ?></a>
-                                <br>
-                                <span class="price">6200$</span>
-                            </div>
-                            <div class="offers-grid-block-grid-desc">
-                                <?= $this->translate('2017, Дизель, 1.5 л, 90 л.с.,Механическая 5 ст., Универсал, передний привод'); ?>
-                            </div>
+            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 offers-grid-block-tile">
+                        <a href="#" class="offers-grid-block-grid-bg">
+                            <img src="" alt="">
+                        </a>
+                        <div href="#" class="offers-grid-block-grid-name">
+                            <a href="#"><?= $this->translate('Skoda Rapid'); ?></a>
+                            <br>
+                            <span class="price">6200$</span>
                         </div>
-                        <div class="col-lg-4 col-md-4 offers-grid-block-tile">
-                            <a href="#" class="offers-grid-block-grid-bg">
-                                <img src="" alt="">
-                            </a>
-                            <div href="#" class="offers-grid-block-grid-name">
-                                <a href="#"><?= $this->translate('Skoda Rapid'); ?></a>
-                                <br>
-                                <span class="price">6200$</span>
-                            </div>
-                            <div class="offers-grid-block-grid-desc">
-                                <?= $this->translate('2017, Дизель, 1.5 л, 90 л.с.,Механическая 5 ст., Универсал, передний привод'); ?>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 offers-grid-block-tile">
-                            <a href="#" class="offers-grid-block-grid-bg">
-                                <img src="" alt="">
-                            </a>
-                            <div href="#" class="offers-grid-block-grid-name">
-                                <a href="#"><?= $this->translate('Skoda Rapid'); ?></a>
-                                <br>
-                                <span class="price">6200$</span>
-                            </div>
-                            <div class="offers-grid-block-grid-desc">
-                                <?= $this->translate('2017, Дизель, 1.5 л, 90 л.с.,Механическая 5 ст., Универсал, передний привод'); ?>
-                            </div>
+                        <div class="offers-grid-block-grid-desc">
+                            <?= $this->translate('2017, Дизель, 1.5 л, 90 л.с.,Механическая 5 ст., Универсал, передний привод'); ?>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 offers-grid-block-tile">
-                            <a href="#" class="offers-grid-block-grid-bg">
-                                <img src="" alt="">
-                            </a>
-                            <div href="#" class="offers-grid-block-grid-name">
-                                <a href="#"><?= $this->translate('Skoda Rapid'); ?></a>
-                                <br>
-                                <span class="price">6200$</span>
-                            </div>
-                            <div class="offers-grid-block-grid-desc">
-                                <?= $this->translate('2017, Дизель, 1.5 л, 90 л.с.,Механическая 5 ст., Универсал, передний привод'); ?>
-                            </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 offers-grid-block-tile">
+                        <a href="#" class="offers-grid-block-grid-bg">
+                            <img src="" alt="">
+                        </a>
+                        <div href="#" class="offers-grid-block-grid-name">
+                            <a href="#"><?= $this->translate('Skoda Rapid'); ?></a>
+                            <br>
+                            <span class="price">6200$</span>
                         </div>
-                        <div class="col-lg-4 col-md-4 offers-grid-block-tile">
-                            <a href="#" class="offers-grid-block-grid-bg">
-                                <img src="" alt="">
-                            </a>
-                            <div href="#" class="offers-grid-block-grid-name">
-                                <a href="#"><?= $this->translate('Skoda Rapid'); ?></a>
-                                <br>
-                                <span class="price">6200$</span>
-                            </div>
-                            <div class="offers-grid-block-grid-desc">
-                                <?= $this->translate('2017, Дизель, 1.5 л, 90 л.с.,Механическая 5 ст., Универсал, передний привод'); ?>
-                            </div>
+                        <div class="offers-grid-block-grid-desc">
+                            <?= $this->translate('2017, Дизель, 1.5 л, 90 л.с.,Механическая 5 ст., Универсал, передний привод'); ?>
                         </div>
-                        <div class="col-lg-4 col-md-4 offers-grid-block-tile">
-                            <a href="#" class="offers-grid-block-grid-bg">
-                                <img src="" alt="">
-                            </a>
-                            <div href="#" class="offers-grid-block-grid-name">
-                                <a href="#"><?= $this->translate('Skoda Rapid'); ?></a>
-                                <br>
-                                <span class="price">6200$</span>
-                            </div>
-                            <div class="offers-grid-block-grid-desc">
-                                <?= $this->translate('2017, Дизель, 1.5 л, 90 л.с.,Механическая 5 ст., Универсал, передний привод'); ?>
-                            </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 offers-grid-block-tile">
+                        <a href="#" class="offers-grid-block-grid-bg">
+                            <img src="" alt="">
+                        </a>
+                        <div href="#" class="offers-grid-block-grid-name">
+                            <a href="#"><?= $this->translate('Skoda Rapid'); ?></a>
+                            <br>
+                            <span class="price">6200$</span>
                         </div>
-                        <ul class="rudolf-pagination">
-                            <li class="prev"><a href="#"></a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">...</a></li>
-                            <li><a href="#">10</a></li>
-                            <li class="next"><a href="#"></a></li>
-                        </ul>
+                        <div class="offers-grid-block-grid-desc">
+                            <?= $this->translate('2017, Дизель, 1.5 л, 90 л.с.,Механическая 5 ст., Универсал, передний привод'); ?>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 offers-grid-block-tile">
+                        <a href="#" class="offers-grid-block-grid-bg">
+                            <img src="" alt="">
+                        </a>
+                        <div href="#" class="offers-grid-block-grid-name">
+                            <a href="#"><?= $this->translate('Skoda Rapid'); ?></a>
+                            <br>
+                            <span class="price">6200$</span>
+                        </div>
+                        <div class="offers-grid-block-grid-desc">
+                            <?= $this->translate('2017, Дизель, 1.5 л, 90 л.с.,Механическая 5 ст., Универсал, передний привод'); ?>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 offers-grid-block-tile">
+                        <a href="#" class="offers-grid-block-grid-bg">
+                            <img src="" alt="">
+                        </a>
+                        <div href="#" class="offers-grid-block-grid-name">
+                            <a href="#"><?= $this->translate('Skoda Rapid'); ?></a>
+                            <br>
+                            <span class="price">6200$</span>
+                        </div>
+                        <div class="offers-grid-block-grid-desc">
+                            <?= $this->translate('2017, Дизель, 1.5 л, 90 л.с.,Механическая 5 ст., Универсал, передний привод'); ?>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 offers-grid-block-tile">
+                        <a href="#" class="offers-grid-block-grid-bg">
+                            <img src="" alt="">
+                        </a>
+                        <div href="#" class="offers-grid-block-grid-name">
+                            <a href="#"><?= $this->translate('Skoda Rapid'); ?></a>
+                            <br>
+                            <span class="price">6200$</span>
+                        </div>
+                        <div class="offers-grid-block-grid-desc">
+                            <?= $this->translate('2017, Дизель, 1.5 л, 90 л.с.,Механическая 5 ст., Универсал, передний привод'); ?>
+                        </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>
+

@@ -29,15 +29,42 @@ $screen-sm:768px;
 }
 
 .catalog {
+  @media (max-width: $screen-sm) {
+    padding-bottom: 62px;
+  }
   .catalog-filter-group {
     margin-bottom: 22px;
+    @media (max-width: $screen-sm) {
+      margin-bottom: 0;
+      max-width: 500px;
+    }
+  }
+  .xs-margin-top {
+    @media (max-width: $screen-sm) {
+      margin-top: 12px;
+    }
   }
   .catalog-filter-group-checkboxes {
     margin-top: 32px;
     margin-bottom: 53px;
+    @media (max-width: $screen-sm) {
+      max-width: 500px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .col-xs-12 .row {
+      @media (max-width: $screen-sm) {
+        white-space: nowrap;
+      }
+    }
     label {
       line-height: 1.79;
     }
+  }
+  .catalog-clear-box-sm {
+    height: 22px;
+    width: 100%;
+    float: left;
   }
   label {
     min-width: 1px;
@@ -51,15 +78,19 @@ $screen-sm:768px;
   }
   .no-label{
     margin-top: 28px;
+    @media (max-width: $screen-sm) {
+      margin-top: 40px;
+    }
   }
   .catalog-hide-filters {
     display: inline-block;
-    padding: 0 0 0 35px;
+    padding: 0 0 1px 35px;
     background: url("/img/icons/ic-filter-defoult.png") no-repeat;
     font-size: 14px;
-    line-height: 1.79;
+    line-height: 22px;
     text-align: left;
     color: #2d2a2a;
+    white-space: nowrap;
     &:hover, &:active, &:focus, &.hidden {
       background: url("/img/icons/ic-filter-hover.png") no-repeat;
       text-decoration: none;
@@ -72,7 +103,7 @@ $screen-sm:768px;
     padding: 2px 0 0 35px;
     background: url("/img/icons/ic-error-default.png") no-repeat;
     font-size: 14px;
-    line-height: 1.79;
+    line-height: 24px;
     text-align: left;
     color: #797979;
     white-space: nowrap;
@@ -91,6 +122,9 @@ $screen-sm:768px;
     text-align: left;
     color: #2d2a2a;
     margin-bottom: 40px;
+    @media (max-width: $screen-sm) {
+      margin-bottom: 10px;
+    }
     p {
       position: relative;
       top:-7px;
@@ -100,6 +134,13 @@ $screen-sm:768px;
       color: #7a7a7a;
       margin-bottom: 0;
 
+    }
+  }
+
+  .catalog-offers-grid-block-filter{
+    @media (max-width: $screen-sm) {
+      max-width: 400px;
+      margin-bottom: 39px;
     }
   }
 }

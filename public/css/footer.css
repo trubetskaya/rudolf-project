@@ -51,6 +51,9 @@ footer {
 #copyright {
   height: 60px;
   background-color: #f3f4f5; }
+  @media (max-width: 992px) {
+    #copyright {
+      border-top: #fff solid 1px; } }
   #copyright div {
     line-height: 60px;
     color: #cdcdcd; }

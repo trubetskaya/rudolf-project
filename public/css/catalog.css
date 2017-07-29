@@ -18,13 +18,35 @@
       display: inline-block;
       padding-right: 7px; }
 
+@media (max-width: 768px) {
+  .catalog {
+    padding-bottom: 62px; } }
 .catalog .catalog-filter-group {
   margin-bottom: 22px; }
+  @media (max-width: 768px) {
+    .catalog .catalog-filter-group {
+      margin-bottom: 0;
+      max-width: 500px; } }
+@media (max-width: 768px) {
+  .catalog .xs-margin-top {
+    margin-top: 12px; } }
 .catalog .catalog-filter-group-checkboxes {
   margin-top: 32px;
   margin-bottom: 53px; }
+  @media (max-width: 768px) {
+    .catalog .catalog-filter-group-checkboxes {
+      max-width: 500px;
+      margin-top: 0;
+      margin-bottom: 0; } }
+  @media (max-width: 768px) {
+    .catalog .catalog-filter-group-checkboxes .col-xs-12 .row {
+      white-space: nowrap; } }
   .catalog .catalog-filter-group-checkboxes label {
     line-height: 1.79; }
+.catalog .catalog-clear-box-sm {
+  height: 22px;
+  width: 100%;
+  float: left; }
 .catalog label {
   min-width: 1px;
   line-height: 25px;
@@ -36,14 +58,18 @@
   margin-bottom: 3px; }
 .catalog .no-label {
   margin-top: 28px; }
+  @media (max-width: 768px) {
+    .catalog .no-label {
+      margin-top: 40px; } }
 .catalog .catalog-hide-filters {
   display: inline-block;
-  padding: 0 0 0 35px;
+  padding: 0 0 1px 35px;
   background: url("/img/icons/ic-filter-defoult.png") no-repeat;
   font-size: 14px;
-  line-height: 1.79;
+  line-height: 22px;
   text-align: left;
-  color: #2d2a2a; }
+  color: #2d2a2a;
+  white-space: nowrap; }
   .catalog .catalog-hide-filters:hover, .catalog .catalog-hide-filters:active, .catalog .catalog-hide-filters:focus, .catalog .catalog-hide-filters.hidden {
     background: url("/img/icons/ic-filter-hover.png") no-repeat;
     text-decoration: none; }
@@ -54,7 +80,7 @@
   padding: 2px 0 0 35px;
   background: url("/img/icons/ic-error-default.png") no-repeat;
   font-size: 14px;
-  line-height: 1.79;
+  line-height: 24px;
   text-align: left;
   color: #797979;
   white-space: nowrap; }
@@ -69,6 +95,9 @@
   text-align: left;
   color: #2d2a2a;
   margin-bottom: 40px; }
+  @media (max-width: 768px) {
+    .offers-grid-block .catalog-offers-grid-block-title {
+      margin-bottom: 10px; } }
   .offers-grid-block .catalog-offers-grid-block-title p {
     position: relative;
     top: -7px;
@@ -77,6 +106,10 @@
     text-align: left;
     color: #7a7a7a;
     margin-bottom: 0; }
+@media (max-width: 768px) {
+  .offers-grid-block .catalog-offers-grid-block-filter {
+    max-width: 400px;
+    margin-bottom: 39px; } }
 
 .rudolf-pagination {
   list-style: none;
