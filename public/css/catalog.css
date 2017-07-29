@@ -67,7 +67,8 @@
   font-weight: 600;
   line-height: 42px;
   text-align: left;
-  color: #2d2a2a; }
+  color: #2d2a2a;
+  margin-bottom: 40px; }
   .offers-grid-block .catalog-offers-grid-block-title p {
     position: relative;
     top: -7px;
@@ -76,5 +77,42 @@
     text-align: left;
     color: #7a7a7a;
     margin-bottom: 0; }
+
+.rudolf-pagination {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0; }
+  .rudolf-pagination li {
+    float: left;
+    margin-right: 10px; }
+    .rudolf-pagination li.active a {
+      color: #f76a3a; }
+    .rudolf-pagination li a {
+      font-size: 16px;
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: 0.5px;
+      text-align: left;
+      color: #797979; }
+      .rudolf-pagination li a:hover, .rudolf-pagination li a:active, .rudolf-pagination li a:focus {
+        text-decoration: underline; }
+    .rudolf-pagination li.prev {
+      background: url("/img/icons/ic-left-big-default.png") no-repeat;
+      background-size: 32px;
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+      line-height: 32px;
+      position: relative;
+      top: -7px; }
+    .rudolf-pagination li.next {
+      background: url("/img/icons/ic-right-big-default.png") no-repeat;
+      background-size: 32px;
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+      line-height: 32px;
+      position: relative;
+      top: -7px; }
 
 /*# sourceMappingURL=catalog.css.map */

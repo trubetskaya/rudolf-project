@@ -44,7 +44,9 @@ nav {
         border-bottom: none; } }
     @media (max-width: 768px) {
       nav .navbar-collapse #navbar-collapse li {
-        border-bottom: solid 1px rgba(255, 255, 255, 0.1); } }
+        border-bottom: solid 1px rgba(255, 255, 255, 0.1); }
+        nav .navbar-collapse #navbar-collapse li:hover, nav .navbar-collapse #navbar-collapse li:active, nav .navbar-collapse #navbar-collapse li:focus {
+          background: transparent; } }
     nav .navbar-collapse #navbar-collapse li a {
       color: #ffffff;
       line-height: 40px;
