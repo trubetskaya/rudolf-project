@@ -247,7 +247,7 @@
   background-position: center; }
   .services .container {
     padding-top: 78px;
-    padding-bottom: 101px; }
+    padding-bottom: 45px; }
     .services .container .services-head {
       margin-bottom: 60px; }
       @media screen and (max-width: 992px) {
@@ -323,7 +323,10 @@
       margin-bottom: 43px; }
 
 .offers-grid-block {
-  padding: 54px 0 98px; }
+  padding: 54px 0 25px; }
+  @media screen and (max-width: 992px) {
+    .offers-grid-block {
+      padding-bottom: 0; } }
   .offers-grid-block .row .offers-grid-block-left-text {
     font-size: 24px;
     font-weight: 600;
@@ -331,6 +334,12 @@
     text-align: left;
     color: #2d2a2a;
     margin-bottom: 58px; }
+    @media screen and (max-width: 992px) {
+      .offers-grid-block .row .offers-grid-block-left-text {
+        margin-bottom: 23px; } }
+    @media screen and (max-width: 650px) {
+      .offers-grid-block .row .offers-grid-block-left-text {
+        width: 100%; } }
   .offers-grid-block .row .offers-grid-block-right-text {
     padding-top: 7px;
     font-size: 14px;
@@ -338,41 +347,59 @@
     line-height: 1.29;
     text-align: left;
     color: #797979; }
-
-.offers-grid-block-tile {
-  margin-bottom: 74px; }
-  @media screen and (min-width: 992px) {
-    .offers-grid-block-tile:nth-child(3n+1) {
-      padding-right: 50px; }
-    .offers-grid-block-tile:nth-child(3n+2) {
-      padding-right: 25px;
-      padding-left: 25px; }
-    .offers-grid-block-tile:nth-child(3n+3) {
-      padding-left: 50px; } }
-  .offers-grid-block-tile .offers-grid-block-grid-bg {
-    border: 1px solid #555963;
+    @media screen and (max-width: 992px) {
+      .offers-grid-block .row .offers-grid-block-right-text {
+        margin-bottom: 31px; } }
+    @media screen and (max-width: 650px) {
+      .offers-grid-block .row .offers-grid-block-right-text {
+        width: 100%; } }
+  .offers-grid-block .offers-grid-block-tile {
+    margin-bottom: 74px; }
+    @media screen and (max-width: 515px) {
+      .offers-grid-block .offers-grid-block-tile {
+        max-width: 300px;
+        width: 100%;
+        margin-bottom: 26px; } }
+    @media screen and (min-width: 992px) {
+      .offers-grid-block .offers-grid-block-tile:nth-child(3n+1) {
+        padding-right: 50px; }
+      .offers-grid-block .offers-grid-block-tile:nth-child(3n+2) {
+        padding-right: 25px;
+        padding-left: 25px; }
+      .offers-grid-block .offers-grid-block-tile:nth-child(3n+3) {
+        padding-left: 50px; } }
+    .offers-grid-block .offers-grid-block-tile .offers-grid-block-grid-bg {
+      border: 1px solid #555963;
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-bottom: 15px; }
+    .offers-grid-block .offers-grid-block-tile .offers-grid-block-grid-name {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.39;
+      letter-spacing: -0.2px;
+      text-align: left;
+      width: 100%;
+      display: block;
+      padding-bottom: 13px; }
+      .offers-grid-block .offers-grid-block-tile .offers-grid-block-grid-name a {
+        color: #161616; }
+      .offers-grid-block .offers-grid-block-tile .offers-grid-block-grid-name .price {
+        color: #f76a3a; }
+    .offers-grid-block .offers-grid-block-tile .offers-grid-block-grid-desc {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.25;
+      text-align: left;
+      color: #a8a8a8; }
+  .offers-grid-block .offer-grid-more-button {
     display: block;
-    width: 100%;
-    height: auto;
-    margin-bottom: 15px; }
-  .offers-grid-block-tile .offers-grid-block-grid-name {
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.39;
-    letter-spacing: -0.2px;
-    text-align: left;
-    width: 100%;
-    display: block;
-    padding-bottom: 13px; }
-    .offers-grid-block-tile .offers-grid-block-grid-name a {
-      color: #161616; }
-    .offers-grid-block-tile .offers-grid-block-grid-name .price {
-      color: #f76a3a; }
-  .offers-grid-block-tile .offers-grid-block-grid-desc {
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 1.25;
-    text-align: left;
-    color: #a8a8a8; }
+    margin: 14px auto 81px;
+    max-width: 300px;
+    width: 100%; }
+    @media screen and (min-width: 515px) and (max-width: 992px) {
+      .offers-grid-block .offer-grid-more-button {
+        margin: -32px auto 50px; } }
 
 /*# sourceMappingURL=homepage.css.map */

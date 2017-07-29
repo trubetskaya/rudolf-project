@@ -26,6 +26,8 @@ button {
   line-height: 50px;
   color: #797979;
   display: block; }
+  .transparent-button .orange {
+    color: #f76a3a; }
 
 .orange-button {
   width: 173px;
