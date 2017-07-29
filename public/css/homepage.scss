@@ -226,6 +226,9 @@ $screen-md:992px;
 
 .info-boxes {
   padding: 72px 0 108px;
+  @media screen and (max-width:$screen-md) {
+    padding-bottom: 33px;
+  }
   .top-text-left {
     font-size: 24px;
     font-weight: 600;
@@ -233,6 +236,9 @@ $screen-md:992px;
     text-align: left;
     color: #2d2a2a;
     margin-bottom: 70px;
+    @media screen and (max-width:$screen-md) {
+      margin-bottom: 20px;
+    }
   }
   .top-text-right {
     padding-top: 7px;
@@ -241,6 +247,9 @@ $screen-md:992px;
     line-height: 1.29;
     text-align: left;
     color: #797979;
+    @media screen and (max-width:$screen-md) {
+      margin-bottom: 48px;
+    }
   }
   .info-box {
     border-top: solid 1px #dddddd;
@@ -249,6 +258,18 @@ $screen-md:992px;
     border-left:solid 1px #dddddd;
     padding: 30px;
     height: calc(228px + 30px + 30px);
+    @media screen and (max-width:$screen-md) {
+      margin-bottom: 33px;
+    }
+    @media screen and (min-width:$screen-sm) and (max-width:$screen-md) {
+      padding: 30px 20px;
+    }
+    @media screen and (max-width:$screen-sm) {
+      max-width: 300px;
+      width: 100%;
+    }
+
+
     .bg-img {
       margin-bottom: 33px;
       height: 54px;

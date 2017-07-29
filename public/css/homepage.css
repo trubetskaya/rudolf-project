@@ -182,6 +182,9 @@
 
 .info-boxes {
   padding: 72px 0 108px; }
+  @media screen and (max-width: 992px) {
+    .info-boxes {
+      padding-bottom: 33px; } }
   .info-boxes .top-text-left {
     font-size: 24px;
     font-weight: 600;
@@ -189,6 +192,9 @@
     text-align: left;
     color: #2d2a2a;
     margin-bottom: 70px; }
+    @media screen and (max-width: 992px) {
+      .info-boxes .top-text-left {
+        margin-bottom: 20px; } }
   .info-boxes .top-text-right {
     padding-top: 7px;
     font-size: 14px;
@@ -196,6 +202,9 @@
     line-height: 1.29;
     text-align: left;
     color: #797979; }
+    @media screen and (max-width: 992px) {
+      .info-boxes .top-text-right {
+        margin-bottom: 48px; } }
   .info-boxes .info-box {
     border-top: solid 1px #dddddd;
     border-right: solid 1px #dddddd;
@@ -203,6 +212,16 @@
     border-left: solid 1px #dddddd;
     padding: 30px;
     height: calc(228px + 30px + 30px); }
+    @media screen and (max-width: 992px) {
+      .info-boxes .info-box {
+        margin-bottom: 33px; } }
+    @media screen and (min-width: 768px) and (max-width: 992px) {
+      .info-boxes .info-box {
+        padding: 30px 20px; } }
+    @media screen and (max-width: 768px) {
+      .info-boxes .info-box {
+        max-width: 300px;
+        width: 100%; } }
     .info-boxes .info-box .bg-img {
       margin-bottom: 33px;
       height: 54px; }
