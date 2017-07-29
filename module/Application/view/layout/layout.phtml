@@ -19,6 +19,8 @@
             ->appendFile($this->basePath('js/formstone/js/checkbox.js'))
             ->appendFile($this->basePath('js/formstone/js/scrollbar.js'))
             ->appendFile($this->basePath('js/formstone/js/touch.js'))
+            ->appendFile($this->basePath('js/jquery.jcarousel.min.js'))
+            ->appendFile($this->basePath('js/jcarousel.skeleton.js'))
         ?>
         <!-- Le styles -->
         <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
@@ -36,6 +38,7 @@
             ->appendStylesheet($this->basePath('js/formstone/css/dropdown.css'))
             ->appendStylesheet($this->basePath('js/formstone/css/checkbox.css'))
             ->appendStylesheet($this->basePath('js/formstone/css/scrollbar.css'))
+            ->appendStylesheet($this->basePath('css/jcarousel.skeleton.css'))
         ?>
     </head>
         <nav class="navbar navbar-fixed-top

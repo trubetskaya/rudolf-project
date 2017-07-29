@@ -13,4 +13,24 @@
   text-align: left;
   color: #f76a3a; }
 
+.jcarousel-wrapper {
+  margin-top: 38px;
+  position: relative; }
+  .jcarousel-wrapper .jcarousel-control-prev {
+    right: 0;
+    top: 131px;
+    position: absolute;
+    background: url("/img/icons/ic-left-big-default.png") no-repeat;
+    width: 42px;
+    height: 42px;
+    display: block; }
+  .jcarousel-wrapper .jcarousel-control-next {
+    right: 0;
+    top: 179px;
+    position: absolute;
+    background: url("/img/icons/ic-right-big-default.png") no-repeat;
+    width: 42px;
+    height: 42px;
+    display: block; }
+
 /*# sourceMappingURL=card.css.map */
