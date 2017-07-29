@@ -77,8 +77,12 @@ footer {
 #copyright {
   height: 60px;
   background-color: #f3f4f5;
+  overflow: hidden;
   @media (max-width: 992px) {
     border-top: #fff solid 1px;
+  }
+  .container {
+    white-space: nowrap;
   }
   div {
     line-height: 60px;
