@@ -102,6 +102,15 @@ namespace Application {
             'template_path_stack' => [
                 __NAMESPACE__ => __DIR__ . '/../view',
             ],
+        ],
+
+        'image' => [
+            'dim' => [
+                '1461x1050' => [
+                    'small' => '487x350',
+                    'quadratic' => '250x250',
+                ]
+            ]
         ]
 
     ];
