@@ -56,7 +56,8 @@
         font-size: 18px;
         line-height: 45px; }
         .list-auto .tab-content ul.auto-list-list li a {
-          color: #555963; }
+          color: #555963;
+          font-family: ".SNFS-Medium", Fallback, sans-serif; }
         .list-auto .tab-content ul.auto-list-list li span {
           color: #cdcdcd;
           padding-left: 5px; }
