@@ -109,14 +109,17 @@ $screen-md:992px;
     div:first-child {
       background: url("/img/carousel/photo-homepage.png") no-repeat;
       background-size: cover;
+      background-position: center;
     }
     div:nth-child(2) {
       background: url("/img/carousel/photo-homepage.png") no-repeat;
       background-size: cover;
+      background-position: center;
     }
     div:nth-child(3) {
       background: url("/img/carousel/photo-homepage.png") no-repeat;
       background-size: cover;
+      background-position: center;
 
     }
   }
@@ -261,6 +264,7 @@ $screen-md:992px;
   background-color: $gray;
   background-image: url("/img/bg/photo-fon-2.png");
   background-size: cover;
+  background-position: center;
   .container {
     padding-top: 78px;
     padding-bottom: 101px;
@@ -324,7 +328,7 @@ $screen-md:992px;
   height: 440px;
   background: url("/img/bg-images/photo-fon-1.png") no-repeat;
   background-size: cover;
-    width: 1280px;
+  background-position: center;
     z-index: 5;
     margin: 0 auto;
     .row {
@@ -378,7 +382,7 @@ $screen-md:992px;
       padding-left: 50px;
     }
   }
-  margin-bottom: 24px;
+  margin-bottom: 74px;
   .offers-grid-block-grid-bg {
     border: 1px solid $gray;
     display: block;

@@ -82,13 +82,16 @@
       height: 650px; }
     #top-carousel .carousel-inner div:first-child {
       background: url("/img/carousel/photo-homepage.png") no-repeat;
-      background-size: cover; }
+      background-size: cover;
+      background-position: center; }
     #top-carousel .carousel-inner div:nth-child(2) {
       background: url("/img/carousel/photo-homepage.png") no-repeat;
-      background-size: cover; }
+      background-size: cover;
+      background-position: center; }
     #top-carousel .carousel-inner div:nth-child(3) {
       background: url("/img/carousel/photo-homepage.png") no-repeat;
-      background-size: cover; }
+      background-size: cover;
+      background-position: center; }
   #top-carousel .container .row {
     position: relative;
     height: 650px; }
@@ -206,7 +209,8 @@
 .services {
   background-color: #555963;
   background-image: url("/img/bg/photo-fon-2.png");
-  background-size: cover; }
+  background-size: cover;
+  background-position: center; }
   .services .container {
     padding-top: 78px;
     padding-bottom: 101px; }
@@ -256,7 +260,7 @@
   height: 440px;
   background: url("/img/bg-images/photo-fon-1.png") no-repeat;
   background-size: cover;
-  width: 1280px;
+  background-position: center;
   z-index: 5;
   margin: 0 auto; }
   .info-box-bg .row {
@@ -287,7 +291,7 @@
     color: #797979; }
 
 .offers-grid-block-tile {
-  margin-bottom: 24px; }
+  margin-bottom: 74px; }
   @media screen and (min-width: 992px) {
     .offers-grid-block-tile:nth-child(3n+1) {
       padding-right: 50px; }

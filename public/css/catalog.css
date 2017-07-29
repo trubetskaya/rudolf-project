@@ -36,6 +36,31 @@
   margin-bottom: 3px; }
 .catalog .no-label {
   margin-top: 28px; }
+.catalog .catalog-hide-filters {
+  display: inline-block;
+  padding: 0 0 0 35px;
+  background: url("/img/icons/ic-filter-defoult.png") no-repeat;
+  font-size: 14px;
+  line-height: 1.79;
+  text-align: left;
+  color: #2d2a2a; }
+  .catalog .catalog-hide-filters:hover, .catalog .catalog-hide-filters:active, .catalog .catalog-hide-filters:focus, .catalog .catalog-hide-filters.hidden {
+    background: url("/img/icons/ic-filter-hover.png") no-repeat;
+    text-decoration: none; }
+.catalog .catalog-drop-filters {
+  position: relative;
+  top: -3px;
+  display: inline-block;
+  padding: 2px 0 0 35px;
+  background: url("/img/icons/ic-error-default.png") no-repeat;
+  font-size: 14px;
+  line-height: 1.79;
+  text-align: left;
+  color: #797979;
+  white-space: nowrap; }
+  .catalog .catalog-drop-filters:hover, .catalog .catalog-drop-filters:active, .catalog .catalog-drop-filters:focus, .catalog .catalog-drop-filters.hidden {
+    color: #2d2a2a;
+    text-decoration: none; }
 
 .offers-grid-block .catalog-offers-grid-block-title {
   font-size: 24px;

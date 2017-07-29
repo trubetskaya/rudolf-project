@@ -52,6 +52,35 @@ $screen-sm:768px;
   .no-label{
     margin-top: 28px;
   }
+  .catalog-hide-filters {
+    display: inline-block;
+    padding: 0 0 0 35px;
+    background: url("/img/icons/ic-filter-defoult.png") no-repeat;
+    font-size: 14px;
+    line-height: 1.79;
+    text-align: left;
+    color: #2d2a2a;
+    &:hover, &:active, &:focus, &.hidden {
+      background: url("/img/icons/ic-filter-hover.png") no-repeat;
+      text-decoration: none;
+    }
+  }
+  .catalog-drop-filters {
+    position: relative;
+    top:-3px;
+    display: inline-block;
+    padding: 2px 0 0 35px;
+    background: url("/img/icons/ic-error-default.png") no-repeat;
+    font-size: 14px;
+    line-height: 1.79;
+    text-align: left;
+    color: #797979;
+    white-space: nowrap;
+    &:hover, &:active, &:focus, &.hidden {
+      color: #2d2a2a;
+      text-decoration: none;
+    }
+  }
 }
 
 .offers-grid-block {
