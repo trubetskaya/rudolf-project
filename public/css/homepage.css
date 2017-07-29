@@ -75,11 +75,20 @@
   height: 650px;
   width: 100%;
   background-color: #555963; }
+  @media screen and (max-width: 768px) {
+    #top-carousel {
+      height: 512px; } }
   #top-carousel .carousel-inner {
     position: absolute;
     height: 650px; }
+    @media screen and (max-width: 768px) {
+      #top-carousel .carousel-inner {
+        height: 512px; } }
     #top-carousel .carousel-inner div {
       height: 650px; }
+      @media screen and (max-width: 768px) {
+        #top-carousel .carousel-inner div {
+          height: 512px; } }
     #top-carousel .carousel-inner div:first-child {
       background: url("/img/carousel/photo-homepage.png") no-repeat;
       background-size: cover;
@@ -95,6 +104,9 @@
   #top-carousel .container .row {
     position: relative;
     height: 650px; }
+    @media screen and (max-width: 768px) {
+      #top-carousel .container .row {
+        height: 512px; } }
     #top-carousel .container .row .carousel-indicators {
       width: 9px;
       right: 60px;
@@ -133,6 +145,14 @@
       float: left;
       margin: 239px 0 0 0;
       color: #ffffff; }
+      @media screen and (max-width: 768px) {
+        #top-carousel .container .row .title {
+          font-size: 36px;
+          font-weight: 500;
+          line-height: 1.17;
+          text-align: left;
+          color: #ffffff;
+          margin: 167px 0 37px 0; } }
     #top-carousel .container .row .undertitle {
       font-size: 16px;
       line-height: 20px;
@@ -141,6 +161,13 @@
       padding: 0 0 0 20px;
       color: #ffffff;
       border-left: 2px solid #f76a3a; }
+      @media screen and (max-width: 768px) {
+        #top-carousel .container .row .undertitle {
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 1.25;
+          text-align: left;
+          color: #ffffff; } }
 
 .offers {
   background-color: #e3e3e3; }
@@ -304,16 +331,22 @@
       display: block; }
 
 .info-box-bg {
+  overflow: hidden;
   background-color: #555963;
-  overflow-x: hidden;
   height: 440px;
   background: url("/img/bg-images/photo-fon-1.png") no-repeat;
   background-size: cover;
   background-position: center;
   z-index: 5;
   margin: 0 auto; }
+  @media screen and (max-width: 768px) {
+    .info-box-bg {
+      height: auto; } }
   .info-box-bg .row {
     padding: 98px 0 99px; }
+    @media screen and (max-width: 768px) {
+      .info-box-bg .row {
+        padding: 60px 0 80px; } }
     .info-box-bg .row .info-box-bg-text {
       font-size: 32px;
       font-weight: 300;
@@ -321,6 +354,14 @@
       text-align: left;
       color: #ffffff;
       margin-bottom: 43px; }
+      @media screen and (max-width: 768px) {
+        .info-box-bg .row .info-box-bg-text {
+          font-size: 32px;
+          font-weight: 300;
+          line-height: 1.25;
+          text-align: left;
+          color: #ffffff;
+          margin-bottom: 32px; } }
 
 .offers-grid-block {
   padding: 54px 0 25px; }
