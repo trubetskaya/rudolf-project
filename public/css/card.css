@@ -1,0 +1,16 @@
+.auto-card-title {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.39;
+  text-align: left;
+  color: #2d2a2a;
+  margin: 8px 0 6px; }
+
+.auto-card-price {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.04;
+  text-align: left;
+  color: #f76a3a; }
+
+/*# sourceMappingURL=card.css.map */
