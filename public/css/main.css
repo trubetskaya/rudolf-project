@@ -1,6 +1,15 @@
+@charset "UTF-8";
+@font-face {
+  font-family: '.SNFS';
+  src: url("/fonts/sfns-system-san-francisco.ttf") format("truetype");
+  /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */ }
 body {
   padding-top: 70px;
-  padding-bottom: 0; }
+  padding-bottom: 0;
+  font-family: '.SNFS', Fallback, sans-serif; }
+
+* {
+  font-family: '.SNFS', Fallback, sans-serif; }
 
 button {
   outline: none !important; }
