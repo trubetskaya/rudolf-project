@@ -247,7 +247,7 @@
         padding: 30px 20px; } }
     @media screen and (max-width: 768px) {
       .info-boxes .info-box {
-        max-width: 300px;
+        max-width: 350px;
         width: 100%; } }
     .info-boxes .info-box .bg-img {
       margin-bottom: 33px;
@@ -398,7 +398,7 @@
     margin-bottom: 74px; }
     @media screen and (max-width: 515px) {
       .offers-grid-block .offers-grid-block-tile {
-        max-width: 300px;
+        max-width: 400px;
         width: 100%;
         margin-bottom: 26px; } }
     @media screen and (min-width: 992px) {

@@ -292,7 +292,7 @@ $screen-md:992px;
       padding: 30px 20px;
     }
     @media screen and (max-width:$screen-sm) {
-      max-width: 300px;
+      max-width: 350px;
       width: 100%;
     }
 
@@ -477,7 +477,7 @@ $screen-md:992px;
   .offers-grid-block-tile {
     margin-bottom: 74px;
     @media screen and (max-width:515px) {
-      max-width: 300px;
+      max-width: 400px;
       width: 100%;
       margin-bottom: 26px;
     }
