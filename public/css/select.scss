@@ -11,7 +11,7 @@
     }
   }
   .fs-dropdown-selected  {
-    padding: 0 28px 0 10px;
+    padding: 0 20px 0 10px;
     border-radius: 4px;
     border: solid 1px #e3e3e3;
     line-height: 40px;
@@ -26,7 +26,7 @@
   &.fs-dropdown-open {
     .fs-dropdown-selected {
       background: url("/img/auto-list/ic-up-bold-hover.png") no-repeat!important;
-      background-position-x: calc(100% - 17px)!important;
+      background-position-x: calc(100% - 8px)!important;
       background-position-y: 17px!important;
       background-size: 12px 8px!important;
       border-top-left-radius: 4px;
