@@ -12,7 +12,7 @@ namespace Application\Entity {
     use Doctrine\Common\Collections\ArrayCollection;
 
     use Dashboard\Entity\Document;
-    use Lib\Entity\Ecommerce\ECommerceTrait;
+    use Lib\Entity\ECommerceTrait;
     use Application\Entity\Options\ {
         Body, Drive, Fuel, Tag, Transmission, Equipment
     };
