@@ -1,3 +1,4 @@
+<catalog inline-template>
 <div class="container">
     <div class="row">
         <div class="col-lg-offset-1 col-md-offset-1 col-lg-11 col-md-11 breadcrumbs">
@@ -53,7 +54,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row catalog-filter-group">
+            <div v-show="allFilters" class="row catalog-filter-group">
                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 xs-margin-top">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
@@ -106,7 +107,7 @@
                 </div>
             </div>
             <div class="row catalog-filter-group-checkboxes">
-                <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 xs-margin-top">
+                <div v-show="allFilters" class="col-lg-5 col-md-5 col-sm-7 col-xs-12 xs-margin-top">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <input type="checkbox">
@@ -126,8 +127,11 @@
                     <div class="row">
                         <div class="col-lg-7 col-md-7 col-sm-6 hidden-xs"></div>
                         <div class="hidden-lg hidden-md hidden-sm col-xs-6">
-                            <a class="catalog-hide-filters" href="javascript:">
-                                <?=$this->translate("Все фильтры");?>
+                            <a class="catalog-hide-filters {{allFilters ? '' : 'collapsed'}}"
+                               href="javascript:"
+                               @click="allFilters=!allFilters"
+                            >
+                                {{allFilters ? 'Скрыть фильтры' : 'Все фильтры'}}
                             </a>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
@@ -243,9 +247,16 @@
                             <?= $this->translate('2017, Дизель, 1.5 л, 90 л.с.,Механическая 5 ст., Универсал, передний привод'); ?>
                         </div>
                     </div>
+                    <pagination
+                            v-if="totalCards > 12"
+                            :current="currentPage"
+                            :total="totalCards"
+                            :perPage="perPage"
+                            @page-changed="fetchCards"
+                    ></pagination>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+</catalog>

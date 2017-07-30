@@ -69,8 +69,9 @@
   line-height: 22px;
   text-align: left;
   color: #2d2a2a;
-  white-space: nowrap; }
-  .catalog .catalog-hide-filters:hover, .catalog .catalog-hide-filters:active, .catalog .catalog-hide-filters:focus, .catalog .catalog-hide-filters.hidden {
+  white-space: nowrap;
+  text-decoration: none; }
+  .catalog .catalog-hide-filters:hover, .catalog .catalog-hide-filters.collapsed {
     background: url("/img/icons/ic-filter-hover.png") no-repeat;
     text-decoration: none; }
 .catalog .catalog-drop-filters {

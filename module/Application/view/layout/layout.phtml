@@ -21,6 +21,7 @@
             ->appendFile($this->basePath('js/formstone/js/touch.js'))
             ->appendFile($this->basePath('js/jquery.jcarousel.min.js'))
             ->appendFile($this->basePath('js/jcarousel.skeleton.js'))
+            ->appendFile($this->basePath('js/build.js'))
         ?>
         <!-- Le styles -->
         <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
@@ -32,7 +33,6 @@
             ->prependStylesheet($this->basePath('css/homepage.css'))
             ->prependStylesheet($this->basePath('css/catalog.css'))
             ->prependStylesheet($this->basePath('css/card.css'))
-            ->prependStylesheet($this->basePath('css/style.css'))
             ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
             ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
             ->appendStylesheet($this->basePath('js/formstone/css/dropdown.css'))

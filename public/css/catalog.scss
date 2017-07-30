@@ -91,7 +91,8 @@ $screen-sm:768px;
     text-align: left;
     color: #2d2a2a;
     white-space: nowrap;
-    &:hover, &:active, &:focus, &.hidden {
+    text-decoration: none;
+    &:hover, &.collapsed {
       background: url("/img/icons/ic-filter-hover.png") no-repeat;
       text-decoration: none;
     }
