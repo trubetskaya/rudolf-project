@@ -7,6 +7,7 @@
 
 namespace Application {
 
+    use Zend\Mvc\Router\Http\Query;
     use Zend\Router\Http;
     use Zend\ServiceManager\Factory\InvokableFactory;
     use Doctrine\ORM\Mapping\Driver;
@@ -47,10 +48,24 @@ namespace Application {
                             'action' => 'index',
                         ],
                     ],
-
                 ],
 
-                'app' => [
+                'application' => [
+                    'type' => Http\Segment::class,
+                    'options' => [
+                        'route' => '/application[/:action]',
+                        'defaults' => [
+                            'controller' => Controller\IndexController::class,
+                            'action' => 'index',
+                        ],
+                        'constraints' => [
+                            'controller'    => '[a-zA-Z][a-zA-Z0-9_-]+',
+                            'action'        => '[a-zA-Z][a-zA-Z0-9_-]+'
+                        ],
+                    ],
+                ],
+
+                'catalog' => [
                     'type' => Http\Segment::class,
                     'options' => [
                         'route' => '/catalog[/:action[/:id]]',
@@ -64,27 +79,21 @@ namespace Application {
                             'action'        => 'index',
                         ],
                     ],
-                ],
-
-
-                'application' => [
-                    'type' => Http\Segment::class,
-                    'options' => [
-                        'route' => '/application[/:action]',
-                        'defaults' => [
-                            'controller' => Controller\IndexController::class,
-                            'action' => 'index',
-                        ],
-                    ],
+                    'may_terminate' => true
                 ],
             ],
         ],
 
         'controllers' => [
+
             'factories' => [
                 Controller\IndexController::class => InvokableFactory::class,
                 Controller\CatalogController::class => InvokableFactory::class,
             ],
+
+            'aliases' => [
+                'catalog' => Controller\CatalogController::class
+            ]
         ],
 
         'view_manager' => [

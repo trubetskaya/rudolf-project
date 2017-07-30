@@ -5,25 +5,67 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application\Controller;
+namespace Application\Controller {
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+    use Application\Entity\Vehicle;
+    use Doctrine\ORM\EntityNotFoundException;
+    use Lib\Controller\AbstractController;
+    use Zend\View\Model\ViewModel;
 
-class CatalogController extends AbstractActionController
-{
-    public function indexAction()
+    /**
+     * Class CatalogController
+     * @package Application\Controller
+     */
+    class CatalogController extends AbstractController
     {
-        return new ViewModel();
-    }
+        /**
+         * Function indexAction
+         * @return ViewModel
+         */
+        public function indexAction()
+        {
+            $em = $this->getEntityManager();
+            $exp = $em->getExpressionBuilder();
+            $qb = $em->getRepository(Vehicle::class)
+                ->createQueryBuilder('v')->select('v')
+                ->where($exp->eq('v.active', true))
+                ->orderBy($exp->asc('v.index'))
+                ->getQuery();
 
-    public function catalogAction()
-    {
-        return new ViewModel();
-    }
+            $list = $qb->getResult();
 
-    public function cardAction()
-    {
-        return new ViewModel();
+            $view = new ViewModel;
+            $view->setVariable('list', $list);
+
+            return $view;
+        }
+
+        /**
+         * Function cardAction
+         * @return ViewModel
+         * @throws EntityNotFoundException
+         */
+        public function cardAction()
+        {
+            $em = $this->getEntityManager();
+            $exp = $em->getExpressionBuilder();
+
+            $id = intval($this->params()->fromRoute('id'));
+            $query = $em->getRepository(Vehicle::class)->createQueryBuilder('v')
+                ->select('v')->where($exp->eq('v.id', $id))
+                ->orderBy($exp->asc('v.index'))
+                ->setMaxResults(1)
+                ->getQuery();
+
+            $item = $query->getSingleResult();
+            if (!$item instanceof Vehicle) {
+                throw EntityNotFoundException::fromClassNameAndIdentifier(Vehicle::class, [$id]);
+            }
+
+            $view = new ViewModel;
+            $view->setVariable('item', $item);
+
+            return $view;
+        }
     }
 }

@@ -7,14 +7,15 @@
  */
 namespace Application\Entity {
 
-    use Zend\Form\Annotation as Form;
     use Doctrine\ORM\Mapping as ORM;
+    use Lib\Entity\Taxonomy\TaxonomyInterface;
+    use Zend\Form\Annotation as Form;
     use Doctrine\Common\Collections\ArrayCollection;
 
     use Dashboard\Entity\Document;
     use Lib\Entity\ECommerceTrait;
     use Application\Entity\Options\ {
-        Body, Drive, Fuel, Tag, Transmission, Equipment
+        Body, Drive, Fuel, Tag, Transmission, Equipment, Taxonomy
     };
 
     /**
@@ -31,18 +32,47 @@ namespace Application\Entity {
         use ECommerceTrait;
 
         /**
+         * @var Taxonomy
+         * @Form\Type("\DoctrineORMModule\Form\Element\EntitySelect")
+         * @Form\Flags({"priority": 50})
+         * @Form\Options({
+         *      "label": "Model",
+         *      "target_class": Application\Entity\Options\Taxonomy::class,
+         *      "allow_empty": false,
+         *
+         *      "property": "name",
+         *      "optgroup_name": "rootName",
+         *
+         *     "is_method": true,
+         *      "find_method": {
+         *          "name": "getHierarchicalOptions"
+         *      }
+         * })
+         * @Form\Attributes({
+         *      "data-parsley-required": "true",
+         *      "data-parsley-required-message": "Model required",
+         *      "class": "form-control select2_single",
+         *      "id": "v-model"
+         * })
+         *
+         * @ORM\ManyToOne(targetEntity=Options\Taxonomy::class)
+         * @ORM\JoinColumn(name="model", referencedColumnName="id", nullable=false)
+         **/
+        protected $taxonomy;
+
+        /**
          * @var Body
          * @Form\Type("\DoctrineORMModule\Form\Element\EntitySelect")
          * @Form\Flags({"priority": 44})
          * @Form\Options({
-         *      "label"         : "Body",
-         *      "target_class"  : Application\Entity\Options\Body::class,
-         *      "property"      : "name",
-         *      "is_method"     : true,
-         *      "find_method"   : {
-         *          "name"      : "getOptions"
+         *      "label" : "Body",
+         *      "target_class" : Application\Entity\Options\Body::class,
+         *      "property" : "name",
+         *      "is_method" : true,
+         *      "find_method" : {
+         *          "name" : "getOptions"
          *      },
-         *      "allow_empty"           : false
+         *      "allow_empty": false
          * })
          * @Form\Attributes({
          *      "data-parsley-required": "true",
@@ -258,6 +288,25 @@ namespace Application\Entity {
             parent::__construct();
         }
 
+        /**
+         * Get taxonomy
+         * @return Taxonomy
+         */
+        public function getTaxonomy()
+        {
+            return $this->taxonomy;
+        }
+
+        /**
+         * Set taxonomy
+         * @param Taxonomy $taxonomy
+         * @return $this
+         */
+        public function setTaxonomy(Taxonomy $taxonomy)
+        {
+            $this->taxonomy = $taxonomy;
+            return $this;
+        }
 
         /**
          * Get transmission
@@ -433,17 +482,35 @@ namespace Application\Entity {
         public function name($glue = " ")
         {
             $pieces = [$this->getName()];
-            if ($this->getTaxonomy()->first()) {
+            if ($this->getTaxonomy()) {
 
-                /** @var \Dashboard\Entity\Taxonomy $tax */
-                $tax = $this->getTaxonomy()->first();
+                /** @var Options\Taxonomy $tax */
+                $tax = $this->getTaxonomy();
                 array_unshift($pieces, $tax->getName());
-                if ($tax->getRoot() instanceof \Lib\Entity\Taxonomy\TaxonomyInterface) {
+                if ($tax->getRoot() instanceof TaxonomyInterface) {
                     array_unshift($pieces, $tax->getRoot()->getName());
                 }
             }
 
             return implode($glue, $pieces);
+        }
+
+        /**
+         * Get taxonomy
+         * @return string
+         */
+        public function taxonomy()
+        {
+            /** @var Taxonomy $term */
+            $term = $this->getTaxonomy();
+
+            $tree = [];
+            while (!is_null($term)) {
+                array_push($tree, $term->getName());
+                $term = $term->getRoot();
+            }
+
+            return implode(" ", array_reverse($tree));
         }
 
         /**
@@ -466,6 +533,36 @@ namespace Application\Entity {
         public function mileage()
         {
             return number_format($this->getMileage() * 1000, 0);
+        }
+
+        /**
+         * Function mark
+         * @return string
+         */
+        public function mark()
+        {
+            /** @var Taxonomy $model */
+            $model = $this->getTaxonomy();
+            if ($model instanceof Taxonomy) {
+                return $model->getRootName();
+            }
+
+            return "";
+        }
+
+        /**
+         * Function model
+         * @return string
+         */
+        public function model()
+        {
+            /** @var Taxonomy $model */
+            $model = $this->getTaxonomy();
+            if ($model instanceof Taxonomy) {
+                return $model->getName();
+            }
+
+            return "";
         }
 
         /**

@@ -6,14 +6,16 @@
  */
 namespace Application\Controller {
 
+    use Dashboard\Entity\Taxonomy;
+    use Doctrine\ORM\Query\Expr\Join;
     use Zend\View\Model\ViewModel;
-    use Zend\Mvc\Controller\AbstractActionController;
+    use Lib\Controller\AbstractController;
 
     /**
      * Class IndexController
      * @package Application\Controller
      */
-    class IndexController extends AbstractActionController
+    class IndexController extends AbstractController
     {
 
         /**
@@ -22,7 +24,30 @@ namespace Application\Controller {
          */
         public function indexAction()
         {
-            return new ViewModel();
+            $em = $this->getEntityManager();
+            $exp = $em->getExpressionBuilder();
+            $qb = $em->getRepository(Taxonomy::class)
+                ->createQueryBuilder('model')->select(['model', $exp->count('car')])
+                ->join('model.root', 'mark', Join::WITH, $exp->andX(
+                    $exp->isInstanceOf('mark', Taxonomy::class),
+                    $exp->eq('mark.active', true)
+                ))->leftJoin('model.documents', 'car');
+
+            $qb->where($exp->andX(
+                    $exp->isInstanceOf('model', Taxonomy::class),
+                    $exp->isNotNull('model.root')
+                ));
+
+            $qb->orderBy($exp->asc('mark.name'))
+                ->groupBy('mark.id');
+
+            $q = $qb->getQuery();
+//            var_dump($q->getResult());
+//            exit;
+            $viewModel = new ViewModel;
+            $viewModel->setVariable('marks', $q->getResult());
+
+            return $viewModel;
         }
     }
 }

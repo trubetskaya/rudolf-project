@@ -1,12 +1,19 @@
+<?php
+/**
+ * @var Dashboard\Entity\File $file
+ * @var Application\Entity\Vehicle $item
+ * @var Dashboard\Entity\Taxonomy $option
+ * @var Zend\View\Renderer\PhpRenderer $this
+ */
+?>
 <div class="container">
     <div class="row">
         <div class="col-lg-offset-1 col-md-offset-1 col-lg-11 col-md-11 breadcrumbs">
-            <a href="#" class="back">
+            <a href="<?= $this->url('catalog', ['action' => 'index']);?>" class="back">
                 <span></span>
                 <?= $this->translate('Каталог');?>
             </a>
         </div>
-
     </div>
 </div>
 
@@ -14,18 +21,19 @@
     <div class="row">
         <div class="col-lg-offset-1 col-md-offset-1 col-lg-11 col-md-11">
             <div class="auto-card-title">
-                <?= $this->translate("Skoda Rapid");?>
+                <?= $this->translate($item->name());?>
             </div>
             <div class="auto-card-price">
-                <?= $this->translate("$6200");?>
+                <?= $item->price(',');?>
             </div>
                 <div class="jcarousel-wrapper">
                 <div class="jcarousel">
                     <ul>
-                        <li><img src="/img/bg-images/photo-5.png" width="487" height="350" alt=""></li>
-                        <li><img src="/img/bg-images/photo-5.png" width="487" height="350" alt=""></li>
-                        <li><img src="/img/bg-images/photo-5.png" width="487" height="350" alt=""></li>
-                        <li><img src="/img/bg-images/photo-5.png" width="487" height="350" alt=""></li>
+                        <?php foreach ($item->getFiles() as $file) :?>
+                        <li>
+                            <img src="<?=$file->getPreview('487x350'); ?>" width="487" height="350" alt="">
+                        </li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
                 <a href="#" class="jcarousel-control-prev"></a>
@@ -45,24 +53,19 @@
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-5 auto-card-into-column">
                     <ul>
-                        <li><span><?= $this->translate('Марка');?></span><?= $this->translate('Skoda');?></li>
-                        <li><span><?= $this->translate('Модель');?></span><?= $this->translate('Rapid');?></li>
-                        <li><span><?= $this->translate('Поколение');?></span><?= $this->translate('Rapid');?></li>
-                        <li><span><?= $this->translate('Модификация');?></span><?= $this->translate('Rapid');?></li>
-                        <li><span><?= $this->translate('Год');?></span><?= $this->translate('Rapid');?></li>
-                        <li><span><?= $this->translate('Пробег');?></span><?= $this->translate('Rapid');?></li>
-                        <li><span><?= $this->translate('Тип кузова');?></span><?= $this->translate('Rapid');?></li>
+                        <li><span><?= $this->translate('Марка');?></span><?= $this->translate($item->mark());?></li>
+                        <li><span><?= $this->translate('Модель');?></span><?= $this->translate($item->model());?></li>
+                        <li><span><?= $this->translate('Модификация');?></span><?= $item->getName();?></li>
+                        <li><span><?= $this->translate('Год');?></span><?= $item->getRegistrationDate();?></li>
+                        <li><span><?= $this->translate('Пробег');?></span><?= $item->mileage();?></li>
                     </ul>
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5 auto-card-into-column">
                     <ul>
-                        <li><span><?= $this->translate('Цвет');?></span><?= $this->translate('Rapid');?></li>
-                        <li><span><?= $this->translate('Тип двигателя');?></span><?= $this->translate('Rapid');?></li>
-                        <li><span><?= $this->translate('Объем двигателя');?></span><?= $this->translate('Rapid');?></li>
-                        <li><span><?= $this->translate('КПП');?></span><?= $this->translate('Rapid');?></li>
-                        <li><span><?= $this->translate('Привод');?></span><?= $this->translate('Rapid');?></li>
-                        <li><span><?= $this->translate('Руль');?></span><?= $this->translate('Rapid');?></li>
-                        <li><span><?= $this->translate('Мощность двигателя');?></span><?= $this->translate('Rapid');?></li>
+                        <li><span><?= $this->translate('Тип двигателя');?></span><?= $this->translate($item->getFuel()->getName());?></li>
+                        <li><span><?= $this->translate('Объем двигателя');?></span><?= $item->getVolume();?><?=$this->translate('л')?></li>
+                        <li><span><?= $this->translate('КПП');?></span><?= $this->translate($item->getTransmission()->getName());?></li>
+                        <li><span><?= $this->translate('Привод');?></span><?= $this->translate('Передний');?></li>
                     </ul>
                 </div>
             </div>
@@ -74,23 +77,17 @@
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-5 auto-card-into-column">
                     <ul>
-                        <li><?= $this->translate('Skoda');?></li>
-                        <li><?= $this->translate('Skoda');?></li>
-                        <li><?= $this->translate('Skoda');?></li>
-                        <li><?= $this->translate('Skoda');?></li>
-                        <li><?= $this->translate('Skoda');?></li>
-                        <li><?= $this->translate('Skoda');?></li>
-                        <li><?= $this->translate('Skoda');?></li>
+                        <?php $options = $item->getOptions(); ?>
+                        <?php foreach ($options->slice(0, ceil($options->count()/2)) as $option) : ?>
+                            <li><?= $this->translate($option->getName());?></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5 auto-card-into-column">
                     <ul>
-                        <li><?= $this->translate('Skoda');?></li>
-                        <li><?= $this->translate('Skoda');?></li>
-                        <li><?= $this->translate('Skoda');?></li>
-                        <li><?= $this->translate('Skoda');?></li>
-                        <li><?= $this->translate('Skoda');?></li>
-                        <li><?= $this->translate('Skoda');?></li>
+                        <?php foreach ($options->slice(ceil($options->count()/2)) as $option) : ?>
+                            <li><?= $this->translate($option->getName());?></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
@@ -101,9 +98,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-7 auto-card-into-text">
-                    Был приобретен у официального дилера.
-                    2 владельца, ПТС оригинал.
-                    Дилерское обслуживание, в наличие сервисная книжка.
+                    <?= $item->getDescription(); ?>
                 </div>
             </div>
         </div>

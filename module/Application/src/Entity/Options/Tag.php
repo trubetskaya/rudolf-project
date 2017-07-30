@@ -7,7 +7,6 @@
  */
 namespace Application\Entity\Options {
 
-    use Dashboard\Entity\Taxonomy;
     use Doctrine\ORM\Mapping as ORM;
     use Doctrine\Common\Collections\ArrayCollection;
 
