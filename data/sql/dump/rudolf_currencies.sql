@@ -1,0 +1,3 @@
+INSERT INTO rudolf.currencies (iso_code, html_code, rate, name, description, active, created, updated, list_index) VALUES ('USD', '&#36;', 1.000000, 'US Dollar', 'United States Dollar', 1, '2017-07-24 19:29:39', '2017-07-24 19:29:39', 1);
+INSERT INTO rudolf.currencies (iso_code, html_code, rate, name, description, active, created, updated, list_index) VALUES ('UAH', '&#8372;', 25.000000, 'Ukrainian hryvnia', 'Ukrainian hryvnia', 1, '2017-07-24 19:29:39', '2017-07-24 19:29:39', 2);
+INSERT INTO rudolf.currencies (iso_code, html_code, rate, name, description, active, created, updated, list_index) VALUES ('RUB', '&#8381;', 50.000000, 'Russian ruble', 'Russian ruble', 1, '2017-07-24 19:29:39', '2017-07-24 19:29:39', 3);

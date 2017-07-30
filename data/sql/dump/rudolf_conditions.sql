@@ -1,0 +1,3 @@
+INSERT INTO rudolf.conditions (name, description, active, created, updated, list_index, entity_type) VALUES ('Pending', '', 1, '2017-07-24 19:27:21', '2017-07-24 19:27:21', 0, 'condition');
+INSERT INTO rudolf.conditions (name, description, active, created, updated, list_index, entity_type) VALUES ('Approved', '', 1, '2017-07-24 19:27:21', '2017-07-24 19:27:21', 1, 'condition');
+INSERT INTO rudolf.conditions (name, description, active, created, updated, list_index, entity_type) VALUES ('Rejected', '', 1, '2017-07-24 19:27:21', '2017-07-24 19:27:21', 2, 'condition');
