@@ -41,6 +41,7 @@
             ->appendStylesheet($this->basePath('css/jcarousel.skeleton.css'))
         ?>
     </head>
+    <body>
         <nav class="navbar navbar-fixed-top
             <?php echo ($this->currentRoute()->getRoute() == 'home') ? 'transparent' : ''?>
             " data-transparent="<?php echo (string)($this->currentRoute()->getRoute() == 'home')?>"
