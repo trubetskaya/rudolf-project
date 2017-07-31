@@ -55,7 +55,7 @@ namespace Application\Entity {
          *      "id": "v-model"
          * })
          *
-         * @ORM\ManyToOne(targetEntity=Options\Taxonomy::class, in="vehicles")
+         * @ORM\ManyToOne(targetEntity=Options\Taxonomy::class, inversedBy="vehicles")
          * @ORM\JoinColumn(name="model", referencedColumnName="id", nullable=false)
          **/
         protected $taxonomy;

@@ -31,7 +31,7 @@
                     <ul>
                         <?php foreach ($item->getFiles() as $file) :?>
                         <li>
-                            <img src="<?=$file->getPreview('487x350'); ?>" width="487" height="350" alt="">
+                            <img src="<?=$file->getPreview('487x350'); ?>" width="487" height="350" alt="<?= $item->name()?>"/>
                         </li>
                         <?php endforeach; ?>
                     </ul>
@@ -65,7 +65,8 @@
                         <li><span><?= $this->translate('Тип двигателя');?></span><?= $this->translate($item->getFuel()->getName());?></li>
                         <li><span><?= $this->translate('Объем двигателя');?></span><?= $item->getVolume();?><?=$this->translate('л')?></li>
                         <li><span><?= $this->translate('КПП');?></span><?= $this->translate($item->getTransmission()->getName());?></li>
-                        <li><span><?= $this->translate('Привод');?></span><?= $this->translate('Передний');?></li>
+                        <li><span><?= $this->translate('Кузов');?></span><?= $this->translate($item->getBody()->getName());?></li>
+                        <li><span><?= $this->translate('Привод');?></span><?= $this->translate($item->getDrive()->getName());?></li>
                     </ul>
                 </div>
             </div>
