@@ -6,10 +6,11 @@
  */
 namespace Application\Controller {
 
-    use Dashboard\Entity\Taxonomy;
-    use Doctrine\ORM\Query\Expr\Join;
+    use Application\Entity\Vehicle;
     use Zend\View\Model\ViewModel;
+    use Doctrine\ORM\Query\Expr\Join;
     use Lib\Controller\AbstractController;
+    use Application\Entity\Options\Taxonomy;
 
     /**
      * Class IndexController
@@ -27,25 +28,35 @@ namespace Application\Controller {
             $em = $this->getEntityManager();
             $exp = $em->getExpressionBuilder();
             $qb = $em->getRepository(Taxonomy::class)
-                ->createQueryBuilder('model')->select(['model', $exp->count('car')])
-                ->join('model.root', 'mark', Join::WITH, $exp->andX(
+                ->createQueryBuilder('mod');
+
+            $qb->select('mod')
+                ->join('mod.root', 'mark', Join::WITH, $exp->andX(
                     $exp->isInstanceOf('mark', Taxonomy::class),
                     $exp->eq('mark.active', true)
-                ))->leftJoin('model.documents', 'car');
-
-            $qb->where($exp->andX(
-                    $exp->isInstanceOf('model', Taxonomy::class),
-                    $exp->isNotNull('model.root')
                 ));
+
+            $qb->leftJoin('mod.vehicles', 'car')
+                ->addSelect($exp->count('car'));
 
             $qb->orderBy($exp->asc('mark.name'))
                 ->groupBy('mark.id');
 
-            $q = $qb->getQuery();
-//            var_dump($q->getResult());
-//            exit;
+            $marks = $qb->getQuery()
+                ->getResult();
+
+            $qb = $em->getRepository(Vehicle::class)
+                ->createQueryBuilder('v');
+
+            $qb->select('v')->join('v.tags', 't')
+                ->where($exp->eq('t.id', 41212));
+
+            $sales = $qb->getQuery()
+                ->getResult();
+
             $viewModel = new ViewModel;
-            $viewModel->setVariable('marks', $q->getResult());
+            $viewModel->setVariable('marks', $marks)
+                ->setVariable('sales', $sales);
 
             return $viewModel;
         }

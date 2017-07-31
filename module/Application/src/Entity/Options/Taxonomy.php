@@ -8,6 +8,7 @@
 namespace Application\Entity\Options {
 
     use Doctrine\ORM\Mapping as ORM;
+    use Doctrine\Common\Collections\ArrayCollection;
     use Lib\Entity\Taxonomy\TaxonomyBase;
 
     /**
@@ -17,5 +18,21 @@ namespace Application\Entity\Options {
      */
     class Taxonomy extends TaxonomyBase
     {
+        use OptionTrait;
+
+        /**
+         * @var ArrayCollection
+         * @ORM\OneToMany(targetEntity=Application\Entity\Vehicle::class, mappedBy="taxonomy")
+         */
+        protected $vehicles;
+
+        /**
+         * Taxonomy constructor.
+         */
+        public function __construct()
+        {
+            $this->vehicles = new ArrayCollection;
+            parent::__construct();
+        }
     }
 }

@@ -7,7 +7,9 @@
  */
 namespace Application\Entity\Options {
 
+    use Doctrine\Common\Collections\ArrayCollection;
     use Doctrine\ORM\Mapping as ORM;
+    use Lib\Entity\Taxonomy\TaxonomyBase;
 
     /**
      * Class ECommerceOption
@@ -15,8 +17,23 @@ namespace Application\Entity\Options {
      *
      * @ORM\Entity(repositoryClass="Dashboard\Repository\TaxonomyRepository")
      */
-    class Body extends Taxonomy
+    class Body extends TaxonomyBase
     {
         use OptionTrait;
+
+        /**
+         * @var ArrayCollection
+         * @ORM\OneToMany(targetEntity=Application\Entity\Vehicle::class, mappedBy="body")
+         */
+        protected $vehicles;
+
+        /**
+         * Taxonomy constructor.
+         */
+        public function __construct()
+        {
+            $this->vehicles = new ArrayCollection;
+            parent::__construct();
+        }
     }
 }

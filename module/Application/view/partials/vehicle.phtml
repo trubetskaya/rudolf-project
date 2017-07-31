@@ -1,0 +1,43 @@
+<?php
+/**
+ * @var Dashboard\Entity\File $file
+ * @var Application\Entity\Vehicle $item
+ * @var Application\Entity\Options\Taxonomy $option
+ * @var Zend\View\Renderer\PhpRenderer $this
+ */
+?>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 offers-grid-block-tile">
+    <a href="<?= $this->url('catalog', ['action' => 'card', 'id' => $item->getId()]); ?>"
+       class="offers-grid-block-grid-bg">
+        <img src="<?= $this->basePath('/dashboard/img/trans.gif');?>" alt="<?= $item->name(); ?>"
+             style=" background-image: url('<?= $item->preview('250x250'); ?>');
+                     background-position: center;
+                     background-size: cover;
+                     width: 100%;"/>
+    </a>
+    <div href="#" class="offers-grid-block-grid-name">
+        <a href="<?= $this->url('catalog', ['action' => 'card', 'id' => $item->getId()]); ?>">
+            <?= $this->translate($item->taxonomy()); ?>
+        </a>
+        <br>
+        <span class="price"><?= $item->price(','); ?></span>
+    </div>
+    <div class="offers-grid-block-grid-desc">
+        <?= implode(", ", array_merge(
+                [
+                    $item->getRegistrationDate(),
+                    implode(' ', [
+                        $item->getVolume(),
+                        $this->translate('л')
+                    ])
+                ],
+                array_map([$this, 'translate'], [
+                    $item->getTransmission()->getName(),
+                    $item->getFuel()->getName(),
+                    $item->getBody()->getName(),
+                    $item->getDrive()->getName(),
+                ])
+            )
+        ); ?>
+    </div>
+</div>

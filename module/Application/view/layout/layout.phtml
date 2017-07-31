@@ -3,12 +3,12 @@
 <html lang="ru">
     <head>
         <meta charset="utf-8">
-        <?= $this->headTitle('ZF Skeleton Application')->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?= $this->headTitle('Rudolf Autohaus')->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?= $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-        ?>
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge') ?>
+
         <!-- Scripts -->
         <?= $this->headScript()
             ->prependFile($this->basePath('js/bootstrap.min.js'))
@@ -21,10 +21,10 @@
             ->appendFile($this->basePath('js/formstone/js/touch.js'))
             ->appendFile($this->basePath('js/jquery.jcarousel.min.js'))
             ->appendFile($this->basePath('js/jcarousel.skeleton.js'))
-            ->appendFile($this->basePath('js/build.js'))
-        ?>
+            ->appendFile($this->basePath('js/build.js')) ?>
+
         <!-- Le styles -->
-        <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+        <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath('/img/favicon.ico')])
             ->prependStylesheet($this->basePath('css/main.css'))
             ->prependStylesheet($this->basePath('css/select.css'))
             ->prependStylesheet($this->basePath('css/checkbox.css'))
@@ -35,6 +35,7 @@
             ->prependStylesheet($this->basePath('css/card.css'))
             ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
             ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+
             ->appendStylesheet($this->basePath('js/formstone/css/dropdown.css'))
             ->appendStylesheet($this->basePath('js/formstone/css/checkbox.css'))
             ->appendStylesheet($this->basePath('js/formstone/css/scrollbar.css'))

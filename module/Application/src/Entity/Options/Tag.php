@@ -9,6 +9,7 @@ namespace Application\Entity\Options {
 
     use Doctrine\ORM\Mapping as ORM;
     use Doctrine\Common\Collections\ArrayCollection;
+    use Lib\Entity\Taxonomy\TaxonomyBase;
 
     /**
      * Class Fuel
@@ -16,7 +17,7 @@ namespace Application\Entity\Options {
      *
      * @ORM\Entity(repositoryClass="Dashboard\Repository\TaxonomyRepository")
      */
-    class Tag extends Taxonomy
+    class Tag extends TaxonomyBase
     {
         use OptionTrait;
 
@@ -25,6 +26,15 @@ namespace Application\Entity\Options {
          * @ORM\ManyToMany(targetEntity=Application\Entity\Vehicle::class, mappedBy="tags")
          */
         protected $vehicles;
+
+        /**
+         * Taxonomy constructor.
+         */
+        public function __construct()
+        {
+            $this->vehicles = new ArrayCollection;
+            parent::__construct();
+        }
     }
 }
 

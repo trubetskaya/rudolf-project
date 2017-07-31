@@ -8,12 +8,13 @@
 namespace Application\Entity {
 
     use Doctrine\ORM\Mapping as ORM;
-    use Lib\Entity\Taxonomy\TaxonomyInterface;
     use Zend\Form\Annotation as Form;
-    use Doctrine\Common\Collections\ArrayCollection;
 
     use Dashboard\Entity\Document;
+    use Doctrine\Common\Collections\ArrayCollection;
+
     use Lib\Entity\ECommerceTrait;
+    use Lib\Entity\Taxonomy\TaxonomyInterface;
     use Application\Entity\Options\ {
         Body, Drive, Fuel, Tag, Transmission, Equipment, Taxonomy
     };
@@ -24,7 +25,6 @@ namespace Application\Entity {
      *
      * @ORM\Entity
      * @ORM\Table(name="vehicle")
-     *
      * @Form\Name("vehicle-form")
      */
     class Vehicle extends Document
@@ -34,28 +34,28 @@ namespace Application\Entity {
         /**
          * @var Taxonomy
          * @Form\Type("\DoctrineORMModule\Form\Element\EntitySelect")
-         * @Form\Flags({"priority": 50})
+         * @Form\Flags({"priority": 55})
          * @Form\Options({
          *      "label": "Model",
          *      "target_class": Application\Entity\Options\Taxonomy::class,
          *      "allow_empty": false,
          *
          *      "property": "name",
-         *      "optgroup_name": "rootName",
+         *      "optgroup_identifier": "rootName",
          *
          *     "is_method": true,
          *      "find_method": {
-         *          "name": "getHierarchicalOptions"
+         *          "name": "getOptions"
          *      }
          * })
          * @Form\Attributes({
          *      "data-parsley-required": "true",
          *      "data-parsley-required-message": "Model required",
-         *      "class": "form-control select2_single",
+         *      "class": "form-control select2_multiple",
          *      "id": "v-model"
          * })
          *
-         * @ORM\ManyToOne(targetEntity=Options\Taxonomy::class)
+         * @ORM\ManyToOne(targetEntity=Options\Taxonomy::class, in="vehicles")
          * @ORM\JoinColumn(name="model", referencedColumnName="id", nullable=false)
          **/
         protected $taxonomy;
@@ -81,7 +81,7 @@ namespace Application\Entity {
          *      "id": "vehicle-body"
          * })
          *
-         * @ORM\ManyToOne(targetEntity=Options\Body::class)
+         * @ORM\ManyToOne(targetEntity=Options\Body::class, inversedBy="vehicles")
          * @ORM\JoinColumn(name="body_type", referencedColumnName="id", nullable=false)
          **/
         protected $body;
@@ -107,7 +107,7 @@ namespace Application\Entity {
          *      "id": "vehicle-drive"
          * })
          *
-         * @ORM\ManyToOne(targetEntity=Options\Drive::class)
+         * @ORM\ManyToOne(targetEntity=Options\Drive::class, inversedBy="vehicles")
          * @ORM\JoinColumn(name="drive_type", referencedColumnName="id", nullable=false)
          **/
         protected $drive;
@@ -193,7 +193,7 @@ namespace Application\Entity {
          *      "id": "vehicle-fuel"
          * })
          *
-         * @ORM\ManyToOne(targetEntity=Options\Fuel::class)
+         * @ORM\ManyToOne(targetEntity=Options\Fuel::class, inversedBy="vehicles")
          * @ORM\JoinColumn(name="fuel", referencedColumnName="id", nullable=false)
          **/
         protected $fuel;
@@ -219,7 +219,7 @@ namespace Application\Entity {
          *      "id": "vehicle-transmission"
          * })
          *
-         * @ORM\ManyToOne(targetEntity=Options\Transmission::class)
+         * @ORM\ManyToOne(targetEntity=Options\Transmission::class, inversedBy="vehicles")
          * @ORM\JoinColumn(name="transmission", referencedColumnName="id", nullable=false)
          **/
         protected $transmission;
@@ -292,7 +292,7 @@ namespace Application\Entity {
          * Get taxonomy
          * @return Taxonomy
          */
-        public function getTaxonomy()
+        public function getTaxonomy() : Taxonomy
         {
             return $this->taxonomy;
         }
@@ -302,9 +302,11 @@ namespace Application\Entity {
          * @param Taxonomy $taxonomy
          * @return $this
          */
-        public function setTaxonomy(Taxonomy $taxonomy)
+        public function setTaxonomy(Taxonomy $taxonomy) : self
         {
             $this->taxonomy = $taxonomy;
+            $taxonomy->addVehicles($this);
+
             return $this;
         }
 
@@ -312,7 +314,7 @@ namespace Application\Entity {
          * Get transmission
          * @return Transmission
          */
-        public function getTransmission()
+        public function getTransmission() : Transmission
         {
             return $this->transmission;
         }
@@ -322,9 +324,11 @@ namespace Application\Entity {
          * @param Transmission $transmission
          * @return $this
          */
-        public function setTransmission(Transmission $transmission)
+        public function setTransmission(Transmission $transmission) : self
         {
             $this->transmission = $transmission;
+            $transmission->addVehicles($this);
+
             return $this;
         }
 
@@ -332,19 +336,21 @@ namespace Application\Entity {
          * Get fuel
          * @return Fuel
          */
-        public function getFuel()
+        public function getFuel() : Fuel
         {
             return $this->fuel;
         }
 
         /**
          * Set fuel
-         * @param int $fuel
+         * @param Fuel $fuel
          * @return $this
          */
-        public function setFuel($fuel)
+        public function setFuel(Fuel $fuel) : self
         {
             $this->fuel = $fuel;
+            $fuel->addVehicles($this);
+
             return $this;
         }
 
@@ -352,7 +358,7 @@ namespace Application\Entity {
          * Get volume
          * @return float
          */
-        public function getVolume()
+        public function getVolume() : float
         {
             return $this->volume;
         }
@@ -362,7 +368,7 @@ namespace Application\Entity {
          * @param float $volume
          * @return $this
          */
-        public function setVolume($volume)
+        public function setVolume(float $volume) : self
         {
             $this->volume = $volume;
             return $this;
@@ -372,7 +378,7 @@ namespace Application\Entity {
          * Get mileage
          * @return float
          */
-        public function getMileage()
+        public function getMileage() : float
         {
             return $this->mileage;
         }
@@ -382,7 +388,7 @@ namespace Application\Entity {
          * @param float $mileage
          * @return $this
          */
-        public function setMileage($mileage)
+        public function setMileage(float $mileage) : self
         {
             $this->mileage = $mileage;
             return $this;
@@ -392,7 +398,7 @@ namespace Application\Entity {
          * Get registrationDate
          * @return int
          */
-        public function getRegistrationDate()
+        public function getRegistrationDate() : int
         {
             return $this->registrationDate;
         }
@@ -402,7 +408,7 @@ namespace Application\Entity {
          * @param int $registrationDate
          * @return $this
          */
-        public function setRegistrationDate($registrationDate)
+        public function setRegistrationDate(int $registrationDate) : self
         {
             $this->registrationDate = $registrationDate;
             return $this;
@@ -413,7 +419,7 @@ namespace Application\Entity {
          * @param Equipment $option
          * @return $this
          */
-        public function addOptions(Equipment $option)
+        public function addOptions(Equipment $option) : self
         {
             $this->options->add($option);
             $option->addVehicles($this);
@@ -426,9 +432,11 @@ namespace Application\Entity {
          * @param Equipment $option
          * @return $this
          */
-        public function removeOptions(Equipment $option)
+        public function removeOptions(Equipment $option) : self
         {
-            $this->options->remove($option);
+            $this->options->removeElement($option);
+            $option->removeVehicles($this);
+
             return $this;
         }
 
@@ -446,7 +454,7 @@ namespace Application\Entity {
          * @param Tag $tag
          * @return $this
          */
-        public function addTags(Tag $tag)
+        public function addTags(Tag $tag) : self
         {
             $this->tags->add($tag);
             $tag->addVehicles($this);
@@ -459,9 +467,11 @@ namespace Application\Entity {
          * @param Tag $tag
          * @return $this
          */
-        public function removeTags(Tag $tag)
+        public function removeTags(Tag $tag) : self
         {
             $this->tags->remove($tag);
+            $tag->removeVehicles($this);
+
             return $this;
         }
 
@@ -475,11 +485,55 @@ namespace Application\Entity {
         }
 
         /**
+         * Get body
+         * @return Body
+         */
+        public function getBody() : Body
+        {
+            return $this->body;
+        }
+
+        /**
+         * Set body
+         * @param Body $body
+         * @return $this
+         */
+        public function setBody(Body $body) : self
+        {
+            $this->body = $body;
+            $body->addVehicles($this);
+
+            return $this;
+        }
+
+        /**
+         * Get drive
+         * @return Drive
+         */
+        public function getDrive() : Drive
+        {
+            return $this->drive;
+        }
+
+        /**
+         * Set drive
+         * @param Drive $drive
+         * @return $this
+         */
+        public function setDrive(Drive $drive) : self
+        {
+            $this->drive = $drive;
+            $drive->addVehicles($this);
+
+            return $this;
+        }
+
+        /**
          * Vehicle name
          * @param string $glue
          * @return string
          */
-        public function name($glue = " ")
+        public function name(string $glue = " ") : string
         {
             $pieces = [$this->getName()];
             if ($this->getTaxonomy()) {
@@ -499,7 +553,7 @@ namespace Application\Entity {
          * Get taxonomy
          * @return string
          */
-        public function taxonomy()
+        public function taxonomy() : string
         {
             /** @var Taxonomy $term */
             $term = $this->getTaxonomy();
@@ -518,7 +572,7 @@ namespace Application\Entity {
          * @param string $glue
          * @return string
          */
-        public function price($glue = "")
+        public function price(string $glue = "") : string
         {
             return implode($glue,[
                 number_format($this->getAmount(), 2),
@@ -530,7 +584,7 @@ namespace Application\Entity {
          * Mileage
          * @return string
          */
-        public function mileage()
+        public function mileage() : string
         {
             return number_format($this->getMileage() * 1000, 0);
         }
@@ -539,7 +593,7 @@ namespace Application\Entity {
          * Function mark
          * @return string
          */
-        public function mark()
+        public function mark() : string
         {
             /** @var Taxonomy $model */
             $model = $this->getTaxonomy();
@@ -554,7 +608,7 @@ namespace Application\Entity {
          * Function model
          * @return string
          */
-        public function model()
+        public function model() : string
         {
             /** @var Taxonomy $model */
             $model = $this->getTaxonomy();
@@ -569,14 +623,15 @@ namespace Application\Entity {
          * Function jsonSerialize
          * @return array
          */
-        public function jsonSerialize()
+        public function jsonSerialize() : array
         {
             return array_merge_recursive(
                 parent::jsonSerialize(),
                 [
                     "doc" => [
-                        "year" => $this->getRegistrationDate(),
                         "mileage" => $this->mileage(),
+                        "taxonomy" => $this->taxonomy(),
+                        "year" => $this->getRegistrationDate(),
                         "price" => $this->price()
                     ]
                 ]
