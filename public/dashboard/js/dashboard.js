@@ -35,10 +35,12 @@ $(document).ready(function() {
                         orderable   : false,
                         targets     : -1,
                         render      : function (data, type, row) {
-                            return $("<div>").css('width', "100px").append(
-                                $("<a>").addClass('btn btn-sm btn-info').attr('href', location.href + "/edit/" + data)
+
+                            return $("<div>").css('min-width', "100px").append(
+                                $("<a>").addClass('btn btn-sm btn-info').attr('href', data ? location.href + "/edit/" + data : '#')
+                                    .attr({'data-toggle': 'modal', 'data-target': "#exampleModal", "data-doc": JSON.stringify(row)})
                                     .append($("<i>").addClass("fa fa-edit")),
-                                $("<a>").addClass('btn btn-sm btn-danger').attr('href', location.href + "/remove/" + data)
+                                $("<a>").addClass('btn btn-sm btn-danger').attr('href', data ? location.href + "/remove/" + data : '#')
                                     .append($("<i>").addClass("fa fa-trash-o"))
                             ).wrap("<div>").parent().html();
                         }
