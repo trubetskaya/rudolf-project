@@ -2,6 +2,7 @@
 // ------ DROPZONE -------- //
 // ------------------------ //
 .row.dropzone {
+  min-height: 703px;
 
   .dz-preview {
     margin: auto;
@@ -97,9 +98,13 @@ table.datatable {
   }
 }
 
-
 .v-options {
+
   label {
     font-size: .7em;
+
+    .icheckbox_flat-green {
+      margin-right: 2px;
+    }
   }
 }

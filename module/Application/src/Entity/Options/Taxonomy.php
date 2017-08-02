@@ -14,7 +14,8 @@ namespace Application\Entity\Options {
     /**
      * Class Taxonomy
      * @package Dashboard\Entity
-     * @ORM\Entity(repositoryClass=Dashboard\Repository\TaxonomyRepository::class)
+     * @ORM\Entity(repositoryClass=Application\Repository\TaxonomyRepository::class)
+     * @ORM\HasLifecycleCallbacks
      */
     class Taxonomy extends TaxonomyBase
     {

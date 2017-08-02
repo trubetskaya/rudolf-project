@@ -116,7 +116,7 @@ namespace Application\Entity {
          * @var int
          * @Form\Type("Number")
          * @Form\Flags({"priority": 49})
-         * @Form\Options({"label": "Registration date"})
+         * @Form\Options({"label": "Registration"})
          * @Form\Attributes({
          *      "id": "registration-date",
          *      "data-parsley-required"          : "true",

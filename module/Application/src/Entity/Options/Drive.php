@@ -15,7 +15,7 @@ namespace Application\Entity\Options {
      * Class drive
      * @package Application
      *
-     * @ORM\Entity(repositoryClass="Dashboard\Repository\TaxonomyRepository")
+     * @ORM\Entity(repositoryClass=Application\Repository\TaxonomyRepository::class)
      */
     class Drive extends TaxonomyBase
     {
