@@ -8,6 +8,7 @@
 namespace Application\Entity {
 
     use Doctrine\ORM\Mapping as ORM;
+    use Lib\Entity\EntityBaseInterface;
     use Zend\Form\Annotation as Form;
 
     use Dashboard\Entity\Document;
@@ -621,20 +622,50 @@ namespace Application\Entity {
 
         /**
          * Function jsonSerialize
+         * @param string|null $format
          * @return array
          */
-        public function jsonSerialize() : array
+        public function jsonSerialize(string $format = null) : array
         {
+            $mod = $this->getTaxonomy();
+            $mapper = function (EntityBaseInterface $eq) {
+                return $eq->getArrayCopy(['id', 'name']);
+            };
+
+            $copy = [
+
+                "taxonomy" => $this->taxonomy(),
+                "model" => $mod->getArrayCopy(['id', 'name']),
+                "mark" => $mod->getRoot()->getArrayCopy(['id', 'name']),
+
+                "volume" => $this->getVolume(),
+                "transmission" => $this->getTransmission()
+                    ->getArrayCopy(['id', 'name']),
+
+                "mileage" => $this->mileage(),
+                "mileageValue" => $this->getMileage(),
+
+                "year" => $this->getRegistrationDate(),
+                "fuel" => $this->getFuel()->getArrayCopy(['id', 'name']),
+
+                "price" => $this->price(),
+                "priceUSD" => $this->getAmount() / $this->getCurrency()->getRate(),
+                "priceValue" => $this->getAmount(),
+
+                "body" => $this->getBody()->getArrayCopy(['id', 'name']),
+                "drive" => $this->getDrive()->getArrayCopy(['id', 'name']),
+
+                'options' => $this->getOptions()->map($mapper)->toArray(),
+                'tags' => $this->getTags()->map($mapper)->toArray()
+            ];
+
+            if (is_null($format)) {
+                $copy = ["doc" => $copy];
+            }
+
             return array_merge_recursive(
-                parent::jsonSerialize(),
-                [
-                    "doc" => [
-                        "mileage" => $this->mileage(),
-                        "taxonomy" => $this->taxonomy(),
-                        "year" => $this->getRegistrationDate(),
-                        "price" => $this->price()
-                    ]
-                ]
+                parent::jsonSerialize($format),
+                $copy
             );
         }
     }

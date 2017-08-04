@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4837eabc0378dec0cf49c2f1fa0a6b2",
+    "content-hash": "70e8b0b9a05251f54f883488b9a0895c",
     "packages": [
         {
             "name": "agusedyc/gentelella",
@@ -1223,7 +1223,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/atarasenkopublic/zendextend.git",
-                "reference": "e0b61e1090201c3bfb3898e9cc43ff20cb81b92d"
+                "reference": "857935e438618e0867c01d621a6bcb4046e30c93"
             },
             "require-dev": {
                 "php": ">=5.6"
@@ -1248,7 +1248,7 @@
                 "framework",
                 "library"
             ],
-            "time": "2017-07-20 20:17:11"
+            "time": "2017-07-30 16:43:33"
         },
         {
             "name": "zendextend/zendextend-dashboard",
@@ -1256,7 +1256,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/atarasenkopublic/zendextend-dashboard.git",
-                "reference": "611f7e0d22134f5a9396cefc90e353720fa03086"
+                "reference": "d5c70b20139f8a69a3e1d47d32290990c2494625"
             },
             "require": {
                 "agusedyc/gentelella": "dev-master",
@@ -1303,7 +1303,7 @@
                 "dashboard",
                 "zf3"
             ],
-            "time": "2017-07-24 16:18:36"
+            "time": "2017-07-31 13:48:01"
         },
         {
             "name": "zendframework/zend-authentication",
@@ -5106,7 +5106,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2017-07-13 02:44:20"
+            "time": "2017-07-13T02:44:20+00:00"
         },
         {
             "name": "sebastian/environment",

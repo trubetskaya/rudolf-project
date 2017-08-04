@@ -5,7 +5,71 @@
  * @var Application\Entity\Options\Taxonomy $option
  * @var Zend\View\Renderer\PhpRenderer $this
  */
+
+foreach ($list as $item) {
+    $item['transparentImage'] = $this->basePath('/dashboard/img/trans.gif');
+    $item['link'] = $this->url('catalog', [
+        'id' => $item['id'],
+        'action' => 'card',
+    ]);
+}
 ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
+
+<div id="app-7">
+    <ol>
+        <!--
+          Теперь мы можем передать каждому компоненту todo объект
+          с информацией о задаче, который будет динамически меняться.
+          Мы также определяем для каждого компонента "key",
+          значение которого будет объяснено далее в руководстве.
+        -->
+        <todo-item
+                v-for="item in groceryList"
+                v-bind:todo="item"
+                v-bind:key="item.id">
+        </todo-item>
+    </ol>
+</div>
+
+<script type="text/javascript">
+
+    var cards = <?=json_encode($list);?>;
+    console.info(cards);
+
+
+    Vue.component('todo-item', {
+        props: ['todo'],
+        template:   '\
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 offers-grid-block-tile">\
+                <a :href="todo.link" class="offers-grid-block-grid-bg">\
+                    <img style="background-position: center; background-size: cover; height: 250px; width: 100%;" \
+                        :style="{ backgroundImage: url(\' + backgroundImage + \') }" \
+                        :src="todo.transparentImage" :alt="todo.taxonomy"/>\
+                </a>\
+                <div :href="todo.link" class="offers-grid-block-grid-name">\
+                    <a :href="todo.link">{{ todo.taxonomy }}</a><br>\
+                    <span class="price">{{ todo.price }}</span>\
+                </div>\
+                <div class="offers-grid-block-grid-desc">\
+                    {{ todo.registration }}, {{ todo.volume }}, {{ todo.transmission.name }}, \
+                    {{ todo.fuel.name }}, {{ todo.body.name }}, {{ todo.drive.name }}\
+                </div>\
+            </div>\
+        ',
+        data: {
+            backgroundImage: '/xxx/'
+        }
+    });
+
+    var app7 = new Vue({
+        el: '#app-7',
+        data: {
+            groceryList: cards
+        }
+    })
+</script>
+
 <catalog inline-template>
 <div class="container">
     <div class="row">
@@ -19,50 +83,55 @@
             <h2><?= $this->translate('Купить');?></h2>
             <div class="row catalog-filter-group">
                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 xs-margin-top">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label><?=$this->translate('Марка');?></label>
-                            <select>
-                                <option value="1">One</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label><?=$this->translate('Модель');?></label>
-                            <select>
-                                <option value="1">One</option>
-                            </select>
-                        </div>
-                    </div>
+                    <label><?=$this->translate('Марка');?></label>
+                    <select name="model">
+                        <?php foreach ($options['mods'] as $mark => $models) : ?>
+                            <optgroup label="<?=$mark;?>">
+                            <?php foreach ($models as $id => $model) : ?>
+                                <option value="<?=$id?>"><?=$this->translate($model);?></option>
+                            <?php endforeach; ?>
+                            </optgroup>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="catalog-clear-box-sm hidden-lg hidden-md hidden-xs"></div>
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 xs-margin-top">
-                    <label><?=$this->translate('Год');?></label>
+                    <label for="yearFrom"><?=$this->translate('Год');?></label>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <select>
-                                <option value="1">One</option>
+                            <select id="yearFrom" name="year[from]">
+                            <?php foreach (range($options['years']['min'], $options['years']['max']) as $year) : ?>
+                            <option value="<?=$year?>"><?=$year?></option>
+                            <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <select>
-                                <option value="1">One</option>
+                            <select id="yearTo" name="year[to]">
+                                <?php foreach (array_reverse(range($options['years']['min'], $options['years']['max'])) as $year) : ?>
+                                <option value="<?=$year?>"><?=$year?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 xs-margin-top">
-                    <label><?=$this->translate('Цена');?></label>
-                    <select>
-                        <option value="1">One</option>
+                    <label for="priceFrom"><?=$this->translate('Цена');?></label>
+                    <select id="priceFrom" name="price[from]">
+                        <?php foreach (range($options['prices']['min'], $options['prices']['max'], 1000) as $price) : ?>
+                        <option value="<?=$price?>"><?=$price?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 no-label">
-                    <select>
-                        <option value="1">One</option>
+                    <select id="priceTo" name="price[to]">
+                        <?php foreach (array_reverse(range($options['prices']['min'], $options['prices']['max'], 1000)) as $price) : ?>
+                        <option value="<?=$price?>"><?=$price?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
             </div>
-            <div v-show="allFilters" class="row catalog-filter-group">
+
+            <div v-show="allFilters" class="row catalog-filter-group hidden">
                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 xs-margin-top">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
@@ -177,9 +246,9 @@
             </div>
             <div class="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
                 <div class="row">
-                    <?php foreach ($list as $item) : ?>
-                        <?= $this->render('partial/vehicle.phtml', ['item' => $item]); ?>
-                    <?php endforeach; ?>
+<!--                    --><?php //foreach ($list as $item) : ?>
+<!--                        --><?php //$this->render('partial/vehicle.phtml', ['item' => $item]); ?>
+<!--                    --><?php //endforeach; ?>
                     <pagination
                             v-if="totalCards > 12"
                             :current="currentPage"

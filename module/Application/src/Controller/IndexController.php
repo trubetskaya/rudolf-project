@@ -31,10 +31,8 @@ namespace Application\Controller {
                 ->createQueryBuilder('mod');
 
             $qb->select('mod')
-                ->join('mod.root', 'mark', Join::WITH, $exp->andX(
-                    $exp->isInstanceOf('mark', Taxonomy::class),
-                    $exp->eq('mark.active', true)
-                ));
+                ->join('mod.root', 'mark', Join::WITH,
+                    $exp->eq('mark.active', true));
 
             $qb->leftJoin('mod.vehicles', 'car')
                 ->addSelect($exp->count('car'));
