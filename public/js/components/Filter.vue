@@ -25,6 +25,7 @@
                     'year-to' : null,
                     'price-from' : null,
                     'price-to' : null,
+                    'body' : null,
                 },
                 'loadingOverlay' : false,
             }
@@ -34,7 +35,8 @@
                 if ($(e.target).val() != '') {
                     this.loadingOverlay = true;
                     setTimeout(function() {
-                        this.filters[$(e.target).attr('name')] = $(e.target).val();
+                        this.filters[$(e.target).attr('name')] =
+                            ($(e.target).val() == 'null') ? null : $(e.target).val();
                         this.$dispatch('filterList', this.filters);
                     }.bind(this), 0);
                     setTimeout(function() {
@@ -73,6 +75,15 @@
                     }
                 }
                 return marks;
+            },
+            getBodies: function () {
+                var bodies = [];
+                for (var i = 0; i < cardListInit.length; i++) {
+                    if (bodies.indexOf(cardListInit[i].body.name) === -1) {
+                        bodies.push(cardListInit[i].body.name)
+                    }
+                }
+                return bodies;
             },
         },
         computed: {
@@ -127,6 +138,7 @@
                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 xs-margin-top">
                         <label>Марка</label>
                         <select name="model" data-dropdown-options='{"label":"Марка"}'>
+                            <option value="null">Марка</option>
                             <optgroup v-for="(mark, models) in getMarks()" :label="mark">
                                 <option v-for="model in models" :value="model">{{model}}</option>
                             </optgroup>
@@ -138,11 +150,13 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <select id="yearFrom" name="year-from" data-dropdown-options='{"label":"От"}'>
+                                    <option value="null">От</option>
                                     <option v-if="$index!=(yearsFrom.length - 1)" v-for="year in yearsFrom| orderBy +1" :value="year">{{year}}</option>
                                 </select>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <select id="yearTo" name="year-to" data-dropdown-options='{"label":"До"}'>
+                                    <option value="null">До</option>
                                     <option v-if="$index!=(yearsTo.length - 1)"  v-for="year in yearsTo| orderBy -1" :value="year">{{year}}</option>
                                 </select>
                             </div>
@@ -151,29 +165,32 @@
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 xs-margin-top">
                         <label for="priceFrom">Цена</label>
                         <select id="priceFrom" name="price-from" data-dropdown-options='{"label":"От"}'>
+                            <option value="null">От</option>
                             <option v-if="$index!=(priceUSDFrom.length - 1)" v-for="price in priceUSDFrom| orderBy +1" :value="price">{{price}}</option>
                         </select>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 no-label">
                         <select id="priceTo" name="price-to" data-dropdown-options='{"label":"До"}'>
+                            <option value="null">До</option>
                             <option v-if="$index!=(priceUSDTo.length - 1)" v-for="price in priceUSDTo| orderBy -1" :value="price">{{price}}</option>
                         </select>
                     </div>
                 </div>
 
-                <div v-show="allFilters" class="hidden row catalog-filter-group">
+                <div v-show="allFilters" class="row catalog-filter-group">
                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 xs-margin-top">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
                                 <label>Поколение</label>
-                                <select>
+                                <select id="">
                                     <option value="1">One</option>
                                 </select>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
                                 <label>Кузов</label>
-                                <select>
-                                    <option value="1">One</option>
+                                <select id="body" name="body" data-dropdown-options='{"label":"Любой"}'>
+                                    <option value="null">Любой</option>
+                                    <option v-for="body in getBodies()" :value="body">{{body}}</option>
                                 </select>
                             </div>
                             <div class="col-lg-4 col-md-4  col-sm-3 col-xs-12">

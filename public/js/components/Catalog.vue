@@ -28,13 +28,15 @@
                 var priceFrom = parseInt(filterValues['price-from']);
                 var priceTo = parseInt(filterValues['price-to']);
                 var model = filterValues['model'];
+                var body = filterValues['body'];
                 this.cardList = cardListInit;
                 this.cardList = _.filter(this.cardList, function (item) {
                     return (yearFrom ? item.year >= yearFrom : true)
                         && (yearTo ? item.year <= yearTo : true)
                         && (priceFrom ? item.priceUSD >= priceFrom : true)
                         && (priceTo ? item.priceUSD <= priceTo : true)
-                        && (model ? item.model.name == model : true);
+                        && (model ? item.model.name == model : true)
+                        && (body ? item.body.name == body : true);
                 });
 
                 this.$nextTick(function() {
