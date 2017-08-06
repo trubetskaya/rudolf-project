@@ -77,32 +77,23 @@
         },
         computed: {
             yearsFrom: function () {
-                var years = _.map(_.uniqBy(this.cardList, 'year'), function (item) {
-                    return item.year;
-                });
                 var yearsRange = [];
-                var maxYear = this.filters['year-to'] ? this.filters['year-to'] :  Math.max.apply(Math, years);
+                var maxYear = this.filters['year-to'] ? this.filters['year-to'] :  maxYearInit;
                 for (var i = minYearInit; i <= maxYear; i++) {
                     yearsRange.push(i)
                 }
                 return yearsRange;
             },
             yearsTo: function () {
-                var years = _.map(_.uniqBy(this.cardList, 'year'), function (item) {
-                    return item.year;
-                });
                 var yearsRange = [];
-                var minYear = this.filters['year-from'] ? this.filters['year-from'] : Math.min.apply(Math, years);
+                var minYear = this.filters['year-from'] ? this.filters['year-from'] : minYearInit;
                 for (var i = minYear; i <= maxYearInit; i++) {
                     yearsRange.push(i)
                 }
                 return yearsRange;
             },
             priceUSDFrom: function () {
-                var prices = _.map(_.uniqBy(this.cardList, 'priceUSD'), function (item) {
-                    return item.priceUSD;
-                });
-                var maxPrice = this.filters['price-to'] ? this.filters['price-to'] : Math.ceil(Math.max.apply(Math, prices) / 1000) * 1000;
+                var maxPrice = this.filters['price-to'] ? this.filters['price-to'] : maxPriceInit;
                 var pricesRange = [];
                 for (var i = minPriceInit; i <= maxPrice; i = i + 1000) {
                     pricesRange.push(i)
@@ -110,10 +101,7 @@
                 return pricesRange;
             },
             priceUSDTo: function () {
-                var prices = _.map(_.uniqBy(this.cardList, 'priceUSD'), function (item) {
-                    return item.priceUSD;
-                });
-                var minPrice = this.filters['price-from'] ? this.filters['price-from'] : Math.floor(Math.min.apply(Math, prices) / 1000) * 1000;
+                var minPrice = this.filters['price-from'] ? this.filters['price-from'] : minPriceInit;
                 var pricesRange = [];
                 for (var i = minPrice; i <= maxPriceInit; i = i + 1000) {
                     pricesRange.push(i)

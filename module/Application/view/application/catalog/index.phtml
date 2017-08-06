@@ -41,12 +41,19 @@ foreach ($list as &$item) {
                 </div>
             </div>
             <div class="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
-                <div class="row">
+                <div v-if="cardList.length > 0" class="row">
                     <card
                         v-for="item in cardList"
                         v-bind:card="item"
                         v-bind:key="item.id">
                     </card>
+                </div>
+                <div v-else>
+                    <div сlass="row">
+                        <p class="catalog-no-result">
+                            Поиск не дал результов.
+                        </p>
+                    </div>
                 </div>
                 <pagination
                         v-if="totalCards > 12"
