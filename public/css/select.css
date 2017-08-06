@@ -61,4 +61,16 @@
     border-radius: 2px !important;
     background-color: #e4e4e4 !important; }
 
+.fs-scrollbar-bar {
+  max-height: 200px !important; }
+
+.fs-scrollbar-track {
+  max-height: 200px !important; }
+
+.fs-scrollbar-content {
+  max-height: 200px !important; }
+
+.fs-dropdown-item.fs-dropdown-item_placeholder {
+  color: #797979; }
+
 /*# sourceMappingURL=select.css.map */
