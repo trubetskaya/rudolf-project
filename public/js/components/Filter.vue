@@ -37,16 +37,18 @@
         methods: {
             resetFilters() {
                 this.loadingOverlay = true;
-                $("#catalog-filters select").each(function () {
-                    $(this).val('').trigger("change");
-                });
-                this.filters = {
-                    'year-from' : null,
-                    'year-to' : null,
-                    'price-from' : null,
-                    'price-to' : null,
-                };
-                this.$dispatch('resetList', this.filters);
+                setTimeout(function () {
+                    this.filters = {
+                        'year-from' : null,
+                        'year-to' : null,
+                        'price-from' : null,
+                        'price-to' : null,
+                    };
+                    $("#catalog-filters select[name]").each(function () {
+                        $(this).val('').trigger("change");
+                    });
+                    this.$dispatch('resetList', this.filters);
+                }, 0);
                 setTimeout(function () {
                     this.loadingOverlay = false;
                 }.bind(this), 2000)
