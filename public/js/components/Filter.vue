@@ -20,6 +20,7 @@
             return {
                 'allFilters' : true,
                 'filters' : {
+                    'model' : null,
                     'year-from' : null,
                     'year-to' : null,
                     'price-from' : null,
@@ -33,7 +34,7 @@
                 if ($(e.target).val() != '') {
                     this.loadingOverlay = true;
                     setTimeout(function() {
-                        this.filters[$(e.target).attr('name')] = parseInt($(e.target).val());
+                        this.filters[$(e.target).attr('name')] = $(e.target).val();
                         this.$dispatch('filterList', this.filters);
                     }.bind(this), 0);
                     setTimeout(function() {
@@ -60,19 +61,21 @@
                 setTimeout(function () {
                     this.loadingOverlay = false;
                 }.bind(this), 1000)
-            }
+            },
+            getMarks: function () {
+                var marks = {};
+                for (var i = 0; i < cardListInit.length; i++) {
+                    if (typeof marks[cardListInit[i].mark.name] == 'undefined') {
+                        marks[cardListInit[i].mark.name] = [];
+                    }
+                    if (marks[cardListInit[i].mark.name].indexOf(cardListInit[i].model.name) === -1) {
+                        marks[cardListInit[i].mark.name].push(cardListInit[i].model.name)
+                    }
+                }
+                return marks;
+            },
         },
         computed: {
-            marks: function () {
-                return this.cardList.map(function(i) {
-                    return i.mark.name;
-                });
-            },
-            models: function () {
-                return this.cardList.map(function(i) {
-                    return i.model.name;
-                });
-            },
             yearsFrom: function () {
                 var years = _.map(_.uniqBy(this.cardList, 'year'), function (item) {
                     return item.year;
@@ -135,9 +138,9 @@
                 <div class="row catalog-filter-group">
                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 xs-margin-top">
                         <label>Марка</label>
-                        <select name="model">
-                            <optgroup label="<?=$mark;?>">
-                                <option value="<?=$id?>"></option>
+                        <select name="model" data-dropdown-options='{"label":"Марка"}'>
+                            <optgroup v-for="(mark, models) in getMarks()" :label="mark">
+                                <option v-for="model in models" :value="model">{{model}}</option>
                             </optgroup>
                         </select>
                     </div>

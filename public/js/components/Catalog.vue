@@ -23,16 +23,18 @@
         },
         methods: {
             onFilter(filterValues) {
-                var yearFrom = filterValues['year-from'];
-                var yearTo = filterValues['year-to'];
-                var priceFrom = filterValues['price-from'];
-                var priceTo = filterValues['price-to'];
+                var yearFrom = parseInt(filterValues['year-from']);
+                var yearTo = parseInt(filterValues['year-to']);
+                var priceFrom = parseInt(filterValues['price-from']);
+                var priceTo = parseInt(filterValues['price-to']);
+                var model = filterValues['model'];
                 this.cardList = cardListInit;
                 this.cardList = _.filter(this.cardList, function (item) {
                     return (yearFrom ? item.year >= yearFrom : true)
                         && (yearTo ? item.year <= yearTo : true)
                         && (priceFrom ? item.priceUSD >= priceFrom : true)
-                        && (priceTo ? item.priceUSD <= priceTo : true);
+                        && (priceTo ? item.priceUSD <= priceTo : true)
+                        && (model ? item.model.name == model : true);
                 });
 
                 this.$nextTick(function() {
