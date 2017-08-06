@@ -78,7 +78,7 @@
         computed: {
             yearsFrom: function () {
                 var yearsRange = [];
-                var maxYear = this.filters['year-to'] ? this.filters['year-to'] :  maxYearInit;
+                var maxYear = this.filters['year-to'] ? parseInt(this.filters['year-to']) : maxYearInit;
                 for (var i = minYearInit; i <= maxYear; i++) {
                     yearsRange.push(i)
                 }
@@ -86,14 +86,14 @@
             },
             yearsTo: function () {
                 var yearsRange = [];
-                var minYear = this.filters['year-from'] ? this.filters['year-from'] : minYearInit;
+                var minYear = this.filters['year-from'] ? parseInt(this.filters['year-from']) : minYearInit;
                 for (var i = minYear; i <= maxYearInit; i++) {
                     yearsRange.push(i)
                 }
                 return yearsRange;
             },
             priceUSDFrom: function () {
-                var maxPrice = this.filters['price-to'] ? this.filters['price-to'] : maxPriceInit;
+                var maxPrice = this.filters['price-to'] ? parseInt(this.filters['price-to']) : maxPriceInit;
                 var pricesRange = [];
                 for (var i = minPriceInit; i <= maxPrice; i = i + 1000) {
                     pricesRange.push(i)
@@ -101,7 +101,7 @@
                 return pricesRange;
             },
             priceUSDTo: function () {
-                var minPrice = this.filters['price-from'] ? this.filters['price-from'] : minPriceInit;
+                var minPrice = this.filters['price-from'] ? parseInt(this.filters['price-from']) : minPriceInit;
                 var pricesRange = [];
                 for (var i = minPrice; i <= maxPriceInit; i = i + 1000) {
                     pricesRange.push(i)
