@@ -30,8 +30,16 @@
         },
         ready: function() {
             $("select").on("change", function(e) {
-                this.filters[$(e.target).attr('name')] = parseInt($(e.target).val());
-                this.$dispatch('filterList', this.filters);
+                if ($(e.target).val() != '') {
+                    this.loadingOverlay = true;
+                    setTimeout(function() {
+                        this.filters[$(e.target).attr('name')] = parseInt($(e.target).val());
+                        this.$dispatch('filterList', this.filters);
+                    }.bind(this), 0);
+                    setTimeout(function() {
+                        this.loadingOverlay = false;
+                    }.bind(this), 500);
+                }
             }.bind(this));
         },
         methods: {
@@ -48,10 +56,10 @@
                         $(this).val('').trigger("change");
                     });
                     this.$dispatch('resetList', this.filters);
-                }, 0);
+                }.bind(this), 0);
                 setTimeout(function () {
                     this.loadingOverlay = false;
-                }.bind(this), 2000)
+                }.bind(this), 1000)
             }
         },
         computed: {
