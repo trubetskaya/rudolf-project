@@ -73,4 +73,9 @@
 .fs-dropdown-item.fs-dropdown-item_placeholder {
   color: #797979; }
 
+.fs-dropdown-group {
+  padding: 10px 0 0 5px;
+  font-weight: bold;
+  line-height: 14px; }
+
 /*# sourceMappingURL=select.css.map */

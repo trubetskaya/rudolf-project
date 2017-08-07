@@ -29,6 +29,9 @@
                 var priceTo = parseInt(filterValues['price-to']);
                 var model = filterValues['model'];
                 var body = filterValues['body'];
+                var drive = filterValues['drive'];
+                var fuel = filterValues['fuel'];
+                var transmission = filterValues['transmission'];
                 this.cardList = cardListInit;
                 this.cardList = _.filter(this.cardList, function (item) {
                     return (yearFrom ? item.year >= yearFrom : true)
@@ -36,7 +39,10 @@
                         && (priceFrom ? item.priceUSD >= priceFrom : true)
                         && (priceTo ? item.priceUSD <= priceTo : true)
                         && (model ? item.model.name == model : true)
-                        && (body ? item.body.name == body : true);
+                        && (body ? item.body.name == body : true)
+                        && (drive ? item.drive.name == drive : true)
+                        && (fuel ? item.fuel.name == fuel : true)
+                        && (transmission ? item.transmission.name == transmission : true);
                 });
 
                 this.$nextTick(function() {

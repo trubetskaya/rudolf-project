@@ -26,6 +26,9 @@
                     'price-from' : null,
                     'price-to' : null,
                     'body' : null,
+                    'drive' : null,
+                    'fuel' : null,
+                    'transmission' : null,
                 },
                 'loadingOverlay' : false,
             }
@@ -50,19 +53,33 @@
                 this.loadingOverlay = true;
                 setTimeout(function () {
                     this.filters = {
+                        'model' : null,
                         'year-from' : null,
                         'year-to' : null,
                         'price-from' : null,
                         'price-to' : null,
+                        'body' : null,
+                        'drive' : null,
+                        'fuel' : null,
+                        'transmission' : null,
                     };
                     $("#catalog-filters select[name]").each(function () {
                         $(this).val('').trigger("change");
                     });
-                    this.$dispatch('resetList', this.filters);
+                    this.$dispatch('resetList');
                 }.bind(this), 0);
                 setTimeout(function () {
                     this.loadingOverlay = false;
                 }.bind(this), 1000)
+            },
+            getByName(prop) {
+                var props = [];
+                for (var i = 0; i < cardListInit.length; i++) {
+                    if (props.indexOf(cardListInit[i][prop].name) === -1) {
+                        props.push(cardListInit[i][prop].name)
+                    }
+                }
+                return props;
             },
             getMarks: function () {
                 var marks = {};
@@ -75,15 +92,6 @@
                     }
                 }
                 return marks;
-            },
-            getBodies: function () {
-                var bodies = [];
-                for (var i = 0; i < cardListInit.length; i++) {
-                    if (bodies.indexOf(cardListInit[i].body.name) === -1) {
-                        bodies.push(cardListInit[i].body.name)
-                    }
-                }
-                return bodies;
             },
         },
         computed: {
@@ -135,7 +143,7 @@
                 <div v-show="loadingOverlay" class="loading-overlay"></div>
                 <h2>Купить</h2>
                 <div class="row catalog-filter-group">
-                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 xs-margin-top">
+                    <div class="col-lg-5 col-md-5 col-sm-10 col-xs-12 xs-margin-top">
                         <label>Марка</label>
                         <select name="model" data-dropdown-options='{"label":"Марка"}'>
                             <option value="null">Марка</option>
@@ -180,53 +188,35 @@
                 <div v-show="allFilters" class="row catalog-filter-group">
                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 xs-margin-top">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
-                                <label>Поколение</label>
-                                <select id="">
-                                    <option value="1">One</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-3 col-xs-12">
                                 <label>Кузов</label>
                                 <select id="body" name="body" data-dropdown-options='{"label":"Любой"}'>
                                     <option value="null">Любой</option>
-                                    <option v-for="body in getBodies()" :value="body">{{body}}</option>
+                                    <option v-for="body in getByName('body')" :value="body">{{body}}</option>
                                 </select>
                             </div>
-                            <div class="col-lg-4 col-md-4  col-sm-3 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-3 col-xs-12">
                                 <label>Двигатель</label>
-                                <select>
-                                    <option value="1">One</option>
+                                <select id="fuel" name="fuel" data-dropdown-options='{"label":"Любой"}'>
+                                    <option value="null">Любой</option>
+                                    <option v-for="fuel in getByName('fuel')" :value="fuel">{{fuel}}</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="catalog-clear-box-sm hidden-lg hidden-md hidden-xs"></div>
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 xs-margin-top">
-                        <label>Мощность</label>
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <select>
-                                    <option value="1">One</option>
-                                </select>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <select>
-                                    <option value="1">One</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 xs-margin-top">
                         <label>Коробка</label>
-                        <select>
-                            <option value="1">One</option>
-                        </select>
+                            <select id="transmission" name="transmission" data-dropdown-options='{"label":"Любая"}'>
+                                <option value="null">Любой</option>
+                                <option v-for="transmission in getByName('transmission')" :value="transmission">{{transmission}}</option>
+                            </select>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 xs-margin-top">
                         <label>Привод</label>
-                        <select>
-                            <option value="1">One</option>
+                        <select id="drive" name="drive" data-dropdown-options='{"label":"Любой"}'>
+                            <option value="null">Любой</option>
+                            <option v-for="drive in getByName('drive')" :value="drive">{{drive}}</option>
                         </select>
                     </div>
                 </div>
