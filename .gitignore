@@ -1,0 +1,11 @@
+.vagrant/
+composer.lock
+vendor/
+config/development.config.php
+data/cache/*
+!data/cache/.gitkeep
+phpunit.xml
+public/vendors
+public/storage
+public/dashboard/css/custom.css
+public/dashboard/js/custom.js

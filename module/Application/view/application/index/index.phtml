@@ -1,0 +1,327 @@
+<?php
+/**
+ * @var array $marks
+ * @var Zend\View\Renderer\PhpRenderer $this
+ *
+ * @var Application\Entity\Vehicle $car
+ * @var Dashboard\Entity\Taxonomy $model
+ * @var Dashboard\Entity\Taxonomy $mark
+ */
+?>
+
+<!-- Карусель -->
+<div id="top-carousel" class="carousel slide">
+    <!-- Слайды карусели -->
+    <div class="carousel-inner" style="">
+        <!-- Слайды создаются с помощью контейнера с классом item, внутри которого помещается содержимое слайда -->
+        <div class="active item">
+        </div>
+        <!-- Слайд №2 -->
+        <div class="item">
+        </div>
+        <!-- Слайд №3 -->
+        <div class="item">
+        </div>
+    </div>
+    <div class="container"><!-- Индикаторы для карусели -->
+        <div class="row">
+            <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1">
+            <div class="title">
+                <?= $this->translate("Широкий выбор<br>автомобилей с пробегом");?>
+            </div>
+            <div class="undertitle">
+                <?= $this->translate("Все автомобили прошли полную диагностику, юридическую<br> проверку и предпродажную подготовку.")?>
+            </div>
+            <ol class="carousel-indicators">
+                <!-- Перейти к 0 слайду карусели с помощью соответствующего индекса data-slide-to="0" -->
+                <li data-target="#top-carousel" data-slide-to="0" class="active"></li>
+                <!-- Перейти к 1 слайду карусели с помощью соответствующего индекса data-slide-to="1" -->
+                <li data-target="#top-carousel" data-slide-to="1"></li>
+                <!-- Перейти к 2 слайду карусели с помощью соответствующего индекса data-slide-to="2" -->
+                <li data-target="#top-carousel" data-slide-to="2"></li>
+            </ol>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="list-auto container">
+    <div class="row">
+        <div class="title col-lg-offset-1 col-md-offset-1 col-lg-11 col-md-11 col-sm-12 col-xs-12">
+            <?= $this->translate("Выберите марку автомобиля");?>
+        </div>
+        <div>
+            <!-- Навигация -->
+            <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                            <?= $this->translate("Легковые автомобили");?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
+                            <?=  $this->translate("Коммерческий транспорт");?>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Содержимое вкладок -->
+            <div class="tab-content col-md-12 col-lg-12">
+                <div role="tabpanel" class="tab-pane active row" id="home">
+                    <?php $classes = ['col-sm-4 col-xs-6 col-lg-offset-1 col-md-offset-1',
+                        'col-sm-4 col-xs-6', 'col-sm-4 hidden-xs', 'hidden-sm hidden-xs',
+                        'hidden-sm hidden-xs']; ?>
+
+                    <?php $chunks = array_chunk($marks, ceil(count($marks)/count($classes))); ?>
+                    <?php while ($chunk = array_shift($chunks)) : ?>
+                    <div class="col-lg-2 col-md-2 <?= array_shift($classes)?>">
+                        <ul class="auto-list-list">
+
+                            <?php foreach ($chunk as $item) : ?>
+                                <?php list($model, $count) = $item; ?>
+                                <?php $mark = $model->getRoot(); ?>
+                            <li>
+                                <a href="<?= $this->url('catalog'); ?>?mark=<?=urlencode($mark->getName());?>">
+                                    <?= $model->getRootName() ?>
+                                </a>
+                                <span><?= $count ?></span>
+                            </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <?php endwhile; ?>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <?php $classes = ['col-sm-4 col-xs-6 col-lg-offset-1 col-md-offset-1',
+                        'col-sm-4 col-xs-6', 'col-sm-4 hidden-xs', 'hidden-sm hidden-xs',
+                        'hidden-sm hidden-xs']; ?>
+
+                    <?php $chunks = array_chunk($marks, ceil(count($marks)/count($classes))); ?>
+                    <?php while ($chunk = array_shift($chunks)) : ?>
+                        <div class="col-lg-2 col-md-2 <?= array_shift($classes)?>">
+                            <ul class="auto-list-list">
+
+                                <?php foreach ($chunk as $item) : ?>
+                                    <?php list($model, $count) = $item; ?>
+                                    <?php $mark = $model->getRoot(); ?>
+                                    <li>
+                                        <a href="<?= $this->url('catalog'); ?>?mark=<?=urlencode($mark->getName());?>">
+                                            <?= $model->getRootName() ?>
+                                        </a>
+                                        <span><?= $count ?></span>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="messages"></div>
+                <div role="tabpanel" class="tab-pane" id="settings"></div>
+            </div>
+        </div>
+        <div class="hidden-lg hidden-md col-sm-12 col-xs-12">
+            <button class="transparent-button all-auto-button">
+                Все марки <span class="custom-caret"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="services">
+    <div class="container">
+        <div class="row services-head">
+            <div class="col-lg-offset-1 col-lg-5 col-md-offset-1 col-md-5 col-sm-6 services-head-left">
+                <?= $this->translate('Мы предоставляем<br> различные услуги<br> при покупке и обслуживании<br> автомобиля')?>
+            </div>
+            <div class="services-head-right col-lg-5 col-md-5 col-sm-6">
+                <p class="services-head-right-text">
+                    <?= $this->translate('Все автомобили прошли полную диагностику, юридическую<br>проверку и предпродажную подготовку.')?>
+                </p>
+                <button class="orange-button hidden-xs">
+                    <?= $this->translate('ЗАКАЗАТЬ УСЛУГУ')?>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12">
+                <div class="services-box row col-lg-6 col-md-6 col-sm-6">
+                    <div class="services-box-img">
+                        <img src="/img/services-icons/ic-small-6.png" alt="">
+                    </div>
+                    <div class="services-box-text">
+                        <div class="services-box-text-title">
+                            <?= $this->translate('Cпецпредложение')?>
+                        </div>
+                        <div class="services-box-text-desc">
+                            <?= $this->translate('Все автомобили прошли полную диагностику, юридическую проверку и предпродажную подготовку.')?>
+                        </div>
+                    </div>
+                </div>
+                <div class="services-box row col-lg-6 col-md-6 col-sm-6">
+                    <div class="services-box-img">
+                        <img src="/img/services-icons/ic-small-5.png" alt="">
+                    </div>
+                    <div class="services-box-text">
+                        <div class="services-box-text-title">
+                            <?= $this->translate('Кредитование')?>
+                        </div>
+                        <div class="services-box-text-desc">
+                            <?= $this->translate('33% наших автомобилей продается в кредит. Менеджеры кредитного отдела помогут вам подобрать максимально выгодные условия банка')?>
+                        </div>
+                    </div>
+                </div>
+                <div class="services-box row col-lg-6 col-md-6 col-sm-6">
+                    <div class="services-box-img">
+                        <img src="/img/services-icons/ic-small-4.png" alt="">
+                    </div>
+                    <div class="services-box-text">
+                        <div class="services-box-text-title">
+                            <?= $this->translate('Страхование')?>
+                        </div>
+                        <div class="services-box-text-desc">
+                            <?= $this->translate('Все автомобили прошли полную диагностику, юридическую проверку и предпродажную подготовку.')?>
+                        </div>
+                    </div>
+                </div>
+                <div class="services-box row col-lg-6 col-md-6 col-sm-6">
+                    <div class="services-box-img">
+                        <img src="/img/services-icons/ic-small-6.png" alt="">
+                    </div>
+                    <div class="services-box-text">
+                        <div class="services-box-text-title">
+                            <?= $this->translate('Доставка')?>
+                        </div>
+                        <div class="services-box-text-desc">
+                            <?= $this->translate('Все автомобили прошли полную диагностику, юридическую проверку и предпродажную подготовку.')?>
+                        </div>
+                    </div>
+                </div>
+                <div class="services-box row col-lg-6 col-md-6 col-sm-6">
+                    <div class="services-box-img">
+                        <img src="/img/services-icons/ic-small-2.png" alt="">
+                    </div>
+                    <div class="services-box-text">
+                        <div class="services-box-text-title">
+                            <?= $this->translate('Переоформление \ ГИБДД')?>
+                        </div>
+                        <div class="services-box-text-desc">
+                            <?= $this->translate('33% наших автомобилей продается в кредит. Менеджеры кредитного отдела помогут вам подобрать максимально выгодные условия банка')?>
+                        </div>
+                    </div>
+                </div>
+                <div class="services-box row col-lg-6 col-md-6 col-sm-6">
+                    <div class="services-box-img">
+                        <img src="/img/services-icons/ic-small-1.png" alt="">
+                    </div>
+                    <div class="services-box-text">
+                        <div class="services-box-text-title">
+                            <?= $this->translate('Страхование')?>
+                        </div>
+                        <div class="services-box-text-desc">
+                            <?= $this->translate('Все автомобили прошли полную диагностику, юридическую проверку и предпродажную подготовку.')?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="orange-button hidden-md hidden-lg hidden-sm services-box-bottom-button">
+            <?= $this->translate('ЗАКАЗАТЬ УСЛУГУ')?>
+        </button>
+    </div>
+</div>
+
+<div class="container ">
+    <div class="row info-boxes">
+        <div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-6 top-text-left">
+            <?= $this->translate('Вы можете быть уверены в том, что <br class="hidden-sm hidden-xs">у нас вы приобретете надежный <br class="hidden-sm hidden-xs">автомобиль на лучших условиях');?>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-6 top-text-right">
+            <?= $this->translate('Все автомобили прошли полную диагностику, <br class="hidden-sm hidden-xs">юридическую проверку и предпродажную подготовку.');?>
+        </div>
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-md-offset-1">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="info-box">
+                        <div class="bg-img">
+                            <img src="/img/info-boxes/ic-big-vukup.png" alt="">
+                        </div>
+                        <div class="info-boxes-title">
+                            <?= $this->translate('Cрочный выкуп автомобиля');?>
+                        </div>
+                        <div class="info-boxes-text">
+                            <?= $this->translate('Все автомобили прошли полную диагностику, юридическую проверку и предпродажную подготовку.');?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="info-box">
+                        <div class="bg-img">
+                            <img src="/img/info-boxes/ic-big-traid-in.png" alt="">
+                        </div>
+                        <div class="info-boxes-title">
+                            <?= $this->translate('Обмен/Trade-In');?>
+                        </div>
+                        <div class="info-boxes-text">
+                            <?= $this->translate('Все автомобили прошли полную диагностику, юридическую проверку и предпродажную подготовку.');?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="info-box">
+                        <div class="bg-img">
+                            <img src="/img/info-boxes/ic-big-komis.png" alt="">
+                        </div>
+                        <div class="info-boxes-title">
+                            <?= $this->translate('Комиссионная продажа');?>
+                        </div>
+                        <div class="info-boxes-text">
+                            <?= $this->translate('Все автомобили прошли полную диагностику, юридическую проверку и предпродажную подготовку.');?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="grey-light-block offers-grid-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-1 col-md-5 col-sm-6 col-md-offset-1 col-xs-6 offers-grid-block-left-text">
+                <?= $this->translate('Здесь представлены лучшие <br class="hidden-sm hidden-xs">предложения для вас по <br class="hidden-sm hidden-xs">выгодным ценам');?>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-6 col-xs-6 offers-grid-block-right-text">
+                <?= $this->translate('Все автомобили прошли полную диагностику, <br class="hidden-sm hidden-xs">юридическую проверку и предпродажную подготовку.');?>
+            </div>
+                <div class="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
+                    <div class="row">
+                        <?php foreach (array_slice($sales, 0, 6) as $item) : ?>
+                            <?= $this->render('partial/vehicle.phtml', ['item' => $item]); ?>
+                        <?php endforeach; ?>
+                        <div class="hidden-lg hidden-md col-sm-12 col-xs-12">
+                            <button class="transparent-button offer-grid-more-button">0</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="info-box-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+                <div class="info-box-bg-text">
+                    <?= $this->translate("Для продукции немецкой или японской автомобильной <br class='hidden-md hidden-sm hidden-xs'>промышленности пробег в 100 тысяч км не считается <br class='hidden-md hidden-sm hidden-xs'>критическим, при котором бу машина требует <br class='hidden-md hidden-sm hidden-xs'>капитального ремонта. ");?>
+                </div>
+                <button class="info-box-bg-button orange-button">
+                    <?= $this->translate("ЗАКАЗАТЬ УСЛУГУ");?>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

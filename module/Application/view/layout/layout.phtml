@@ -1,0 +1,182 @@
+<?= $this->doctype() ?>
+
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <?= $this->headTitle('Rudolf Autohaus')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?= $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge') ?>
+
+        <!-- Scripts -->
+        <?= $this->headScript()
+            ->prependFile($this->basePath('js/bootstrap.min.js'))
+            ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
+            ->appendFile($this->basePath('js/index.js'))
+            ->appendFile($this->basePath('js/formstone/js/core.js'))
+            ->appendFile($this->basePath('js/formstone/js/dropdown.js'))
+            ->appendFile($this->basePath('js/formstone/js/checkbox.js'))
+            ->appendFile($this->basePath('js/formstone/js/scrollbar.js'))
+            ->appendFile($this->basePath('js/formstone/js/touch.js'))
+            ->appendFile($this->basePath('js/jquery.jcarousel.min.js'))
+            ->appendFile($this->basePath('js/jcarousel.skeleton.js'))
+            ->appendFile($this->basePath('js/build.js')) ?>
+
+        <!-- Le styles -->
+        <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath('/img/favicon.ico')])
+            ->prependStylesheet($this->basePath('css/main.css'))
+            ->prependStylesheet($this->basePath('css/select.css'))
+            ->prependStylesheet($this->basePath('css/checkbox.css'))
+            ->prependStylesheet($this->basePath('css/header.css'))
+            ->prependStylesheet($this->basePath('css/footer.css'))
+            ->prependStylesheet($this->basePath('css/homepage.css'))
+            ->prependStylesheet($this->basePath('css/catalog.css'))
+            ->prependStylesheet($this->basePath('css/card.css'))
+            ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+            ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+
+            ->appendStylesheet($this->basePath('js/formstone/css/dropdown.css'))
+            ->appendStylesheet($this->basePath('js/formstone/css/checkbox.css'))
+            ->appendStylesheet($this->basePath('js/formstone/css/scrollbar.css'))
+            ->appendStylesheet($this->basePath('css/jcarousel.skeleton.css'))
+        ?>
+    </head>
+    <body>
+        <nav class="navbar navbar-fixed-top
+            <?php echo ($this->currentRoute()->getRoute() == 'home') ? 'transparent' : ''?>
+            " data-transparent="<?php echo (string)($this->currentRoute()->getRoute() == 'home')?>"
+             role="navigation"
+        >
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="<?= $this->url('home') ?>">
+                        <img src="/img/header/logo.png" alt="Rudolf-autohaus"/>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav" id="navbar-collapse">
+                        <li class="dropdown-close-button">
+                            <button type="button" class="close" data-toggle="collapse" data-target=".navbar-collapse"></button>
+                        </li>
+                        <li class="dropdown-duplicate">
+                            <a href="<?=$this->url('catalog'); ?>" class="active">
+                                <?= $this->translate('Купить');?>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="<?=$this->url('catalog'); ?>" class="dropdown-toggle" data-toggle="dropdown">
+                                <?= $this->translate('Купить');?>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><?= $this->translate('Легковые');?></a></li>
+                                <li><a href="#"><?= $this->translate('Коммерческий транспорт');?></a></li>
+                                <li><a href="#"><?= $this->translate('Мотоциклы');?></a></li>
+                                <li><a href="#"><?= $this->translate('Подборки');?></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><?= $this->translate('Продать');?></a></li>
+                        <li><a href="#"><?= $this->translate('Услуги');?></a></li>
+                        <li><a href="#"><?= $this->translate('Компания');?></a></li>
+                        <li><a href="/contacts"><?= $this->translate('Контакты');?></a></li>
+                    </ul>
+                </div>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="navbar-right-telephone hidden-sm hidden-xs"><a href="#">+38 063-123-45-67</a></li>
+                    <li class="navbar-right-delimeter hidden-sm hidden-xs"></li>
+                    <li><a href="#"><img src="/img/header/gear.png" width="30" height="30"></a></li>
+                </ul>
+            </div>
+        </nav>
+    <div class="<?php echo ($this->currentRoute()->getRoute() == 'home') ? 'content-holder' : ''?>">
+        <div class="container">
+            <?php
+                $flash = $this->flashMessenger();
+                $flash->setMessageCloseString('</li></ul></div>')
+                    ->setMessageOpenFormat('<div%s><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><ul><li>')
+                    ->setMessageSeparatorString('</li><li>');
+
+                echo $flash->render('error',   array('alert', 'alert-dismissible', 'alert-danger'));
+                echo $flash->render('info',    array('alert', 'alert-dismissible', 'alert-info'));
+                echo $flash->render('default', array('alert', 'alert-dismissible', 'alert-warning'));
+                echo $flash->render('success', array('alert', 'alert-dismissible', 'alert-success'));
+                echo $flash->render('zfcuser-login-form', array('alert', 'alert-dismissible', 'alert-danger'));
+            ?>
+        </div>
+        <?= $this->content ?>
+        <footer>
+            <div class="container hidden-xs hidden-sm" id="footer-link-list">
+                <div class="col-lg-5ths col-md-5ths col-sm-5ths">
+                    <ul>
+                        <li><?= $this->translate('Компания');?></li>
+                        <li><a href="#"><?= $this->translate('О компании');?></a></li>
+                        <li><a href="#"><?= $this->translate('Блог');?></a></li>
+                        <li><a href="#"><?= $this->translate('Команда');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клиенты');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                        <li><a href="#"><?= $this->translate('Партнеры');?></a></li>
+                        <li><a href="#"><?= $this->translate('Корпоративные клиенты');?></a></li>
+                        <li><a href="#"><?= $this->translate('Контакты');?></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-5ths col-md-5ths col-sm-5ths">
+                    <ul>
+                        <li><?= $this->translate('Компания');?></li>
+                        <li><a href="#"><?= $this->translate('О компании');?></a></li>
+                        <li><a href="#"><?= $this->translate('Блог');?></a></li>
+                        <li><a href="#"><?= $this->translate('Команда');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клиенты');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                        <li><a href="#"><?= $this->translate('Партнеры');?></a></li>
+                        <li><a href="#"><?= $this->translate('Корпоративные клиенты');?></a></li>
+                        <li><a href="#"><?= $this->translate('Контакты');?></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-5ths col-md-5ths col-sm-5ths">
+                    <ul>
+                        <li><?= $this->translate('Продать');?></li>
+                        <li><a href="#"><?= $this->translate('Срочный выкуп');?></a></li>
+                        <li><a href="#"><?= $this->translate('Обмен / Trade-in');?></a></li>
+                        <li><a href="#"><?= $this->translate('Комисионная продажа');?></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-5ths col-md-5ths col-sm-5ths">
+                    <ul>
+                        <li><?= $this->translate('Купить');?></li>
+                        <li><a href="#"><?= $this->translate('Легковые автомобили');?></a></li>
+                        <li><a href="#"><?= $this->translate('Коммерческий транспорт');?></a></li>
+                        <li><a href="#"><?= $this->translate('Мотоциклы');?></a></li>
+                        <li><a href="#"><?= $this->translate('Подборки');?></a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-5ths col-md-5ths col-sm-5ths">
+                    <ul>
+                        <li><?= $this->translate('Услуги');?></li>
+                        <li><a href="#"><?= $this->translate('О компании');?></a></li>
+                        <li><a href="#"><?= $this->translate('Блог');?></a></li>
+                        <li><a href="#"><?= $this->translate('Команда');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клиенты');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                        <li><a href="#"><?= $this->translate('Клуб привилегий');?></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="copyright">
+                <div class="container">
+                    <b>&copy; 2017 Rudolf Autohaus.</b> Все права защищены
+                </div>
+            </div>
+        </footer>
+    </div>
+        <?= $this->inlineScript() ?>
+    </body>
+</html>

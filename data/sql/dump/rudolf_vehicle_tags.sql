@@ -1,0 +1,9 @@
+INSERT INTO rudolf.vehicle_tags (vehicle_id, tag_id) VALUES (1, 41213);
+INSERT INTO rudolf.vehicle_tags (vehicle_id, tag_id) VALUES (2, 41212);
+INSERT INTO rudolf.vehicle_tags (vehicle_id, tag_id) VALUES (2, 41213);
+INSERT INTO rudolf.vehicle_tags (vehicle_id, tag_id) VALUES (3, 41212);
+INSERT INTO rudolf.vehicle_tags (vehicle_id, tag_id) VALUES (3, 41213);
+INSERT INTO rudolf.vehicle_tags (vehicle_id, tag_id) VALUES (7, 41211);
+INSERT INTO rudolf.vehicle_tags (vehicle_id, tag_id) VALUES (7, 41213);
+INSERT INTO rudolf.vehicle_tags (vehicle_id, tag_id) VALUES (8, 41212);
+INSERT INTO rudolf.vehicle_tags (vehicle_id, tag_id) VALUES (9, 41212);

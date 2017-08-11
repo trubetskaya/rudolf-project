@@ -1,0 +1,110 @@
+// ------------------------ //
+// ------ DROPZONE -------- //
+// ------------------------ //
+.row.dropzone {
+  min-height: 703px;
+
+  .dz-preview {
+    margin: auto;
+
+    .dz-image {
+      border-radius: 50%;
+      height: auto;
+      width: 89px;
+
+      img {
+        background-position: center;
+        background-size: cover;
+        width: 89px;
+      }
+    }
+
+    .dz-details {
+      left: auto;
+      max-width: none;
+      min-width: 100px;
+      padding: unset;
+      top: auto;
+
+      .tooltip-inner {
+        font-size: 11px;
+        max-width: none;
+      }
+    }
+  }
+}
+
+// ------------------------- //
+// ------ DATATABLES ------- //
+// ------------------------- //
+div.dataTables_wrapper {
+
+  div.row {
+
+    div.dataTables_processing {
+      height: auto;
+      left: auto;
+      margin: 0;
+      position: relative;
+      top: auto;
+    }
+  }
+}
+
+table.datatable {
+
+  > tbody {
+
+    > tr[role="row"] {
+
+      > td {
+        vertical-align: middle;
+
+        .thumbnail {
+          margin-bottom: 0;
+
+          img {
+            background-position: center;
+            background-size: cover;
+          }
+
+        }
+
+        .description {
+
+          h4 {
+            > span.small {
+              padding-left: 10px;
+            }
+          }
+
+        }
+
+        .truncated {
+          -webkit-box-orient: vertical;
+          display: block;
+          display: -webkit-box;
+          height: 40px;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      td:first-child {
+        cursor: move;
+      }
+    }
+  }
+}
+
+.v-options {
+
+  label {
+    font-size: .7em;
+
+    .icheckbox_flat-green {
+      margin-right: 2px;
+    }
+  }
+}

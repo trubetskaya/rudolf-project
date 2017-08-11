@@ -1,0 +1,6 @@
+INSERT INTO rudolf.vehicle (id, fuel, transmission, currency_id, registration_date, volume, mileage, amount, body_type, drive_type, model) VALUES (1, 41207, 41199, 1, 1999, 37.00, 400, 13000.00, 41219, 41221, 963);
+INSERT INTO rudolf.vehicle (id, fuel, transmission, currency_id, registration_date, volume, mileage, amount, body_type, drive_type, model) VALUES (2, 41206, 41200, 1, 2002, 3.50, 150, 15500.00, 41219, 41222, 11);
+INSERT INTO rudolf.vehicle (id, fuel, transmission, currency_id, registration_date, volume, mileage, amount, body_type, drive_type, model) VALUES (3, 41205, 41200, 1, 2014, 2.20, 170000, 11599.99, 41219, 41222, 94);
+INSERT INTO rudolf.vehicle (id, fuel, transmission, currency_id, registration_date, volume, mileage, amount, body_type, drive_type, model) VALUES (7, 41205, 41199, 1, 2010, 6.30, 60, 28000.03, 41219, 41222, 963);
+INSERT INTO rudolf.vehicle (id, fuel, transmission, currency_id, registration_date, volume, mileage, amount, body_type, drive_type, model) VALUES (8, 41206, 41200, 2, 1978, 4.20, 430, 150000.00, 41219, 41222, 34811);
+INSERT INTO rudolf.vehicle (id, fuel, transmission, currency_id, registration_date, volume, mileage, amount, body_type, drive_type, model) VALUES (9, 41206, 41200, 2, 1978, 4.20, 430, 150000.00, 41219, 41222, 34811);
