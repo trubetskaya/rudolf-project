@@ -2,17 +2,19 @@
 
     var _ = require('lodash');
 
-    var years = _.map(_.uniqBy(cardListInit, 'year'), function (item) {
-        return item.year;
-    });
-    var minYearInit = Math.min.apply(Math, years);
-    var maxYearInit = Math.max.apply(Math, years);
+    if (typeof cardListInit != 'undefined') {
+        var years = _.map(_.uniqBy(cardListInit, 'year'), function (item) {
+            return item.year;
+        });
+        var minYearInit = Math.min.apply(Math, years);
+        var maxYearInit = Math.max.apply(Math, years);
 
-    var prices = _.map(_.uniqBy(cardListInit, 'priceUSD'), function (item) {
-        return item.priceUSD;
-    });
-    var minPriceInit = Math.floor(Math.min.apply(Math, prices) / 1000) * 1000;
-    var maxPriceInit = Math.ceil(Math.max.apply(Math, prices) / 1000) * 1000;
+        var prices = _.map(_.uniqBy(cardListInit, 'priceUSD'), function (item) {
+            return item.priceUSD;
+        });
+        var minPriceInit = Math.floor(Math.min.apply(Math, prices) / 1000) * 1000;
+        var maxPriceInit = Math.ceil(Math.max.apply(Math, prices) / 1000) * 1000;
+    }
 
     module.exports = {
         props:['cardList'],
