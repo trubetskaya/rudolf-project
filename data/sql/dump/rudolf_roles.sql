@@ -1,3 +1,3 @@
-INSERT INTO rudolf.roles (name) VALUES ('admin');
-INSERT INTO rudolf.roles (name) VALUES ('guest');
-INSERT INTO rudolf.roles (name) VALUES ('manager');
+INSERT INTO rudolf.roles (id, name) VALUES (3, 'admin');
+INSERT INTO rudolf.roles (id, name) VALUES (1, 'guest');
+INSERT INTO rudolf.roles (id, name) VALUES (2, 'manager');

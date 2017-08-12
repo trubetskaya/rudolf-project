@@ -3,36 +3,16 @@
 // ------------------------ //
 .row.dropzone {
   min-height: 703px;
-
-  .dz-preview {
-    margin: auto;
-
-    .dz-image {
-      border-radius: 50%;
-      height: auto;
-      width: 89px;
-
-      img {
-        background-position: center;
-        background-size: cover;
-        width: 89px;
-      }
-    }
-
-    .dz-details {
-      left: auto;
-      max-width: none;
-      min-width: 100px;
-      padding: unset;
-      top: auto;
-
-      .tooltip-inner {
-        font-size: 11px;
-        max-width: none;
-      }
+  .view-first {
+    img {
+      width: 100%;
+      display: block;
+      background-position: center;
+      background-size: cover;
     }
   }
 }
+
 
 // ------------------------- //
 // ------ DATATABLES ------- //
