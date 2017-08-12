@@ -1,0 +1,51 @@
+<div class="container texts">
+    <div class="row">
+        <div class="texts-title ol-lg-offset-1 col-md-offset-1 col-lg-11 col-md-11 col-sm-12 col-xs-12">
+            <?= $this->translate("Адреса салонов");?>
+        </div>
+        <div class="">
+            <!-- Навигация -->
+            <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                            <?= $this->translate("Автоклуб");?>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        <!-- Содержимое вкладок -->
+        <div class="tab-content col-md-12 col-lg-12">
+            <div role="tabpanel" class="tab-pane active row" id="home">
+                <div class="address-map col-lg-offset-1 col-md-offset-1 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div id="map">
+                    </div>
+                    <div class="address-map-title">Rudolf autohaus, Киев</div>
+                    <div class="address-map-text">
+                        г. Киев, ул. Артема, 16а<br>
+                        с 09-00 до 21-00, без выходных<br>
+                        +7 495 730 16 16<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp-WTL9ECBNG14mE9nr-mdDC-iQ1nTnqg&callback=initMap">
+</script>

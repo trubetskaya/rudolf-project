@@ -58,5 +58,11 @@ namespace Application\Controller {
 
             return $viewModel;
         }
+
+        public function contactsAction() {
+            $viewModel = new ViewModel;
+
+            return $viewModel;
+        }
     }
 }

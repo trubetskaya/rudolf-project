@@ -49,6 +49,16 @@ namespace Application {
                         ],
                     ],
                 ],
+                'contacts' => [
+                    'type' => Http\Literal::class,
+                    'options' => [
+                        'route' => '/contacts',
+                        'defaults' => [
+                            'controller' => Controller\IndexController::class,
+                            'action' => 'contacts',
+                        ],
+                    ],
+                ],
 
                 'application' => [
                     'type' => Http\Segment::class,
