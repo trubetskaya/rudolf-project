@@ -43,8 +43,8 @@ return [
                 'params' => [
                     'host'     => 'localhost',
                     'port'     => '3306',
-                    'user'     => 'rudolf',
-                    'password' => 'passwd',
+                    'user'     => 'root',
+                    'password' => '123',
                     'dbname'   => 'rudolf',
                     'charset'  => 'utf8',
                     'driverOptions' => [
@@ -61,19 +61,19 @@ return [
             'orm_default' => [
                 // metadata cache instance to use. The retrieved service name will
                 // be `doctrine.cache.$thisSetting`
-                'metadata_cache'    => 'array',
+                'metadata_cache'    => 'filesystem',
 
                 // DQL queries parsing cache instance to use. The retrieved service
                 // name will be `doctrine.cache.$thisSetting`
-                'query_cache'       => 'array',
+                'query_cache'       => 'filesystem',
 
                 // ResultSet cache to use.  The retrieved service name will be
                 // `doctrine.cache.$thisSetting`
-                'result_cache'      => 'array',
+                'result_cache'      => 'filesystem',
 
                 // Hydration cache to use.  The retrieved service name will be
                 // `doctrine.cache.$thisSetting`
-                'hydration_cache'   => 'array',
+                'hydration_cache'   => 'filesystem',
 
                 // Mapping driver instance to use. Change this only if you don't want
                 // to use the default chained driver. The retrieved service name will
