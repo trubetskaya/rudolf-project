@@ -123,15 +123,12 @@ namespace Application {
             ],
         ],
 
-        'image' => [
-            'dim' => [
-                '1461x1050' => [
-                    'small' => '487x350',
-                    'quadratic' => '250x250',
-                ]
+        'images' => [
+            '1461x1050' => [
+                'small' => '487x350',
+                'quadratic' => '250x250',
             ]
         ]
-
     ];
 
 }
