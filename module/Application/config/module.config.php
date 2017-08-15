@@ -59,7 +59,16 @@ namespace Application {
                         ],
                     ],
                 ],
-
+                'sale' => [
+                    'type' => Http\Literal::class,
+                    'options' => [
+                        'route' => '/sale',
+                        'defaults' => [
+                            'controller' => Controller\InfoController::class,
+                            'action' => 'sale',
+                        ],
+                    ],
+                ],
                 'application' => [
                     'type' => Http\Segment::class,
                     'options' => [
@@ -99,6 +108,7 @@ namespace Application {
             'factories' => [
                 Controller\IndexController::class => InvokableFactory::class,
                 Controller\CatalogController::class => InvokableFactory::class,
+                Controller\InfoController::class => InvokableFactory::class,
             ],
 
             'aliases' => [

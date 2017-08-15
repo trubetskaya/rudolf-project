@@ -1,0 +1,71 @@
+.sale-tab-content {
+  margin-top: 30px;
+  width: 100%;
+}
+.urgent-sale-top-bg {
+  overflow: hidden;
+  background-color: #555963;
+  height: 401px;
+  background: url("/img/bg-images/photo-first.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 5;
+  margin: 0 auto;
+}
+.urgent-sale-top-bg-left-text {
+  margin-top: 90px;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.39;
+  text-align: left;
+  color: #ffffff;
+}
+.urgent-sale-top-bg-right-text {
+  margin-top: 118px;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: left;
+  color: #ffffff;
+  button {
+    margin-top: 41px;
+  }
+}
+.urgent-sale-box-title {
+  margin-top: 45px;
+  margin-bottom: 34px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 2.08;
+  text-align: left;
+  color: #2d2a2a;
+}
+.urgent-sale-box-image-bg-holder {
+  width: 80px;
+  overflow: visible;
+  float: left;
+}
+.urgent-sale-box-info-title {
+  float: left;
+  height: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.39;
+  text-align: left;
+  color: #2d2a2a;
+  margin-bottom: 9px;
+  width: calc(100% - 80px);
+}
+.urgent-sale-box-info-text {
+  float: left;
+  opacity: 0.5;
+  font-size: 13px;
+  line-height: 1.21;
+  text-align: left;
+  color: #797979;
+  width: calc(100% - 80px);
+  padding-bottom: 48px;
+  padding-left: 10px;
+}
+.urgent-sale-box {
+  margin-bottom: 40px;
+}
