@@ -69,6 +69,16 @@ namespace Application {
                         ],
                     ],
                 ],
+                'services' => [
+                    'type' => Http\Literal::class,
+                    'options' => [
+                        'route' => '/services',
+                        'defaults' => [
+                            'controller' => Controller\InfoController::class,
+                            'action' => 'services',
+                        ],
+                    ],
+                ],
                 'application' => [
                     'type' => Http\Segment::class,
                     'options' => [

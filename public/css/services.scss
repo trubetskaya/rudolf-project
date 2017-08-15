@@ -1,17 +1,12 @@
-.sale-tab-content {
-  margin-top: 30px;
-}
-.urgent-sale-top-bg {
+.info-common-top-bg {
   overflow: hidden;
   background-color: #555963;
-  height: 401px;
-  background: url("/img/bg-images/photo-first.png") no-repeat;
   background-size: cover;
   background-position: center;
   z-index: 5;
   margin: 0 auto;
 }
-.urgent-sale-top-bg-left-text {
+.info-common-top-bg-left-text {
   margin-top: 90px;
   font-size: 36px;
   font-weight: 600;
@@ -19,17 +14,19 @@
   text-align: left;
   color: #ffffff;
 }
-.urgent-sale-top-bg-right-text {
-  margin-top: 118px;
-  font-size: 16px;
-  line-height: 1.25;
-  text-align: left;
-  color: #ffffff;
+.info-common-top-bg-right-text {
+  p{
+    margin-top: 118px;
+    font-size: 16px;
+    line-height: 1.25;
+    text-align: left;
+    color: #ffffff;
+  }
   button {
     margin-top: 41px;
   }
 }
-.urgent-sale-box-title {
+.info-common-main-title {
   margin-top: 45px;
   margin-bottom: 34px;
   font-size: 24px;
@@ -38,12 +35,12 @@
   text-align: left;
   color: #2d2a2a;
 }
-.urgent-sale-box-image-bg-holder {
+.info-common-main-box-image-bg-holder {
   width: 80px;
   overflow: visible;
   float: left;
 }
-.urgent-sale-box-info-title {
+.info-common-main-box-title {
   float: left;
   height: 20px;
   font-size: 16px;
@@ -54,7 +51,7 @@
   margin-bottom: 9px;
   width: calc(100% - 80px);
 }
-.urgent-sale-box-info-text {
+.info-common-main-box-text {
   float: left;
   opacity: 0.5;
   font-size: 13px;
@@ -65,6 +62,6 @@
   padding-bottom: 48px;
   padding-left: 10px;
 }
-.urgent-sale-box {
-  margin-bottom: 40px;
+.info-common-main-box{
+
 }
