@@ -159,4 +159,85 @@
         max-width: 400px;
         width: 100%; } }
 
+.expert {
+  margin-top: 30px; }
+  .expert .info-common-top-bg {
+    overflow: hidden;
+    background-color: #555963;
+    background-size: cover;
+    background-position: center;
+    z-index: 5;
+    margin: 0 auto;
+    height: 401px;
+    background: url("/img/bg-images/photo-first.png") no-repeat; }
+  .expert .info-common-top-bg-left-text {
+    margin-top: 90px;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.39;
+    text-align: left;
+    color: #ffffff; }
+    @media screen and (max-width: 768px) {
+      .expert .info-common-top-bg-left-text {
+        margin-top: 60px; } }
+  .expert .info-common-top-bg-right-text p {
+    margin-top: 118px;
+    font-size: 16px;
+    line-height: 1.25;
+    text-align: left;
+    color: #ffffff; }
+    @media screen and (max-width: 768px) {
+      .expert .info-common-top-bg-right-text p {
+        margin-top: 50px; } }
+  .expert .info-common-top-bg-right-text button {
+    margin-top: 41px; }
+    @media screen and (max-width: 768px) {
+      .expert .info-common-top-bg-right-text button {
+        margin-top: 41px; } }
+  .expert .info-common-main-title {
+    margin-top: 45px;
+    margin-bottom: 34px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 2.08;
+    text-align: left;
+    color: #2d2a2a; }
+  .expert .info-common-main-box-image-bg-holder {
+    width: 80px;
+    overflow: visible;
+    float: left; }
+  .expert .info-common-main-box-title {
+    float: left;
+    height: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.39;
+    text-align: left;
+    color: #2d2a2a;
+    margin-bottom: 9px;
+    width: calc(100% - 80px); }
+    @media screen and (max-width: 768px) {
+      .expert .info-common-main-box-title {
+        height: auto; } }
+  .expert .info-common-main-box-text {
+    float: left;
+    opacity: 0.5;
+    font-size: 13px;
+    line-height: 1.21;
+    text-align: left;
+    color: #797979;
+    width: calc(100% - 80px);
+    padding-bottom: 48px;
+    padding-left: 10px; }
+  .expert .info-common-main-box {
+    background-color: #f3f4f5;
+    padding-bottom: 45px; }
+  .expert .info-common-main-box-box {
+    float: left;
+    height: 150px; }
+    @media screen and (max-width: 768px) {
+      .expert .info-common-main-box-box {
+        max-width: 400px;
+        width: 100%; } }
+
 /*# sourceMappingURL=insurance.css.map */
