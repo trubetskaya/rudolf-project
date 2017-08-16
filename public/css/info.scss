@@ -83,6 +83,8 @@ $screen-sm:768px;
   margin-bottom: 40px;
 }
 .urgent-sale-box-info{
-  max-width: 400px;
-  width: 100%;
+  @media screen and (max-width: $screen-sm) {
+    max-width: 400px;
+    width: 100%;
+  }
 }
