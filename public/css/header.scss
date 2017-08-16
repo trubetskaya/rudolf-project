@@ -35,7 +35,7 @@ nav {
       position: fixed;
       background-color: #555963;
       width: 100%;
-      height:100%;
+      height:120%;
       max-height: 100%!important;
       z-index: 1;
     }
@@ -86,12 +86,14 @@ nav {
           float: right;
           margin-top: 20px;
           background: url("/img/header/ic-up-menu-mob-default.png") no-repeat;
+          background-size: 10px 5px;
           border: 0;
           width: 10px;
           height: 5px;
         }
         &.open a .caret {
           background: url("/img/header/ic-down-menu-mob-hover.png") no-repeat;
+          background-size: 10px 5px;
           border: 0;
           width: 10px;
           height: 5px;
