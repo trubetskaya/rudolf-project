@@ -1,3 +1,4 @@
+$screen-sm:768px;
 .sale-tab-content {
   margin-top: 30px;
 }
@@ -18,6 +19,10 @@
   line-height: 1.39;
   text-align: left;
   color: #ffffff;
+
+  @media screen and (max-width: $screen-sm) {
+    margin-top: 40px;
+  }
 }
 .urgent-sale-top-bg-right-text {
   margin-top: 118px;
@@ -25,8 +30,14 @@
   line-height: 1.25;
   text-align: left;
   color: #ffffff;
+  @media screen and (max-width: $screen-sm) {
+    margin-top: 38px;
+  }
   button {
     margin-top: 41px;
+    @media screen and (max-width: $screen-sm) {
+      margin-top: 30px;
+    }
   }
 }
 .urgent-sale-box-title {
@@ -53,6 +64,9 @@
   color: #2d2a2a;
   margin-bottom: 9px;
   width: calc(100% - 80px);
+  @media screen and (max-width: $screen-sm) {
+    height: auto;
+  }
 }
 .urgent-sale-box-info-text {
   float: left;
@@ -63,8 +77,12 @@
   color: #797979;
   width: calc(100% - 80px);
   padding-bottom: 48px;
-  padding-left: 10px;
+  padding-right: 5px;
 }
 .urgent-sale-box {
   margin-bottom: 40px;
+}
+.urgent-sale-box-info{
+  max-width: 400px;
+  width: 100%;
 }
