@@ -16,14 +16,23 @@
     line-height: 1.39;
     text-align: left;
     color: #ffffff; }
+    @media screen and (max-width: 768px) {
+      .insurance .info-common-top-bg-left-text {
+        margin-top: 40px; } }
   .insurance .info-common-top-bg-right-text p {
     margin-top: 118px;
     font-size: 16px;
     line-height: 1.25;
     text-align: left;
     color: #ffffff; }
+    @media screen and (max-width: 768px) {
+      .insurance .info-common-top-bg-right-text p {
+        margin-top: 38px; } }
   .insurance .info-common-top-bg-right-text button {
     margin-top: 41px; }
+    @media screen and (max-width: 768px) {
+      .insurance .info-common-top-bg-right-text button {
+        margin-top: 30px; } }
   .insurance .info-common-main-title {
     margin-top: 45px;
     margin-bottom: 34px;
@@ -46,6 +55,9 @@
     color: #2d2a2a;
     margin-bottom: 9px;
     width: calc(100% - 80px); }
+    @media screen and (max-width: 768px) {
+      .insurance .info-common-main-box-title {
+        height: auto; } }
   .insurance .info-common-main-box-text {
     float: left;
     opacity: 0.5;
@@ -59,6 +71,12 @@
   .insurance .info-common-main-box {
     background-color: #f3f4f5;
     padding-bottom: 45px; }
+  .insurance .info-common-main-box-box {
+    float: left; }
+    @media screen and (max-width: 768px) {
+      .insurance .info-common-main-box-box {
+        max-width: 400px;
+        width: 100%; } }
 
 .credit {
   margin-top: 30px; }
@@ -78,14 +96,23 @@
     line-height: 1.39;
     text-align: left;
     color: #ffffff; }
+    @media screen and (max-width: 768px) {
+      .credit .info-common-top-bg-left-text {
+        margin-top: 60px; } }
   .credit .info-common-top-bg-right-text p {
     margin-top: 118px;
     font-size: 16px;
     line-height: 1.25;
     text-align: left;
     color: #ffffff; }
+    @media screen and (max-width: 768px) {
+      .credit .info-common-top-bg-right-text p {
+        margin-top: 50px; } }
   .credit .info-common-top-bg-right-text button {
     margin-top: 41px; }
+    @media screen and (max-width: 768px) {
+      .credit .info-common-top-bg-right-text button {
+        margin-top: 41px; } }
   .credit .info-common-main-title {
     margin-top: 45px;
     margin-bottom: 34px;
@@ -108,6 +135,9 @@
     color: #2d2a2a;
     margin-bottom: 9px;
     width: calc(100% - 80px); }
+    @media screen and (max-width: 768px) {
+      .credit .info-common-main-box-title {
+        height: auto; } }
   .credit .info-common-main-box-text {
     float: left;
     opacity: 0.5;
@@ -121,5 +151,12 @@
   .credit .info-common-main-box {
     background-color: #f3f4f5;
     padding-bottom: 45px; }
+  .credit .info-common-main-box-box {
+    float: left;
+    height: 124px; }
+    @media screen and (max-width: 768px) {
+      .credit .info-common-main-box-box {
+        max-width: 400px;
+        width: 100%; } }
 
 /*# sourceMappingURL=insurance.css.map */
