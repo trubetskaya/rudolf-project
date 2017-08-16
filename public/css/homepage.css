@@ -8,12 +8,19 @@
     letter-spacing: -0.3px;
     text-align: left;
     color: #2d2a2a; }
+    @media screen and (max-width: 768px) {
+      .list-auto .title {
+        font-size: 22px;
+        white-space: nowrap; } }
   .list-auto ul.nav-tabs {
     border-bottom: none;
     padding-top: 19px; }
     .list-auto ul.nav-tabs li {
       border-bottom: 1px #e3e3e3 solid;
       padding-right: 45px; }
+      @media screen and (max-width: 768px) {
+        .list-auto ul.nav-tabs li {
+          padding-right: 25px; } }
       .list-auto ul.nav-tabs li:last-child {
         padding-right: 0; }
       .list-auto ul.nav-tabs li.active {

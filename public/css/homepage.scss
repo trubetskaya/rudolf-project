@@ -16,6 +16,11 @@ $screen-md:992px;
     letter-spacing: -0.3px;
     text-align: left;
     color: #2d2a2a;
+    @media screen and (max-width:$screen-sm) {
+      font-size: 22px;
+      white-space: nowrap;
+    }
+
   }
   ul.nav-tabs {
     border-bottom: none;
@@ -23,6 +28,9 @@ $screen-md:992px;
     li {
       border-bottom: 1px $gray-light solid;
       padding-right: 45px;
+      @media screen and (max-width:$screen-sm) {
+        padding-right: 25px;
+      }
       &:last-child {
         padding-right: 0;
       }
