@@ -64,7 +64,8 @@
                             <button type="button" class="close" data-toggle="collapse" data-target=".navbar-collapse"></button>
                         </li>
                         <li class="dropdown-duplicate">
-                            <a href="<?=$this->url('catalog'); ?>" class="active">
+                            <a href="<?=$this->url('catalog'); ?>"
+                               class="<?php echo ($this->currentRoute()->getRoute() == 'catalog') ? 'active' : ''?>">
                                 <?= $this->translate('Купить');?>
                             </a>
                         </li>
@@ -80,10 +81,26 @@
                                 <li><a href="#"><?= $this->translate('Подборки');?></a></li>
                             </ul>
                         </li>
-                        <li><a href="/sale"><?= $this->translate('Продать');?></a></li>
-                        <li><a href="/services"><?= $this->translate('Услуги');?></a></li>
-                        <li><a href="/company"><?= $this->translate('Компания');?></a></li>
-                        <li><a href="/contacts"><?= $this->translate('Контакты');?></a></li>
+                        <li><a href="/sale"
+                               class="<?php echo ($this->currentRoute()->getRoute() == 'sale') ? 'active' : ''?>"
+                            >
+                                <?= $this->translate('Продать');?>
+                            </a></li>
+                        <li><a href="/services"
+                               class="<?php echo ($this->currentRoute()->getRoute() == 'services') ? 'active' : ''?>"
+                            >
+                                <?= $this->translate('Услуги');?></a>
+                        </li>
+                        <li><a href="/company"
+                               class="<?php echo ($this->currentRoute()->getRoute() == 'company') ? 'active' : ''?>"
+                            >
+                                <?= $this->translate('Компания');?></a>
+                        </li>
+                        <li><a href="/contacts"
+                               class="<?php echo ($this->currentRoute()->getRoute() == 'contacts') ? 'active' : ''?>"
+                            >
+                                <?= $this->translate('Контакты');?></a>
+                        </li>
                     </ul>
                 </div>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
