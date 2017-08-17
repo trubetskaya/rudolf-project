@@ -79,6 +79,16 @@ namespace Application {
                         ],
                     ],
                 ],
+                'company' => [
+                    'type' => Http\Literal::class,
+                    'options' => [
+                        'route' => '/company',
+                        'defaults' => [
+                            'controller' => Controller\InfoController::class,
+                            'action' => 'company',
+                        ],
+                    ],
+                ],
                 'application' => [
                     'type' => Http\Segment::class,
                     'options' => [

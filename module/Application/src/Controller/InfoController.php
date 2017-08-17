@@ -17,7 +17,6 @@ namespace Application\Controller {
     class InfoController extends AbstractController
     {
         /**
-         * Function indexAction
          * @internal Vehicle $item
          * @return ViewModel
          */
@@ -26,12 +25,22 @@ namespace Application\Controller {
             $view = new ViewModel;
             return $view;
         }
+
         /**
-         * Function indexAction
          * @internal Vehicle $item
          * @return ViewModel
          */
         public function servicesAction()
+        {
+            $view = new ViewModel;
+            return $view;
+        }
+
+        /**
+         * @internal Vehicle $item
+         * @return ViewModel
+         */
+        public function companyAction()
         {
             $view = new ViewModel;
             return $view;
