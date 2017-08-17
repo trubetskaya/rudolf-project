@@ -46,7 +46,7 @@
                             подобрать лучшие условия из более
                             10 банков-партнеров
                         </p>
-                        <button class="orange-button">
+                        <button  type="button" data-toggle="modal" data-target="#bid" class="orange-button">
                             Отправить заявку
                         </button>
                     </div>
@@ -100,7 +100,7 @@
                             В нашей компании вы можете выгодно застраховать свой автомобиль.
                             Менеджер поможет вам сориентироваться в тарифах и выбрать лучший
                         </p>
-                        <button class="orange-button">
+                        <button  type="button" data-toggle="modal" data-target="#bid" class="orange-button">
                             Отправить заявку
                         </button>
                     </div>
@@ -149,7 +149,7 @@
                             автомобили. За 8 лет работы, мы
                             научились видеть их насквозь
                         </p>
-                        <button class="orange-button">
+                        <button  type="button" data-toggle="modal" data-target="#bid" class="orange-button">
                             Отправить заявку
                         </button>
                     </div>
@@ -195,3 +195,5 @@
         </div>
     </div>
 </div>
+
+<?= $this->render('partial/bid.phtml'); ?>
