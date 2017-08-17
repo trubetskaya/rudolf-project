@@ -563,7 +563,6 @@ $screen-md:992px;
         padding-right: 0;
       }
       &.active {
-        border-bottom: 2px $orange solid;
         a {
           position: relative;
           top: 1px;
@@ -572,7 +571,7 @@ $screen-md:992px;
           border-left: 0;
           border-top: 0;
           border-right: 0;
-          border-bottom: 1px $orange solid;
+          border-bottom: 2px $orange solid;
         }
       }
       &:hover:not(.active), &:focus:not(.active), &:active:not(.active) {
