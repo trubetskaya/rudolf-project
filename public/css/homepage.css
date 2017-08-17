@@ -512,5 +512,7 @@
     line-height: 1.56;
     text-align: left;
     color: #797979; }
+    .texts .address-map .address-map-text a {
+      color: #797979; }
 
 /*# sourceMappingURL=homepage.css.map */
