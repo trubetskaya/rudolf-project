@@ -43,7 +43,8 @@
                             мы оценим ваш автомобиль дороже, исходя из<br class="hidden-md hidden-sm hidden-xs">
                             хорошего спроса на поддержаные автомобили в столице.
                         </p>
-                        <button class="orange-button">
+
+                        <button type="button" data-toggle="modal" data-target="#bid" class="orange-button">
                             Оправить заявку
                         </button>
                     </div>
@@ -87,3 +88,4 @@
         </div>
     </div>
 </div>
+<?= $this->render('partial/bid.phtml'); ?>

@@ -25,6 +25,7 @@
 
         <!-- Le styles -->
         <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath('/img/favicon.ico')])
+            ->prependStylesheet($this->basePath('css/bid.css'))
             ->prependStylesheet($this->basePath('css/company.css'))
             ->prependStylesheet($this->basePath('css/servises.css'))
             ->prependStylesheet($this->basePath('css/info.css'))
