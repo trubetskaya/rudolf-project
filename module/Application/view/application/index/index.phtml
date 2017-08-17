@@ -318,10 +318,12 @@
                 <div class="info-box-bg-text">
                     <?= $this->translate("Для продукции немецкой или японской автомобильной <br class='hidden-md hidden-sm hidden-xs'>промышленности пробег в 100 тысяч км не считается <br class='hidden-md hidden-sm hidden-xs'>критическим, при котором бу машина требует <br class='hidden-md hidden-sm hidden-xs'>капитального ремонта. ");?>
                 </div>
-                <button class="info-box-bg-button orange-button">
+                <button class="info-box-bg-button orange-button" type="button" data-toggle="modal" data-target="#bid">
                     <?= $this->translate("ЗАКАЗАТЬ УСЛУГУ");?>
                 </button>
             </div>
         </div>
     </div>
 </div>
+
+<?= $this->render('partial/bid.phtml'); ?>
