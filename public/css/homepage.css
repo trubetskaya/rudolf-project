@@ -245,7 +245,7 @@
     border-bottom: solid 3px #f76a3a;
     border-left: solid 1px #dddddd;
     padding: 30px;
-    height: calc(228px + 30px + 30px); }
+    height: calc(260px + 30px + 30px); }
     @media screen and (max-width: 992px) {
       .info-boxes .info-box {
         margin-bottom: 33px; } }
