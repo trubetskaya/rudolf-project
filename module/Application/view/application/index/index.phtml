@@ -6,6 +6,10 @@
  * @var Application\Entity\Options\Taxonomy $model
  * @var Application\Entity\Options\Taxonomy $mark
  */
+$this->headTitle('main-page-title');
+$this->headMeta()
+    ->appendName('description', $this->translate('main-page-meta-desc'))
+    ->appendName('keywords', $this->translate('main-page-meta-keywords'));
 ?>
 
 <!-- Карусель -->
