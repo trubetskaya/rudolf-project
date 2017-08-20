@@ -292,7 +292,7 @@ $screen-sm:768px;
     z-index: 5;
     margin: 0 auto;
     height: 401px;
-    background: url("/img/bg-images/photo-first.png") no-repeat;
+    background: url("/img/bg/img-pereoformleniye.png") no-repeat;
   }
   .info-common-top-bg-left-text {
     margin-top: 90px;
@@ -303,6 +303,7 @@ $screen-sm:768px;
     color: #ffffff;
     @media screen and (max-width: $screen-sm) {
       margin-top: 60px;
+      font-size: 27px;
     }
   }
   .info-common-top-bg-right-text {
@@ -364,15 +365,6 @@ $screen-sm:768px;
   }
   .info-common-main-box{
     background-color: #f3f4f5;
-    padding-bottom: 45px;
-  }
-  .info-common-main-box-box{
-    float: left;
-    height: 150px;
-    @media screen and (max-width: $screen-sm) {
-      max-width: 400px;
-      width: 100%;
-      height: auto;
-    }
+    padding-bottom: 10px;
   }
 }
