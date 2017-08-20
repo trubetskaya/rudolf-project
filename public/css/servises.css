@@ -8,7 +8,7 @@
     z-index: 5;
     margin: 0 auto;
     height: 401px;
-    background: url("/img/bg-images/photo-first.png") no-repeat; }
+    background: url("/img/bg/img-strahovaniye.png") no-repeat; }
   .insurance .info-common-top-bg-left-text {
     margin-top: 90px;
     font-size: 36px;
@@ -89,7 +89,7 @@
     z-index: 5;
     margin: 0 auto;
     height: 401px;
-    background: url("/img/bg-images/photo-first.png") no-repeat; }
+    background: url("/img/bg/img-kreditovaniye.png") no-repeat; }
   .credit .info-common-top-bg-left-text {
     margin-top: 90px;
     font-size: 36px;
@@ -171,7 +171,7 @@
     z-index: 5;
     margin: 0 auto;
     height: 401px;
-    background: url("/img/bg-images/photo-first.png") no-repeat; }
+    background: url("/img/bg/img-ekspertisa.png") no-repeat; }
   .expertise .info-common-top-bg-left-text {
     margin-top: 90px;
     font-size: 36px;
