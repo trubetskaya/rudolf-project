@@ -156,6 +156,7 @@ namespace Application {
         'images' => [
             '1461x1050' => [
                 'small' => '487x350',
+                'small-xs' => '281x202',
                 'quadratic' => '250x250',
             ]
         ]

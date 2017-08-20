@@ -31,13 +31,16 @@
                     <ul>
                         <?php foreach ($item->getFiles() as $file) :?>
                         <li>
-                            <img src="<?=$file->getPreview('487x350'); ?>" width="487" height="350" alt="<?= $item->name()?>"/>
+                            <img class="hidden-xs"
+                                src="<?=$file->getPreview('487x350'); ?>" width="487" height="350" alt="<?= $item->name()?>"/>
+                            <img class="hidden-sm hidden-md hidden-lg"
+                                src="<?=$file->getPreview('281x202'); ?>" width="281" height="202" alt="<?= $item->name()?>"/>
                         </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
-                <a href="#" class="jcarousel-control-prev"></a>
-                <a href="#" class="jcarousel-control-next"></a>
+                <a href="#" class="jcarousel-control-prev hidden-xs"></a>
+                <a href="#" class="jcarousel-control-next hidden-xs"></a>
             </div>
         </div>
     </div>
