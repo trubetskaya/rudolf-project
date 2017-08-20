@@ -31999,11 +31999,11 @@ if (module.hot) {(function () {  module.hot.accept()
 },{"vue":6,"vue-hot-reload-api":4}],8:[function(require,module,exports){
 
 /*https://github.com/GitHubTochkaDev/pagination-tutorial*/
-var Pagination = require('./Pagination.vue');
-var Card = require('./Card.vue');
-var Filter = require('./Filter.vue');
+let Pagination = require('./Pagination.vue');
+let Card = require('./Card.vue');
+let Filter = require('./Filter.vue');
 
-var _ = require('lodash');
+let _ = require('lodash');
 
 module.exports = {
     data: function () {
@@ -32016,9 +32016,9 @@ module.exports = {
         }
     },
     components: {
-        Pagination: Pagination,
         Card: Card,
-        Filter: Filter,
+        Pagination: Pagination,
+        Filter: Filter
     },
     methods: {
         onFilter(filterValues) {
@@ -32079,21 +32079,21 @@ if (module.hot) {(function () {  module.hot.accept()
 })()}
 },{"./Card.vue":7,"./Filter.vue":9,"./Pagination.vue":10,"lodash":1,"vue":6,"vue-hot-reload-api":4}],9:[function(require,module,exports){
 
+let filters = {
+    'model' : null,
+    'transmission' : null,
+    'year-from' : null,
+    'year-to' : null,
+    'price-from' : null,
+    'price-to' : null,
+    'body' : null,
+    'drive' : null,
+    'fuel' : null,
+};
 
-var _ = require('lodash');
+let _ = require('lodash');
+if (typeof cardListInit !== 'undefined') {
 
-if (typeof cardListInit != 'undefined') {
-    var years = _.map(_.uniqBy(cardListInit, 'year'), function (item) {
-        return item.year;
-    });
-    var minYearInit = Math.min.apply(Math, years);
-    var maxYearInit = Math.max.apply(Math, years);
-
-    var prices = _.map(_.uniqBy(cardListInit, 'priceUSD'), function (item) {
-        return item.priceUSD;
-    });
-    var minPriceInit = Math.floor(Math.min.apply(Math, prices) / 1000) * 1000;
-    var maxPriceInit = Math.ceil(Math.max.apply(Math, prices) / 1000) * 1000;
 }
 
 module.exports = {
@@ -32101,32 +32101,23 @@ module.exports = {
     data: function () {
         return {
             'allFilters' : true,
-            'filters' : {
-                'model' : null,
-                'year-from' : null,
-                'year-to' : null,
-                'price-from' : null,
-                'price-to' : null,
-                'body' : null,
-                'drive' : null,
-                'fuel' : null,
-                'transmission' : null,
-            },
+            'filters' : $.extend({}, filters),
             'loadingOverlay' : false,
         }
     },
     ready: function() {
         $("select").on("change", function(e) {
             if ($(e.target).val() != '') {
-                this.loadingOverlay = true;
-                setTimeout(function() {
+            this.loadingOverlay = true;
+            setTimeout(function() {
                     this.filters[$(e.target).attr('name')] =
                         ($(e.target).val() == 'null') ? null : $(e.target).val();
-                    this.$dispatch('filterList', this.filters);
-                }.bind(this), 0);
-                setTimeout(function() {
-                    this.loadingOverlay = false;
-                }.bind(this), 500);
+                this.$dispatch('filterList', this.filters);
+            }.bind(this), 0);
+
+            setTimeout(function() {
+                this.loadingOverlay = false;
+            }.bind(this), 500);
             }
         }.bind(this));
     },
@@ -32134,86 +32125,122 @@ module.exports = {
         resetFilters() {
             this.loadingOverlay = true;
             setTimeout(function () {
-                this.filters = {
-                    'model' : null,
-                    'year-from' : null,
-                    'year-to' : null,
-                    'price-from' : null,
-                    'price-to' : null,
-                    'body' : null,
-                    'drive' : null,
-                    'fuel' : null,
-                    'transmission' : null,
-                };
-                $("#catalog-filters select[name]").each(function () {
+                this.filters = $.extend({}, filters);
+                $("#catalog-filters").find("select[name]").each(function () {
                     $(this).val('').trigger("change");
                 });
+
                 this.$dispatch('resetList');
             }.bind(this), 0);
+
             setTimeout(function () {
                 this.loadingOverlay = false;
             }.bind(this), 1000)
         },
+
         getByName(prop) {
-            var props = [];
-            for (var i = 0; i < cardListInit.length; i++) {
-                if (props.indexOf(cardListInit[i][prop].name) === -1) {
-                    props.push(cardListInit[i][prop].name)
+            let list = this.cardList;
+            if (this.filters[prop]) {
+                list = cardListInit;
+            }
+
+            let props = [];
+            for (let i = 0; i < list.length; i++) {
+                if (props.indexOf(list[i][prop].name) === -1) {
+                    props.push(list[i][prop].name)
                 }
             }
+
             return props;
         },
-        getMarks: function () {
-            var marks = {};
-            for (var i = 0; i < cardListInit.length; i++) {
-                if (typeof marks[cardListInit[i].mark.name] == 'undefined') {
-                    marks[cardListInit[i].mark.name] = [];
-                }
-                if (marks[cardListInit[i].mark.name].indexOf(cardListInit[i].model.name) === -1) {
-                    marks[cardListInit[i].mark.name].push(cardListInit[i].model.name)
+
+        getModels: function () {
+            let list = this.cardList;
+            if (this.filters['model'] !== null) {
+                list = cardListInit;
+            }
+
+            let marks = {};
+            for (let i = 0; i < list.length; i++) {
+                marks[list[i].mark.name] = marks[list[i].mark.name] || [];
+                if (marks[list[i].mark.name].indexOf(list[i].model.name) === -1) {
+                    marks[list[i].mark.name].push(list[i].model.name)
                 }
             }
+
             return marks;
         },
     },
     computed: {
         yearsFrom: function () {
-            var yearsRange = [];
-            var maxYear = this.filters['year-to'] ? parseInt(this.filters['year-to']) : maxYearInit;
-            for (var i = minYearInit; i <= maxYear; i++) {
-                yearsRange.push(i)
+            let min = Math.min.apply(Math, cardListInit.map(function(i) { return i.year })),
+                max = Math.max.apply(Math, this.cardList.map(function(i) { return i.year }));
+
+            let selected = this.filters['year-to'];
+            if (selected && parseInt(selected) > max) {
+                max = parseInt(selected);
             }
-            return yearsRange;
+
+            let range = [];
+            for (let i = min; i < max; i++) {
+                range.push(i)
+            }
+
+            return range;
         },
         yearsTo: function () {
-            var yearsRange = [];
-            var minYear = this.filters['year-from'] ? parseInt(this.filters['year-from']) : minYearInit;
-            for (var i = minYear; i <= maxYearInit; i++) {
-                yearsRange.push(i)
+            let min = Math.min.apply(Math, this.cardList.map(function(i) { return i.year })),
+                max = Math.max.apply(Math, cardListInit.map(function(i) { return i.year }));
+
+            let selected = this.filters['year-from'];
+            if (selected && parseInt(selected) < min) {
+                min = parseInt(selected);
             }
-            return yearsRange;
+
+            let range = [];
+            for (let i = min+1; i <= max; i++) {
+                range.push(i)
+            }
+
+            return range;
         },
         priceUSDFrom: function () {
-            var maxPrice = this.filters['price-to'] ? parseInt(this.filters['price-to']) : maxPriceInit;
-            var pricesRange = [];
-            for (var i = minPriceInit; i <= maxPrice; i = i + 1000) {
-                pricesRange.push(i)
+            let min = Math.floor(Math.min.apply(Math, cardListInit.map(function(i) { return i.priceUSD })) / 1000) * 1000,
+                max = Math.ceil(Math.max.apply(Math, this.cardList.map(function(i) { return i.priceUSD })) / 1000) * 1000;
+
+            let selected = this.filters['price-to'];
+            if (selected && parseInt(selected) > max) {
+                max = parseInt(selected);
             }
-            return pricesRange;
+
+            let range = [];
+            for (let i = min; i < max; i += 1000) {
+                range.push(i)
+            }
+
+            return range;
         },
         priceUSDTo: function () {
-            var minPrice = this.filters['price-from'] ? parseInt(this.filters['price-from']) : minPriceInit;
-            var pricesRange = [];
-            for (var i = minPrice; i <= maxPriceInit; i = i + 1000) {
-                pricesRange.push(i)
+            let min = Math.floor(Math.min.apply(Math, this.cardList.map(function(i) { return i.priceUSD })) / 1000) * 1000,
+                max = Math.floor(Math.max.apply(Math, cardListInit.map(function(i) { return i.priceUSD })) / 1000) * 1000;
+
+            let selected = this.filters['price-from'];
+            if (selected && parseInt(selected) < min) {
+                min = parseInt(selected);
             }
-            return pricesRange;
+
+            let range = [];
+            for (let i = min+1000; i <= max; i += 1000) {
+                range.push(i)
+            }
+
+            return range;
         }
     }
 }
 
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-lg-offset-1 col-md-offset-1 col-lg-11 col-md-11 breadcrumbs\">\n            <a href=\"<?= $this->url('catalog\" class=\"back\">\n                <span></span>Назад\n            </a>\n        </div>\n        <div id=\"catalog-filters\" class=\"col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12 catalog\">\n            <div v-show=\"loadingOverlay\" class=\"loading-overlay\"></div>\n            <h2>Купить</h2>\n            <div class=\"row catalog-filter-group\">\n                <div class=\"col-lg-5 col-md-5 col-sm-10 col-xs-12 xs-margin-top\">\n                    <label>Марка</label>\n                    <select name=\"model\" data-dropdown-options=\"{&quot;label&quot;:&quot;Марка&quot;}\">\n                        <option value=\"null\">Марка</option>\n                        <optgroup v-for=\"(mark, models) in getMarks()\" :label=\"mark\">\n                            <option v-for=\"model in models\" :value=\"model\">{{model}}</option>\n                        </optgroup>\n                    </select>\n                </div>\n                <div class=\"catalog-clear-box-sm hidden-lg hidden-md hidden-xs\"></div>\n                <div class=\"col-lg-3 col-md-3 col-sm-4 col-xs-12 xs-margin-top\">\n                    <label for=\"yearFrom\">Год</label>\n                    <div class=\"row\">\n                        <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n                            <select id=\"yearFrom\" name=\"year-from\" data-dropdown-options=\"{&quot;label&quot;:&quot;От&quot;}\">\n                                <option value=\"null\">От</option>\n                                <option v-if=\"$index!=(yearsFrom.length - 1)\" v-for=\"year in yearsFrom| orderBy +1\" :value=\"year\">{{year}}</option>\n                            </select>\n                        </div>\n                        <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n                            <select id=\"yearTo\" name=\"year-to\" data-dropdown-options=\"{&quot;label&quot;:&quot;До&quot;}\">\n                                <option value=\"null\">До</option>\n                                <option v-if=\"$index!=(yearsTo.length - 1)\" v-for=\"year in yearsTo| orderBy -1\" :value=\"year\">{{year}}</option>\n                            </select>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"col-lg-2 col-md-2 col-sm-3 col-xs-6 xs-margin-top\">\n                    <label for=\"priceFrom\">Цена</label>\n                    <select id=\"priceFrom\" name=\"price-from\" data-dropdown-options=\"{&quot;label&quot;:&quot;От&quot;}\">\n                        <option value=\"null\">От</option>\n                        <option v-if=\"$index!=(priceUSDFrom.length - 1)\" v-for=\"price in priceUSDFrom| orderBy +1\" :value=\"price\">{{price}}</option>\n                    </select>\n                </div>\n                <div class=\"col-lg-2 col-md-2 col-sm-3 col-xs-6 no-label\">\n                    <select id=\"priceTo\" name=\"price-to\" data-dropdown-options=\"{&quot;label&quot;:&quot;До&quot;}\">\n                        <option value=\"null\">До</option>\n                        <option v-if=\"$index!=(priceUSDTo.length - 1)\" v-for=\"price in priceUSDTo| orderBy -1\" :value=\"price\">{{price}}</option>\n                    </select>\n                </div>\n            </div>\n\n            <div v-show=\"allFilters\" class=\"row catalog-filter-group\">\n                <div class=\"col-lg-5 col-md-5 col-sm-12 col-xs-12 xs-margin-top\">\n                    <div class=\"row\">\n                        <div class=\"col-lg-6 col-md-6 col-sm-3 col-xs-12\">\n                            <label>Кузов</label>\n                            <select id=\"body\" name=\"body\" data-dropdown-options=\"{&quot;label&quot;:&quot;Любой&quot;}\">\n                                <option value=\"null\">Любой</option>\n                                <option v-for=\"body in getByName('body')\" :value=\"body\">{{body}}</option>\n                            </select>\n                        </div>\n                        <div class=\"col-lg-6 col-md-6 col-sm-3 col-xs-12\">\n                            <label>Двигатель</label>\n                            <select id=\"fuel\" name=\"fuel\" data-dropdown-options=\"{&quot;label&quot;:&quot;Любой&quot;}\">\n                                <option value=\"null\">Любой</option>\n                                <option v-for=\"fuel in getByName('fuel')\" :value=\"fuel\">{{fuel}}</option>\n                            </select>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"catalog-clear-box-sm hidden-lg hidden-md hidden-xs\"></div>\n                <div class=\"col-lg-2 col-md-2 col-sm-3 col-xs-12 xs-margin-top\">\n                    <label>Коробка</label>\n                        <select id=\"transmission\" name=\"transmission\" data-dropdown-options=\"{&quot;label&quot;:&quot;Любая&quot;}\">\n                            <option value=\"null\">Любой</option>\n                            <option v-for=\"transmission in getByName('transmission')\" :value=\"transmission\">{{transmission}}</option>\n                        </select>\n                </div>\n                <div class=\"col-lg-2 col-md-2 col-sm-3 col-xs-12 xs-margin-top\">\n                    <label>Привод</label>\n                    <select id=\"drive\" name=\"drive\" data-dropdown-options=\"{&quot;label&quot;:&quot;Любой&quot;}\">\n                        <option value=\"null\">Любой</option>\n                        <option v-for=\"drive in getByName('drive')\" :value=\"drive\">{{drive}}</option>\n                    </select>\n                </div>\n            </div>\n            <div class=\"row catalog-filter-group-checkboxes\">\n                <div v-show=\"allFilters\" class=\"col-lg-5 col-md-5 col-sm-7 col-xs-12 xs-margin-top\">\n                    <div class=\"row\">\n                        <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                            <input type=\"checkbox\">\n                            <label>Со скидкой</label>\n                        </div>\n                        <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                            <input type=\"checkbox\">\n                            <label>Selected</label>\n                        </div>\n                        <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                            <input type=\"checkbox\">\n                            <label>Новые</label>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"col-lg-7 col-md-7 col-sm-5 col-xs-12 xs-margin-top\">\n                    <div class=\"row\">\n                        <div class=\"col-lg-7 col-md-7 col-sm-6 hidden-xs\"></div>\n                        <div class=\"hidden-lg hidden-md hidden-sm col-xs-6\">\n                            <a class=\"catalog-hide-filters {{allFilters ? '' : 'collapsed'}}\" href=\"javascript:\" @click=\"allFilters=!allFilters\">\n                                {{allFilters ? 'Скрыть фильтры' : 'Все фильтры'}}\n                            </a>\n                        </div>\n                        <div class=\"col-lg-5 col-md-5 col-sm-6 col-xs-6\">\n                            <a class=\"catalog-drop-filters\" href=\"javascript:\" @click=\"resetFilters();\">\n                                Сбросить фильтры\n                            </a>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-lg-offset-1 col-md-offset-1 col-lg-11 col-md-11 breadcrumbs\">\n            <a href=\"\" class=\"back\">\n                <span></span>Назад\n            </a>\n        </div>\n        <div id=\"catalog-filters\" class=\"col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12 catalog\">\n            <div v-show=\"loadingOverlay\" class=\"loading-overlay\"></div>\n            <h2>Купить</h2>\n            <div class=\"row catalog-filter-group\">\n                <div class=\"col-lg-5 col-md-5 col-sm-10 col-xs-12 xs-margin-top\">\n                    <label>Модель</label>\n                    <select name=\"model\" data-dropdown-options=\"{&quot;label&quot;:&quot;Модель&quot;}\">\n                        <option value=\"null\">Модель</option>\n                        <optgroup v-for=\"(mark, models) in getModels()\" :label=\"mark\">\n                            <option v-for=\"model in models\" :value=\"model\">{{model}}</option>\n                        </optgroup>\n                    </select>\n                </div>\n                <div class=\"catalog-clear-box-sm hidden-lg hidden-md hidden-xs\"></div>\n                <div class=\"col-lg-3 col-md-3 col-sm-4 col-xs-12 xs-margin-top\">\n                    <label for=\"yearFrom\">Год</label>\n                    <div class=\"row\">\n                        <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n                            <select id=\"yearFrom\" name=\"year-from\" data-dropdown-options=\"{&quot;label&quot;:&quot;От&quot;}\">\n                                <option value=\"null\">От</option>\n                                <option v-for=\"year in yearsFrom | orderBy +1\" :value=\"year\">{{year}}</option>\n                            </select>\n                        </div>\n                        <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n                            <select id=\"yearTo\" name=\"year-to\" data-dropdown-options=\"{&quot;label&quot;:&quot;До&quot;}\">\n                                <option value=\"null\">До</option>\n                                <option v-for=\"year in yearsTo | orderBy -1\" :value=\"year\">{{year}}</option>\n                            </select>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"col-lg-2 col-md-2 col-sm-3 col-xs-6 xs-margin-top\">\n                    <label for=\"priceFrom\">Цена</label>\n                    <select id=\"priceFrom\" name=\"price-from\" data-dropdown-options=\"{&quot;label&quot;:&quot;От&quot;}\">\n                        <option value=\"null\">От</option>\n                        <option v-for=\"price in priceUSDFrom | orderBy +1\" :value=\"price\">{{price}}</option>\n                    </select>\n                </div>\n                <div class=\"col-lg-2 col-md-2 col-sm-3 col-xs-6 no-label\">\n                    <select id=\"priceTo\" name=\"price-to\" data-dropdown-options=\"{&quot;label&quot;:&quot;До&quot;}\">\n                        <option value=\"null\">До</option>\n                        <option v-for=\"price in priceUSDTo | orderBy -1\" :value=\"price\">{{price}}</option>\n                    </select>\n                </div>\n            </div>\n\n            <div v-show=\"allFilters\" class=\"row catalog-filter-group\">\n                <div class=\"col-lg-5 col-md-5 col-sm-12 col-xs-12 xs-margin-top\">\n                    <div class=\"row\">\n                        <div class=\"col-lg-6 col-md-6 col-sm-3 col-xs-12\">\n                            <label>Кузов</label>\n                            <select id=\"body\" name=\"body\" data-dropdown-options=\"{&quot;label&quot;:&quot;Любой&quot;}\">\n                                <option value=\"null\">Любой</option>\n                                <option v-for=\"body in getByName('body')\" :value=\"body\">{{body}}</option>\n                            </select>\n                        </div>\n                        <div class=\"col-lg-6 col-md-6 col-sm-3 col-xs-12\">\n                            <label>Двигатель</label>\n                            <select id=\"fuel\" name=\"fuel\" data-dropdown-options=\"{&quot;label&quot;:&quot;Любой&quot;}\">\n                                <option value=\"null\">Любой</option>\n                                <option v-for=\"fuel in getByName('fuel')\" :value=\"fuel\">{{fuel}}</option>\n                            </select>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"catalog-clear-box-sm hidden-lg hidden-md hidden-xs\"></div>\n                <div class=\"col-lg-2 col-md-2 col-sm-3 col-xs-12 xs-margin-top\">\n                    <label>Коробка</label>\n                        <select id=\"transmission\" name=\"transmission\" data-dropdown-options=\"{&quot;label&quot;:&quot;Любая&quot;}\">\n                            <option value=\"null\">Любой</option>\n                            <option v-for=\"transmission in getByName('transmission')\" :value=\"transmission\">{{transmission}}</option>\n                        </select>\n                </div>\n                <div class=\"col-lg-2 col-md-2 col-sm-3 col-xs-12 xs-margin-top\">\n                    <label>Привод</label>\n                    <select id=\"drive\" name=\"drive\" data-dropdown-options=\"{&quot;label&quot;:&quot;Любой&quot;}\">\n                        <option value=\"null\">Любой</option>\n                        <option v-for=\"drive in getByName('drive')\" :value=\"drive\">{{drive}}</option>\n                    </select>\n                </div>\n            </div>\n            <div class=\"row catalog-filter-group-checkboxes\">\n                <div v-show=\"allFilters\" class=\"col-lg-5 col-md-5 col-sm-7 col-xs-12 xs-margin-top\">\n                    <div class=\"row\">\n                        <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                            <input type=\"checkbox\">\n                            <label>Со скидкой</label>\n                        </div>\n                        <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                            <input type=\"checkbox\">\n                            <label>Selected</label>\n                        </div>\n                        <div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">\n                            <input type=\"checkbox\">\n                            <label>Новые</label>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"col-lg-7 col-md-7 col-sm-5 col-xs-12 xs-margin-top\">\n                    <div class=\"row\">\n                        <div class=\"col-lg-7 col-md-7 col-sm-6 hidden-xs\"></div>\n                        <div class=\"hidden-lg hidden-md hidden-sm col-xs-6\">\n                            <a class=\"catalog-hide-filters {{allFilters ? '' : 'collapsed'}}\" href=\"javascript:\" @click=\"allFilters=!allFilters\">\n                                {{allFilters ? 'Скрыть фильтры' : 'Все фильтры'}}\n                            </a>\n                        </div>\n                        <div class=\"col-lg-5 col-md-5 col-sm-6 col-xs-6\">\n                            <a class=\"catalog-drop-filters\" href=\"javascript:\" @click=\"resetFilters();\">\n                                Сбросить фильтры\n                            </a>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -32307,21 +32334,70 @@ if (module.hot) {(function () {  module.hot.accept()
   }
 })()}
 },{"vue":6,"vue-hot-reload-api":4}],11:[function(require,module,exports){
+
+module.exports = {
+    props: {
+        section: {
+            type: String,
+            default: 'credit'
+        },
+    },
+    ready() {
+        $('.' + this.section).addClass('in active');
+    }
+}
+
+if (module.exports.__esModule) module.exports = module.exports.default
+if (module.hot) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  if (!module.hot.data) {
+    hotAPI.createRecord("_v-3590e597", module.exports)
+  } else {
+    hotAPI.update("_v-3590e597", module.exports, (typeof module.exports === "function" ? module.exports.options : module.exports).template)
+  }
+})()}
+},{"vue":6,"vue-hot-reload-api":4}],12:[function(require,module,exports){
 window.onload = function () {
     var Vue = require('vue');
     var VueResource = require('vue-resource');
     var VueFilter = require('vue-filter');
     var Catalog = require('./components/Catalog.vue');
+    var Services = require('./components/Services.vue');
 
     Vue.use(VueResource);
     Vue.use(VueFilter);
 
-    new Vue({
+    var vm = new Vue({
         el: 'body',
         components: {
             Catalog: Catalog,
+            Services: Services
+        },
+        ready: function () {
+            $("select").dropdown();
+            $("[type=checkbox], [type=radio]")
+                .checkbox();
+
+            /**
+             * Управление прозрачностью зафиксированного навигационного меню
+             * если это необходимо
+             */
+            if ($('nav').data('transparent')) {
+                if ($(window).scrollTop() > (650 -70)) {
+                    $('nav').removeClass('transparent');
+                }
+                $(window).scroll(function() {
+                    if ($(window).scrollTop() > (650 -70)) {
+                        $('nav').removeClass('transparent');
+                    } else {
+                        $('nav').addClass('transparent');
+                    }
+                });
+            }
         }
     });
 };
 
-},{"./components/Catalog.vue":8,"vue":6,"vue-filter":3,"vue-resource":5}]},{},[11]);
+},{"./components/Catalog.vue":8,"./components/Services.vue":11,"vue":6,"vue-filter":3,"vue-resource":5}]},{},[12]);

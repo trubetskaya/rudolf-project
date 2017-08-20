@@ -70,9 +70,12 @@ namespace Application {
                     ],
                 ],
                 'services' => [
-                    'type' => Http\Literal::class,
+                    'type' => Http\Segment::class,
                     'options' => [
-                        'route' => '/services',
+                        'route' => '/services[/:section]',
+                        'constraints' => [
+                            'section' => 'credit|insurance|expertise|re-registration',
+                        ],
                         'defaults' => [
                             'controller' => Controller\InfoController::class,
                             'action' => 'services',
