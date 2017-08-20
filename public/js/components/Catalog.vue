@@ -1,10 +1,10 @@
 <script>
     /*https://github.com/GitHubTochkaDev/pagination-tutorial*/
-    var Pagination = require('./Pagination.vue');
-    var Card = require('./Card.vue');
-    var Filter = require('./Filter.vue');
+    let Pagination = require('./Pagination.vue');
+    let Card = require('./Card.vue');
+    let Filter = require('./Filter.vue');
 
-    var _ = require('lodash');
+    let _ = require('lodash');
 
     module.exports = {
         data: function () {
@@ -17,9 +17,9 @@
             }
         },
         components: {
-            Pagination: Pagination,
             Card: Card,
-            Filter: Filter,
+            Pagination: Pagination,
+            Filter: Filter
         },
         methods: {
             onFilter(filterValues) {

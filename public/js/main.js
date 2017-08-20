@@ -7,10 +7,15 @@ window.onload = function () {
     Vue.use(VueResource);
     Vue.use(VueFilter);
 
-    new Vue({
+    var vm = new Vue({
         el: 'body',
         components: {
-            Catalog: Catalog,
+            Catalog: Catalog
+        },
+        ready: function () {
+            $("select").dropdown();
+            $("[type=checkbox], [type=radio]")
+                .checkbox();
         }
     });
 };

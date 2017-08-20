@@ -3,6 +3,7 @@
  */
 
 $( document ).ready(function() {
+
     /**
      * Управление прозрачностью зафиксированного навигационного меню
      * если это необходимо
@@ -19,7 +20,4 @@ $( document ).ready(function() {
             }
         });
     }
-
-   $("select").dropdown();
-    $("input[type=checkbox], input[type=radio]").checkbox();
 });
