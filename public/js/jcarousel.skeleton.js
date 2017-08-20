@@ -1,6 +1,5 @@
 (function($) {
     $(function() {
-    console.log($)
     $.fn.bcSwipe = function(settings) {
         var config = { threshold: 50 };
         if (settings) {
@@ -11,7 +10,6 @@
             var start;
             this.addEventListener('touchstart', onTouchStart, false);
             function onTouchStart(e) {
-                // console.log('onTouchStart', this)
                 if (e.touches.length == 1) {
                     start = e.touches[0].pageX;
                     stillMoving = true;
