@@ -33,19 +33,9 @@ namespace Application\Controller {
         public function servicesAction()
         {
             $section = $this->params()->fromRoute('section');
-            switch ($section) {
-                case 'insurance':
-                    break;
-                case 'expertise':
-                    break;
-                case 're-registration':
-                    break;
-                case 'credit':
-                default:
-                    break;
-            }
             $view = new ViewModel;
             $view->setVariable('section', $section ?: 'credit');
+
             return $view;
         }
 

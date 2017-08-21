@@ -1,3 +1,9 @@
+<?php
+$this->headTitle('services-title');
+$this->headMeta()
+    ->appendName('description', $this->translate($section . '-meta-desc'))
+    ->appendName('keywords', $this->translate($section . '-meta-keywords'));
+?>
 <services inline-template section='<?= $section ?>'
 <div class="container texts">
     <div class="row">
