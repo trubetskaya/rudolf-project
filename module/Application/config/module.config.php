@@ -40,9 +40,9 @@ namespace Application {
         'router' => [
             'routes' => [
                 'home' => [
-                    'type' => Http\Literal::class,
+                    'type' => Http\Hostname::class,
                     'options' => [
-                        'route' => '/',
+                        'route' => 'rudolf.kiev.ua',
                         'defaults' => [
                             'controller' => Controller\IndexController::class,
                             'action' => 'index',
