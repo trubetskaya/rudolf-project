@@ -5,7 +5,6 @@
  * @var Application\Entity\Options\Taxonomy $option
  * @var Zend\View\Renderer\PhpRenderer $this
  */
-$this->headScript()->appendFile($this->basePath('js/index.js'));
 foreach ($list as &$item) {
     $item['link'] = $this->url('catalog', ['id' => $item['id'], 'action' => 'card']);
     $item['transparentImage'] = strval($this->basePath('/dashboard/img/trans.gif'));
@@ -24,7 +23,7 @@ foreach ($list as &$item) {
         <div class="row">
             <div class="col-lg-5 col-lg-offset-1 col-md-5 col-sm-8 col-xs-12 col-md-offset-1 catalog-offers-grid-block-title">
                 <?= $this->translate('Каталог легковых автомобилей');?>
-                <p>127 автомобилей</p>
+                <p><?= $this->translate('найдено автомобилей');?>: {{ cardList.length }}</p>
             </div>
             <div class="col-lg-5 col-md-5 col-sm-4 col-xs-12 catalog-offers-grid-block-filter">
                 <div class="row">

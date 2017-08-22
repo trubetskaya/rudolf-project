@@ -18,6 +18,16 @@ div#view-selector-container {
       background-position: center;
       background-size: cover;
     }
+
+    .mask {
+      height: 120px;
+
+      .tools {
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+      }
+    }
   }
 }
 
