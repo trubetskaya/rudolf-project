@@ -4,12 +4,13 @@ $screen-sm:768px;
   .info-common-top-bg {
     overflow: hidden;
     background-color: #555963;
-    background-size: cover;
     background-position: center;
+    background-size: cover;
     z-index: 5;
     margin: 0 auto;
     height: 401px;
-    background: url("/img/bg/img-avto-klub.png") no-repeat;
+    background-image: url("/img/bg/img-avto-klub.png");
+    background-repeat: no-repeat;
   }
   .info-common-top-bg-left-text {
     margin-top: 90px;

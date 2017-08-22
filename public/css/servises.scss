@@ -9,7 +9,8 @@ $screen-sm:768px;
     z-index: 5;
     margin: 0 auto;
     height: 401px;
-    background: url("/img/bg/img-strahovaniye.png") no-repeat;
+    background: url("/img/bg/img-strahovaniye.png");
+    background-repeat: no-repeat;
   }
   .info-common-top-bg-left-text {
     margin-top: 90px;
