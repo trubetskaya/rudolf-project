@@ -103,7 +103,8 @@ $screen-sm:768px;
     z-index: 5;
     margin: 0 auto;
     height: 401px;
-    background: url("/img/bg/img-kreditovaniye.png") no-repeat;
+    background-image: url("/img/bg/img-kreditovaniye.png");
+    background-repeat: no-repeat;
   }
   .info-common-top-bg-left-text {
     margin-top: 90px;
@@ -198,7 +199,8 @@ $screen-sm:768px;
     z-index: 5;
     margin: 0 auto;
     height: 401px;
-    background: url("/img/bg/img-ekspertisa.png") no-repeat;
+    background-image: url("/img/bg/img-ekspertisa.png");
+    background-repeat: no-repeat;
   }
   .info-common-top-bg-left-text {
     margin-top: 90px;
@@ -293,7 +295,8 @@ $screen-sm:768px;
     z-index: 5;
     margin: 0 auto;
     height: 401px;
-    background: url("/img/bg/img-pereoformleniye.png") no-repeat;
+    background-image: url("/img/bg/img-pereoformleniye.png");
+    background-repeat: no-repeat;
   }
   .info-common-top-bg-left-text {
     margin-top: 90px;
