@@ -2,6 +2,7 @@ $gray:#555963;
 $gray-light:#e3e3e3;
 $white:#ffffff;
 $orange:#f76a3a;
+$black: #2d2a2a;
 
 $screen-sm:768px;
 
@@ -90,7 +91,7 @@ $screen-sm:768px;
     font-size: 14px;
     line-height: 22px;
     text-align: left;
-    color: #2d2a2a;
+    color: $black;
     white-space: nowrap;
     text-decoration: none;
     &:hover, &.collapsed {
@@ -110,7 +111,7 @@ $screen-sm:768px;
     color: #797979;
     white-space: nowrap;
     &:hover, &:active, &:focus, &.hidden {
-      color: #2d2a2a;
+      color: $black;
       text-decoration: none;
     }
   }
@@ -122,7 +123,7 @@ $screen-sm:768px;
     font-weight: 600;
     line-height: 42px;
     text-align: left;
-    color: #2d2a2a;
+    color: $black;
     margin-bottom: 40px;
     @media (max-width: $screen-sm) {
       margin-bottom: 10px;
@@ -212,3 +213,21 @@ $screen-sm:768px;
   color: #a8a8a8;
   margin-bottom: 0;
 }
+
+.fs-dropdown {
+  .fs-dropdown-options {
+    .fs-dropdown-item.optiongroup {
+      display: block;
+      padding: 10px 0 0 5px;
+      font-weight: bold;
+      line-height: 14px;
+      font-size: 75%;
+      color: $black;
+
+      &:not(:last-child) {
+        border-bottom: none;
+      }
+    }
+  }
+}
+

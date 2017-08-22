@@ -22,37 +22,46 @@
             Filter: Filter
         },
         methods: {
-            onFilter(filterValues) {
-                var yearFrom = parseInt(filterValues['year-from']);
-                var yearTo = parseInt(filterValues['year-to']);
-                var priceFrom = parseInt(filterValues['price-from']);
-                var priceTo = parseInt(filterValues['price-to']);
-                var model = filterValues['model'];
-                var body = filterValues['body'];
-                var drive = filterValues['drive'];
-                var fuel = filterValues['fuel'];
-                var transmission = filterValues['transmission'];
+            onFilter(params) {
+                let model = params['model'];
+                if (typeof model === 'string') {
+                    model = model.split(",");
+                }
+
+                let yearFrom = parseInt(params['year-from']),
+                    yearTo = parseInt(params['year-to']);
+
+                let priceFrom = parseInt(params['price-from']),
+                    priceTo = parseInt(params['price-to']);
+
+                let body = params['body'],
+                    transmission = params['transmission'],
+                    drive = params['drive'],
+                    fuel = params['fuel'];
+
                 this.cardList = cardListInit;
                 this.cardList = _.filter(this.cardList, function (item) {
-                    return (yearFrom ? item.year >= yearFrom : true)
-                        && (yearTo ? item.year <= yearTo : true)
-                        && (priceFrom ? item.priceUSD >= priceFrom : true)
-                        && (priceTo ? item.priceUSD <= priceTo : true)
-                        && (model ? item.model.name == model : true)
-                        && (body ? item.body.name == body : true)
-                        && (drive ? item.drive.name == drive : true)
-                        && (fuel ? item.fuel.name == fuel : true)
-                        && (transmission ? item.transmission.name == transmission : true);
+                    return (model ? model.indexOf(item.model.name) !== -1 : true)
+                        && (yearFrom ? item.year >= yearFrom : true) && (yearTo ? item.year <= yearTo : true)
+                        && (priceFrom ? item.priceUSD >= priceFrom : true) && (priceTo ? item.priceUSD <= priceTo : true)
+                        && (transmission ? item.transmission.name === transmission : true)
+                        && (drive ? item.drive.name === drive : true)
+                        && (body ? item.body.name === body : true)
+                        && (fuel ? item.fuel.name === fuel : true);
                 });
 
-                this.$nextTick(function() {
-                    $("select").dropdown('update');
-                });
+                this.$nextTick(this.dropdownUpdate);
             },
             onReset() {
                 this.cardList = cardListInit;
-                this.$nextTick(function() {
-                    $("select").dropdown('update');
+                this.$nextTick(this.dropdownUpdate);
+            },
+            dropdownUpdate() {
+                $("select").dropdown('update');
+                $("#model-dropdown").find(".fs-scrollbar-content").find("button").each(function(i, option) {
+                    if ($(option).data('value') && $(option).data('value') != option.innerHTML) {
+                        $(option).addClass('optiongroup');
+                    }
                 });
             }
         },
@@ -62,8 +71,9 @@
             }
         },
         events: {
-            'filterList' : 'onFilter',
-            'resetList' : 'onReset',
+            filterList : 'onFilter',
+            dropdownUpdate: 'dropdownUpdate',
+            resetList : 'onReset',
         }
     }
 </script>

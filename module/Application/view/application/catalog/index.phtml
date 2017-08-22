@@ -7,11 +7,9 @@
  */
 $this->headScript()->appendFile($this->basePath('js/index.js'));
 foreach ($list as &$item) {
+    $item['link'] = $this->url('catalog', ['id' => $item['id'], 'action' => 'card']);
     $item['transparentImage'] = strval($this->basePath('/dashboard/img/trans.gif'));
-    $item['link'] = $this->url('catalog', [
-        'id' => $item['id'],
-        'action' => 'card',
-    ]);
+    $item['price'] = $item['priceUSD'];
 }
 
 ?>

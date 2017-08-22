@@ -1,24 +1,22 @@
 window.onload = function () {
-    var Vue = require('vue');
-    var VueResource = require('vue-resource');
-    var VueFilter = require('vue-filter');
-    var Catalog = require('./components/Catalog.vue');
-    var Services = require('./components/Services.vue');
 
+    var Catalog = require('./components/Catalog.vue'),
+        Services = require('./components/Services.vue');
+
+    var VueResource = require('vue-resource'),
+        VueFilter = require('vue-filter');
+
+    var Vue = require('vue');
     Vue.use(VueResource);
     Vue.use(VueFilter);
 
-    var vm = new Vue({
+    new Vue({
         el: 'body',
         components: {
             Catalog: Catalog,
             Services: Services
         },
         ready: function () {
-            $("select").dropdown();
-            $("[type=checkbox], [type=radio]")
-                .checkbox();
-
             /**
              * Управление прозрачностью зафиксированного навигационного меню
              * если это необходимо
