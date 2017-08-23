@@ -35,12 +35,12 @@ $(document).ready(function() {
                         orderable   : false,
                         targets     : -1,
                         render      : function (data, type, row) {
+                            var attr = !data ? {href: '#', 'data-toggle': 'modal', 'data-target': "#exampleModal", "data-doc": JSON.stringify(row)}
+                                 : {href: location.path + "edit/" + data};
 
                             return $("<div>").css('min-width', "100px").append(
-                                $("<a>").addClass('btn btn-sm btn-info').attr('href', data ? location.href + "/edit/" + data : '#')
-                                    .attr({'data-toggle': 'modal', 'data-target': "#exampleModal", "data-doc": JSON.stringify(row)})
-                                    .append($("<i>").addClass("fa fa-edit")),
-                                $("<a>").addClass('btn btn-sm btn-danger').attr('href', data ? location.href + "/remove/" + data : '#')
+                                $("<a>").addClass('btn btn-sm btn-info').attr(attr).append($("<i>").addClass("fa fa-edit")),
+                                $("<a>").addClass('btn btn-sm btn-danger').attr('href', data ? location.href + "remove/" + data : '#')
                                     .append($("<i>").addClass("fa fa-trash-o"))
                             ).wrap("<div>").parent().html();
                         }
@@ -69,22 +69,15 @@ $(document).ready(function() {
     }, window.OPTS||{});
 
 
-    // OPTS.datatable.config.buttons.push({
-    //     className: 'btn btn-lg',
-    //     buttons: ['copy', 'excel', 'csv', 'pdf', 'print'],
-    //     extend: 'collection',
-    //     text: 'Export'
-    // });
-
-
-
-
+    OPTS.datatable.config.buttons.push({
+        className: 'btn',
+        buttons: ['copy', 'excel', 'csv', 'pdf', 'print'],
+        extend: 'collection',
+        text: 'Export'
+    });
 
     /* ---------- Datable ---------- */
     var dt = $( ".datatable" ).DataTable(OPTS.datatable.config);
-
-    // init
-    dt.on('init', function () {});
 
     // sorting
     dt.on('row-reorder', function (e, changes, data) {
@@ -97,21 +90,6 @@ $(document).ready(function() {
     dt.on('processing.dt', function (e, settings, processing) {
         $('.dataTables_processing', $(this))
             .fadeTo(Number(processing));
-    });
-
-    // draw
-    dt.on('draw.dt', function(e, options) {
-        console.info(e, options);
-        var checkboxes = $('.select-box');
-        checkboxes.iCheck({
-            checkboxClass: 'icheckbox_flat-green',
-            handle: 'checkbox'
-        });
-
-        checkboxes.on('ifChanged', function (e) {
-            // var row = dt.row( $(e.target).closest('tr') );
-            // e.target.checked ? row.select() : row.deselect();
-        });
     });
 
     // order and search
@@ -127,23 +105,22 @@ $(document).ready(function() {
             });
     });
 
-    dt.on('select', function (e, dt, type, indexes) {
-        if (dt.rows({selected: true}).count()) {
-            $('.dt-buttons .hidden').removeClass('hidden')
-        }
-    });
-
-    dt.on('deselect', function (e, dt, type, indexes) {
-        if (dt.rows({selected: true}).length > 0) {
-            $('.buttons-edit, .buttons-remove', $('.dt-buttons'))
-                .addClass('hidden');
-        }
-    });
-
     if (OPTS.datatable.config.rowReorder !== null) {
         dt.on('hover', 'tr', function (e) {
             $('td.row-index > *', e.currentTarget)
                 .toggleClass('hidden');
         });
     }
+
+    $('.datatable tbody').on('click', 'a.btn-sm.btn-danger', function (ev) {
+        var link = $(this);
+        $.post(link.attr('href'), function() {
+            dt.row(link.parents('tr'))
+                .remove()
+                .draw();
+        });
+
+        ev.stopPropagation();
+        return false;
+    } );
 });
