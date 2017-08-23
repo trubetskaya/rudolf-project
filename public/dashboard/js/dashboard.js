@@ -36,11 +36,11 @@ $(document).ready(function() {
                         targets     : -1,
                         render      : function (data, type, row) {
                             var attr = !data ? {href: '#', 'data-toggle': 'modal', 'data-target': "#exampleModal", "data-doc": JSON.stringify(row)}
-                                 : {href: location.path + "edit/" + data};
+                                 : {href: location.href + "edit/" + data};
 
                             return $("<div>").css('min-width', "100px").append(
                                 $("<a>").addClass('btn btn-sm btn-info').attr(attr).append($("<i>").addClass("fa fa-edit")),
-                                $("<a>").addClass('btn btn-sm btn-danger').attr('href', data ? location.href + "remove/" + data : '#')
+                                $("<a>").addClass('btn btn-sm btn-danger').attr('data-post', row.DT_RowId)
                                     .append($("<i>").addClass("fa fa-trash-o"))
                             ).wrap("<div>").parent().html();
                         }
@@ -94,30 +94,21 @@ $(document).ready(function() {
 
     // order and search
     dt.on('order.dt search.dt', function () {
-        dt.column(0, {search: 'applied', order: 'applied'}).nodes()
-            .each(function(cell, i) {
-                $(cell).empty().append(
-                    $("<span>").addClass('idx').text(i+1),
-                    $("<a>").addClass('btn btn-sm hidden').append(
-                        $("<i>").addClass("fa fa-sort")
-                    )
-                );
-            });
-    });
-
-    if (OPTS.datatable.config.rowReorder !== null) {
-        dt.on('hover', 'tr', function (e) {
-            $('td.row-index > *', e.currentTarget)
-                .toggleClass('hidden');
+        dt.column(0, {search: 'applied', order: 'applied'}).nodes().each(function(cell, i) {
+            $(cell).empty().append(
+                $("<span>").addClass('idx').text(i+1),
+                $("<a>").addClass('btn btn-sm hidden').append(
+                    $("<i>").addClass("fa fa-sort")
+                )
+            );
         });
-    }
+    });
 
     $('.datatable tbody').on('click', 'a.btn-sm.btn-danger', function (ev) {
         var link = $(this);
-        $.post(link.attr('href'), function() {
-            dt.row(link.parents('tr'))
-                .remove()
-                .draw();
+        var ids = link.data('post').split('-').slice(1);
+        $.post(OPTS.links.drop, {id: ids}, function() {
+            dt.row(link.parents('tr')).remove().draw();
         });
 
         ev.stopPropagation();
