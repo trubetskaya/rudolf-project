@@ -7,7 +7,6 @@
 
 namespace Application {
 
-    use Zend\Mvc\Router\Http\Query;
     use Zend\Router\Http;
     use Zend\ServiceManager\Factory\InvokableFactory;
     use Doctrine\ORM\Mapping\Driver;

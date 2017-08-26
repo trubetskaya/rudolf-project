@@ -22,6 +22,7 @@ return [
     ],
 
     'view_manager' => [
+        'display_exceptions' => false,
         'strategies' => [
             'ViewJsonStrategy',
         ],
