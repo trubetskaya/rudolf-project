@@ -648,9 +648,9 @@ namespace Application\Entity {
                 "year" => $this->getRegistrationDate(),
                 "fuel" => $this->getFuel()->getArrayCopy(['id', 'name']),
 
-                "price" => $this->price(),
-                "priceUSD" => $this->getAmount() / $this->getCurrency()->getRate(),
+                "price" => $this->getAmount() / $this->getCurrency()->getRate(),
                 "priceValue" => $this->getAmount(),
+                "priceView" => $this->price(),
 
                 "body" => $this->getBody()->getArrayCopy(['id', 'name']),
                 "drive" => $this->getDrive()->getArrayCopy(['id', 'name']),
