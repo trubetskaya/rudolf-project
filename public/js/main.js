@@ -3,6 +3,8 @@ window.onload = function () {
     var Catalog = require('./components/Catalog.vue'),
         Services = require('./components/Services.vue');
 
+    var Bid = require('./Bid.vue');
+
     var VueResource = require('vue-resource'),
         VueFilter = require('vue-filter');
 
@@ -14,7 +16,8 @@ window.onload = function () {
         el: 'body',
         components: {
             Catalog: Catalog,
-            Services: Services
+            Services: Services,
+            Bid: Bid,
         },
         ready: function () {
             /**

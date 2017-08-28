@@ -11,6 +11,7 @@ namespace Application\Controller {
     use Application\Entity\Vehicle;
     use Doctrine\ORM\EntityNotFoundException;
     use Lib\Controller\AbstractController;
+    use Zend\View\Model\JsonModel;
     use Zend\View\Model\ViewModel;
 
     /**
@@ -81,6 +82,11 @@ namespace Application\Controller {
             $view->setVariable('item', $item);
 
             return $view;
+        }
+
+        public function bidAction()
+        {
+            return new JsonModel();
         }
     }
 }

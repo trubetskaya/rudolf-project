@@ -122,6 +122,16 @@ namespace Application {
                     ],
                     'may_terminate' => true
                 ],
+                'bid' => [
+                    'type' => Http\Literal::class,
+                    'options' => [
+                        'route' => '/bid',
+                        'defaults' => [
+                            'controller'    => Controller\CatalogController::class,
+                            'action'        => 'bid',
+                        ],
+                    ],
+                ],
             ],
         ],
 
