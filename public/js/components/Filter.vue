@@ -31,7 +31,7 @@
             }
         },
         ready: function() {
-            $("select").dropdown().on("change", function(e) {
+            $("#filters select").dropdown().on("change", function(e) {
                 if ($(e.target).val() != '') {
                     this.loadingOverlay = true;
                     setTimeout(function() {
@@ -151,7 +151,7 @@
 </script>
 
 <template>
-    <div class="container">
+    <div class="container" id="filters">
         <div class="row">
             <div class="col-lg-offset-1 col-md-offset-1 col-lg-11 col-md-11 breadcrumbs">
                 <a href="" class="back">
