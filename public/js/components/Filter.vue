@@ -58,6 +58,10 @@
                     $("#catalog-filters").find("select[name]").each(function () {
                         $(this).val('').trigger("change");
                     });
+                    $("input[type=checkbox]").each(function(key, elem){
+                       elem.checked = false;
+                    });
+                    $("input[type=checkbox]").checkbox("update");
 
                     this.$dispatch('resetList');
                 }.bind(this), 0);
@@ -128,6 +132,7 @@
                 return range;
             },
             checkTag(e, tagId) {
+                this.loadingOverlay = true;
                 $(".target").checkbox('update')
                 if (e.target.checked) {
                     if (this.filters.tags.indexOf(tagId) == -1) {
@@ -137,6 +142,9 @@
                     _.pull(this.filters.tags, tagId)
                 }
                 this.$dispatch('filterList', this.filters);
+                setTimeout(function () {
+                    this.loadingOverlay = false;
+                }.bind(this), 1000)
             }
         }
     }
