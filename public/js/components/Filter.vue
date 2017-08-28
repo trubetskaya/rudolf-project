@@ -10,6 +10,7 @@
         'body' : null,
         'drive' : null,
         'fuel' : null,
+        'tags': [],
     };
 
     let _ = require('lodash');
@@ -126,6 +127,17 @@
 
                 return range;
             },
+            checkTag(e, tagId) {
+                $(".target").checkbox('update')
+                if (e.target.checked) {
+                    if (this.filters.tags.indexOf(tagId) == -1) {
+                        this.filters.tags.push(tagId);
+                    }
+                } else {
+                    _.pull(this.filters.tags, tagId)
+                }
+                this.$dispatch('filterList', this.filters);
+            }
         }
     }
 </script>
@@ -224,15 +236,11 @@
                     <div v-show="allFilters" class="col-lg-5 col-md-5 col-sm-7 col-xs-12 xs-margin-top">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox">
+                                <input @change="checkTag($event, 41212)" type="checkbox">
                                 <label>Со скидкой</label>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox">
-                                <label>Selected</label>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input type="checkbox">
+                                <input @change="checkTag($event, 41289)" type="checkbox">
                                 <label>Новые</label>
                             </div>
                         </div>

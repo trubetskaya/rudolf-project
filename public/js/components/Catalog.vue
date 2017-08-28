@@ -37,9 +37,11 @@
                 let body = params['body'],
                     transmission = params['transmission'],
                     drive = params['drive'],
-                    fuel = params['fuel'];
+                    fuel = params['fuel'],
+                    tags = params['tags'];
 
                 this.cardList = cardListInit;
+
                 this.cardList = _.filter(this.cardList, function (item) {
                     return (model ? model.indexOf(item.model.name) !== -1 : true)
                         && (yearFrom ? item.year >= yearFrom : true) && (yearTo ? item.year <= yearTo : true)
@@ -47,7 +49,13 @@
                         && (transmission ? item.transmission.name === transmission : true)
                         && (drive ? item.drive.name === drive : true)
                         && (body ? item.body.name === body : true)
-                        && (fuel ? item.fuel.name === fuel : true);
+                        && (fuel ? item.fuel.name === fuel : true)
+                        && (tags.length > 0 ?
+                            (_.filter(item.tags, function (elem) {
+                                return tags.indexOf(elem.id) > -1;
+                            }).length == tags.length)
+                            : true)
+                        ;
                 });
 
                 this.$nextTick(this.dropdownUpdate);
