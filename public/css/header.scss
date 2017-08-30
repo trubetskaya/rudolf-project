@@ -79,9 +79,6 @@ nav {
         }
       }
       &.dropdown {
-        @media (min-width: $screen-sm) {
-          display: none;
-        }
         a .caret {
           float: right;
           margin-top: 20px;
@@ -91,6 +88,7 @@ nav {
           width: 10px;
           height: 5px;
         }
+
         &.open a .caret {
           background: url("/img/header/ic-down-menu-mob-hover.png") no-repeat;
           background-size: 10px 5px;
@@ -112,11 +110,6 @@ nav {
               }
             }
           }
-        }
-      }
-      &.dropdown-duplicate {
-        @media (max-width: $screen-sm) {
-          display: none;
         }
       }
       &.dropdown-close-button {

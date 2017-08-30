@@ -1,41 +1,28 @@
-window.onload = function () {
+const Catalog = require('./components/Catalog.vue');
+const Navigation = require('./components/Navigation.vue'),
+    Services = require('./components/Services.vue'),
+    Bid = require('./components/Bid.vue');
 
-    var Catalog = require('./components/Catalog.vue'),
-        Services = require('./components/Services.vue');
+var Vue = require('vue');
+var VueResource = require('vue-resource'),
+    VueFilter = require('vue-filter');
 
-    var Bid = require('./components/Bid.vue');
+Vue.use(VueResource);
+Vue.use(VueFilter);
 
-    var VueResource = require('vue-resource'),
-        VueFilter = require('vue-filter');
+var vm = new Vue({
+    el: 'body',
+    data: function() {
+      return {
+          currentRoute: window.location.pathname
+      };
+    },
+    components: {
+        Catalog: Catalog,
+        Services: Services,
+        Navigation: Navigation,
+        Bid: Bid
+    }
+});
 
-    var Vue = require('vue');
-    Vue.use(VueResource);
-    Vue.use(VueFilter);
-
-    new Vue({
-        el: 'body',
-        components: {
-            Catalog: Catalog,
-            Services: Services,
-            Bid: Bid,
-        },
-        ready: function () {
-            /**
-             * Управление прозрачностью зафиксированного навигационного меню
-             * если это необходимо
-             */
-            if ($('nav').data('transparent')) {
-                if ($(window).scrollTop() > (650 -70)) {
-                    $('nav').removeClass('transparent');
-                }
-                $(window).scroll(function() {
-                    if ($(window).scrollTop() > (650 -70)) {
-                        $('nav').removeClass('transparent');
-                    } else {
-                        $('nav').addClass('transparent');
-                    }
-                });
-            }
-        }
-    });
-};
+console.info(vm);
