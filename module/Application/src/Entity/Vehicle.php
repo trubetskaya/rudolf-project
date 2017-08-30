@@ -273,7 +273,7 @@ namespace Application\Entity {
          *      "id": "vehicle-tags"
          * })
          *
-         * @ORM\ManyToMany(targetEntity=Options\Tag::class, cascade={"persist", "remove"}, inversedBy="vehicles")
+         * @ORM\ManyToMany(targetEntity=Options\Tag::class, cascade={"persist"}, inversedBy="vehicles")
          * @ORM\JoinTable(name="vehicle_tags")
          **/
         protected $tags;
