@@ -155,7 +155,7 @@ namespace Application\Entity {
          * })
          * @ORM\Column(name="registration_date", type="smallint", nullable=false, options={"default": 0, "comment": "Registration year"})
          */
-        protected $registrationDate;
+        protected $registrationDate = 2005;
 
         /**
          * @var float
