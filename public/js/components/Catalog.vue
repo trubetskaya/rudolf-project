@@ -24,15 +24,11 @@
         ready() {
             $(".offers-grid-block select").dropdown().on("change", function(e) {
                 if ($(e.target).val() == 'price') {
-                    function compare(a,b) {
-                        return (a.price < b.price) ? -1 : 1;
-                    }
-                    this.cardList.sort(compare);
+                    this.cardList.sort(function(a,b) { return a.price < b.price ? -1 : 1 });
                 } else if ($(e.target).val() == 'updated') {
-                    function compare(a,b) {
+                    this.cardList.sort(function(a,b) {
                         return new Date(a.updated).getTime() < new Date(b.updated).getTime() ? -1 : 1;
-                    }
-                    this.cardList.sort(compare);
+                    });
                 }
             }.bind(this));
         },
@@ -89,9 +85,7 @@
             }
         },
         created: function() {
-            if ($(window).width() < 768) {
-                this.allFilters = false;
-            }
+            this.allFilters = false;
         },
         events: {
             filterList : 'onFilter',

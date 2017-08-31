@@ -94,75 +94,61 @@
         </script>
     </head>
     <body>
-    <navigation></navigation>
-    <div class="<?php echo ($this->currentRoute()->getRoute() == 'home') ? 'content-holder' : ''?>">
-        <div class="container">
-            <?php
-                $flash = $this->flashMessenger();
-                $flash->setMessageCloseString('</li></ul></div>')
-                    ->setMessageOpenFormat('<div%s><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><ul><li>')
-                    ->setMessageSeparatorString('</li><li>');
-
-                echo $flash->render('error',   ['alert', 'alert-dismissible', 'alert-danger']);
-                echo $flash->render('info',    ['alert', 'alert-dismissible', 'alert-info']);
-                echo $flash->render('default', ['alert', 'alert-dismissible', 'alert-warning']);
-                echo $flash->render('success', ['alert', 'alert-dismissible', 'alert-success']);
-                echo $flash->render('zfcuser-login-form', ['alert', 'alert-dismissible', 'alert-danger']);
-            ?>
+        <navigation></navigation>
+        <div>
+            <?= $this->content ?>
+            <footer>
+                <div class="container hidden-xs hidden-sm" id="footer-link-list">
+                    <div class="col-lg-5ths col-md-5ths col-sm-5ths">
+                        <ul>
+                            <li><?= $this->translate('Купить');?></li>
+                            <li><a href="/catalog"><?= $this->translate('Легковые автомобили');?></a></li>
+                            <li><a href="/catalog"><?= $this->translate('Коммерческий транспорт');?></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5ths col-md-5ths col-sm-5ths">
+                        <ul>
+                            <li><?= $this->translate('Продать');?></li>
+                            <li><a href="sale"><?= $this->translate('Срочный выкуп автомобиля');?></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5ths col-md-5ths col-sm-5ths">
+                        <ul>
+                            <li><?= $this->translate('Услуги');?></li>
+                            <li><a href="/services/credit"><?= $this->translate('Кредитование');?></a></li>
+                            <li><a href="/services/insurance"><?= $this->translate('Страхование');?></a></li>
+                            <li><a href="/services/expertise"><?= $this->translate('Экспертиза');?></a></li>
+                            <li><a href="/services/re-registration"><?= $this->translate('Переоформление');?></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5ths col-md-5ths col-sm-5ths">
+                        <ul>
+                            <li><?= $this->translate('Компания');?></li>
+                            <li>
+                                <a href="<?=$this->url('company')?>" target="_blank">
+                                    <?= $this->translate('О компании');?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5ths col-md-5ths col-sm-5ths">
+                        <ul>
+                            <li><?= $this->translate('Контакты');?></li>
+                            <li>
+                                <a href="<?=$this->url('contacts')?>" target="_blank">
+                                    <?= $this->translate('Контакты');?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="copyright">
+                    <div class="container">
+                        <b>&copy; 2017 Rudolf Autohaus.</b> Все права защищены
+                    </div>
+                </div>
+            </footer>
         </div>
-        <?= $this->content ?>
-        <footer>
-            <div class="container hidden-xs hidden-sm" id="footer-link-list">
-                <div class="col-lg-5ths col-md-5ths col-sm-5ths">
-                    <ul>
-                        <li><?= $this->translate('Купить');?></li>
-                        <li><a href="/catalog"><?= $this->translate('Легковые автомобили');?></a></li>
-                        <li><a href="/catalog"><?= $this->translate('Коммерческий транспорт');?></a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-5ths col-md-5ths col-sm-5ths">
-                    <ul>
-                        <li><?= $this->translate('Продать');?></li>
-                        <li><a href="sale"><?= $this->translate('Срочный выкуп автомобиля');?></a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-5ths col-md-5ths col-sm-5ths">
-                    <ul>
-                        <li><?= $this->translate('Услуги');?></li>
-                        <li><a href="/services/credit"><?= $this->translate('Кредитование');?></a></li>
-                        <li><a href="/services/insurance"><?= $this->translate('Страхование');?></a></li>
-                        <li><a href="/services/expertise"><?= $this->translate('Экспертиза');?></a></li>
-                        <li><a href="/services/re-registration"><?= $this->translate('Переоформление');?></a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-5ths col-md-5ths col-sm-5ths">
-                    <ul>
-                        <li><?= $this->translate('Компания');?></li>
-                        <li>
-                            <a href="<?=$this->url('company')?>" target="_blank">
-                                <?= $this->translate('О компании');?>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-5ths col-md-5ths col-sm-5ths">
-                    <ul>
-                        <li><?= $this->translate('Контакты');?></li>
-                        <li>
-                            <a href="<?=$this->url('contacts')?>" target="_blank">
-                                <?= $this->translate('Контакты');?>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div id="copyright">
-                <div class="container">
-                    <b>&copy; 2017 Rudolf Autohaus.</b> Все права защищены
-                </div>
-            </div>
-        </footer>
-    </div>
         <?= $this->inlineScript() ?>
     </body>
 </html>

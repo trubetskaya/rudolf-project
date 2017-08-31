@@ -16,8 +16,8 @@ namespace Application\Entity {
 
     use Lib\Entity\ECommerceTrait;
     use Lib\Entity\Taxonomy\TaxonomyInterface;
-    use Application\Entity\Options\ {
-        Body, Drive, Fuel, Tag, Transmission, Equipment, Taxonomy
+    use Application\Entity\Options\{
+        Body, Category, Drive, Fuel, Tag, Transmission, Equipment, Taxonomy
     };
 
     /**
@@ -31,6 +31,32 @@ namespace Application\Entity {
     class Vehicle extends Document
     {
         use ECommerceTrait;
+
+        /**
+         * @var Category
+         * @Form\Type("\DoctrineORMModule\Form\Element\EntitySelect")
+         * @Form\Flags({"priority": 56})
+         * @Form\Options({
+         *      "label" : "Category",
+         *      "target_class" : Application\Entity\Options\Category::class,
+         *      "property" : "name",
+         *      "is_method" : true,
+         *      "find_method" : {
+         *          "name" : "getOptions"
+         *      },
+         *      "allow_empty": false
+         * })
+         * @Form\Attributes({
+         *      "data-parsley-required": "true",
+         *      "data-parsley-required-message": "Category required",
+         *      "class": "form-control select2_multiple",
+         *      "id": "vehicle-category"
+         * })
+         *
+         * @ORM\ManyToOne(targetEntity=Options\Category::class, inversedBy="vehicles")
+         * @ORM\JoinColumn(name="category", referencedColumnName="id", nullable=false)
+         **/
+        protected $category;
 
         /**
          * @var Taxonomy
@@ -153,7 +179,7 @@ namespace Application\Entity {
          * })
          * @ORM\Column(name="volume", type="decimal", precision=20, scale=2, nullable=false, unique=false, options={"default": 0, "comment": "engine volume"})
          */
-        protected $volume;
+        protected $volume = 1.8;
 
         /**
          * @var float
@@ -171,7 +197,7 @@ namespace Application\Entity {
          * })
          * @ORM\Column(name="mileage", type="integer", nullable=false, unique=false)
          */
-        protected $mileage;
+        protected $mileage = 0;
 
         /**
          * @var Fuel
@@ -287,6 +313,26 @@ namespace Application\Entity {
             $this->options = new ArrayCollection;
 
             parent::__construct();
+        }
+
+        /**
+         * Get category
+         * @return Category
+         */
+        public function getCategory() : Category
+        {
+            return $this->category;
+        }
+
+        /**
+         * Set category
+         * @param Category $category
+         * @return $this
+         */
+        public function setCategory(Category $category) : self
+        {
+            $this->category = $category;
+            return $this;
         }
 
         /**
@@ -633,30 +679,28 @@ namespace Application\Entity {
             };
 
             $copy = [
-
-                "taxonomy" => $this->taxonomy(),
                 "model" => $mod->getArrayCopy(['id', 'name']),
                 "mark" => $mod->getRoot()->getArrayCopy(['id', 'name']),
 
+                "fuel" => $this->getFuel()->getArrayCopy(['id', 'name']),
+                "drive" => $this->getDrive()->getArrayCopy(['id', 'name']),
+                "category" => $this->getCategory()->getArrayCopy(['id', 'name']),
+                "transmission" => $this->getTransmission()->getArrayCopy(['id', 'name']),
+                "body" => $this->getBody()->getArrayCopy(['id', 'name']),
+                "year" => $this->getRegistrationDate(),
                 "volume" => $this->getVolume(),
-                "transmission" => $this->getTransmission()
-                    ->getArrayCopy(['id', 'name']),
+
+                'tags' => $this->getTags()->map($mapper)->toArray(),
+                'options' => $this->getOptions()->map($mapper)->toArray(),
 
                 "mileage" => $this->mileage(),
                 "mileageValue" => $this->getMileage(),
 
-                "year" => $this->getRegistrationDate(),
-                "fuel" => $this->getFuel()->getArrayCopy(['id', 'name']),
-
-                "price" => $this->getAmount() / $this->getCurrency()->getRate(),
-                "priceValue" => $this->getAmount(),
                 "priceView" => $this->price(),
+                "priceValue" => $this->getAmount(),
+                "price" => $this->getAmount() / $this->getCurrency()->getRate(),
 
-                "body" => $this->getBody()->getArrayCopy(['id', 'name']),
-                "drive" => $this->getDrive()->getArrayCopy(['id', 'name']),
-
-                'options' => $this->getOptions()->map($mapper)->toArray(),
-                'tags' => $this->getTags()->map($mapper)->toArray()
+                "taxonomy" => $this->taxonomy(),
             ];
 
             if (is_null($format)) {

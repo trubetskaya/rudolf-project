@@ -25,4 +25,5 @@ var vm = new Vue({
     }
 });
 
-console.info(vm);
+$('.list-auto ul[role="tablist"] li:first-child').addClass('active');
+$('.list-auto div[role="tabpanel"]:first-child').addClass('active');

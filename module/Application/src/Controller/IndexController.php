@@ -6,7 +6,10 @@
  */
 namespace Application\Controller {
 
+    use Application\Entity\Options\Category;
+    use Application\Entity\Options\Tag;
     use Application\Entity\Vehicle;
+    use function foo\func;
     use Zend\View\Model\ViewModel;
     use Doctrine\ORM\Query\Expr\Join;
     use Lib\Controller\AbstractController;
@@ -27,34 +30,78 @@ namespace Application\Controller {
         {
             $em = $this->getEntityManager();
             $exp = $em->getExpressionBuilder();
-            $qb = $em->getRepository(Taxonomy::class)
-                ->createQueryBuilder('mod');
+            $qb = $em->getRepository(Taxonomy::class)->createQueryBuilder('mark')
+                ->where($exp->andX($exp->eq('mark.active', true), $exp->isNull('mark.root')))
+                ->orderBy($exp->asc('mark.name'));
 
-            $qb->select('mod')
-                ->join('mod.root', 'mark', Join::WITH,
-                    $exp->eq('mark.active', true));
+            $marks = [];
+            $i = $qb->getQuery()
+                ->iterate();
 
-            $qb->leftJoin('mod.vehicles', 'car')
-                ->addSelect($exp->count('car'));
+            $i->rewind();
+            while ($i->valid()) {
+                $current = $i->current();
+                $i->next();
 
-            $qb->orderBy($exp->asc('mark.name'))
-                ->groupBy('mark.id');
+                /** @var Taxonomy $item */
+                $item = current($current);
+                $marks[$item->getId()] = [
+                    'name' => $item->getName(),
+                    'vehicles' => 0
+                ];
+            }
 
-            $marks = $qb->getQuery()
-                ->getResult();
+            $qb = $em->getRepository(Category::class)->createQueryBuilder('cat')
+                ->where($exp->andX($exp->eq('cat.active', true), $exp->isNotNull('cat.root')))
+                ->orderBy($exp->asc('cat.index'));
 
-            $qb = $em->getRepository(Vehicle::class)
-                ->createQueryBuilder('v');
+            $cats = [];
+            $i = $qb->getQuery()
+                ->iterate();
 
-            $qb->select('v')->join('v.tags', 't')
-                ->where($exp->eq('t.id', 41212));
+            $i->rewind();
+            while ($i->valid()) {
+                $current = $i->current();
+                $i->next();
 
-            $sales = $qb->getQuery()
-                ->getResult();
+                /** @var Category $item */
+                $item = current($current);
+                $cats[$item->getId()] = [
+                    'name' => $item->getName(),
+                    'stat' => $marks
+                ];
+            }
+
+            $sales = $em->getRepository(Tag::class)->findOneByDescription('sales');
+            $qb = $em->getRepository(Vehicle::class)->createQueryBuilder('v')
+                ->where($exp->eq('v.active', true))
+                ->orderBy($exp->asc('v.index'));
+
+            $list = [];
+            $i = $qb->getQuery()
+                ->iterate();
+
+            $i->rewind();
+            while ($i->valid()) {
+                $current = $i->current();
+                $i->next();
+
+                /** @var Vehicle $item */
+                $item = current($current);
+                if ($item->getTags()->contains($sales)) {
+                    array_push($list, $item);
+                }
+
+                $catID = $item->getCategory()->getId();
+                $markID = $item->getTaxonomy()->getRoot()->getId();
+                if (isset($cats[$catID]['stat'][$markID])) {
+                    $cats[$catID]['stat'][$markID]['vehicles']++;
+                }
+            }
 
             $viewModel = new ViewModel;
-            $viewModel->setVariable('marks', $marks)
-                ->setVariable('sales', $sales);
+            $viewModel->setVariable('categories', $cats)
+                ->setVariable('sales', $list);
 
             return $viewModel;
         }

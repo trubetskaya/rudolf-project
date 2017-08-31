@@ -1,5 +1,6 @@
 <script>
 
+    let _ = require('lodash');
     let filters = {
         'model' : null,
         'transmission' : null,
@@ -13,10 +14,7 @@
         'tags': [],
     };
 
-    let _ = require('lodash');
-    if (typeof cardListInit !== 'undefined') {
-
-    }
+    console.info(window.location.hash);
 
     module.exports = {
         props:['cardList'],
@@ -107,7 +105,7 @@
 
                 console.info(prop, min, max, step);
                 let range = [];
-                for (let i = min; i < max; i += step) {
+                for (let i = min; i <= max; i += step) {
                     range.push(i)
                 }
 
@@ -135,7 +133,7 @@
                 this.loadingOverlay = true;
                 $(".target").checkbox('update')
                 if (e.target.checked) {
-                    if (this.filters.tags.indexOf(tagId) == -1) {
+                    if (this.filters.tags.indexOf(tagId) === -1) {
                         this.filters.tags.push(tagId);
                     }
                 } else {
@@ -167,7 +165,7 @@
                         <select class="dropdown multiple" id="model" name="model" data-dropdown-options='{"label":"Модель"}'>
                             <option value="null">Модель</option>
                             <template v-for="(mark, models) in getModels()">
-                                <option :value="models" v-bind:class="optgroupClass">{{mark}}</option>
+                                <option :value="models" :class="optgroupClass">{{mark}}</option>
                                 <option v-for="model in models" :value="model">{{model}}</option>
                             </template>
                         </select>
@@ -257,17 +255,15 @@
                         <div class="row">
                             <div class="col-lg-7 col-md-7 col-sm-6 hidden-xs"></div>
                             <div class="hidden-lg hidden-md hidden-sm col-xs-6">
-                                <a class="catalog-hide-filters {{allFilters ? '' : 'collapsed'}}"
-                                   href="javascript:"
-                                   @click="allFilters=!allFilters"
-                                >
+                                <a href="javascript:" class="catalog-hide-filters"
+                                   :class="allFilters ? '' : 'collapsed'"
+                                   @click="allFilters=!allFilters">
                                     {{allFilters ? 'Скрыть фильтры' : 'Все фильтры'}}
                                 </a>
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
                                 <a class="catalog-drop-filters" href="javascript:"
-                                   @click="resetFilters();"
-                                >
+                                   @click="resetFilters()">
                                     Сбросить фильтры
                                 </a>
                             </div>
