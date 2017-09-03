@@ -63,6 +63,6 @@ new Vue({
     }
 });
 
-$('.list-auto ul[role="tablist"] li:first-child').addClass('active');
-$('.list-auto div[role="tabpanel"]:first-child').addClass('active');
-$('#top-carousel').parent('div').addClass('content-holder');
+// $('.list-auto ul[role="tablist"] li:first-child').addClass('active');
+// $('.list-auto div[role="tabpanel"]:first-child').addClass('active');
+// $('#top-carousel').parent('div').addClass('content-holder');

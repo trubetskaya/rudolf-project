@@ -74,7 +74,8 @@
 
 <style lang="scss">
     .fade-enter-active, .fade-leave-active {
-        transition: opacity .3s
+        transition: opacity .3s;
+        margin-left: -5px;
     }
     .fade-enter, .fade-leave-to {
         opacity: 0

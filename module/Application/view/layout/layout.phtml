@@ -99,9 +99,6 @@
     } ?>
     <body>
         <script type="text/javascript">
-            var appContent = "app-content",
-                appFooter = "app-footer";
-
             var cardListInit = <?=json_encode($list);?>,
                 categories = <?=json_encode($categories);?>;
 
@@ -121,9 +118,8 @@
             <navigation></navigation>
             <transition name="fade">
                 <keep-alive><?= $this->content ?></keep-alive>
-
             </transition>
-            <app-footer v-show="showContent"></app-footer>
+            <app-footer></app-footer>
             <bid></bid>
         </div>
 
