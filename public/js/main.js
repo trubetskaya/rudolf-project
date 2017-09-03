@@ -14,6 +14,7 @@ let VueResource = require('vue-resource'),
 
 Vue.use(VueResource);
 Vue.use(VueFilter);
+
 let routes = {
     '/': Home,
     '/catalog': Catalog,
@@ -25,8 +26,10 @@ let routes = {
     '/services': Services,
     '/services/credit': Services,
     '/services/expertise': Services,
+    '/services/re-registration': Services,
 };
-const vm = new Vue({
+
+new Vue({
     el: '#app',
     data: function() {
       return {
@@ -34,19 +37,17 @@ const vm = new Vue({
       };
     },
     components: {
-        Catalog: Catalog,
-        Services: Services,
         Navigation: Navigation,
-        Bid: Bid
+        Bid: Bid,
     },
     computed: {
         currentView() {
             return routes[this.currentRoute];
         }
-    }
+    },
+
 });
 
 $('.list-auto ul[role="tablist"] li:first-child').addClass('active');
 $('.list-auto div[role="tabpanel"]:first-child').addClass('active');
-$('#top-carousel').parent('div')
-    .addClass('content-holder')
+$('#top-carousel').parent('div').addClass('content-holder');

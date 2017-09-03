@@ -6,7 +6,7 @@
         data: function () {
             return {
                 marks: {},
-                cardList: cardListInit,
+                cardList: cardListInit
             }
         },
         components: {
@@ -280,7 +280,8 @@
                         <div class="info-box-bg-text">
                             Для продукции немецкой или японской автомобильной <br class='hidden-md hidden-sm hidden-xs'>промышленности пробег в 100 тысяч км не считается <br class='hidden-md hidden-sm hidden-xs'>критическим, при котором б.у. машина требует <br class='hidden-md hidden-sm hidden-xs'>капитального ремонта.
                         </div>
-                        <button class="info-box-bg-button orange-button" type="button" data-toggle="modal" data-target="#bid">
+                        <button class="info-box-bg-button orange-button" type="button"
+                                data-toggle="modal" data-target="#bid">
                             ЗАКАЗАТЬ УСЛУГУ
                         </button>
                     </div>

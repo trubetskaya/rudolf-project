@@ -1,12 +1,12 @@
 <template>
     <!-- Modal -->
     <div>
-        <div id="bid" class="rudolf-modal fade modal" role="dialog">
+        <div id="bid" class="rudolf-modal modal" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
                 <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <button type="button" class="close" data-dismiss="modal" @click="$emit('close')"></button>
                     <div class="modal-header">
                         Заявка менеджеру
                     </div>
@@ -54,7 +54,7 @@
 
             </div>
         </div>
-        <div id="bid-success" class="rudolf-modal fade modal" role="dialog">
+        <div id="bid-success" class="rudolf-modal modal" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -75,16 +75,17 @@
 
 <script>
     module.exports = {
+        name: 'bid',
         data: function () {
             return {
                 name: '',
                 phone: '',
                 city: '',
                 email: '',
-                comment: '',
+                comment: ''
             }
         },
-        ready() {
+        created: function() {
             $('#bid-success').on('hidden.bs.modal', function () {
                 $('body').css('padding-right', 0);
             })

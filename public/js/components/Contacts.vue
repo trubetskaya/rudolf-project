@@ -4,13 +4,15 @@
         data: function () {
             return {}
         },
-        mounted: function () {
+        created: function () {
+            console.info('created');
             $("body").append(
                 $("<script>").attr('src', "https://maps.googleapis.com/maps/api/js?key=AIzaSyAGBUbRG-ngPSzU6vjUyeJgpVwKPoaZtUE&callback=initMap")
                     .prop('async', true).prop('defer', true));
         }
     }
 </script>
+
 
 <template>
     <div class="container texts">
@@ -50,3 +52,4 @@
         </div>
     </div>
 </template>
+

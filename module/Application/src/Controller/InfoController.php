@@ -31,10 +31,7 @@ namespace Application\Controller {
          */
         public function servicesAction()
         {
-            $section = $this->params()->fromRoute('section');
             $view = new ViewModel;
-            $view->setVariable('section', $section ?: 'credit');
-
             return $view;
         }
 

@@ -25,6 +25,8 @@ namespace Application\Controller {
          */
         public function indexAction()
         {
+            $viewModel = new ViewModel;
+            return $viewModel;
         }
 
         /**
@@ -55,9 +57,14 @@ namespace Application\Controller {
             return $view;
         }
 
+        /**
+         * Function bidAction
+         * @return JsonModel
+         */
         public function bidAction()
         {
-            return new JsonModel();
+            $viewModel = new JsonModel;
+            return $viewModel;
         }
     }
 }

@@ -99,7 +99,9 @@
     } ?>
     <body>
         <script type="text/javascript">
-            var cardListInit = <?=json_encode($list);?>;
+            var cardListInit = <?=json_encode($list);?>,
+                categories = <?=json_encode($categories);?>;
+
             function initMap() {
                 var uluru = {lat: 50.4451721, lng: 30.4881641};
                 var map = new google.maps.Map(document.getElementById('map'), {
@@ -114,10 +116,8 @@
         </script>
         <div id="app">
             <navigation></navigation>
-            <slot>
-                <?= $this->content ?>
-            </slot>
-
+            <keep-alive><?= $this->content ?></keep-alive>
+            <bid></bid>
             <footer>
                 <div class="container hidden-xs hidden-sm" id="footer-link-list">
                     <div class="col-lg-5ths col-md-5ths col-sm-5ths">
