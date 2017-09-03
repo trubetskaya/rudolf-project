@@ -7,10 +7,8 @@
 
 namespace Application\Controller {
 
-    use Application\Entity\Options\Taxonomy;
     use Application\Entity\Vehicle;
     use Doctrine\ORM\EntityNotFoundException;
-    use Lib\Controller\AbstractController;
     use Zend\View\Model\JsonModel;
     use Zend\View\Model\ViewModel;
 
@@ -27,33 +25,6 @@ namespace Application\Controller {
          */
         public function indexAction()
         {
-            $em = $this->getEntityManager();
-            $exp = $em->getExpressionBuilder();
-
-            $qb = $em->getRepository(Vehicle::class)
-                ->createQueryBuilder('v')
-                ->where($exp->eq('v.active', true))
-                ->orderBy($exp->asc('v.index'));
-
-            $list = [];
-            $i = $qb->getQuery()
-                ->iterate();
-
-            $i->rewind();
-            while ($i->valid()) {
-                $current = $i->current();
-
-                /** @var Vehicle $item */
-                $item = current($current);
-                array_push($list, $item->jsonSerialize('copy'));
-
-                $i->next();
-            }
-
-            $view = new ViewModel;
-            $view->setVariable('list', $list);
-
-            return $view;
         }
 
         /**

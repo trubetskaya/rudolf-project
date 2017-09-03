@@ -93,10 +93,31 @@
             ga('send', 'pageview');
         </script>
     </head>
+    <?php foreach ($list as &$item) {
+        $item['link'] = $this->url('catalog', ['id' => $item['id'], 'action' => 'card']);
+        $item['transparentImage'] = strval($this->basePath('/dashboard/img/trans.gif'));
+    } ?>
     <body>
-        <navigation></navigation>
-        <div>
-            <?= $this->content ?>
+        <script type="text/javascript">
+            var cardListInit = <?=json_encode($list);?>;
+            function initMap() {
+                var uluru = {lat: 50.4451721, lng: 30.4881641};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: uluru
+                });
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
+            }
+        </script>
+        <div id="app">
+            <navigation></navigation>
+            <slot>
+                <?= $this->content ?>
+            </slot>
+
             <footer>
                 <div class="container hidden-xs hidden-sm" id="footer-link-list">
                     <div class="col-lg-5ths col-md-5ths col-sm-5ths">

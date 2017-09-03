@@ -1,0 +1,52 @@
+<script>
+    module.exports = {
+        name: 'contacts',
+        data: function () {
+            return {}
+        },
+        mounted: function () {
+            $("body").append(
+                $("<script>").attr('src', "https://maps.googleapis.com/maps/api/js?key=AIzaSyAGBUbRG-ngPSzU6vjUyeJgpVwKPoaZtUE&callback=initMap")
+                    .prop('async', true).prop('defer', true));
+        }
+    }
+</script>
+
+<template>
+    <div class="container texts">
+        <div class="row">
+            <div class="texts-title ol-lg-offset-1 col-md-offset-1 col-lg-11 col-md-11 col-sm-12 col-xs-12">
+                Адреса салонов
+            </div>
+            <div class="">
+                <!-- Навигация -->
+                <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active">
+                            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                                Автоклуб
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Содержимое вкладок -->
+                <div class="tab-content col-md-12 col-lg-12">
+                    <div role="tabpanel" class="tab-pane active row" id="home">
+                        <div class="address-map col-lg-offset-1 col-md-offset-1 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div id="map">
+                            </div>
+                            <div class="address-map-title">Rudolf autohaus, Киев</div>
+                            <div class="address-map-text">
+                                ул.Павла Пестеля 7, <br>
+                                (заезд с улицы Жилянской,<br>
+                                за универмагом &quot;Украина&quot;)<br>
+                                <a href="tel:+380673951515">тел. +38 067 395 15 15</a><br>
+                                Email: rudolf.kiev.ua@gmail.com
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

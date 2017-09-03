@@ -1,20 +1,36 @@
-const Catalog = require('./components/Catalog.vue');
-const Navigation = require('./components/Navigation.vue'),
-    Services = require('./components/Services.vue'),
+let Navigation = require('./components/Navigation.vue'),
     Bid = require('./components/Bid.vue');
 
-var Vue = require('vue');
-var VueResource = require('vue-resource'),
+let Home = require('./components/Home.vue'),
+    Catalog = require('./components/Catalog.vue'),
+    Services = require('./components/Services.vue'),
+    Company = require('./components/Company.vue'),
+    Contacts = require('./components/Contacts.vue'),
+    Sale = require('./components/Sale.vue');
+
+let Vue = require('vue');
+let VueResource = require('vue-resource'),
     VueFilter = require('vue-filter');
 
 Vue.use(VueResource);
 Vue.use(VueFilter);
+let routes = {
+    '/': Home,
+    '/catalog': Catalog,
 
-var vm = new Vue({
-    el: 'body',
+    '/sale': Sale,
+    '/company': Company,
+    '/contacts': Contacts,
+
+    '/services': Services,
+    '/services/credit': Services,
+    '/services/expertise': Services,
+};
+const vm = new Vue({
+    el: '#app',
     data: function() {
       return {
-          currentRoute: window.location.pathname
+          currentRoute: window.location.pathname,
       };
     },
     components: {
@@ -22,6 +38,11 @@ var vm = new Vue({
         Services: Services,
         Navigation: Navigation,
         Bid: Bid
+    },
+    computed: {
+        currentView() {
+            return routes[this.currentRoute];
+        }
     }
 });
 

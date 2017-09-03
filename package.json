@@ -3,19 +3,28 @@
   "version": "1.0.0",
   "description": "## Introduction",
   "main": "index.js",
+  "browser": {
+    "vue": "vue/dist/vue.common.js"
+  },
+  "aliasify": {
+    "aliases": {
+      "vue": "vue/dist/vue.js"
+    }
+  },
   "dependencies": {
     "lodash": "^4.17.4",
-    "vue": "^1.0.28",
+    "vue": "^2.4.2",
     "vue-filter": "^0.2.1",
     "vue-resource": "^0.7.4"
   },
   "devDependencies": {
-    "browserify": "*",
-    "vueify": "^8.5.4",
+    "browserify": "^14.4.0",
+    "vueify": "^9.4.1",
     "watchify": "^3.9.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "vueify": "vueify -e public/js/main.js -o public/js/build.js",
     "build": "browserify -t vueify -e public/js/main.js -o public/js/build.js",
     "watch": "watchify -t vueify -e public/js/main.js -o public/js/build.js"
   },

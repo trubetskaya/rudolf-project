@@ -7,7 +7,6 @@
 
 namespace Application\Controller {
 
-    use Lib\Controller\AbstractController;
     use Zend\View\Model\ViewModel;
 
     /**

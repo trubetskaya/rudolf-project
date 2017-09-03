@@ -9,10 +9,7 @@ namespace Application\Controller {
     use Application\Entity\Options\Category;
     use Application\Entity\Options\Tag;
     use Application\Entity\Vehicle;
-    use function foo\func;
     use Zend\View\Model\ViewModel;
-    use Doctrine\ORM\Query\Expr\Join;
-    use Lib\Controller\AbstractController;
     use Application\Entity\Options\Taxonomy;
 
     /**
