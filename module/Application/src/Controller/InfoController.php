@@ -32,6 +32,7 @@ namespace Application\Controller {
         public function servicesAction()
         {
             $view = new ViewModel;
+            $view->setVariable('section', $this->params()->fromRoute('section'));
             return $view;
         }
 

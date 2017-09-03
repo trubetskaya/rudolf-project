@@ -8,6 +8,8 @@
 
 namespace Application\Controller {
 
+    use Application\Entity\Options\Equipment;
+    use Dashboard\Entity\File;
     use Zend\Mvc\MvcEvent;
     use Application\Entity\Vehicle;
     use Application\Entity\Options\Taxonomy;
@@ -47,7 +49,7 @@ namespace Application\Controller {
                 $item = current($current);
                 $marks[$item->getId()] = [
                     'name' => $item->getName(),
-                    'vehicles' => 0
+                    'vehicles' => 0,
                 ];
             }
 
@@ -68,7 +70,7 @@ namespace Application\Controller {
                 $item = current($current);
                 $cats[$item->getId()] = [
                     'name' => $item->getName(),
-                    'stat' => $marks
+                    'stat' => $marks,
                 ];
             }
 
@@ -87,7 +89,7 @@ namespace Application\Controller {
 
                 /** @var Vehicle $item */
                 $item = current($current);
-                array_push($list, $item->jsonSerialize('copy'));
+                $list[$item->getId()] = $item->viewify();
 
                 $catID = $item->getCategory()->getId();
                 $markID = $item->getTaxonomy()->getRoot()->getId();

@@ -75,7 +75,7 @@
 
 <script>
     module.exports = {
-        name: 'bid',
+        name: 'app-order',
         data: function () {
             return {
                 name: '',

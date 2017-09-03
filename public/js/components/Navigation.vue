@@ -1,27 +1,14 @@
 <script>
-    const Home = require('./Home.vue'),
-        Catalog = require('./Catalog.vue');
-
     module.exports = {
-        data: function () {
-            return {
-                links: store.nav
-            };
-        },
-        methods: {
-            getActive (link) {
-                return link.href === this.$root.currentRoute ? 'active' : false },
-            getDropdown (link) { return $(window).innerWidth() <= 768 && link.dropdown ? 'dropdown' : false },
-            route(link) { this.$root.currentRoute = link; }
-        },
-        ready: function () {
-            if (this.$root.currentRoute === '/') {
+        name: 'app-navigation',
+        created: function () {
+            if (this.$route.path === '/') {
                 $(window).scroll(function() {
                     let nav = $('nav');
                     $(this).scrollTop() > 580 ?
                         nav.removeClass('transparent') :
                         nav.addClass('transparent');
-                });
+                }());
             }
         }
     }
@@ -31,27 +18,14 @@
     <nav class="navbar navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="javascript:;" @click="route('/')">
+                <router-link to="/" class="navbar-brand">
                     <img src="/img/header/logo.png" alt="Rudolf-autohaus"/>
-                </a>
+                </router-link>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav" id="navbar-collapse">
-                    <li class="dropdown-close-button">
-                        <button type="button" class="close" data-toggle="collapse"
-                                data-target=".navbar-collapse">&nbsp;</button>
-                    </li>
-                    <li v-for="link in links" :class="getDropdown(link)">
-                        <a @click="route(link.href)" href="javascript:;" :class="getDropdown(link) + '-toggle ' + getActive(link)"
-                           :data-toggle="getDropdown(link)">
-                            {{ link.text }}
-                            <b v-if="getDropdown(link)" class="caret"></b>
-                        </a>
-                        <ul v-if="getDropdown(link)" class="dropdown-menu">
-                            <li v-for="sub in link.dropdown">
-                                <a :href="sub.href" target="_blank">{{ sub.text }}</a>
-                            </li>
-                        </ul>
+                    <li v-for="link in this.$router.options.routes.slice(2)">
+                        <router-link :to="link.href || link.path">{{ link.text }}</router-link>
                     </li>
                 </ul>
             </div>
@@ -74,14 +48,12 @@
 
 <style lang="scss">
     .fade-enter-active, .fade-leave-active {
-        transition: opacity .3s;
-        margin-left: -5px;
+        transition: opacity .5s;
     }
     .fade-enter, .fade-leave-to {
         opacity: 0
     }
 </style>
-
 <style lang="scss" scoped>
     $gray:#555963;
     $gray-light:#e3e3e3;

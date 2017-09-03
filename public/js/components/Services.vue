@@ -1,26 +1,6 @@
 <script>
-
 module.exports = {
-    name: 'services',
-    data: function () {
-        return {
-            section: {
-                type: String,
-                default: 'credit'
-            }
-        }
-    },
-
-    created: function () {
-        this.section = 'credit';
-        if (this.$root.currentRoute.indexOf('/services/') === 0) {
-            this.section = this.$root.currentRoute.replace('/services/', '');
-        }
-    },
-
-    mounted: function () {
-        $('.' + this.section).addClass('in active');
-    }
+    name: 'services'
 }
 </script>
 
@@ -35,35 +15,25 @@ module.exports = {
                     <!-- Навигация -->
                     <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li :class="section == 'credit' ? 'active' : ''">
-                                <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">
-                                    Кредитование
-                                </a>
-                            </li>
-                            <li :class="section == 'insurance' ? 'active' : ''">
-                                <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">
-                                    Cтрахование
-                                </a>
-                            </li>
-                            <li :class="section == 'expertise' ? 'active' : ''">
-                                <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">
-
-                                    Экспертиза
-                                </a>
-                            </li>
-                            <li :class="section == 're-registration' ? 'active' : ''">
-                                <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">
-                                    Переоформление
-                                </a>
-                            </li>
+                            <router-link to="/services/credit" tag="li">
+                                <a>Кредитование</a>
+                            </router-link>
+                            <router-link to="/services/insurance" tag="li">
+                                <a>Cтрахование</a>
+                            </router-link>
+                            <router-link to="/services/expertise" tag="li">
+                                <a>Экспертиза</a>
+                            </router-link>
+                            <router-link to="/services/re-registration" tag="li">
+                                <a>Переоформление</a>
+                            </router-link>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
         <div class="tab-content container-fluid">
-
-            <div role="tabpanel" class="tab-pane fade row credit" id="tab1">
+            <div :class="this.$route.params.section == 'credit' ? 'in active' : 'fade'" role="tabpanel" class="tab-pane row credit" id="tab1">
                 <div class="info-common-top-bg">
                     <div class="container">
                         <div class="row">
@@ -119,7 +89,7 @@ module.exports = {
                     </div>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade row insurance" id="tab2">
+            <div :class="this.$route.params.section == 'insurance' ? 'in active' : 'fade'" role="tabpanel" class="tab-pane row insurance" id="tab2">
                 <div class="info-common-top-bg">
                     <div class="container">
                         <div class="row">
@@ -165,8 +135,7 @@ module.exports = {
                     </div>
                 </div>
             </div>
-
-            <div role="tabpanel" class="tab-pane fade row expertise" id="tab3">
+            <div :class="this.$route.params.section == 'expertise' ? 'in active' : 'fade'" role="tabpanel" class="tab-pane row expertise" id="tab3">
                 <div class="info-common-top-bg">
                     <div class="container">
                         <div class="row">
@@ -225,8 +194,7 @@ module.exports = {
                     </div>
                 </div>
             </div>
-
-            <div role="tabpanel" class="tab-pane fade row re-registration" id="tab4">
+            <div :class="this.$route.params.section == 're-registration' ? 'in active' : 'fade'" role="tabpanel" class="tab-pane row re-registration" id="tab4">
                 <div class="info-common-top-bg">
                     <div class="container">
                         <div class="row">

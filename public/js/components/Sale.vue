@@ -1,11 +1,6 @@
 <script>
     module.exports = {
-        name: 'sale',
-        data: function () {
-            return {
-
-            }
-        }
+        name: 'sale'
     }
 </script>
 

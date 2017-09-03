@@ -7,6 +7,7 @@
  */
 namespace Application\Entity {
 
+    use Dashboard\Entity\File;
     use Doctrine\ORM\Mapping as ORM;
     use Lib\Entity\EntityBaseInterface;
     use Zend\Form\Annotation as Form;
@@ -687,20 +688,21 @@ namespace Application\Entity {
                 "category" => $this->getCategory()->getArrayCopy(['id', 'name']),
                 "transmission" => $this->getTransmission()->getArrayCopy(['id', 'name']),
                 "body" => $this->getBody()->getArrayCopy(['id', 'name']),
-                "year" => $this->getRegistrationDate(),
+
                 "volume" => $this->getVolume(),
-
-                'tags' => $this->getTags()->map($mapper)->toArray(),
-                'options' => $this->getOptions()->map($mapper)->toArray(),
-
+                "year" => $this->getRegistrationDate(),
                 "mileage" => $this->mileage(),
-                "mileageValue" => $this->getMileage(),
+
+                "taxonomy" => $this->taxonomy(),
+                'tags' => $this->getTags()
+                    ->map($mapper)
+                    ->toArray(),
 
                 "priceView" => $this->price(),
                 "priceValue" => $this->getAmount(),
-                "price" => $this->getAmount() / $this->getCurrency()->getRate(),
-
-                "taxonomy" => $this->taxonomy(),
+                "price" => $this->getAmount() /
+                   $this->getCurrency()
+                       ->getRate(),
             ];
 
             if (is_null($format)) {
@@ -711,6 +713,47 @@ namespace Application\Entity {
                 parent::jsonSerialize($format),
                 $copy
             );
+        }
+
+        /**
+         * Function jsonSerialize
+         * @return array
+         */
+        public function viewify() : array
+        {
+            $mod = $this->getTaxonomy();
+            $mapper = function (EntityBaseInterface $eq) {
+                return $eq->getName();
+            };
+
+            return array_merge($this->getArrayCopy(), [
+                "model" => $mod->getName(),
+                "preview" => $this->preview(),
+                "mark" => $mod->getRoot()
+                    ->getName(),
+
+                "fuel" => $this->getFuel()->getName(),
+                "drive" => $this->getDrive()->getName(),
+                "condition" => $this->getCondition()->getName(),
+                "category" => $this->getCategory()->getArrayCopy(['id', 'name']),
+                "transmission" => $this->getTransmission()->getName(),
+                "body" => $this->getBody()->getName(),
+                "year" => $this->getRegistrationDate(),
+                "volume" => $this->getVolume(),
+
+                "tags" => $this->getTags()->map($mapper)->toArray(),
+                "options" => $this->getOptions()->map($mapper)->toArray(),
+                "files" => $this->getFiles()
+                    ->map(function (File $f) { return $f->getPreview("487x350"); })
+                    ->toArray(),
+
+                "mileage" => $this->mileage(),
+                "taxonomy" => $this->taxonomy(),
+                "priceView" => $this->price(),
+                "price" => $this->getAmount() /
+                   $this->getCurrency()
+                       ->getRate(),
+            ]);
         }
     }
 }

@@ -3,9 +3,7 @@
     <div class="container" id="filters">
         <div class="row">
             <div class="col-lg-offset-1 col-md-offset-1 col-lg-11 col-md-11 breadcrumbs">
-                <a href="" class="back">
-                    <span></span>Назад
-                </a>
+                <a href="#" @click="$router.go(-1)" class="back"><span></span>Назад</a>
             </div>
             <div id="catalog-filters" class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12 catalog">
                 <div v-show="loadingOverlay" class="loading-overlay"></div>
@@ -233,13 +231,13 @@
 
                 this.cardList = cardListInit;
                 this.cardList = _.filter(this.cardList, function (item) {
-                    return (model ? model.indexOf(item.model.name) !== -1 : true)
+                    return (model ? model.indexOf(item.model) !== -1 : true)
                         && (yearFrom ? item.year >= yearFrom : true) && (yearTo ? item.year <= yearTo : true)
                         && (priceFrom ? item.price >= priceFrom : true) && (priceTo ? item.price <= priceTo : true)
-                        && (transmission ? item.transmission.name === transmission : true)
-                        && (drive ? item.drive.name === drive : true)
-                        && (body ? item.body.name === body : true)
-                        && (fuel ? item.fuel.name === fuel : true)
+                        && (transmission ? item.transmission === transmission : true)
+                        && (drive ? item.drive === drive : true)
+                        && (body ? item.body === body : true)
+                        && (fuel ? item.fuel === fuel : true)
                         && (tags.length > 0 ?
                             (_.filter(item.tags, function (elem) {
                                 return tags.indexOf(elem.id) > -1;
@@ -300,8 +298,8 @@
 
                 let props = [];
                 for (let i = 0; i < list.length; i++) {
-                    if (props.indexOf(list[i][prop].name) === -1) {
-                        props.push(list[i][prop].name)
+                    if (props.indexOf(list[i][prop]) === -1) {
+                        props.push(list[i][prop])
                     }
                 }
 
@@ -315,9 +313,9 @@
 
                 let marks = {};
                 for (let i = 0; i < list.length; i++) {
-                    marks[list[i].mark.name] = marks[list[i].mark.name] || [];
-                    if (marks[list[i].mark.name].indexOf(list[i].model.name) === -1) {
-                        marks[list[i].mark.name].push(list[i].model.name)
+                    marks[list[i].mark] = marks[list[i].mark] || [];
+                    if (marks[list[i].mark].indexOf(list[i].model) === -1) {
+                        marks[list[i].mark].push(list[i].model)
                     }
                 }
                 return marks;
@@ -392,15 +390,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
-    $gray:#555963;
-    $gray-light:#e3e3e3;
-    $white:#ffffff;
-    $orange:#f76a3a;
-    $black: #2d2a2a;
-
-    $screen-sm:768px;
-
+<style lang="scss">
     .breadcrumbs {
         margin-top: 36px;
         margin-bottom: 3px;
@@ -424,6 +414,16 @@
             text-transform: uppercase;
         }
     }
+</style>
+
+<style lang="scss" scoped>
+    $gray:#555963;
+    $gray-light:#e3e3e3;
+    $white:#ffffff;
+    $orange:#f76a3a;
+    $black: #2d2a2a;
+
+    $screen-sm:768px;
 
     .catalog {
         @media (max-width: $screen-sm) {

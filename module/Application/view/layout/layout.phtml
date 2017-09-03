@@ -5,20 +5,15 @@
         <meta charset="utf-8">
         <script type="text/javascript">
             var store = {
-                nav : [
-                    {
-                        text: '<?=$this->translate('Купить')?>',
-                        href: '<?=$this->url('catalog')?>',
-                        dropdown: [
-                            { text: '<?=$this->translate('Легковые')?>', href: '<?=$this->url('catalog')?>' },
-                            { text: '<?=$this->translate('Коммерческий')?>', href: '<?=$this->url('catalog')?>' }
-                        ]
-                    },
-                    { text: '<?=$this->translate('Продать')?>',  href: '<?=$this->url('sale')?>' },
-                    { text: '<?=$this->translate('Услуги')?>',   href: '<?=$this->url('services')?>' },
-                    { text: '<?=$this->translate('Компания')?>', href: '<?=$this->url('company')?>' },
-                    { text: '<?=$this->translate('Контакты')?>', href: '<?=$this->url('contacts')?>' }
-                ]
+                nav : {
+                    home:       { path: "/", name: 'home', text: "<?=$this->translate('Домой')?>"},
+                    card:       { path: "<?= $this->url('card') ?>", name: 'card', text: "<?=$this->translate('Купить')?>"},
+                    catalog:    { path: "<?= $this->url('catalog') ?>", name: 'catalog', text: "<?=$this->translate('Купить')?>"},
+                    sale:       { path: "<?= $this->url('sale') ?>", name: 'sale', text: "<?=$this->translate('Продать')?>"},
+                    services:   { path: "<?= $this->url('services') ?>", name: 'services', text: "<?=$this->translate('Услуги')?>"},
+                    company:    { path: "<?= $this->url('company') ?>", name: 'company', text: "<?=$this->translate('Компания')?>"},
+                    contacts:   { path: "<?= $this->url('contacts') ?>", name: 'contacts', text: "<?=$this->translate('Контакты')?>"},
+                }
             };
         </script>
         <?= $this->headTitle('Rudolf AutoHaus')->setSeparator(' - ')
@@ -93,34 +88,36 @@
             ga('send', 'pageview');
         </script>
     </head>
+
     <?php foreach ($list as &$item) {
-        $item['link'] = $this->url('catalog', ['id' => $item['id'], 'action' => 'card']);
+        $item['link'] = $this->url('card', ['id' => $item['id']]);
         $item['transparentImage'] = strval($this->basePath('/dashboard/img/trans.gif'));
     } ?>
     <body>
         <script type="text/javascript">
-            var cardListInit = <?=json_encode($list);?>,
+            var cards = <?=json_encode($list);?>,
                 categories = <?=json_encode($categories);?>;
 
+                var cardListInit = [];
+                for (var i in cards) {
+                    cardListInit.push(cards[i]);
+                }
+
             function initMap() {
-                var uluru = {lat: 50.4451721, lng: 30.4881641};
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 15,
-                    center: uluru
-                });
-                var marker = new google.maps.Marker({
-                    position: uluru,
-                    map: map
-                });
+                var uluru = { lat: 50.4451721, lng: 30.4881641 };
+                var map = new google.maps.Map(document.getElementById('map'), { zoom: 15, center: uluru });
+                var marker = new google.maps.Marker({ position: uluru, map: map });
             }
         </script>
         <div id="app">
-            <navigation></navigation>
+            <app-navigation></app-navigation>
             <transition name="fade">
-                <keep-alive><?= $this->content ?></keep-alive>
+                <keep-alive>
+                    <?= $this->content ?>
+                </keep-alive>
             </transition>
             <app-footer></app-footer>
-            <bid></bid>
+            <app-order></app-order>
         </div>
 
         <?= $this->inlineScript() ?>

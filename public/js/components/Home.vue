@@ -3,6 +3,7 @@
     let Card = require('./Card.vue');
 
     module.exports = {
+        name: 'home',
         data: function () {
             return {
                 categories: categories,
@@ -11,6 +12,11 @@
         },
         components: {
             Card: Card
+        },
+        mounted: function() {
+            $('.list-auto ul[role="tablist"] li:first-child').addClass('active');
+            $('.list-auto div[role="tabpanel"]:first-child').addClass('active');
+            $('#top-carousel').parent('div').addClass('content-holder');
         }
     }
 </script>
@@ -49,42 +55,33 @@
                     <!-- Навигация -->
                     <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li class="active">
-                                <a href="#cars" aria-controls="home" role="tab" data-toggle="tab">
-                                    Легковые автомобили
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#commercial" aria-controls="profile" role="tab" data-toggle="tab">
-                                    Коммерческий транспорт
+                            <li v-for="(category, categoryID, index) in categories" :class="{active: index == 0}">
+                                <a :href="'#category-' + categoryID" :aria-controls="'#category-' + categoryID"
+                                   role="tab" data-toggle="tab">
+                                    {{ category.name }}
                                 </a>
                             </li>
                         </ul>
                     </div>
                     <!-- Содержимое вкладок -->
                     <div class="tab-content col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                        <div role="tabpanel" class="tab-pane active row" id="cars">
-                            <div class="col-lg-2 col-md-2">
+                        <div role="tabpanel" class="tab-pane row"
+                            v-for="(category, categoryID, index) in categories"
+                            :class="{active: index == 0}"
+                            :key="categoryID"
+                            :id="'category-' + categoryID">
+
+                            <template v-for="col in 5">
+                            <div :class="{'col-lg-offset-1 col-md-offset-1':col==1, 'hidden-xs': col==3, 'hidden-sm hidden-xs':col>=4}"
+                                 class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
                                 <ul class="auto-list-list">
-
-                                    <li>
-                                        <a href="/catalog">ВАЗ</a>
-                                        <span>1</span>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane row" id="commercial">
-                            <div class="col-lg-2 col-md-2 <?= array_shift($classes)?>">
-                                <ul class="auto-list-list">
-
-                                    <li>
-                                        <a href="/catalog">ВАЗ</a>
-                                        <span>1</span>
+                                    <li v-for="mark in Object.values(category.stat).slice((col-1)*Math.ceil(Object.values(category.stat).length/5), col*Math.ceil(Object.values(category.stat).length/5))">
+                                        <router-link :to="{ path: '/catalog', query: { category: category.name, mark: mark.name }}">{{ mark.name }}</router-link>
+                                        <span>{{ mark.vehicles }}</span>
                                     </li>
                                 </ul>
                             </div>
+                            </template>
                         </div>
                     </div>
                 </div>

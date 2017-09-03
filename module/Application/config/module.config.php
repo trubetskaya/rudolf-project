@@ -122,6 +122,22 @@ namespace Application {
                     ],
                     'may_terminate' => true
                 ],
+                'card' => [
+                    'type' => Http\Segment::class,
+                    'options' => [
+                        'route' => '/card[/:id]',
+                        'constraints' => [
+                            'controller'    => '[a-zA-Z][a-zA-Z0-9_-]+',
+                            'action'        => '[a-zA-Z][a-zA-Z0-9_-]+',
+                            'id'            => '[0-9]+'
+                        ],
+                        'defaults' => [
+                            'controller'    => Controller\CatalogController::class,
+                            'action'        => 'card',
+                        ],
+                    ],
+                    'may_terminate' => true
+                ],
                 'bid' => [
                     'type' => Http\Literal::class,
                     'options' => [
@@ -167,9 +183,9 @@ namespace Application {
 
         'images' => [
             '1461x1050' => [
-                'small' => '487x350',
-                'small-xs' => '281x202',
-                'quadratic' => '250x250',
+                's' => '487x350',
+                'xs' => '281x202',
+                'qxs' => '250x250',
             ]
         ]
     ];

@@ -1,68 +1,56 @@
+let _ = require('lodash');
 let AppFooter = require('./components/Footer.vue'),
     Navigation = require('./components/Navigation.vue'),
     Bid = require('./components/Bid.vue');
 
-let Home = require('./components/Home.vue'),
-    Catalog = require('./components/Catalog.vue'),
-    Services = require('./components/Services.vue'),
-    Company = require('./components/Company.vue'),
-    Contacts = require('./components/Contacts.vue'),
-    Sale = require('./components/Sale.vue');
-
 let Vue = require('vue');
-let VueResource = require('vue-resource'),
+let VueRouter = require('vue-router'),
+    VueResource = require('vue-resource'),
     VueFilter = require('vue-filter');
 
+Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(VueFilter);
 
-let routes = {
-    '/': Home,
-    '/catalog': Catalog,
+let routes = store.nav;
+routes.home.component = require("./components/Home.vue");
 
-    '/sale': Sale,
-    '/company': Company,
-    '/contacts': Contacts,
+routes.catalog.component = require("./components/Catalog.vue");
+routes.company.component = require("./components/Company.vue");
+routes.contacts.component = require("./components/Contacts.vue");
+routes.sale.component = require("./components/Sale.vue");
 
-    '/services': Services,
-    '/services/credit': Services,
-    '/services/expertise': Services,
-    '/services/re-registration': Services,
-};
+routes.services.props = true;
+routes.services.href = routes.services.path + "/credit";
+routes.services.component = require("./components/Services.vue");
+routes.services.path += "/:section";
 
-new Vue({
-    el: '#app',
-    data: function() {
-      return {
-          showContent: false,
-          currentRoute: window.location.pathname,
-          app: {
-              content: "app-content",
-              footer: "app-footer"
-          }
-      };
-    },
-    components: {
-        AppFooter: AppFooter,
-        Navigation: Navigation,
-        Bid: Bid,
-    },
-    computed: {
-        currentView() {
-            this.showContent = false;
-            return routes[this.currentRoute];
+routes.card.props = true;
+routes.card.component = require("./components/CardFull.vue");
+routes.card.path += "/:id";
+
+let router = new VueRouter({
+    mode: 'history',
+    linkActiveClass: 'active',
+    routes: _.values(routes),
+    scrollBehavior (to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            if (to.hash) {
+                return {selector: to.hash}
+            }
+            return {x: 0, y: 0}
         }
-    },
-    mounted: function () {
-        console.info('mounted');
-        let interval = function () {
-            this.showContent = true;
-            setTimeout(interval.bind(this), 300);
-        };
-        setTimeout(interval.bind(this), 300);
     }
 });
 
-// $('.list-auto ul[role="tablist"] li:first-child').addClass('active');
-// $('.list-auto div[role="tabpanel"]:first-child').addClass('active');
-// $('#top-carousel').parent('div').addClass('content-holder');
+new Vue({
+    el: '#app',
+    router,
+    components: {
+        AppFooter: AppFooter,
+        AppNavigation: Navigation,
+        AppOrder: Bid,
+    }
+});
