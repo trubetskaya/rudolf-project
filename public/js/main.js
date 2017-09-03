@@ -1,4 +1,5 @@
-let Navigation = require('./components/Navigation.vue'),
+let AppFooter = require('./components/Footer.vue'),
+    Navigation = require('./components/Navigation.vue'),
     Bid = require('./components/Bid.vue');
 
 let Home = require('./components/Home.vue'),
@@ -33,19 +34,33 @@ new Vue({
     el: '#app',
     data: function() {
       return {
+          showContent: false,
           currentRoute: window.location.pathname,
+          app: {
+              content: "app-content",
+              footer: "app-footer"
+          }
       };
     },
     components: {
+        AppFooter: AppFooter,
         Navigation: Navigation,
         Bid: Bid,
     },
     computed: {
         currentView() {
+            this.showContent = false;
             return routes[this.currentRoute];
         }
     },
-
+    mounted: function () {
+        console.info('mounted');
+        let interval = function () {
+            this.showContent = true;
+            setTimeout(interval.bind(this), 300);
+        };
+        setTimeout(interval.bind(this), 300);
+    }
 });
 
 $('.list-auto ul[role="tablist"] li:first-child').addClass('active');

@@ -62,17 +62,17 @@
 
             ->headLink(['rel' => 'manifest', 'href' => $this->basePath('manifest.json')])
 
-            ->prependStylesheet($this->basePath('css/bid.css'))
-            ->prependStylesheet($this->basePath('css/company.css'))
-            ->prependStylesheet($this->basePath('css/servises.css'))
-            ->prependStylesheet($this->basePath('css/info.css'))
+//            ->prependStylesheet($this->basePath('css/bid.css'))
+//            ->prependStylesheet($this->basePath('css/company.css'))
+//            ->prependStylesheet($this->basePath('css/servises.css'))
+//            ->prependStylesheet($this->basePath('css/info.css'))
             ->prependStylesheet($this->basePath('css/main.css'))
             ->prependStylesheet($this->basePath('css/select.css'))
             ->prependStylesheet($this->basePath('css/checkbox.css'))
-            ->prependStylesheet($this->basePath('css/header.css'))
-            ->prependStylesheet($this->basePath('css/footer.css'))
-            ->prependStylesheet($this->basePath('css/homepage.css'))
-            ->prependStylesheet($this->basePath('css/catalog.css'))
+//            ->prependStylesheet($this->basePath('css/header.css'))
+//            ->prependStylesheet($this->basePath('css/footer.css'))
+//            ->prependStylesheet($this->basePath('css/homepage.css'))
+//            ->prependStylesheet($this->basePath('css/catalog.css'))
             ->prependStylesheet($this->basePath('css/card.css'))
             ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
             ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
@@ -99,6 +99,9 @@
     } ?>
     <body>
         <script type="text/javascript">
+            var appContent = "app-content",
+                appFooter = "app-footer";
+
             var cardListInit = <?=json_encode($list);?>,
                 categories = <?=json_encode($categories);?>;
 
@@ -116,60 +119,14 @@
         </script>
         <div id="app">
             <navigation></navigation>
-            <keep-alive><?= $this->content ?></keep-alive>
+            <transition name="fade">
+                <keep-alive><?= $this->content ?></keep-alive>
+
+            </transition>
+            <app-footer v-show="showContent"></app-footer>
             <bid></bid>
-            <footer>
-                <div class="container hidden-xs hidden-sm" id="footer-link-list">
-                    <div class="col-lg-5ths col-md-5ths col-sm-5ths">
-                        <ul>
-                            <li><?= $this->translate('Купить');?></li>
-                            <li><a href="/catalog"><?= $this->translate('Легковые автомобили');?></a></li>
-                            <li><a href="/catalog"><?= $this->translate('Коммерческий транспорт');?></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-5ths col-md-5ths col-sm-5ths">
-                        <ul>
-                            <li><?= $this->translate('Продать');?></li>
-                            <li><a href="sale"><?= $this->translate('Срочный выкуп автомобиля');?></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-5ths col-md-5ths col-sm-5ths">
-                        <ul>
-                            <li><?= $this->translate('Услуги');?></li>
-                            <li><a href="/services/credit"><?= $this->translate('Кредитование');?></a></li>
-                            <li><a href="/services/insurance"><?= $this->translate('Страхование');?></a></li>
-                            <li><a href="/services/expertise"><?= $this->translate('Экспертиза');?></a></li>
-                            <li><a href="/services/re-registration"><?= $this->translate('Переоформление');?></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-5ths col-md-5ths col-sm-5ths">
-                        <ul>
-                            <li><?= $this->translate('Компания');?></li>
-                            <li>
-                                <a href="<?=$this->url('company')?>" target="_blank">
-                                    <?= $this->translate('О компании');?>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-5ths col-md-5ths col-sm-5ths">
-                        <ul>
-                            <li><?= $this->translate('Контакты');?></li>
-                            <li>
-                                <a href="<?=$this->url('contacts')?>" target="_blank">
-                                    <?= $this->translate('Контакты');?>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="copyright">
-                    <div class="container">
-                        <b>&copy; 2017 Rudolf Autohaus.</b> Все права защищены
-                    </div>
-                </div>
-            </footer>
         </div>
+
         <?= $this->inlineScript() ?>
     </body>
 </html>

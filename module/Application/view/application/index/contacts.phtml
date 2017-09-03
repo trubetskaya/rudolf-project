@@ -1,7 +1,5 @@
 <?php
 $this->headTitle('main-page-title');
-$this->headMeta()
-    ->appendName('description', $this->translate('main-page-meta-desc'))
-    ->appendName('keywords', $this->translate('main-page-meta-keywords'));
-?>
-<component v-bind:is="currentView"></component>
+$this->headMeta()->appendName('description', $this->translate('main-page-meta-desc'))
+    ->appendName('keywords', $this->translate('main-page-meta-keywords'))?>
+<?= $this->render('partial/component.phtml') ?>
