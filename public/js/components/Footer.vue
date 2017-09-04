@@ -13,43 +13,35 @@
             <div class="col-lg-5ths col-md-5ths col-sm-5ths">
                 <ul>
                     <li>Купить</li>
-                    <li><a href="/catalog">Легковые автомобили</a></li>
-                    <li><a href="/catalog">Коммерческий транспорт</a></li>
+                    <li><router-link :to="{name:'catalog',query:{category:'Легковые'}}">Легковые автомобили</router-link></li>
+                    <li><router-link :to="{name:'catalog',query:{category:'Коммерческие'}}">Коммерческий транспорт</router-link></li>
                 </ul>
             </div>
             <div class="col-lg-5ths col-md-5ths col-sm-5ths">
                 <ul>
                     <li>Продать</li>
-                    <li><a href="sale">Срочный выкуп автомобиля</a></li>
+                    <li><router-link to="/sale">Срочный выкуп автомобиля</router-link></li>
                 </ul>
             </div>
             <div class="col-lg-5ths col-md-5ths col-sm-5ths">
                 <ul>
                     <li>Услуги</li>
-                    <li><a href="/services/credit">Кредитование</a></li>
-                    <li><a href="/services/insurance">Страхование</a></li>
-                    <li><a href="/services/expertise">Экспертиза</a></li>
-                    <li><a href="/services/re-registration">Переоформление</a></li>
+                    <li><router-link :to="{name:'services', params:{section:'credit'}}">Кредитование</router-link></li>
+                    <li><router-link :to="{name:'services', params:{section:'insurance'}}">Страхование</router-link></li>
+                    <li><router-link :to="{name:'services', params:{section:'expertise'}}">Экспертиза</router-link></li>
+                    <li><router-link :to="{name:'services', params:{section:'re-registration'}}">Переоформление</router-link></li>
                 </ul>
             </div>
             <div class="col-lg-5ths col-md-5ths col-sm-5ths">
                 <ul>
                     <li>Компания</li>
-                    <li>
-                        <a href="<?=$this->url('company')?>" target="_blank">
-                            О компании
-                        </a>
-                    </li>
+                    <li><router-link to="/company">О компании</router-link></li>
                 </ul>
             </div>
             <div class="col-lg-5ths col-md-5ths col-sm-5ths">
                 <ul>
                     <li>Контакты</li>
-                    <li>
-                        <a href="<?=$this->url('contacts')?>" target="_blank">
-                            Контакты
-                        </a>
-                    </li>
+                    <li><router-link to="/contacts">Контакты</router-link></li>
                 </ul>
             </div>
         </div>
