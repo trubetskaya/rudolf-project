@@ -1,7 +1,13 @@
 <script>
     module.exports = {
         name: 'app-navigation',
-        created: function () {
+        methods: {
+            collapseMenu(e) {
+               $(e.target).closest(".navbar-collapse")
+                   .collapse('hide');
+            }
+        },
+        created() {
             if (this.$route.path === '/') {
                 $(window).scroll(function() {
                     let nav = $('nav');
@@ -25,7 +31,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav" id="navbar-collapse">
                     <li v-for="link in this.$router.options.routes.slice(2)">
-                        <router-link :to="link.href || link.path">{{ link.text }}</router-link>
+                        <router-link :to="link.href || link.path" v-on:click.native="collapseMenu">{{ link.text }}</router-link>
                     </li>
                 </ul>
             </div>

@@ -391,6 +391,8 @@
 </script>
 
 <style lang="scss">
+    $black: #2d2a2a;
+
     .breadcrumbs {
         margin-top: 36px;
         margin-bottom: 3px;
@@ -412,6 +414,22 @@
             text-align: left;
             color: #2d2a2a;
             text-transform: uppercase;
+        }
+    }
+    .fs-dropdown {
+        .fs-dropdown-options {
+            .fs-dropdown-item.optiongroup {
+                display: block;
+                padding: 10px 0 0 5px;
+                font-weight: bold;
+                line-height: 14px;
+                font-size: 75%;
+                color: $black;
+
+                &:not(:last-child) {
+                    border-bottom: none;
+                }
+            }
         }
     }
 </style>
@@ -607,22 +625,5 @@
         text-align: left;
         color: #a8a8a8;
         margin-bottom: 0;
-    }
-
-    .fs-dropdown {
-        .fs-dropdown-options {
-            .fs-dropdown-item.optiongroup {
-                display: block;
-                padding: 10px 0 0 5px;
-                font-weight: bold;
-                line-height: 14px;
-                font-size: 75%;
-                color: $black;
-
-                &:not(:last-child) {
-                    border-bottom: none;
-                }
-            }
-        }
     }
 </style>

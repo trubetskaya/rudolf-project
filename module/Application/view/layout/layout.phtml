@@ -112,9 +112,7 @@
         <div id="app">
             <app-navigation></app-navigation>
             <transition name="fade">
-                <keep-alive>
-                    <?= $this->content ?>
-                </keep-alive>
+                <?= $this->content ?>
             </transition>
             <app-footer></app-footer>
             <app-order></app-order>

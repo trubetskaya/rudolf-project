@@ -13,16 +13,11 @@
         components: {
             Card: Card
         },
-        mounted: function() {
-            $('.list-auto ul[role="tablist"] li:first-child').addClass('active');
-            $('.list-auto div[role="tabpanel"]:first-child').addClass('active');
-            $('#top-carousel').parent('div').addClass('content-holder');
-        }
     }
 </script>
 
 <template>
-    <div>
+    <div class="content-holder">
         <div id="top-carousel" class="carousel slide">
             <!-- Слайды карусели -->
             <div class="carousel-inner" style="">
