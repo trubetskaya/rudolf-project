@@ -1,7 +1,5 @@
 <script>
-    let _ = require('lodash');
     let Card = require('./Card.vue');
-
     module.exports = {
         name: 'home',
         data: function () {
@@ -12,7 +10,7 @@
         },
         components: {
             Card: Card
-        },
+        }
     }
 </script>
 
@@ -50,10 +48,10 @@
                     <!-- Навигация -->
                     <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li v-for="(category, categoryID, index) in categories" :class="{active: index == 0}">
-                                <a :href="'#category-' + categoryID" :aria-controls="'#category-' + categoryID"
+                            <li v-for="(cat, i) in categories" :class="{active:i==0}">
+                                <a :href="'#category-' + cat.id" :aria-controls="'#category-' + cat.id"
                                    role="tab" data-toggle="tab">
-                                    {{ category.name }}
+                                    {{ cat.name }}
                                 </a>
                             </li>
                         </ul>
@@ -61,17 +59,20 @@
                     <!-- Содержимое вкладок -->
                     <div class="tab-content col-md-12 col-lg-12 col-sm-12 col-xs-12">
                         <div role="tabpanel" class="tab-pane row"
-                            v-for="(category, categoryID, index) in categories"
-                            :class="{active: index == 0}"
-                            :key="categoryID"
-                            :id="'category-' + categoryID">
+                             v-for="(cat, i) in categories"
+                             :id="'category-' + cat.id"
+                             :class="{active: i==0}"
+                             :key="cat.id"
+                        >
 
-                            <template v-for="col in 5">
-                            <div :class="{'col-lg-offset-1 col-md-offset-1':col==1, 'hidden-xs': col==3, 'hidden-sm hidden-xs':col>=4}"
+                            <template v-for="n in 5">
+                            <div :class="{'col-lg-offset-1 col-md-offset-1':n==1,'hidden-xs':n==3,'hidden-sm hidden-xs':n>=4}"
                                  class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
                                 <ul class="auto-list-list">
-                                    <li v-for="mark in Object.values(category.stat).slice((col-1)*Math.ceil(Object.values(category.stat).length/5), col*Math.ceil(Object.values(category.stat).length/5))">
-                                        <router-link :to="{ path: '/catalog', query: { category: category.name, mark: mark.name }}">{{ mark.name }}</router-link>
+                                    <li v-for="mark in cat.stat.partition(n, 5)">
+                                        <router-link :to="{path:'/catalog',query:{category: cat.name, mark: mark.name}}">
+                                            {{ mark.name }}
+                                        </router-link>
                                         <span>{{ mark.vehicles }}</span>
                                     </li>
                                 </ul>

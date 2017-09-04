@@ -5,7 +5,12 @@
             return {
                 card: cards[this.id]
             }
-        }
+        },
+        beforeRouteEnter (to, _, next) {
+            next(vm => {
+                vm.card = cards[to.params.id];
+            });
+        },
     }
 </script>
 <template>

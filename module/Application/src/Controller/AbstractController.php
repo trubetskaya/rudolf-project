@@ -47,10 +47,10 @@ namespace Application\Controller {
 
                 /** @var Taxonomy $item */
                 $item = current($current);
-                $marks[$item->getId()] = [
-                    'name' => $item->getName(),
-                    'vehicles' => 0,
-                ];
+                $marks[$item->getId()] = array_merge(
+                    $item->getArrayCopy(['id', 'name']),
+                    ['vehicles' => 0]
+                );
             }
 
             $qb = $em->getRepository(Category::class)->createQueryBuilder('cat')
@@ -68,10 +68,10 @@ namespace Application\Controller {
 
                 /** @var Category $item */
                 $item = current($current);
-                $cats[$item->getId()] = [
-                    'name' => $item->getName(),
-                    'stat' => $marks,
-                ];
+                $cats[$item->getId()] = array_merge(
+                    $item->getArrayCopy(['id', 'name']),
+                    ['stat' => $marks]
+                );
             }
 
             $qb = $em->getRepository(Vehicle::class)->createQueryBuilder('v')
@@ -97,6 +97,11 @@ namespace Application\Controller {
                     $cats[$catID]['stat'][$markID]['vehicles']++;
                 }
             }
+
+            $cats = array_values($cats);
+            array_walk($cats, function (&$i) {
+                $i['stat'] = array_values($i['stat']);
+            });
 
             $viewModel = $event->getViewModel();
             $viewModel->setVariable('categories', $cats)

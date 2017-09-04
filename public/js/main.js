@@ -1,4 +1,8 @@
-let _ = require('lodash');
+Array.prototype.partition = function (num, count) {
+    let p = Math.ceil(this.length/count);
+    return this.slice(p*(num-1), p*num);
+};
+
 let AppFooter = require('./components/Footer.vue'),
     Navigation = require('./components/Navigation.vue'),
     Bid = require('./components/Bid.vue');
@@ -29,11 +33,18 @@ routes.card.props = true;
 routes.card.component = require("./components/CardFull.vue");
 routes.card.path += "/:id";
 
+let v = [];
+for (let i in routes) {
+    if (routes.hasOwnProperty(i)) {
+        v.push(routes[i]);
+    }
+}
+
 let router = new VueRouter({
     mode: 'history',
     linkActiveClass: 'active',
-    routes: _.values(routes),
-    scrollBehavior (to, from, savedPosition) {
+    routes: v,
+    scrollBehavior (to, _, savedPosition) {
         if (savedPosition) {
             return savedPosition
         } else {

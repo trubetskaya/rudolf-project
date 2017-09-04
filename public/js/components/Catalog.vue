@@ -172,7 +172,6 @@
 </template>
 
 <script>
-    let _ = require('lodash');
     let Card = require('./Card.vue'),
         Pagination = require('./Pagination.vue');
 
@@ -229,21 +228,15 @@
                     fuel = params['fuel'],
                     tags = params['tags'];
 
-                this.cardList = cardListInit;
-                this.cardList = _.filter(this.cardList, function (item) {
-                    return (model ? model.indexOf(item.model) !== -1 : true)
-                        && (yearFrom ? item.year >= yearFrom : true) && (yearTo ? item.year <= yearTo : true)
-                        && (priceFrom ? item.price >= priceFrom : true) && (priceTo ? item.price <= priceTo : true)
-                        && (transmission ? item.transmission === transmission : true)
-                        && (drive ? item.drive === drive : true)
-                        && (body ? item.body === body : true)
-                        && (fuel ? item.fuel === fuel : true)
-                        && (tags.length > 0 ?
-                            (_.filter(item.tags, function (elem) {
-                                return tags.indexOf(elem.id) > -1;
-                            }).length == tags.length)
-                            : true)
-                        ;
+                this.cardList = cardListInit.filter(function (i) {
+                    return (model ? model.indexOf(i.model) !== -1 : true)
+                        && (tags.length > 0 ? (tags.filter(function (e) { return i.tags.indexOf(e)>-1 }).length === tags.length) : true)
+                        && (priceFrom ? i.price >= priceFrom : true) && (priceTo ? i.price <= priceTo : true)
+                        && (yearFrom ? i.year >= yearFrom : true) && (yearTo ? i.year <= yearTo : true)
+                        && (transmission ? i.transmission === transmission : true)
+                        && (drive ? i.drive === drive : true)
+                        && (body ? i.body === body : true)
+                        && (fuel ? i.fuel === fuel : true)
                 });
 
                 this.$nextTick(this.dropdownUpdate);
