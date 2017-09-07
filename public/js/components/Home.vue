@@ -82,9 +82,12 @@
                     </div>
                 </div>
                 <div class="hidden-lg hidden-md col-sm-12 col-xs-12">
-                    <button class="transparent-button all-auto-button">
-                        Все марки <span class="custom-caret"></span>
-                    </button>
+
+                    <router-link :to="{path:'/catalog'}">
+                        <button class="transparent-button all-auto-button">
+                            Все марки <span class="custom-caret"></span>
+                        </button>
+                    </router-link>
                 </div>
             </div>
         </div>
