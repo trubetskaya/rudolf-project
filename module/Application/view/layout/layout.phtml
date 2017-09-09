@@ -30,9 +30,9 @@
         <?php $this->inlineScript()
             ->prependFile($this->basePath('js/build.js'))
             ->prependFile($this->basePath('js/formstone/js/checkbox.js'))
-            ->prependFile($this->basePath('js/formstone/js/scrollbar.js'))
-            ->prependFile($this->basePath('js/formstone/js/dropdown.js'))
-            ->prependFile($this->basePath('js/formstone/js/touch.js'))
+//            ->prependFile($this->basePath('js/formstone/js/scrollbar.js'))
+//            ->prependFile($this->basePath('js/formstone/js/dropdown.js'))
+//            ->prependFile($this->basePath('js/formstone/js/touch.js'))
             ->prependFile($this->basePath('js/formstone/js/core.js'))
 //            ->prependFile($this->basePath('js/jcarousel.skeleton.js'))
 //            ->prependFile($this->basePath('js/jquery.jcarousel.min.js'))
@@ -58,15 +58,10 @@
             ->headLink(['rel' => 'manifest', 'href' => $this->basePath('manifest.json')])
 
             ->prependStylesheet($this->basePath('css/main.css'))
-            ->prependStylesheet($this->basePath('css/select.css'))
             ->prependStylesheet($this->basePath('css/checkbox.css'))
             ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
             ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
-
-            ->appendStylesheet($this->basePath('js/formstone/css/dropdown.css'))
             ->appendStylesheet($this->basePath('js/formstone/css/checkbox.css'))
-            ->appendStylesheet($this->basePath('js/formstone/css/scrollbar.css'))
-            ->appendStylesheet($this->basePath('css/jcarousel.skeleton.css'))
         ?>
 
         <script type="text/javascript">

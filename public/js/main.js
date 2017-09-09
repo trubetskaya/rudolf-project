@@ -45,14 +45,7 @@ let router = new VueRouter({
     linkActiveClass: 'active',
     routes: v,
     scrollBehavior (to, _, savedPosition) {
-        // if (savedPosition) {
-        //     return savedPosition
-        // } else {
-        //     if (to.hash) {
-        //         return {selector: to.hash}
-        //     }
-        //     return {x: 0, y: 0}
-        // }
+
     }
 });
 

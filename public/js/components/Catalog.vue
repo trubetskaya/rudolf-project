@@ -11,11 +11,11 @@
                 <div class="row catalog-filter-group">
                     <div class="col-lg-5 col-md-5 col-sm-10 col-xs-12 xs-margin-top">
                         <label for="model">Модель</label>
-                        <select class="dropdown multiple" id="model" name="model" data-dropdown-options='{"label":"Любая"}'>
-                            <option value="null">Модель</option>
+                        <select class="form-control" id="model" name="model" data-dropdown-options='{"label":"Любая"}'>
+                            <option value=''>Модель</option>
                             <template v-for="(models, mark) in getModels()">
-                                <option :value="models" :class="optgroupClass">{{mark}}</option>
-                                <option v-for="model in models" :value="model">{{model}}</option>
+                                <option :value="models" :class="'optgroup'">{{mark}}</option>
+                                <option v-for="model in models" :value="model"> &nbsp;&nbsp;  {{model}}</option>
                             </template>
                         </select>
                     </div>
@@ -24,14 +24,14 @@
                         <label>Год</label>
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <select id="yearFrom" name="year-from" data-dropdown-options='{"label":"От"}'>
-                                    <option value="null">От</option>
+                                <select id="yearFrom" name="year-from" class="form-control" data-dropdown-options='{"label":"От"}'>
+                                    <option value=''>От</option>
                                     <option v-for="year in rangeFrom('year')" :value="year">{{year}}</option>
                                 </select>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <select id="yearTo" name="year-to" data-dropdown-options='{"label":"До"}'>
-                                    <option value="null">До</option>
+                                <select class="form-control"  id="yearTo" name="year-to" data-dropdown-options='{"label":"До"}'>
+                                    <option value=''>До</option>
                                     <option v-for="year in rangeTo('year')" :value="year">{{year}}</option>
                                 </select>
                             </div>
@@ -39,14 +39,14 @@
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 xs-margin-top">
                         <label>Цена</label>
-                        <select id="priceFrom" name="price-from" data-dropdown-options='{"label":"От"}'>
-                            <option value="null">От</option>
+                        <select class="form-control"  id="priceFrom" name="price-from" data-dropdown-options='{"label":"От"}'>
+                            <option value=''>От</option>
                             <option v-for="price in rangeFrom('price')" :value="price">{{price}}</option>
                         </select>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 no-label">
-                        <select id="priceTo" name="price-to" data-dropdown-options='{"label":"До"}'>
-                            <option value="null">До</option>
+                        <select class="form-control"  id="priceTo" name="price-to" data-dropdown-options='{"label":"До"}'>
+                            <option value=''>До</option>
                             <option v-for="price in rangeTo('price')" :value="price">{{price}}</option>
                         </select>
                     </div>
@@ -57,15 +57,15 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-3 col-xs-12">
                                 <label for="body">Кузов</label>
-                                <select id="body" name="body" data-dropdown-options='{"label":"Любой"}'>
-                                    <option value="null">Любой</option>
+                                <select class="form-control"  id="body" name="body" data-dropdown-options='{"label":"Любой"}'>
+                                    <option value=''>Любой</option>
                                     <option v-for="body in getByName('body')" :value="body">{{body}}</option>
                                 </select>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-3 col-xs-12">
                                 <label for="fuel">Двигатель</label>
-                                <select id="fuel" name="fuel" data-dropdown-options='{"label":"Любой"}'>
-                                    <option value="null">Любой</option>
+                                <select class="form-control"  id="fuel" name="fuel" data-dropdown-options='{"label":"Любой"}'>
+                                    <option value=''>Любой</option>
                                     <option v-for="fuel in getByName('fuel')" :value="fuel">{{fuel}}</option>
                                 </select>
                             </div>
@@ -74,15 +74,15 @@
                     <div class="catalog-clear-box-sm hidden-lg hidden-md hidden-xs"></div>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 xs-margin-top">
                         <label>Коробка</label>
-                        <select id="transmission" name="transmission" data-dropdown-options='{"label":"Любая"}'>
-                            <option value="null">Любой</option>
+                        <select class="form-control" id="transmission" name="transmission" data-dropdown-options='{"label":"Любая"}'>
+                            <option value=''>Любой</option>
                             <option v-for="transmission in getByName('transmission')" :value="transmission">{{transmission}}</option>
                         </select>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 xs-margin-top">
                         <label>Привод</label>
-                        <select id="drive" name="drive" data-dropdown-options='{"label":"Любой"}'>
-                            <option value="null">Любой</option>
+                        <select class="form-control"  id="drive" name="drive" data-dropdown-options='{"label":"Любой"}'>
+                            <option value=''>Любой</option>
                             <option v-for="drive in getByName('drive')" :value="drive">{{drive}}</option>
                         </select>
                     </div>
@@ -199,18 +199,39 @@
                 loadingOverlay : false,
 
                 cardList: cardListInit,
-                filters : $.extend({}, filtersInit),
-                optgroupClass: {
-                    'fs-dropdown-item_disabled': true
-                },
+                filters : $.extend({}, filtersInit)
             }
+        },
+        beforeRouteEnter (to, _, next) {
+            next(vm => {
+                if (to.query.category) {
+                    this.cardList = cardListInit.filter(function (i) {
+                        return i.category === to.query.category;
+                    });
+                }
+
+                $('select#model > option.optgroup').each(function (i) {
+                    if (this.innerHTML === to.query.mark) {
+                        return $(this).attr('selected', true).prop('selected', true)
+                            .parent().trigger('change');
+                    }
+                });
+            });
         },
         components: {
             Card: Card,
             Pagination: Pagination,
         },
         methods: {
-            onFilter(params) {
+            onFilter() {
+
+                let params = $.extend({}, filtersInit);
+                for (let i in this.filters) {
+                    if (this.filters[i] && this.filters[i] != '') {
+                        params[i] = this.filters[i]
+                    }
+                }
+console.info(params);
                 let model = params['model'];
                 if (typeof model === 'string') {
                     model = model.split(",");
@@ -238,58 +259,46 @@
                         && (body ? i.body === body : true)
                         && (fuel ? i.fuel === fuel : true)
                 });
-
-                this.$nextTick(this.dropdownUpdate);
             },
-            dropdownUpdate() {
-                $("select").dropdown('update');
-                $("#model-dropdown").find(".fs-scrollbar-content").find("button").each(function(i, option) {
-                    if ($(option).data('value') && $(option).data('value') != option.innerHTML) {
-                        $(option).addClass('optiongroup');
-                    }
-                });
-            },
-
             resetFilters() {
                 this.loadingOverlay = true;
                 setTimeout(function () {
-                    this.filters = $.extend({}, filtersInit);
-                    $("#catalog-filters select[name]").val('').trigger("change");
                     $("input[type=checkbox]").removeAttr('checked')
                         .removeProp('checked')
                         .checkbox("update");
-
-                    this.cardList = cardListInit;
-                    this.$nextTick(this.dropdownUpdate);
+                    $("#catalog-filters select[name]").val('')
+                        .trigger("change");
                 }.bind(this), 0);
 
                 setTimeout(function () {
                     this.loadingOverlay = false;
                 }.bind(this), 1000);
             },
-
             checkTag(e, tagId) {
                 this.loadingOverlay = true;
-                $(".target").checkbox('update')
+                $(".target").checkbox('update');
                 if (e.target.checked) {
                     if (this.filters.tags.indexOf(tagId) === -1) {
                         this.filters.tags.push(tagId);
                     }
                 } else {
-                    _.pull(this.filters.tags, tagId)
+                    let params = $.extend({}, filtersInit);
+                    for (let i in this.filters) {
+                        if (this.filters[i] != '') {
+                            params[i] = this.filters[i]
+                        }
+                    }
+
+                    this.filters = params;
                 }
 
-                this.onFilter(this.filters);
+                this.onFilter();
                 setTimeout(function () {
                     this.loadingOverlay = false;
                 }.bind(this), 1000)
             },
-
             getByName(prop) {
-                let list = this.cardList;
-                list = cardListInit;
-
-                let props = [];
+                let props = [], list = cardListInit;
                 for (let i = 0; i < list.length; i++) {
                     if (props.indexOf(list[i][prop]) === -1) {
                         props.push(list[i][prop])
@@ -299,12 +308,7 @@
                 return props;
             },
             getModels: function () {
-                let list = this.cardList;
-                if (this.filters['model'] !== null) {
-                    list = cardListInit;
-                }
-
-                let marks = {};
+                let marks = {}, list = cardListInit;
                 for (let i = 0; i < list.length; i++) {
                     marks[list[i].mark] = marks[list[i].mark] || [];
                     if (marks[list[i].mark].indexOf(list[i].model) === -1) {
@@ -354,21 +358,21 @@
         },
         mounted: function() {
             $("[type=checkbox], [type=radio]").checkbox();
-            $("#filters select").dropdown().on("change", function(e) {
-                if ($(e.target).val() != '') {
+            $("#filters select").on("change", function(e) {
+
                     this.loadingOverlay = true;
                     setTimeout(function() {
-                        this.filters[$(e.target).attr('name')] =
-                            ($(e.target).val() == 'null') ? null : $(e.target).val();
-                        this.onFilter(this.filters);
+                        this.filters[$(e.target).attr('name')] = $(e.target).val();
+                        this.onFilter();
                     }.bind(this), 0);
 
                     setTimeout(function() {
                         this.loadingOverlay = false;
                     }.bind(this), 500);
-                }
+
             }.bind(this));
-            $(".offers-grid-block select").dropdown().on("change", function(e) {
+
+            $(".offers-grid-block select").on("change", function(e) {
                 let v = e.target.value;
                 let cpm = function(a,b) { return a[v] < b[v] ? -1 : 1 };
                 if (v === 'updated') {
@@ -378,7 +382,6 @@
                 }
                 this.cardList.sort(cpm);
             }.bind(this));
-            this.dropdownUpdate();
         }
     }
 </script>
@@ -407,22 +410,6 @@
             text-align: left;
             color: #2d2a2a;
             text-transform: uppercase;
-        }
-    }
-    .fs-dropdown {
-        .fs-dropdown-options {
-            .fs-dropdown-item.optiongroup {
-                display: block;
-                padding: 10px 0 0 5px;
-                font-weight: bold;
-                line-height: 14px;
-                font-size: 75%;
-                color: $black;
-
-                &:not(:last-child) {
-                    border-bottom: none;
-                }
-            }
         }
     }
 </style>
@@ -619,4 +606,42 @@
         color: #a8a8a8;
         margin-bottom: 0;
     }
+
+    select.form-control {
+        color: #797979;
+        height: 42px;
+        border-radius: 4px;
+        border: solid 1px #e3e3e3;
+        box-shadow: none;
+        font-size: 16px;
+        text-align: left;
+        background-repeat: no-repeat;
+        background-image: url(/img/auto-list/ic-down-bold-default.png);
+        background-position-x: calc(100% - 8px);
+        background-position-y: 17px;
+        background-size: 12px 8px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 1px;
+        text-overflow: '';
+
+        &::-ms-expand {
+            display: none !important;
+        }
+
+        > option {
+            letter-spacing: normal;
+
+            &.optgroup {
+                color: $black;
+                font-weight: 600;
+
+            }
+
+            &:hover {
+                background-color: #EEEEEE;
+            }
+        }
+    }
+
 </style>
