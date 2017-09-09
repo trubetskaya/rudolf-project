@@ -134,7 +134,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-2 hidden-xs">
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-10 col-xs-12">
-                        <select data-dropdown-options='{"customClass":"gray-dropdown","label":"Сортировать..."}'>
+                        <select class="form-control" name="sort-cards">
                             <option value="">Сортировать...</option>
                             <option value="updated">По дате добавления</option>
                             <option value="price">По цене</option>
