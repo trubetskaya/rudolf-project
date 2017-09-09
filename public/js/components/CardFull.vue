@@ -1,60 +1,10 @@
 <script>
+    let { Carousel, Slide } = require('vue-carousel');
     module.exports = {
         props: ['id'],
-        mounted() {
-          /*
-          Carousel initialization
-          */
-            $('.jcarousel')
-                .jcarousel({
-                    // Options go here
-                });
-
-            /*
-             Prev control initialization
-             */
-            $('.jcarousel-control-prev')
-                .on('jcarouselcontrol:active', function() {
-                    $(this).removeClass('inactive');
-                })
-                .on('jcarouselcontrol:inactive', function() {
-                    $(this).addClass('inactive');
-                })
-                .jcarouselControl({
-                    // Options go here
-                    target: '-=1'
-                });
-
-            /*
-             Next control initialization
-             */
-            $('.jcarousel-control-next')
-                .on('jcarouselcontrol:active', function() {
-                    $(this).removeClass('inactive');
-                })
-                .on('jcarouselcontrol:inactive', function() {
-                    $(this).addClass('inactive');
-                })
-                .jcarouselControl({
-                    // Options go here
-                    target: '+=1'
-                });
-
-            /*
-             Pagination initialization
-             */
-            $('.jcarousel-pagination')
-                .on('jcarouselpagination:active', 'a', function() {
-                    $(this).addClass('active');
-                })
-                .on('jcarouselpagination:inactive', 'a', function() {
-                    $(this).removeClass('active');
-                })
-                .jcarouselPagination({
-                    // Options go here
-                });
-            console.log($.bcSwipe())
-            $('.jcarousel').bcSwipe();
+        components: {
+            Carousel,
+            Slide
         },
         data: function () {
             return {
@@ -85,19 +35,17 @@
                         {{ card.taxonomy }} {{ card.name }}
                     </div>
                     <div class="auto-card-price" v-html="card.priceView"></div>
-                    <div class="jcarousel-wrapper">
-                        <div class="jcarousel">
-                            <ul>
-                                <li v-for="file in card.files">
-                                    <img :src="file" :alt="card.taxonomy" class="hidden-xs" width="487" height="350"/>
-                                    <img :src="file.replace('487x350', '281x202')" :alt="card.taxonomy"
-                                         class="hidden-sm hidden-md hidden-lg" width="281" height="202"/>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="#" class="jcarousel-control-prev hidden-xs"></a>
-                        <a href="#" class="jcarousel-control-next hidden-xs"></a>
-                    </div>
+                    <carousel :navigationEnabled="true"
+                              :navigationNextLabel="''" :navigationPrevLabel="''"
+                              :navigationClickTargetSize="0"
+                              :paginationEnabled="false"
+                              :perPage="2">
+                        <slide v-for="file in card.files">
+                            <img :src="file" :alt="card.taxonomy" class="hidden-sm hidden-xs" width="487" height="350"/>
+                            <img :src="file.replace('487x350', '281x202')" :alt="card.taxonomy"
+                                 class="hidden-md hidden-lg" width="281" height="202"/>
+                        </slide>
+                    </carousel>
                 </div>
             </div>
         </div>
@@ -165,3 +113,124 @@
     </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+    $screen-sm:768px;
+    .auto-card-title {
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 1.39;
+        text-align: left;
+        color: #2d2a2a;
+        margin: 8px 0 6px;
+    }
+    .auto-card-price {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1.04;
+        text-align: left;
+        color: #f76a3a;
+    }
+    .auto-card-info-box {
+        margin-bottom: 37px;
+        padding-bottom: 43px;
+        @media (max-width:$screen-sm) {
+            margin-bottom: 26px;
+            padding-bottom: 28px;
+        }
+        border-bottom: solid 1px rgba(67,64,64, 0.1);
+        &:last-child {
+            border-bottom: none;
+        }
+        .auto-card-info-title {
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 2.08;
+            text-align: left;
+            color: #2d2a2a;
+            margin-bottom: 9px;
+        }
+        .auto-card-into-text {
+            font-size: 16px;
+            line-height: 1.56;
+            text-align: left;
+            color: #797979;
+        }
+        .auto-card-into-column {
+            ul {
+                list-style: none;
+                padding: 0;
+                li{
+                    font-size: 16px;
+                    line-height: 2.19;
+                    text-align: left;
+                    color: #797979;
+                    margin-bottom: 9px;
+                    font-weight: 300;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    span{
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 2.19;
+                        text-align: left;
+                        color: #2d2a2a;
+                        padding-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .VueCarousel {
+        position: relative;
+        margin: 38px 0 26px;
+        width: 974px;
+
+        @media (max-width: 974px) {
+            margin: 26px 0 13px;
+            width: 562px;
+        }
+
+        .VueCarousel-wrapper {
+            .VueCarousel-inner {
+                .VueCarousel-slide {
+                    flex-basis: auto;
+                }
+            }
+        }
+    }
+</style>
+
+<style lang="scss">
+    .VueCarousel {
+        .VueCarousel-navigation {
+            .VueCarousel-navigation-button {
+                right: 0;
+                left: auto;
+                position: absolute;
+                background-repeat: no-repeat;
+                transform: none;
+                cursor: pointer;
+                display: block;
+                height: 42px;
+                width: 42px;
+                opacity: 1;
+
+                &.VueCarousel-navigation-prev {
+                    background-image: url("/img/icons/ic-left-big-default.png");
+                    top: 131px;
+                }
+
+                &.VueCarousel-navigation-next {
+                    background-image: url("/img/icons/ic-right-big-default.png");
+                    top: 179px;
+                }
+
+                @media (max-width: 974px) {
+                    display: none;
+                }
+            }
+        }
+    }
+</style>

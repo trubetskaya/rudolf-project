@@ -15,11 +15,10 @@
                 <!-- Навигация -->
                 <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li class="active">
-                            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
-                                Срочный выкуп автомобиля
-                            </a>
-                        </li>
+                        <router-link to="/sale" tag="li">
+                            <a>Срочный выкуп автомобиля</a>
+                        </router-link>
+
                         <!--<li><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">
                                 <?/*= $this->translate("Обмен/Trade-In");*/?>
                             </a>
@@ -34,8 +33,8 @@
         </div>
     </div>
     <!-- Содержимое вкладок -->
-    <div class="tab-content sale-tab-content container-fluid">
-        <div role="tabpanel" class="tab-pane active row" id="home">
+    <div class="sale-tab-content">
+        <div role="tabpanel" class="tab-pane active in row">
             <div class="urgent-sale-top-bg">
 
                 <div class="container">

@@ -32,9 +32,9 @@ module.exports = {
                 </div>
             </div>
         </div>
-        <div class="tab-content container-fluid">
-            <div :class="this.$route.params.section == 'credit' ? 'in active' : 'fade'" role="tabpanel" class="tab-pane row credit" id="tab1">
-                <div class="info-common-top-bg">
+        <div class="services-tab-content">
+            <div :class="this.$route.params.section == 'credit' ? 'in active' : 'hidden'" role="tabpanel" class="tab-pane row" id="tab1">
+                <div class="info-common-top-bg credit">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-6  info-common-top-bg-left-text">
@@ -89,8 +89,8 @@ module.exports = {
                     </div>
                 </div>
             </div>
-            <div :class="this.$route.params.section == 'insurance' ? 'in active' : 'fade'" role="tabpanel" class="tab-pane row insurance" id="tab2">
-                <div class="info-common-top-bg">
+            <div :class="this.$route.params.section == 'insurance' ? 'in active' : 'hidden'" role="tabpanel" class="tab-pane row" id="tab2">
+                <div class="info-common-top-bg insurance">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-6 info-common-top-bg-left-text">
@@ -135,8 +135,8 @@ module.exports = {
                     </div>
                 </div>
             </div>
-            <div :class="this.$route.params.section == 'expertise' ? 'in active' : 'fade'" role="tabpanel" class="tab-pane row expertise" id="tab3">
-                <div class="info-common-top-bg">
+            <div :class="this.$route.params.section == 'expertise' ? 'in active' : 'hidden'" role="tabpanel" class="tab-pane row" id="tab3">
+                <div class="info-common-top-bg expertise">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-6 info-common-top-bg-left-text">
@@ -194,8 +194,8 @@ module.exports = {
                     </div>
                 </div>
             </div>
-            <div :class="this.$route.params.section == 're-registration' ? 'in active' : 'fade'" role="tabpanel" class="tab-pane row re-registration" id="tab4">
-                <div class="info-common-top-bg">
+            <div :class="this.$route.params.section == 're-registration' ? 'in active' : 'hidden'" role="tabpanel" class="tab-pane row" id="tab4">
+                <div class="info-common-top-bg re-registration">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-6 info-common-top-bg-left-text">
@@ -250,377 +250,108 @@ module.exports = {
 
 <style lang="scss" scoped>
     $screen-sm:768px;
-    .insurance {
+    .services-tab-content {
         margin-top: 30px;
-        .info-common-top-bg {
-            overflow: hidden;
-            background-color: #555963;
-            background-size: cover;
-            background-position: center;
-            z-index: 5;
-            margin: 0 auto;
-            height: 401px;
+    }
+
+    .info-common-top-bg {
+        overflow: hidden;
+        background-color: #555963;
+        height: 401px;
+        background-size: cover;
+        background-position: center;
+        z-index: 5;
+        margin: 0 auto;
+        &.insurance {
             background-image: url("/img/bg/img-strahovaniye.png");
-            background-repeat: no-repeat;
         }
-        .info-common-top-bg-left-text {
-            margin-top: 90px;
-            font-size: 36px;
-            font-weight: 600;
-            line-height: 1.39;
-            text-align: left;
-            color: #ffffff;@media screen and (max-width: $screen-sm) {
+
+        &.credit {
+            background-image: url("/img/bg/img-kreditovaniye.png");
+        }
+
+        &.expertise {
+            background-image: url("/img/bg/img-ekspertisa.png");
+        }
+
+        &.re-registration {
+            background-image: url("/img/bg/img-pereoformleniye.png");
+        }
+    }
+    .info-common-top-bg-left-text {
+        margin-top: 90px;
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 1.39;
+        text-align: left;
+        color: #ffffff;
+
+        @media screen and (max-width: $screen-sm) {
             margin-top: 40px;
         }
+    }
+    .info-common-top-bg-right-text {
+        margin-top: 118px;
+        font-size: 16px;
+        line-height: 1.25;
+        text-align: left;
+        color: #ffffff;
+        @media screen and (max-width: $screen-sm) {
+            margin-top: 38px;
         }
-        .info-common-top-bg-right-text {
-            p{
-                margin-top: 118px;
-                font-size: 16px;
-                line-height: 1.25;
-                text-align: left;
-                color: #ffffff;
-                @media screen and (max-width: $screen-sm) {
-                    margin-top: 38px;
-                }
-            }
-            button {
-                margin-top: 41px;
-                @media screen and (max-width: $screen-sm) {
-                    margin-top: 30px;
-                }
-            }
-        }
-        .info-common-main-title {
-            margin-top: 45px;
-            margin-bottom: 34px;
-            font-size: 24px;
-            font-weight: 600;
-            line-height: 2.08;
-            text-align: left;
-            color: #2d2a2a;
-        }
-        .info-common-main-box-image-bg-holder {
-            width: 80px;
-            overflow: visible;
-            float: left;
-        }
-        .info-common-main-box-title {
-            float: left;
-            height: 20px;
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 1.39;
-            text-align: left;
-            color: #2d2a2a;
-            margin-bottom: 9px;
-            width: calc(100% - 80px);
+        button {
+            margin-top: 41px;
             @media screen and (max-width: $screen-sm) {
-                height: auto;
-            }
-        }
-        .info-common-main-box-text {
-            float: left;
-            opacity: 0.5;
-            font-size: 13px;
-            line-height: 1.21;
-            text-align: left;
-            color: #797979;
-            width: calc(100% - 80px);
-            padding-bottom: 48px;
-            padding-right: 10px;
-        }
-        .info-common-main-box{
-            background-color: #f3f4f5;
-            padding-bottom: 45px;
-        }
-        .info-common-main-box-box{
-            float: left;
-            @media screen and (max-width: $screen-sm) {
-                height: auto;
-                max-width: 400px;
-                width: 100%;
+                margin-top: 30px;
             }
         }
     }
-
-    .credit {
-        margin-top: 30px;
-        .info-common-top-bg {
-            overflow: hidden;
-            background-color: #555963;
-            background-size: cover;
-            background-position: center;
-            z-index: 5;
-            margin: 0 auto;
-            height: 401px;
-            background-image: url("/img/bg/img-kreditovaniye.png");
-            background-repeat: no-repeat;
-        }
-        .info-common-top-bg-left-text {
-            margin-top: 90px;
-            font-size: 36px;
-            font-weight: 600;
-            line-height: 1.39;
-            text-align: left;
-            color: #ffffff;
-            @media screen and (max-width: $screen-sm) {
-                margin-top: 60px;
-            }
-        }
-        .info-common-top-bg-right-text {
-            p{
-                margin-top: 118px;
-                font-size: 16px;
-                line-height: 1.25;
-                text-align: left;
-                color: #ffffff;
-                @media screen and (max-width: $screen-sm) {
-                    margin-top: 50px;
-                }
-            }
-            button {
-                margin-top: 41px;
-                @media screen and (max-width: $screen-sm) {
-                    margin-top: 41px;
-                }
-            }
-        }
-        .info-common-main-title {
-            margin-top: 45px;
-            margin-bottom: 34px;
-            font-size: 24px;
-            font-weight: 600;
-            line-height: 2.08;
-            text-align: left;
-            color: #2d2a2a;
-        }
-        .info-common-main-box-image-bg-holder {
-            width: 80px;
-            overflow: visible;
-            float: left;
-        }
-        .info-common-main-box-title {
-            float: left;
-            height: 20px;
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 1.39;
-            text-align: left;
-            color: #2d2a2a;
-            margin-bottom: 9px;
-            width: calc(100% - 80px);
-            @media screen and (max-width: $screen-sm) {
-                height: auto;
-            }
-        }
-        .info-common-main-box-text {
-            float: left;
-            opacity: 0.5;
-            font-size: 13px;
-            line-height: 1.21;
-            text-align: left;
-            color: #797979;
-            width: calc(100% - 80px);
-            padding-bottom: 48px;
-            padding-right: 10px;
-        }
-        .info-common-main-box{
-            background-color: #f3f4f5;
-            padding-bottom: 45px;
-        }
-        .info-common-main-box-box{
-            float: left;
-            height: 124px;
-            @media screen and (max-width: $screen-sm) {
-                max-width: 400px;
-                width: 100%;
-                height: auto;
-            }
+    .info-common-main-title {
+     margin-top: 45px;
+    margin-bottom: 34px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 2.08;
+    text-align: left;
+    color: #2d2a2a;
+}
+    .info-common-main-box-image-bg-holder {
+        width: 80px;
+        overflow: visible;
+        float: left;
+    }
+    .info-common-main-box-title {
+        float: left;
+        height: 20px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.39;
+        text-align: left;
+        color: #2d2a2a;
+        margin-bottom: 9px;
+        width: calc(100% - 80px);
+        @media screen and (max-width: $screen-sm) {
+            height: auto;
         }
     }
-
-    .expertise {
-        margin-top: 30px;
-        .info-common-top-bg {
-            overflow: hidden;
-            background-color: #555963;
-            background-size: cover;
-            background-position: center;
-            z-index: 5;
-            margin: 0 auto;
-            height: 401px;
-            background-image: url("/img/bg/img-ekspertisa.png");
-            background-repeat: no-repeat;
-        }
-        .info-common-top-bg-left-text {
-            margin-top: 90px;
-            font-size: 36px;
-            font-weight: 600;
-            line-height: 1.39;
-            text-align: left;
-            color: #ffffff;
-            @media screen and (max-width: $screen-sm) {
-                margin-top: 60px;
-            }
-        }
-        .info-common-top-bg-right-text {
-            p{
-                margin-top: 118px;
-                font-size: 16px;
-                line-height: 1.25;
-                text-align: left;
-                color: #ffffff;
-                @media screen and (max-width: $screen-sm) {
-                    margin-top: 50px;
-                }
-            }
-            button {
-                margin-top: 41px;
-                @media screen and (max-width: $screen-sm) {
-                    margin-top: 41px;
-                }
-            }
-        }
-        .info-common-main-title {
-            margin-top: 45px;
-            margin-bottom: 34px;
-            font-size: 24px;
-            font-weight: 600;
-            line-height: 2.08;
-            text-align: left;
-            color: #2d2a2a;
-        }
-        .info-common-main-box-image-bg-holder {
-            width: 80px;
-            overflow: visible;
-            float: left;
-        }
-        .info-common-main-box-title {
-            float: left;
-            height: 20px;
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 1.39;
-            text-align: left;
-            color: #2d2a2a;
-            margin-bottom: 9px;
-            width: calc(100% - 80px);
-            @media screen and (max-width: $screen-sm) {
-                height: auto;
-            }
-        }
-        .info-common-main-box-text {
-            float: left;
-            opacity: 0.5;
-            font-size: 13px;
-            line-height: 1.21;
-            text-align: left;
-            color: #797979;
-            width: calc(100% - 80px);
-            padding-bottom: 48px;
-            padding-right: 10px;
-        }
-        .info-common-main-box{
-            background-color: #f3f4f5;
-            padding-bottom: 45px;
-        }
-        .info-common-main-box-box{
-            float: left;
-            height: 150px;
-            @media screen and (max-width: $screen-sm) {
-                max-width: 400px;
-                width: 100%;
-                height: auto;
-            }
-        }
+    .info-common-main-box-text{
+        float: left;
+        opacity: 0.5;
+        font-size: 13px;
+        line-height: 1.21;
+        text-align: left;
+        color: #797979;
+        width: calc(100% - 80px);
+        padding-bottom: 48px;
+        padding-right: 5px;
     }
-
-    .re-registration {
-        margin-top: 30px;
-        .info-common-top-bg {
-            overflow: hidden;
-            background-color: #555963;
-            background-size: cover;
-            background-position: center;
-            z-index: 5;
-            margin: 0 auto;
-            height: 401px;
-            background-image: url("/img/bg/img-pereoformleniye.png");
-            background-repeat: no-repeat;
-        }
-        .info-common-top-bg-left-text {
-            margin-top: 90px;
-            font-size: 36px;
-            font-weight: 600;
-            line-height: 1.39;
-            text-align: left;
-            color: #ffffff;
-            @media screen and (max-width: $screen-sm) {
-                margin-top: 60px;
-                font-size: 27px;
-            }
-        }
-        .info-common-top-bg-right-text {
-            p{
-                margin-top: 118px;
-                font-size: 16px;
-                line-height: 1.25;
-                text-align: left;
-                color: #ffffff;
-                @media screen and (max-width: $screen-sm) {
-                    margin-top: 50px;
-                }
-            }
-            button {
-                margin-top: 41px;
-                @media screen and (max-width: $screen-sm) {
-                    margin-top: 41px;
-                }
-            }
-        }
-        .info-common-main-title {
-            margin-top: 45px;
-            margin-bottom: 34px;
-            font-size: 24px;
-            font-weight: 600;
-            line-height: 2.08;
-            text-align: left;
-            color: #2d2a2a;
-        }
-        .info-common-main-box-image-bg-holder {
-            width: 80px;
-            overflow: visible;
-            float: left;
-        }
-        .info-common-main-box-title {
-            float: left;
-            height: 20px;
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 1.39;
-            text-align: left;
-            color: #2d2a2a;
-            margin-bottom: 9px;
-            width: calc(100% - 80px);
-            @media screen and (max-width: $screen-sm) {
-                height: auto;
-            }
-        }
-        .info-common-main-box-text {
-            float: left;
-            opacity: 0.5;
-            font-size: 13px;
-            line-height: 1.21;
-            text-align: left;
-            color: #797979;
-            width: calc(100% - 80px);
-            padding-bottom: 48px;
-            padding-right: 10px;
-        }
-        .info-common-main-box{
-            background-color: #f3f4f5;
-            padding-bottom: 10px;
+    .info-common-main-box {
+        margin-bottom: 40px;
+    }
+    .info-common-main-box-box {
+        @media screen and (max-width: $screen-sm) {
+            max-width: 400px;
+            width: 100%;
         }
     }
 </style>

@@ -45,15 +45,23 @@ let router = new VueRouter({
     linkActiveClass: 'active',
     routes: v,
     scrollBehavior (to, _, savedPosition) {
-        if (savedPosition) {
-            return savedPosition
-        } else {
-            if (to.hash) {
-                return {selector: to.hash}
-            }
-            return {x: 0, y: 0}
-        }
+        // if (savedPosition) {
+        //     return savedPosition
+        // } else {
+        //     if (to.hash) {
+        //         return {selector: to.hash}
+        //     }
+        //     return {x: 0, y: 0}
+        // }
     }
+});
+
+router.afterEach((to, from) => {
+    console.info("Finished animating");
+    let body = $("html, body");
+    body.stop().animate({scrollTop:0}, 500, 'swing', function() {
+        console.info("Finished animating");
+    });
 });
 
 new Vue({
