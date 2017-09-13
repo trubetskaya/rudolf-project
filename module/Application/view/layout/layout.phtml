@@ -9,8 +9,8 @@
                     home:{path:"/", name:'home', text:"<?=$this->translate('Home')?>", meta:{title:"<?=$this->translate('main-page-title')?>"}},
                     card:{path:"<?=$this->url('card')?>", name:'card', text:"<?=$this->translate('Card')?>", meta:{title:"<?=$this->translate('card-page-title')?>"}},
                     catalog:{path:"<?=$this->url('catalog')?>", name:'catalog', text:"<?=$this->translate('Купить')?>", meta:{title:"<?=$this->translate('catalog-page-title')?>"}},
-                    sale:{path:"<?=$this->url('sale')?>", name:'sale', text:"<?=$this->translate('Продать')?>", meta:{title:"<?=$this->translate('buyout-sale-title')?>"}},
-                    services:{path:"<?=$this->url('services')?>", name:'services', text:"<?=$this->translate('Услуги')?>", meta:{title:"<?=$this->translate('credit-service-title')?>"}},
+                    sale:{path:"<?=$this->url('sale')?>", name:'sale', text:"<?=$this->translate('Продать')?>", meta:{title:{buyout:"<?=$this->translate('buyout-sale-title')?>",'trade-in':"<?=$this->translate('trade-in-sale-title')?>",commission:"<?=$this->translate('commission-sale-title')?>"}}},
+                    services:{path:"<?=$this->url('services')?>", name:'services', text:"<?=$this->translate('Услуги')?>", meta:{title:{credit:"<?=$this->translate('credit-service-title')?>",expertise:"<?=$this->translate('expertise-service-title')?>",insurance:"<?=$this->translate('insurance-service-title')?>",'re-registration':"<?=$this->translate('re-registration-service-title')?>"}}},
                     company:{path:"<?=$this->url('company')?>", name:'company', text:"<?=$this->translate('Компания')?>", meta:{title:"<?=$this->translate('company-page-title')?>"}},
                     contacts:{path:"<?=$this->url('contacts')?>", name:'contacts', text:"<?=$this->translate('Контакты')?>", meta:{title:"<?=$this->translate('contacts-page-title')?>"}}
                 }

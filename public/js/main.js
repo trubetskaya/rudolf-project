@@ -62,7 +62,9 @@ let router = new VueRouter({
 });
 
 router.afterEach((to, from) => {
-    document.title = to.meta.title + "::" + document.title.split("::").pop();
+    let title = to.params.section ? to.meta.title[to.params.section] : to.meta.title;
+    title += " :: " + document.title.split("::").pop();
+    document.title = title;
 });
 
 new Vue({
