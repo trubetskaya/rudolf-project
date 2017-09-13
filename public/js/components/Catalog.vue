@@ -12,10 +12,10 @@
                     <div class="col-lg-5 col-md-5 col-sm-10 col-xs-12 xs-margin-top">
                         <label for="model">Модель</label>
                         <select class="form-control" id="model" name="model" data-dropdown-options='{"label":"Любая"}'>
-                            <option value=''>Модель</option>
+                            <option :value="null">Модель</option>
                             <template v-for="(models, mark) in getModels()">
                                 <option :value="models" :class="'optgroup'">{{mark}}</option>
-                                <option v-for="model in models" :value="model"> &nbsp;&nbsp;  {{model}}</option>
+                                <option v-for="model in models" :value="model">&nbsp;&nbsp;{{model}}</option>
                             </template>
                         </select>
                     </div>
@@ -25,13 +25,13 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <select id="yearFrom" name="year-from" class="form-control" data-dropdown-options='{"label":"От"}'>
-                                    <option value=''>От</option>
+                                    <option :value="null">От</option>
                                     <option v-for="year in rangeFrom('year')" :value="year">{{year}}</option>
                                 </select>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <select class="form-control"  id="yearTo" name="year-to" data-dropdown-options='{"label":"До"}'>
-                                    <option value=''>До</option>
+                                    <option :value="null">До</option>
                                     <option v-for="year in rangeTo('year')" :value="year">{{year}}</option>
                                 </select>
                             </div>
@@ -40,13 +40,13 @@
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 xs-margin-top">
                         <label>Цена</label>
                         <select class="form-control"  id="priceFrom" name="price-from" data-dropdown-options='{"label":"От"}'>
-                            <option value=''>От</option>
+                            <option :value="null">От</option>
                             <option v-for="price in rangeFrom('price')" :value="price">{{price}}</option>
                         </select>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 no-label">
                         <select class="form-control"  id="priceTo" name="price-to" data-dropdown-options='{"label":"До"}'>
-                            <option value=''>До</option>
+                            <option :value="null">До</option>
                             <option v-for="price in rangeTo('price')" :value="price">{{price}}</option>
                         </select>
                     </div>
@@ -58,14 +58,14 @@
                             <div class="col-lg-6 col-md-6 col-sm-3 col-xs-12">
                                 <label for="body">Кузов</label>
                                 <select class="form-control"  id="body" name="body" data-dropdown-options='{"label":"Любой"}'>
-                                    <option value=''>Любой</option>
+                                    <option :value="null">Любой</option>
                                     <option v-for="body in getByName('body')" :value="body">{{body}}</option>
                                 </select>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-3 col-xs-12">
                                 <label for="fuel">Двигатель</label>
                                 <select class="form-control"  id="fuel" name="fuel" data-dropdown-options='{"label":"Любой"}'>
-                                    <option value=''>Любой</option>
+                                    <option :value="null">Любой</option>
                                     <option v-for="fuel in getByName('fuel')" :value="fuel">{{fuel}}</option>
                                 </select>
                             </div>
@@ -75,14 +75,14 @@
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 xs-margin-top">
                         <label>Коробка</label>
                         <select class="form-control" id="transmission" name="transmission" data-dropdown-options='{"label":"Любая"}'>
-                            <option value=''>Любой</option>
+                            <option :value="null">Любой</option>
                             <option v-for="transmission in getByName('transmission')" :value="transmission">{{transmission}}</option>
                         </select>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 xs-margin-top">
                         <label>Привод</label>
                         <select class="form-control"  id="drive" name="drive" data-dropdown-options='{"label":"Любой"}'>
-                            <option value=''>Любой</option>
+                            <option :value="null">Любой</option>
                             <option v-for="drive in getByName('drive')" :value="drive">{{drive}}</option>
                         </select>
                     </div>
@@ -91,11 +91,11 @@
                     <div v-show="allFilters" class="col-lg-5 col-md-5 col-sm-7 col-xs-12 xs-margin-top">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input @change="checkTag($event, 41212)" type="checkbox">
+                                <input value="sales" type="checkbox" class="tags" name="tags">
                                 <label>Со скидкой</label>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <input @change="checkTag($event, 41289)" type="checkbox">
+                                <input value="new" type="checkbox" class="tags" name="tags">
                                 <label>Новые</label>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
                                 <a class="catalog-drop-filters" href="javascript:"
-                                   @click="resetFilters()">
+                                   @click="resetList()">
                                     Сбросить фильтры
                                 </a>
                             </div>
@@ -123,51 +123,51 @@
         </div>
     </div>
     <div class="grey-light-block offers-grid-block">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5 col-lg-offset-1 col-md-5 col-sm-8 col-xs-12 col-md-offset-1 catalog-offers-grid-block-title">
-                Каталог легковых автомобилей
-                <p>найдено автомобилей: {{ cardList.length }}</p>
-            </div>
-            <div class="col-lg-5 col-md-5 col-sm-4 col-xs-12 catalog-offers-grid-block-filter">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-2 hidden-xs">
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-10 col-xs-12">
-                        <select class="form-control" name="sort-cards">
-                            <option value="">Сортировать...</option>
-                            <option value="updated">По дате добавления</option>
-                            <option value="price">По цене</option>
-                        </select>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-md-5 col-sm-8 col-xs-12 col-md-offset-1 catalog-offers-grid-block-title">
+                    Каталог легковых автомобилей
+                    <p>найдено автомобилей: {{ cardList.length }}</p>
                 </div>
-            </div>
-            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
-                <div v-if="cardList.length > 0" class="row">
-                    <card
-                            v-for="item in cardList"
-                            :card="item"
-                            :key="item.id">
-                    </card>
-                </div>
-                <div v-else>
-                    <div сlass="row">
-                        <p class="catalog-no-result">
-                            Поиск не дал результов.
-                        </p>
+                <div class="col-lg-5 col-md-5 col-sm-4 col-xs-12 catalog-offers-grid-block-filter">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-2 hidden-xs">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-10 col-xs-12">
+                            <select class="form-control" name="sort-cards" id="sorting">
+                                <option value="">Сортировать...</option>
+                                <option value="updated">По дате добавления</option>
+                                <option value="price">По цене</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <pagination
-                        v-if="totalCards > 12"
-                        :current="currentPage"
-                        :total="totalCards"
-                        :perPage="perPage"
-                        @page-changed="fetchCards"
-                ></pagination>
+                <div class="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
+                    <div v-if="cardList.length > 0" class="row">
+                        <card
+                                v-for="item in cardList"
+                                :card="item"
+                                :key="item.id">
+                        </card>
+                    </div>
+                    <div v-else>
+                        <div сlass="row">
+                            <p class="catalog-no-result">
+                                Поиск не дал результов.
+                            </p>
+                        </div>
+                    </div>
+                    <pagination
+                            v-if="totalCards > 12"
+                            :current="currentPage"
+                            :total="totalCards"
+                            :perPage="perPage"
+                            @page-changed="fetchCards"
+                    ></pagination>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 </template>
 
@@ -175,21 +175,11 @@
     let Card = require('./Card.vue'),
         Pagination = require('./Pagination.vue');
 
-    let filtersInit = {
-        'model' : null,
-        'transmission' : null,
-        'year-from' : null,
-        'year-to' : null,
-        'price-from' : null,
-        'price-to' : null,
-        'body' : null,
-        'drive' : null,
-        'fuel' : null,
-        'tags': [],
-    };
+    let emptyFilter = {model:null, category:null, transmission:null, body:null, drive:null, fuel:null, tags:[],
+        'year-from':null, 'year-to':null, 'price-from':null, 'price-to':null};
 
     module.exports = {
-        data: function () {
+        data() {
             return {
                 perPage: 12,
                 totalCards: 0,
@@ -199,99 +189,31 @@
                 loadingOverlay : false,
 
                 cardList: cardListInit,
-                filters : $.extend({}, filtersInit)
+                filters : emptyFilter
             }
         },
-        beforeRouteEnter (to, _, next) {
-            next(vm => {
-                if (to.query.category) {
-                    this.cardList = cardListInit.filter(function (i) {
-                        return i.category === to.query.category;
-                    });
-                }
 
-                $('select#model > option.optgroup').each(function (i) {
-                    if (this.innerHTML === to.query.mark) {
-                        return $(this).attr('selected', true).prop('selected', true)
-                            .parent().trigger('change');
-                    }
-                });
-            });
-        },
-        components: {
-            Card: Card,
-            Pagination: Pagination,
-        },
-        methods: {
-            onFilter() {
+        watch: {
+            loadingOverlay: function (show) {
+                if (show === false) return;
 
-                let params = $.extend({}, filtersInit);
-                for (let i in this.filters) {
-                    if (this.filters[i] && this.filters[i] !== '') {
-                        params[i] = this.filters[i]
-                    }
-                }
-
-                let model = params['model'];
-                if (typeof model === 'string') {
-                    model = model.split(",");
-                }
-
-                let yearFrom = parseInt(params['year-from']),
-                    yearTo = parseInt(params['year-to']);
-
-                let priceFrom = parseInt(params['price-from']),
-                    priceTo = parseInt(params['price-to']);
-
-                let body = params['body'],
-                    transmission = params['transmission'],
-                    drive = params['drive'],
-                    fuel = params['fuel'],
-                    tags = params['tags'];
-
-                this.cardList = cardListInit.filter(function (i) {
-                    return (model ? model.indexOf(i.model) !== -1 : true)
-                        && (tags.length > 0 ? (tags.filter(function (e) { return i.tags.indexOf(e)>-1 }).length === tags.length) : true)
-                        && (priceFrom ? i.price >= priceFrom : true) && (priceTo ? i.price <= priceTo : true)
-                        && (yearFrom ? i.year >= yearFrom : true) && (yearTo ? i.year <= yearTo : true)
-                        && (transmission ? i.transmission === transmission : true)
-                        && (drive ? i.drive === drive : true)
-                        && (body ? i.body === body : true)
-                        && (fuel ? i.fuel === fuel : true)
-                });
-            },
-            resetFilters() {
-                this.loadingOverlay = true;
+                this.filterList();
                 setTimeout(function () {
-                    $("input[type=checkbox]").removeAttr('checked')
-                        .removeProp('checked')
-                        .trigger("change");
-
-                    $("#catalog-filters select[name]").val('')
-                        .trigger("change");
-                }.bind(this), 0);
-
-                setTimeout(function () { this.loadingOverlay = false; }.bind(this), 1000);
-            },
-            checkTag(e, tagId) {
-                this.loadingOverlay = true;
-                if (e.target.checked) {
-                    if (this.filters.tags.indexOf(tagId) === -1) {
-                        this.filters.tags.push(tagId);
+                    this.loadingOverlay = false;
+                }.bind(this), 500);
+            }
+        },
+        
+        methods: {
+            getModels() {
+                let marks = {}, list = cardListInit;
+                for (let i = 0; i < list.length; i++) {
+                    marks[list[i].mark] = marks[list[i].mark] || [];
+                    if (marks[list[i].mark].indexOf(list[i].model) === -1) {
+                        marks[list[i].mark].push(list[i].model)
                     }
-                } else {
-                    let params = $.extend({}, filtersInit);
-                    for (let i in this.filters) {
-                        if (this.filters[i] !== '') {
-                            params[i] = this.filters[i];
-                        }
-                    }
-
-                    this.filters = params;
                 }
-
-                this.onFilter();
-                setTimeout(function () { this.loadingOverlay = false; }.bind(this), 1000)
+                return marks;
             },
             getByName(prop) {
                 let props = [], list = cardListInit;
@@ -303,17 +225,7 @@
 
                 return props;
             },
-            getModels: function () {
-                let marks = {}, list = cardListInit;
-                for (let i = 0; i < list.length; i++) {
-                    marks[list[i].mark] = marks[list[i].mark] || [];
-                    if (marks[list[i].mark].indexOf(list[i].model) === -1) {
-                        marks[list[i].mark].push(list[i].model)
-                    }
-                }
-                return marks;
-            },
-            rangeFrom: function (prop) {
+            rangeFrom(prop) {
                 let step = (prop === "price" ? 1000 : 1);
                 let min = Math.floor(Math.min.apply(Math, cardListInit.map(function(i){ return i[prop] })) / step) * step,
                     max = Math.ceil(Math.max.apply(Math, this.cardList.map(function(i){ return i[prop] })) / step) * step;
@@ -330,7 +242,7 @@
 
                 return range;
             },
-            rangeTo: function (prop) {
+            rangeTo(prop) {
                 let step = (prop === "price" ? 1000 : 1);
                 let min = Math.floor(Math.min.apply(Math, this.cardList.map(function(i){ return i[prop] })) / step) * step,
                     max = Math.ceil(Math.max.apply(Math, cardListInit.map(function(i){ return i[prop] })) / step) * step;
@@ -347,33 +259,79 @@
 
                 return range.reverse();
             },
-        },
 
-        created: function() {
-            this.allFilters = true;
-        },
-        mounted: function() {
+            onFiltersChange(e) {
+                let v = e.target.value!==''?e.target.value:null;
+                if (v && e.target.name === "model") v = v.split(',');
+                if (v && e.target.name === "tags") v = $.makeArray($('[name="tags"]:checked')
+                    .map(function(_,i){ return i.value }));
 
-            $("#filters select").on("change", function(e) {
-                    this.loadingOverlay = true;
-                    setTimeout(function() {
-                        this.filters[$(e.target).attr('name')] = $(e.target).val();
-                        this.onFilter();
-                    }.bind(this), 0);
-                    setTimeout(function() { this.loadingOverlay = false; }.bind(this), 500);
-            }.bind(this));
-
-            $(".offers-grid-block select").on("change", function(e) {
+                this.filters[e.target.name] = v;
+                this.loadingOverlay = true;
+            },
+            onSortingChange(e) {
                 let v = e.target.value;
-                let cpm = function(a,b) { return a[v] < b[v] ? -1 : 1 };
-                if (v === 'updated') {
-                    cpm = function(a,b) {
-                        return new Date(a[v]).getTime() < new Date(b[v]).getTime() ? -1 : 1;
-                    }
-                }
+                let cpm = v === 'updated' ? function(a,b) { return new Date(a[v]).getTime() < new Date(b[v]).getTime() ? -1 : 1 } :
+                    function(a,b) { return a[v] < b[v] ? -1 : 1 };
                 this.cardList.sort(cpm);
-            }.bind(this));
-        }
+            },
+
+            filterList() {
+
+                this.filters.category = null;
+                if (this.$route.query.category) {
+                    this.filters.category = this.$route.query.category;
+                }
+
+                let params = this.filters;
+                let yearFrom = parseInt(this.filters['year-from']),
+                    yearTo = parseInt(this.filters['year-to']);
+
+                let priceFrom = parseInt(this.filters['price-from']),
+                    priceTo = parseInt(this.filters['price-to']);
+
+                this.cardList = cardListInit.filter(function (i) {
+                    return (params.model ? params.model.indexOf(i.model) !== -1 : true)
+                        && (params.category ? params.category === i.category.name : true)
+                        && (yearFrom ? i.year >= yearFrom : true) && (yearTo ? i.year <= yearTo : true)
+                        && (priceFrom ? i.price >= priceFrom : true) && (priceTo ? i.price <= priceTo : true)
+                        && (params.tags.length > 0 ? (params.tags.filter(function (e) { return i.tags[e] }).length === params.tags.length) : true)
+                        && (params.transmission ? params.transmission === i.transmission : true)
+                        && (params.drive ? params.drive === i.drive : true)
+                        && (params.body ? params.body === i.body : true)
+                        && (params.fuel ? params.fuel === i.fuel : true)
+                });
+            },
+            resetList() {
+                $("#filters select").val(null).trigger("change");
+                $("input[type=checkbox]").removeAttr('checked')
+                    .removeProp('checked')
+                    .trigger("change");
+            }
+        },
+
+        components: {
+            Card: Card,
+            Pagination: Pagination,
+        },
+        
+        mounted() {
+            $("select#sorting").on("change", this.onSortingChange);
+            $("div#filters").find("select, input[type='checkbox']")
+                .on("change", this.onFiltersChange);
+        },
+
+        beforeRouteEnter(to, _, next) {
+            next(vm => {
+                let models = $("select#model");
+                $('option.optgroup', models).each(function () {
+                    if (this.innerHTML === to.query.mark) {
+                        $(this).attr('selected', true).prop('selected', true);
+                        return $(this).parent().trigger('change')
+                    }
+                });
+            });
+        },
     }
 </script>
 
@@ -404,7 +362,6 @@
         }
     }
 </style>
-
 <style lang="scss" scoped>
     $gray:#555963;
     $gray-light:#e3e3e3;

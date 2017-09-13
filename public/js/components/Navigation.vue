@@ -42,11 +42,9 @@
                 <span class="icon-bar"></span>
             </button>
             <ul class="nav navbar-nav navbar-right">
-                <li class="navbar-right-telephone hidden-sm hidden-xs">
+                <li class="navbar-right-telephone">
                     <a href="tel:+380673951515">+38 067-395-15-15</a>
                 </li>
-                <li class="navbar-right-delimeter hidden-sm hidden-xs"></li>
-                <li><a href="#"><img src="/img/header/gear.png" width="30" height="30"></a></li>
             </ul>
         </div>
     </nav>
@@ -235,7 +233,12 @@
             li.navbar-right-telephone {
                 padding-right: 17px;
                 padding-left: 34px;
-                background: url("/img/header/ic-phone.png") no-repeat 26px;
+                background: url("/img/header/ic-phone.png") no-repeat 11px;
+
+                > a {
+                    padding-left: 0;
+                    text-align: left;
+                }
             }
         }
         .navbar-toggle {

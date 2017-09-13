@@ -623,7 +623,7 @@ namespace Application\Entity {
         public function price(string $glue = "") : string
         {
             return implode($glue,[
-                number_format($this->getAmount(), 2),
+                number_format($this->getAmount(), 0),
                 $this->getCurrency()->getHtmlCode()
             ]);
         }
@@ -721,12 +721,13 @@ namespace Application\Entity {
          */
         public function viewify() : array
         {
-            $mod = $this->getTaxonomy();
-            $mapper = function (EntityBaseInterface $eq) {
-                return $eq->getName();
-            };
+            $tags = [];
+            foreach ($this->getTags() as $tag) {
+                $tags[$tag->getDescription()] = $tag->getName();
+            }
 
-            return array_merge($this->getArrayCopy(), [
+            $mod = $this->getTaxonomy();
+            $data = array_merge($this->getArrayCopy(), [
                 "model" => $mod->getName(),
                 "preview" => $this->preview(),
                 "mark" => $mod->getRoot()
@@ -741,8 +742,11 @@ namespace Application\Entity {
                 "year" => $this->getRegistrationDate(),
                 "volume" => $this->getVolume(),
 
-                "tags" => $this->getTags()->map($mapper)->toArray(),
-                "options" => $this->getOptions()->map($mapper)->toArray(),
+                "tags" => $tags,
+                "options" => $this->getOptions()
+                    ->map(function (Equipment $e) { return $e->getName(); })
+                    ->toArray(),
+
                 "files" => $this->getFiles()
                     ->map(function (File $f) { return $f->getPreview("487x350"); })
                     ->toArray(),
@@ -754,6 +758,9 @@ namespace Application\Entity {
                    $this->getCurrency()
                        ->getRate(),
             ]);
+
+//            var_dump($data);exit;
+            return $data;
         }
     }
 }
