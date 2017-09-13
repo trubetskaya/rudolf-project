@@ -227,11 +227,11 @@
 
                 let params = $.extend({}, filtersInit);
                 for (let i in this.filters) {
-                    if (this.filters[i] && this.filters[i] != '') {
+                    if (this.filters[i] && this.filters[i] !== '') {
                         params[i] = this.filters[i]
                     }
                 }
-console.info(params);
+
                 let model = params['model'];
                 if (typeof model === 'string') {
                     model = model.split(",");
@@ -265,18 +265,16 @@ console.info(params);
                 setTimeout(function () {
                     $("input[type=checkbox]").removeAttr('checked')
                         .removeProp('checked')
-                        .checkbox("update");
+                        .trigger("change");
+
                     $("#catalog-filters select[name]").val('')
                         .trigger("change");
                 }.bind(this), 0);
 
-                setTimeout(function () {
-                    this.loadingOverlay = false;
-                }.bind(this), 1000);
+                setTimeout(function () { this.loadingOverlay = false; }.bind(this), 1000);
             },
             checkTag(e, tagId) {
                 this.loadingOverlay = true;
-                $(".target").checkbox('update');
                 if (e.target.checked) {
                     if (this.filters.tags.indexOf(tagId) === -1) {
                         this.filters.tags.push(tagId);
@@ -284,8 +282,8 @@ console.info(params);
                 } else {
                     let params = $.extend({}, filtersInit);
                     for (let i in this.filters) {
-                        if (this.filters[i] != '') {
-                            params[i] = this.filters[i]
+                        if (this.filters[i] !== '') {
+                            params[i] = this.filters[i];
                         }
                     }
 
@@ -293,9 +291,7 @@ console.info(params);
                 }
 
                 this.onFilter();
-                setTimeout(function () {
-                    this.loadingOverlay = false;
-                }.bind(this), 1000)
+                setTimeout(function () { this.loadingOverlay = false; }.bind(this), 1000)
             },
             getByName(prop) {
                 let props = [], list = cardListInit;
@@ -357,19 +353,14 @@ console.info(params);
             this.allFilters = true;
         },
         mounted: function() {
-            $("[type=checkbox], [type=radio]").checkbox();
-            $("#filters select").on("change", function(e) {
 
+            $("#filters select").on("change", function(e) {
                     this.loadingOverlay = true;
                     setTimeout(function() {
                         this.filters[$(e.target).attr('name')] = $(e.target).val();
                         this.onFilter();
                     }.bind(this), 0);
-
-                    setTimeout(function() {
-                        this.loadingOverlay = false;
-                    }.bind(this), 500);
-
+                    setTimeout(function() { this.loadingOverlay = false; }.bind(this), 500);
             }.bind(this));
 
             $(".offers-grid-block select").on("change", function(e) {

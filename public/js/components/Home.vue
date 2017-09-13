@@ -128,7 +128,9 @@
                             </div>
                             <div class="services-box-text">
                                 <div class="services-box-text-title">
-                                    Кредитование
+                                    <router-link to="/services/credit">
+                                        Кредитование
+                                    </router-link>
                                 </div>
                                 <div class="services-box-text-desc">
                                     23% наших автомобилей продается в кредит. Менеджеры помогут вам подобрать лучшие условия.
@@ -141,7 +143,9 @@
                             </div>
                             <div class="services-box-text">
                                 <div class="services-box-text-title">
-                                    Страхование
+                                    <router-link to="/services/insurance">
+                                        Страхование
+                                    </router-link>
                                 </div>
                                 <div class="services-box-text-desc">
                                     В нашей компании вы можете выгодно застраховать свой автомобиль.
@@ -167,7 +171,9 @@
                             </div>
                             <div class="services-box-text">
                                 <div class="services-box-text-title">
-                                    Переоформление
+                                    <router-link to="/services/re-registration">
+                                        Переоформление
+                                    </router-link>
                                 </div>
                                 <div class="services-box-text-desc">
                                     Постановка на учет. Заключение договора купли-продажи. Перевес и сохранение номерных знаков. Проверка денежных средств через кассу.
@@ -180,7 +186,9 @@
                             </div>
                             <div class="services-box-text">
                                 <div class="services-box-text-title">
-                                    Экспертиза
+                                    <router-link to="/services/expertise">
+                                        Экспертиза
+                                    </router-link>
                                 </div>
                                 <div class="services-box-text-desc">
                                     Ежедневно в наш салон приезжают технически и юридически проблемные автомобили. За 8 лет работы, мы научились видеть их насквозь.
@@ -205,6 +213,7 @@
                 </div>
                 <div class="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-md-offset-1">
                     <div class="row">
+                        <router-link to="/sale/buyout">
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="info-box">
                                 <div class="bg-img">
@@ -218,6 +227,8 @@
                                 </div>
                             </div>
                         </div>
+                        </router-link>
+                        <router-link to="/sale/trade-in">
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="info-box">
                                 <div class="bg-img">
@@ -231,6 +242,8 @@
                                 </div>
                             </div>
                         </div>
+                        </router-link>
+                        <router-link to="/sale/commission">
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="info-box">
                                 <div class="bg-img">
@@ -244,6 +257,7 @@
                                 </div>
                             </div>
                         </div>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -616,6 +630,10 @@
                 text-align: left;
                 color: #797979;
             }
+
+            &:hover {
+                background-color: #cdcdcd;
+            }
         }
     }
     .services {
@@ -669,7 +687,8 @@
                     float: left;
                     width: calc(100% - 40px - 17px);
                     margin-bottom: 42px;
-                    .services-box-text-title {
+                    .services-box-text-title,
+                    .services-box-text-title > a {
                         font-size: 18px;
                         font-weight: 600;
                         line-height: 1.39;

@@ -1,15 +1,5 @@
 <?php
-/**
- * @var array $list
- * @var array $marks
- * @var Application\Entity\Vehicle $item
- * @var Zend\View\Renderer\PhpRenderer $this
- * @var Application\Entity\Vehicle $car
- * @var Application\Entity\Options\Taxonomy $model
- * @var Application\Entity\Options\Taxonomy $mark
- */
 $this->headTitle('main-page-title');
-$this->headMeta()
-    ->appendName('description', $this->translate('main-page-meta-desc'))
+$this->headMeta()->appendName('description', $this->translate('main-page-meta-desc'))
     ->appendName('keywords', $this->translate('main-page-meta-keywords'))?>
 <?= $this->render('partial/keep-alive.phtml') ?>

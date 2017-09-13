@@ -13,35 +13,37 @@
             <div class="col-lg-5ths col-md-5ths col-sm-5ths">
                 <ul>
                     <li>Купить</li>
-                    <li><router-link :to="{name:'catalog',query:{category:'Легковые'}}">Легковые автомобили</router-link></li>
-                    <li><router-link :to="{name:'catalog',query:{category:'Коммерческие'}}">Коммерческий транспорт</router-link></li>
+                    <router-link :to="{name:'catalog',query:{category:'Легковые'}}" tag="li"><a>Легковые автомобили</a></router-link>
+                    <router-link :to="{name:'catalog',query:{category:'Коммерческие'}}" tag="li"><a>Коммерческий транспорт</a></router-link>
                 </ul>
             </div>
             <div class="col-lg-5ths col-md-5ths col-sm-5ths">
                 <ul>
                     <li>Продать</li>
-                    <li><router-link to="/sale">Срочный выкуп автомобиля</router-link></li>
+                    <router-link :to="{name:'sale', params:{section:'buyout'}}" tag="li"><a>Срочный выкуп автомобиля</a></router-link>
+                    <router-link :to="{name:'sale', params:{section:'trade-in'}}" tag="li"><a>Обмен/Trade-In</a></router-link>
+                    <router-link :to="{name:'sale', params:{section:'commission'}}" tag="li"><a>Комисионная продажа</a></router-link>
                 </ul>
             </div>
             <div class="col-lg-5ths col-md-5ths col-sm-5ths">
                 <ul>
                     <li>Услуги</li>
-                    <li><router-link :to="{name:'services', params:{section:'credit'}}">Кредитование</router-link></li>
-                    <li><router-link :to="{name:'services', params:{section:'insurance'}}">Страхование</router-link></li>
-                    <li><router-link :to="{name:'services', params:{section:'expertise'}}">Экспертиза</router-link></li>
-                    <li><router-link :to="{name:'services', params:{section:'re-registration'}}">Переоформление</router-link></li>
+                    <router-link :to="{name:'services', params:{section:'credit'}}" tag="li"><a>Кредитование</a></router-link>
+                    <router-link :to="{name:'services', params:{section:'insurance'}}" tag="li"><a>Страхование</a></router-link>
+                    <router-link :to="{name:'services', params:{section:'expertise'}}" tag="li"><a>Экспертиза</a></router-link>
+                    <router-link :to="{name:'services', params:{section:'re-registration'}}" tag="li"><a>Переоформление</a></router-link>
                 </ul>
             </div>
             <div class="col-lg-5ths col-md-5ths col-sm-5ths">
                 <ul>
                     <li>Компания</li>
-                    <li><router-link to="/company">О компании</router-link></li>
+                    <router-link to="/company" tag="li"><a>О компании</a></router-link>
                 </ul>
             </div>
             <div class="col-lg-5ths col-md-5ths col-sm-5ths">
                 <ul>
                     <li>Контакты</li>
-                    <li><router-link to="/contacts">Контакты</router-link></li>
+                    <router-link to="/contacts" tag="li"><a>Контакты</a></router-link>
                 </ul>
             </div>
         </div>

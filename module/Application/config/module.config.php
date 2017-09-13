@@ -48,49 +48,6 @@ namespace Application {
                         ],
                     ],
                 ],
-                'contacts' => [
-                    'type' => Http\Literal::class,
-                    'options' => [
-                        'route' => '/contacts',
-                        'defaults' => [
-                            'controller' => Controller\IndexController::class,
-                            'action' => 'contacts',
-                        ],
-                    ],
-                ],
-                'sale' => [
-                    'type' => Http\Literal::class,
-                    'options' => [
-                        'route' => '/sale',
-                        'defaults' => [
-                            'controller' => Controller\InfoController::class,
-                            'action' => 'sale',
-                        ],
-                    ],
-                ],
-                'services' => [
-                    'type' => Http\Segment::class,
-                    'options' => [
-                        'route' => '/services[/:section]',
-                        'constraints' => [
-                            'section' => 'credit|insurance|expertise|re-registration',
-                        ],
-                        'defaults' => [
-                            'controller' => Controller\InfoController::class,
-                            'action' => 'services',
-                        ],
-                    ],
-                ],
-                'company' => [
-                    'type' => Http\Literal::class,
-                    'options' => [
-                        'route' => '/company',
-                        'defaults' => [
-                            'controller' => Controller\InfoController::class,
-                            'action' => 'company',
-                        ],
-                    ],
-                ],
                 'application' => [
                     'type' => Http\Segment::class,
                     'options' => [
@@ -105,7 +62,6 @@ namespace Application {
                         ],
                     ],
                 ],
-
                 'catalog' => [
                     'type' => Http\Segment::class,
                     'options' => [
@@ -137,6 +93,52 @@ namespace Application {
                         ],
                     ],
                     'may_terminate' => true
+                ],
+                'sale' => [
+                    'type' => Http\Segment::class,
+                    'options' => [
+                        'route' => '/sale[/:section]',
+                        'constraints' => [
+                            'section' => 'buyout|trade-in|commission',
+                        ],
+                        'defaults' => [
+                            'controller' => Controller\InfoController::class,
+                            'action' => 'sale',
+                        ],
+                    ],
+                ],
+                'services' => [
+                    'type' => Http\Segment::class,
+                    'options' => [
+                        'route' => '/services[/:section]',
+                        'constraints' => [
+                            'section' => 'credit|insurance|expertise|re-registration',
+                        ],
+                        'defaults' => [
+                            'controller' => Controller\InfoController::class,
+                            'action' => 'services',
+                        ],
+                    ],
+                ],
+                'company' => [
+                    'type' => Http\Literal::class,
+                    'options' => [
+                        'route' => '/company',
+                        'defaults' => [
+                            'controller' => Controller\InfoController::class,
+                            'action' => 'company',
+                        ],
+                    ],
+                ],
+                'contacts' => [
+                    'type' => Http\Literal::class,
+                    'options' => [
+                        'route' => '/contacts',
+                        'defaults' => [
+                            'controller' => Controller\IndexController::class,
+                            'action' => 'contacts',
+                        ],
+                    ],
                 ],
                 'bid' => [
                     'type' => Http\Literal::class,

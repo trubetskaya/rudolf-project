@@ -1,7 +1,6 @@
 <?php
-$this->headTitle('services-title');
-$this->headMeta()
-    ->appendName('description', $this->translate($section . '-meta-desc'))
-    ->appendName('keywords', $this->translate($section . '-meta-keywords'))?>
+$this->headTitle("{$section}-services-title");
+$this->headMeta()->appendName('description', $this->translate("{$section}-services-desc"))
+    ->appendName('keywords', $this->translate("{$section}-services-keywords"))?>
 <?= $this->render('partial/keep-alive.phtml') ?>
 

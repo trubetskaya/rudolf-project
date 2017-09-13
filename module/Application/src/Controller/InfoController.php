@@ -16,28 +16,33 @@ namespace Application\Controller {
     class InfoController extends AbstractController
     {
         /**
-         * @internal Vehicle $item
+         * Sale
          * @return ViewModel
          */
         public function saleAction()
         {
             $view = new ViewModel;
+            $view->setVariable('section', $this->params()
+                ->fromRoute('section'));
+
             return $view;
         }
 
         /**
-         * @internal Vehicle $item
+         * Services
          * @return ViewModel
          */
         public function servicesAction()
         {
             $view = new ViewModel;
-            $view->setVariable('section', $this->params()->fromRoute('section'));
+            $view->setVariable('section', $this->params()
+                ->fromRoute('section'));
+
             return $view;
         }
 
         /**
-         * @internal Vehicle $item
+         * About company
          * @return ViewModel
          */
         public function companyAction()

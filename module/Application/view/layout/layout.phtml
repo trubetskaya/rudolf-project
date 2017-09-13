@@ -6,18 +6,20 @@
         <script type="text/javascript">
             var store = {
                 nav : {
-                    home:       { path: "/", name: 'home', text: "<?=$this->translate('Домой')?>"},
-                    card:       { path: "<?= $this->url('card') ?>", name: 'card', text: "<?=$this->translate('Купить')?>"},
-                    catalog:    { path: "<?= $this->url('catalog') ?>", name: 'catalog', text: "<?=$this->translate('Купить')?>"},
-                    sale:       { path: "<?= $this->url('sale') ?>", name: 'sale', text: "<?=$this->translate('Продать')?>"},
-                    services:   { path: "<?= $this->url('services') ?>", name: 'services', text: "<?=$this->translate('Услуги')?>"},
-                    company:    { path: "<?= $this->url('company') ?>", name: 'company', text: "<?=$this->translate('Компания')?>"},
-                    contacts:   { path: "<?= $this->url('contacts') ?>", name: 'contacts', text: "<?=$this->translate('Контакты')?>"},
+                    home:{path:"/", name:'home', text:"<?=$this->translate('Home')?>", meta:{title:"<?=$this->translate('main-page-title')?>"}},
+                    card:{path:"<?=$this->url('card')?>", name:'card', text:"<?=$this->translate('Card')?>", meta:{title:"<?=$this->translate('card-page-title')?>"}},
+                    catalog:{path:"<?=$this->url('catalog')?>", name:'catalog', text:"<?=$this->translate('Купить')?>", meta:{title:"<?=$this->translate('catalog-page-title')?>"}},
+                    sale:{path:"<?=$this->url('sale')?>", name:'sale', text:"<?=$this->translate('Продать')?>", meta:{title:"<?=$this->translate('buyout-sale-title')?>"}},
+                    services:{path:"<?=$this->url('services')?>", name:'services', text:"<?=$this->translate('Услуги')?>", meta:{title:"<?=$this->translate('credit-service-title')?>"}},
+                    company:{path:"<?=$this->url('company')?>", name:'company', text:"<?=$this->translate('Компания')?>", meta:{title:"<?=$this->translate('company-page-title')?>"}},
+                    contacts:{path:"<?=$this->url('contacts')?>", name:'contacts', text:"<?=$this->translate('Контакты')?>", meta:{title:"<?=$this->translate('contacts-page-title')?>"}}
                 }
             };
         </script>
-        <?= $this->headTitle('Rudolf AutoHaus')->setSeparator(' - ')
-            ->setAutoEscape(false) ?>
+
+        <?= $this->headTitle('Rudolf AutoHaus')
+            ->setAutoEscape(false)
+            ->setSeparator('::')?>
 
         <?= $this->headMeta()
             ->appendName('theme-color', '#555963')
@@ -29,13 +31,6 @@
         <!-- Inline scripts -->
         <?php $this->inlineScript()
             ->prependFile($this->basePath('js/build.js'))
-            ->prependFile($this->basePath('js/formstone/js/checkbox.js'))
-//            ->prependFile($this->basePath('js/formstone/js/scrollbar.js'))
-//            ->prependFile($this->basePath('js/formstone/js/dropdown.js'))
-//            ->prependFile($this->basePath('js/formstone/js/touch.js'))
-            ->prependFile($this->basePath('js/formstone/js/core.js'))
-//            ->prependFile($this->basePath('js/jcarousel.skeleton.js'))
-//            ->prependFile($this->basePath('js/jquery.jcarousel.min.js'))
             ->prependFile($this->basePath('js/bootstrap.min.js'))
             ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))?>
 
@@ -58,10 +53,8 @@
             ->headLink(['rel' => 'manifest', 'href' => $this->basePath('manifest.json')])
 
             ->prependStylesheet($this->basePath('css/main.css'))
-            ->prependStylesheet($this->basePath('css/checkbox.css'))
             ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
             ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
-            ->appendStylesheet($this->basePath('js/formstone/css/checkbox.css'))
         ?>
 
         <script type="text/javascript">
@@ -84,15 +77,13 @@
             var cards = <?=json_encode($list);?>,
                 categories = <?=json_encode($categories);?>;
 
-                var cardListInit = [];
-                for (var i in cards) {
-                    cardListInit.push(cards[i]);
-                }
+            var cardListInit = [];
+            for (var i in cards) { cardListInit.push(cards[i]); }
 
             function initMap() {
-                var uluru = { lat: 50.4451721, lng: 30.4881641 };
-                var map = new google.maps.Map(document.getElementById('map'), { zoom: 15, center: uluru });
-                var marker = new google.maps.Marker({ position: uluru, map: map });
+                var uluru = { lat: 50.4451721, lng: 30.4881641 },
+                    map = new google.maps.Map(document.getElementById('map'), { zoom: 15, center: uluru }),
+                    marker = new google.maps.Marker({ position: uluru, map: map });
             }
         </script>
         <div id="app">

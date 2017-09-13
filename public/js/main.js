@@ -22,7 +22,11 @@ routes.home.component = require("./components/Home.vue");
 routes.catalog.component = require("./components/Catalog.vue");
 routes.company.component = require("./components/Company.vue");
 routes.contacts.component = require("./components/Contacts.vue");
+
+routes.sale.props = true;
+routes.sale.href = routes.sale.path + "/buyout";
 routes.sale.component = require("./components/Sale.vue");
+routes.sale.path += "/:section";
 
 routes.services.props = true;
 routes.services.href = routes.services.path + "/credit";
@@ -45,16 +49,20 @@ let router = new VueRouter({
     linkActiveClass: 'active',
     routes: v,
     scrollBehavior (to, _, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            if (to.hash) {
+                return {selector: to.hash}
+            }
+        }
 
+        return {x:0, y:0};
     }
 });
 
 router.afterEach((to, from) => {
-    console.info("Finished animating");
-    let body = $("html, body");
-    body.stop().animate({scrollTop:0}, 500, 'swing', function() {
-        console.info("Finished animating");
-    });
+    document.title = to.meta.title + "::" + document.title.split("::").pop();
 });
 
 new Vue({
