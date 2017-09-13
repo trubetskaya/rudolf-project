@@ -6,6 +6,15 @@
             Carousel,
             Slide
         },
+        computed: {
+            perPage() {
+                let w = $(document).width(),
+                    sm = 487, xs = 281;
+
+                let pp = Math.floor(w > sm ? w/sm : w/xs);
+                return pp > 0 ? pp : 1;
+            }
+        },
         data: function () {
             return {
                 card: cards[this.id]
@@ -39,7 +48,7 @@
                               :navigationNextLabel="''" :navigationPrevLabel="''"
                               :navigationClickTargetSize="0"
                               :paginationEnabled="false"
-                              :perPage="2">
+                              :perPage="perPage">
                         <slide v-for="file in card.files">
                             <img :src="file" :alt="card.taxonomy" class="hidden-sm hidden-xs" width="487" height="350"/>
                             <img :src="file.replace('487x350', '281x202')" :alt="card.taxonomy"
@@ -190,6 +199,11 @@
         @media (max-width: 974px) {
             margin: 26px 0 13px;
             width: 562px;
+        }
+
+        @media (max-width: 562px) {
+            margin: 26px 0 13px;
+            width: 281px;
         }
 
         .VueCarousel-wrapper {
