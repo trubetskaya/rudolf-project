@@ -28,12 +28,6 @@
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge') ?>
 
-        <!-- Inline scripts -->
-        <?php $this->inlineScript()
-            ->prependFile($this->basePath('js/build.js'))
-            ->prependFile($this->basePath('js/bootstrap.min.js'))
-            ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))?>
-
         <!-- Le styles -->
         <?= $this
             ->headLink(['rel' => 'icon', 'type' => 'image/png', 'sizes' => '16x16', 'href' => $this->basePath('icons/favicon-16x16.png')])
@@ -54,18 +48,21 @@
 
             ->prependStylesheet($this->basePath('css/main.css'))
             ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-            ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
-        ?>
+            ->prependStylesheet($this->basePath('css/bootstrap.min.css'))?>
 
-        <script type="text/javascript">
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-104493997-1', 'auto');
-            ga('send', 'pageview');
-        </script>
+        <!-- Inline scripts -->
+        <?php $this->inlineScript()
+            ->prependFile($this->basePath('js/build.js'))
+            ->prependFile($this->basePath('js/bootstrap.min.js'))
+            ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))->appendScript(
+                "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+                ga('create', 'UA-104493997-1', 'auto');
+                ga('send', 'pageview');",
+                "text/javascript")?>
     </head>
 
     <?php foreach ($list as &$item) {
